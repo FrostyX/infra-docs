@@ -135,6 +135,10 @@ Errors from mailman cron jobs showing things like:
 - see which list is the culprit
 - go to /var/lib/mailman/lists/$thatlist/ and remove the digest.mbox file
 
+Other tracebacks:
+ When in doubt run the mailman commands with the -l option to figure out
+which one is the problem
+
 
 Mailman migration
 
