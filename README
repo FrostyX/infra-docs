@@ -30,6 +30,9 @@ Migration from the Wiki:
 For each SOP:
 
 1. Copy the content out of the wiki version into a text file.
+  a good way to do this is to run:
+
+  links -dump $url > filename.txt
 
 2. Update or clean up any wording that should be cleaned up or changed.
 
