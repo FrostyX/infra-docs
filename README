@@ -10,6 +10,35 @@ they will be outputted to:
 
 http://infrastructure.fedoraproject.org/infra/docs/
 
+Information to include:
+
+== Contact Information ==
+Owner: 
+
+Contact: 
+
+Location: 
+
+Servers: 
+
+Purpose: 
+
+
+Migration from the Wiki:
+==============
+
+For each SOP:
+
+1. Copy the content out of the wiki version into a text file.
+
+2. Update or clean up any wording that should be cleaned up or changed.
+
+3. Commit to new repo and push.
+
+4. Change the wiki page to note that the SOP has been converted and redirect
+to a    wiki page that explains about the git repo and how to access it and/or a
+link to that  particular sop.
+
 
 
 
