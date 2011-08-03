@@ -1,0 +1,15 @@
+infrastructure documents
+
+This repository is for the infrastructure documentation and SOPs(Standard
+Operating Procedures). These explain what we do, when we do it and, often,
+why we do it.
+
+git grep is your friend in this dir.
+Files should be in text.
+they will be outputted to:
+
+http://infrastructure.fedoraproject.org/infra/docs/
+
+
+
+
