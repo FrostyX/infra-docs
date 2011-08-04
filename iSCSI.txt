@@ -6,14 +6,14 @@ ISCSI
 
    Contents
 
-     * 1 Contact Information
-     * 2 Typical uses
-     * 3 iscsi basics
-     ** 3.1 Terms
-     ** 3.2 iscsi's basic login / logout procedure is
-     * 4 Loggin in
-     * 5 Logging out
-     * 6 Important note about creating new logical volumes
+     * 1 Contact Information
+     * 2 Typical uses
+     * 3 iscsi basics
+     ** 3.1 Terms
+     ** 3.2 iscsi's basic login / logout procedure is
+     * 4 Loggin in
+     * 5 Logging out
+     * 6 Important note about creating new logical volumes
 
 Contact Information
 
@@ -40,18 +40,18 @@ iscsi basics
 
   Terms
 
-     * initiator means client
-     * target means server
-     * swab means mop
-     * deck means floor
+     * initiator means client
+     * target means server
+     * swab means mop
+     * deck means floor
 
   iscsi's basic login / logout procedure is
 
-    1. Notify your client that a new target is available (similar to editing
+    1. Notify your client that a new target is available (similar to editing
        /etc/fstab for a new nfs mount)
-    2. Login to the iscsi target (similar to running "mount /my/nfs"
-    3. Logout from the iscsi target (similar to running "umount /my/nfs"
-    4. Delete the target from the client (similar to removing the nfs mount
+    2. Login to the iscsi target (similar to running "mount /my/nfs"
+    3. Logout from the iscsi target (similar to running "umount /my/nfs"
+    4. Delete the target from the client (similar to removing the nfs mount
        from /etc/fstab)
 
 Loggin in
