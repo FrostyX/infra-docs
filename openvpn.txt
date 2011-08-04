@@ -65,8 +65,9 @@ Add a new host
    After you have your static IP ready, just add the entry to DNS:
 
    From your puppet checkout, run:
-
- vi modules/bind/files/master/vpn.fedoraproject.org
+ vi modules/bind/files/master/168.192.in-addr.arpa
+ # pick out an ip that's unused
+ vi modules/bind/files/master/vpn.fedoraproject.org 
  git commit -m "What have you done?"
  git push
 
