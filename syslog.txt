@@ -70,7 +70,7 @@ notification to all the people in the sysadmin-logs group.
 Future:
 - additional log reports for errors from http processes or servers
 - SEC - Simple Event Coordinator to report, immediately, on events from a 
-        log stream
+        log stream - available in fedora/epel.
 - New report modules within epylog
 
 
