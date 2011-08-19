@@ -1,0 +1,188 @@
+Database Infrastructure SOP
+
+   Our database servers provide database storage for many of our apps.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Description
+     * 3 Creating a New Postgresql Database
+     * 4 Troubleshooting and Resolution
+
+          * 4.1 Connection issues
+          * 4.2 Some useful queries
+
+               * 4.2.1 What queries are running
+               * 4.2.2 Seeing how "dirty" a table is
+               * 4.2.3 XID Wraparound
+
+          * 4.3 Restart Procedure
+
+               * 4.3.1 Koji
+               * 4.3.2 Mirror Manager
+
+                    * 4.3.2.1 Vacuuming Mirror Manager
+
+               * 4.3.3 Bodhi
+               * 4.3.4 Smolt
+
+     * 5 Note about TurboGears and MySQL
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main, sysadmin-dba group
+
+   Location: Phoenix
+
+   Servers: db2, db4, db5
+
+   Purpose: Provides database connection to many of our apps.
+
+Description
+
+   db5 and db2 are our primary database servers. db5 contains the MySQL
+   instance, db2 contains postgresql. Each database server replicates to
+   itself and the other through a dump style backup. In a normal situation,
+   db5 runs only MySQL, not postgresql. While db2 runs only postgresql not
+   MySQL. Which is running on which is defined in the puppet configs,
+   specifically the node manifest for each server
+   (nodes/db1.fedora.phx.redhat.com.pp and
+   nodes/db2.fedora.phx.redhat.com.pp)
+
+   db4 is a postgresql server dedicated to koji.
+
+Creating a New Postgresql Database
+
+   Creating a new database on our postgresql server isn't hard but there's
+   several steps that should be taken to make the database server as secure
+   as possible.
+
+ db2 $ sudo -u postgres createdb -E utf8 NEWDB
+ db2 $ sudo -u postgres createuser -P -E NEWDBUSER
+ Password: <randomly generated password>
+ db2 $ sudo -u postgres psql NEWDB
+ NEWDB=# revoke all on database NEWDB from public;
+ NEWDB=# revoke all on schema public from public;
+ NEWDB=# grant all on schema public to NEWDBUSER;
+ NEWDB=# [grant other permissions to NEWDBUSER as appropriate for your app]
+
+   If you're doing this on a postgresql8.3 install (currently just db3),
+   perform the next step as well:
+
+ NEWDB=# grant connect on database NEWDB to nagiosuser;
+
+   If your application needs to have the NEWDBUSER and password to connect to
+   the database, you probably want to add these to puppet as well. Put the
+   password in the private repo in puppet1. Then use a templatefile to
+   incorporate it into the config file. See fas.pp for an example.
+
+Troubleshooting and Resolution
+
+  Connection issues
+
+   There are no known outstanding issues with the database itself. Remember
+   that every time either database is restarted, services will have to be
+   restarted (see below).
+
+  Some useful queries
+
+    What queries are running
+
+   This can help you find out what queries are cuurently running on the
+   server::
+
+ select datname, procpid, query_start, backend_start, current_query from
+ pg_stat_activity where current_query not like '<IDLE>%' order by query_start;
+
+   This can help you find how many connections to the db server are for each
+   individual database::
+
+ select datname, count(datname) from pg_stat_activity group by datname
+ order by count desc;
+
+    Seeing how "dirty" a table is
+
+   We've added a function from postgres's contrib directory to tell how dirty
+   a table is. By dirty we mean, how many tuples are active, how many have
+   been marked as having old data (and therefore "dead") and how much free
+   space is allocated to the table but not used.
+
+ \c fas2
+ \x
+ select * from pgstattuple('visit_identity');
+ table_len          | 425984
+ tuple_count        | 580
+ tuple_len          | 46977
+ tuple_percent      | 11.03
+ dead_tuple_count   | 68
+ dead_tuple_len     | 5508
+ dead_tuple_percent | 1.29
+ free_space         | 352420
+ free_percent       | 82.73
+ \x
+
+   Vacuum should clear out dead_tuples. Only a vacuum full, which will lock
+   the table and therefore should be avoided, will clear out free space.
+
+    XID Wraparound
+
+   Find out how close we are to having to perform a vacuum of a database (as
+   opposed to individual tables of the db). We should schedule a vacuum when
+   about 50% of the transaction ids have been used (approximately 530,000,000
+   xids):
+
+ select datname, age(datfrozenxid), pow(2, 31) - age(datfrozenxid) as xids_remaining
+ from pg_database order by xids_remaining;
+
+   Information on [61]wraparound
+
+  Restart Procedure
+
+   If the database server needs to be restarted it should come back on it's
+   own. Otherwise each service on it can be restarted:
+
+ service mysqld restart
+ service postgresql restart
+
+    Koji
+
+   Any time postgreql is restarted, koji needs to be restarted. Please also
+   see [62]Restarting Koji
+
+    Mirror Manager
+
+   Anytime postgresql is restarted Mirror Manager will need to be restarted,
+   no SOP currently exists for this
+
+      Vacuuming Mirror Manager
+
+   Occasionally our vacuum cron jobs may not keep up with the writes to the
+   mirrormanager database. If this happens, we need to do a vacuum full of
+   mirrormanager's db. (See the [63]dirty table section for a query to tell
+   if this is necessary). The trick with this is making sure the mirrorlist
+   cache isn't updated while we're doing the vacuum. To disable that we can
+   turn off the mirrormanager management interface:
+
+ $  for i in 2 3 4 5; do ssh app$i supervisorctl stop mirrormanager ; done
+ $ ssh db2
+ $ sudo -u postgres vacuumdb -fzv --dbname mirrormanager
+ $  for i in 2 3 4 5; do ssh app$i supervisorctl start mirrormanager ; done
+
+    Bodhi
+
+   Anytime postgresql is restarted Bodhi will need to be restarted no sop
+   currently exists for this.
+
+    Smolt
+
+   Anytime MySQL is restarted, Smolt will need to be restarted. no SOP
+   currently exists for this
+
+Note about TurboGears and MySQL
+
+   [64]Note.png
+   There's a known bug in TurboGears that causes MySQL clients not to
+   automatically reconnect when lost. Typically a restart of the TurboGears
+   application will correct this issue.
