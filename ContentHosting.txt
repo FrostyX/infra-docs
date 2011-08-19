@@ -27,7 +27,7 @@ Description
 
 What hosting options are available
 
-   Aside from the hosting at [58]http://fedorahosted.org/ we have a series of
+   Aside from the hosting at http://fedorahosted.org/ we have a series of
    mirrors we're allowing people to use. They are located at:
 
      * http://archive.fedoraproject.org/pub/archive/ - For archives of
@@ -39,7 +39,7 @@ What hosting options are available
      * http://torrent.fedoraproject.org/ - For torrent hosting
      * http://spins.fedoraproject.org/ - For official Fedora Spins
        hosting, mirrored somewhat
-     * http://download.fedora.redhat.com/pub/ - For official Fedora
+     * http://download.fedoraproject.com/pub/ - For official Fedora
        Releases, mirrored widely
 
 Who can host? What can be hosted?
@@ -52,7 +52,7 @@ Who can host? What can be hosted?
   Non Official Hosting
 
    People wanting to host unofficial bits may request approval for hosting.
-   Create a ticket at [65]https://fedorahosted.org/fedora-infrastructure/
+   Create a ticket at https://fedorahosted.org/fedora-infrastructure/
    explaining what and why Fedora should host it. Such will be reviewed by
    the Fedora Infrastructure team.
 
@@ -62,26 +62,24 @@ Who can host? What can be hosted?
   Licensing
 
    Anything hosted with Fedora must come with a Free software license that is
-   approved by Fedora. See [66]http://fedoraproject.org/wiki/Licensing for
+   approved by Fedora. See http://fedoraproject.org/wiki/Licensing for
    more.
 
   Requesting Space
 
      * Make sure you have a Fedora account -
-       [67]https://admin.fedoraproject.org/accounts/
-     * Ensure you have signed the Contributor License Agreement (CLA)
+       https://admin.fedoraproject.org/accounts/
+     * Ensure you have signed the Fedora Project Contributor Agreement (FPCA)
      * Submit a hosting request -
-       [68]https://fedorahosted.org/fedora-infrastructure/
+       https://fedorahosted.org/fedora-infrastructure/
 
-          * Include who you are, and any group you are working with (e.g. a
-            SIG)
+          * Include who you are, and any group you are working with (e.g. a SIG)
           * Include Space requirements
-          * Include an estimate of the number of downloads expected (if you
-            can).
+          * Include an estimate of the number of downloads expected (if you can).
           * Include the nature of the bits you want to host.
 
      * Apply for group hosted-content -
-       [69]https://admin.fedoraproject.org/accounts/group/view/hosted-content
+       https://admin.fedoraproject.org/accounts/group/view/hosted-content
 
   Using Space
 
