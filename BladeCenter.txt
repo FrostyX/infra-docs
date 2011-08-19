@@ -2,6 +2,7 @@ BladeCenter Access Infrastructure SOP
 
 
    Many of the builders in PHX are blades in a blade center.
+   A few other machines are also on blades. 
 
    Contents
 
@@ -25,8 +26,8 @@ Common Tasks
 
   Logging into the web interface
 
-   The web interface to the bladecenter lets you reset power, etc. It's
-   hostname is bc1-mgmt
+   The web interface to the bladecenters let you reset power, etc. 
+   They are bc01-mgmt and bc02-mgmt. 
 
   Using the Serial Console of Blades
 
