@@ -1,0 +1,253 @@
+   Link: [1]FedoraProject (en) (search)
+   Link: [2]copyright
+   Link: [3]FedoraProject Atom feed (alternate)
+
+                                   [4]Fedora
+
+      Personal tools
+
+     * [5]Log in
+
+      Views
+
+     * [6]Page
+     * [7]Discussion
+     * [8]View source
+     * [9]History
+
+wiki
+
+     * [10]Fedora Project Wiki
+     * [11]News
+     * [12]Events
+     * [13]Features
+     * [14]Recent changes
+     * [15]Random page
+     * [16]Help
+
+Navigation
+
+     * [17]Home
+     * [18]Get Fedora
+     * [19]Join Fedora
+
+sub-projects
+
+     * [20]Ambassadors
+     * [21]Bug Zappers
+     * [22]Design
+     * [23]Documentation
+     * [24]EPEL
+     * [25]Infrastructure
+     * [26]Internationalization
+     * [27]Localization
+     * [28]Marketing
+     * [29]Package Maintainers
+     * [30]Websites
+     * [31]Weekly News
+     * [32]All projects
+
+Search
+
+   [33]_____________________
+   [34][ Go ]   [35][ Search ]
+
+Toolbox
+
+     * [36]What links here
+     * [37]Related changes
+     * [38]Special pages
+     * [39]Printable version
+     * [40]Permanent link
+
+Bacula Infrastructure SOP
+
+  From FedoraProject
+
+   Jump to: [41]navigation, [42]search
+   [43]Infrastructure InfrastructureTeamN1.png
+
+                                   Shortcut:
+                                [44]ISOP:BACULA
+
+   Bacula is our backup solution. Our backups run to backup01 and ultimately
+   to a tape robot
+
+   Contents
+
+     * [45]1 Contact Information
+     * [46]2 Troubleshooting and Resolution
+
+          * [47]2.1 Intervention Required
+
+     * [48]3 Mysql insert failures
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main
+
+   Location: Phoenix
+
+   Servers: backup01
+
+   Purpose: Our backup solution
+
+Troubleshooting and Resolution
+
+   You can get to the bacula management console with:
+
+   sudo /usr/sbin/bconsole
+
+   From there you can get a overview status with:
+
+   status dir
+
+   Or a more specific status on the tape drive with:
+
+   status 2 2
+
+  Intervention Required
+
+   If the tapes fill up, it may be required to purge the oldest volume. This
+   is done with the purge command. Select volume, then a list of volumes
+   comes up. Pick the oldest volume that has not already been purged or
+   recycled.
+
+   list volumes
+
+   then
+
+   purge
+
+   It will ask you for the media-id or volume -id. Enter the one from the
+   oldest tape listed above in list volumes.
+
+   After that the oldest tape will be purged, but bacula may not resume on it
+   yet. You need to load the tape to make sure it realizes it can go on:
+
+   mount
+
+   It will ask for the device (say tape), then ask for the slot id. Enter the
+   number from above in list volumes.
+
+Mysql insert failures
+
+   Sometimes backups will fail with a:
+
+   Fatal error: Can't fill File table Query failed: INSERT INTO File
+   (FileIndex, JobId, PathId, FilenameId, LStat, MD5)SELECT batch.FileIndex,
+   batch.JobId, Path.PathId, Filename.FilenameId,batch.LStat, batch.MD5 FROM
+   batch JOIN Path ON (batch.Path = Path.Path) JOIN Filename ON (batch.Name =
+   Filename.Name): ERR=Lock wait timeout exceeded; try restarting transaction
+
+   This error is a issue with the old bacula and mysql we have, and there's
+   not much to be done about it. Start a new backup if one is needed or wait
+   for the next backup to complete.
+
+   Retrieved from
+   "[49]https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP"
+   [50]Category: [51]Infrastructure SOPs
+   [52]Powered by MediaWiki
+
+   Copyright © 2011 Red Hat, Inc. and others. All Rights Reserved. For
+   comments or queries, please [53]contact us.
+
+   The Fedora Project is maintained and driven by the community and sponsored
+   by Red Hat. This is a community maintained site. Red Hat is not
+   responsible for content.
+
+     * This page was last modified on 12 May 2011, at 16:47.
+     * Content is available under [54]Attribution-Share Alike 3.0 Unported.
+
+     * [55]Privacy policy
+     * [56]About FedoraProject
+     * [57]Disclaimers
+     * [58]Sponsors
+     * [59]Legal
+     * [60]Trademark Guidelines
+
+References
+
+   Visible links
+   1. https://fedoraproject.org/w/opensearch_desc.php
+   2. https://fedoraproject.org/wiki/Legal:Main
+   3. https://fedoraproject.org/w/index.php?title=Special:RecentChanges&feed=atom
+   4. Visit the main page [z]
+	https://fedoraproject.org/wiki/Fedora_Project_Wiki
+   5. You are encouraged to log in; however, it is not mandatory [o]
+	https://fedoraproject.org/w/index.php?title=Special:UserLogin&returnto=Bacula_Infrastructure_SOP
+   6. View the content page [c]
+	https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP
+   7. Discussion about the content page [t]
+	https://fedoraproject.org/w/index.php?title=Talk:Bacula_Infrastructure_SOP&action=edit&redlink=1
+   8. This page is protected.
+You can view its source [e]
+	https://fedoraproject.org/w/index.php?title=Bacula_Infrastructure_SOP&action=edit
+   9. Past revisions of this page [h]
+	https://fedoraproject.org/w/index.php?title=Bacula_Infrastructure_SOP&action=history
+  10. Visit the main page [z]
+	https://fedoraproject.org/wiki/Fedora_Project_Wiki
+  11. https://fedoraproject.org/wiki/FWN/LatestIssue
+  12. https://fedoraproject.org/wiki/FedoraEvents
+  13. https://fedoraproject.org/wiki/Features
+  14. The list of recent changes in the wiki [r]
+	https://fedoraproject.org/wiki/Special:RecentChanges
+  15. Load a random page [x]
+	https://fedoraproject.org/wiki/Special:Random
+  16. The place to find out
+	https://fedoraproject.org/wiki/Help
+  17. http://fedoraproject.org/
+  18. http://get.fedoraproject.org/
+  19. http://join.fedoraproject.org/
+  20. https://fedoraproject.org/wiki/Ambassadors
+  21. https://fedoraproject.org/wiki/BugZappers
+  22. https://fedoraproject.org/wiki/Design
+  23. https://fedoraproject.org/wiki/DocsProject
+  24. https://fedoraproject.org/wiki/EPEL
+  25. https://fedoraproject.org/wiki/Infrastructure
+  26. https://fedoraproject.org/wiki/I18N
+  27. https://fedoraproject.org/wiki/L10N
+  28. https://fedoraproject.org/wiki/Marketing
+  29. https://fedoraproject.org/wiki/PackageMaintainers
+  30. https://fedoraproject.org/wiki/Websites
+  31. https://fedoraproject.org/wiki/FWN
+  32. https://fedoraproject.org/wiki/Projects
+  36. List of all wiki pages that link here [j]
+	https://fedoraproject.org/wiki/Special:WhatLinksHere/Bacula_Infrastructure_SOP
+  37. Recent changes in pages linked from this page [k]
+	https://fedoraproject.org/wiki/Special:RecentChangesLinked/Bacula_Infrastructure_SOP
+  38. List of all special pages [q]
+	https://fedoraproject.org/wiki/Special:SpecialPages
+  39. Printable version of this page [p]
+	https://fedoraproject.org/w/index.php?title=Bacula_Infrastructure_SOP&printable=yes
+  40. Permanent link to this revision of the page
+	https://fedoraproject.org/w/index.php?title=Bacula_Infrastructure_SOP&oldid=235883
+  41. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP#column-one
+  42. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP#searchInput
+  43. https://fedoraproject.org/wiki/Infrastructure
+  44. ISOP:BACULA
+	https://fedoraproject.org/wiki/ISOP:BACULA
+  45. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP#Contact_Information
+  46. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP#Troubleshooting_and_Resolution
+  47. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP#Intervention_Required
+  48. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP#Mysql_insert_failures
+  49. https://fedoraproject.org/wiki/Bacula_Infrastructure_SOP
+  50. Special:Categories
+	https://fedoraproject.org/wiki/Special:Categories
+  51. Category:Infrastructure SOPs
+	https://fedoraproject.org/wiki/Category:Infrastructure_SOPs
+  52. http://www.mediawiki.org/
+  53. https://fedoraproject.org/contact
+  54. Legal:Main
+	https://fedoraproject.org/wiki/Legal:Main
+  55. FedoraProject:Privacy policy
+	https://fedoraproject.org/wiki/FedoraProject:Privacy_policy
+  56. FedoraProject:About
+	https://fedoraproject.org/wiki/FedoraProject:About
+  57. FedoraProject:General disclaimer
+	https://fedoraproject.org/wiki/FedoraProject:General_disclaimer
+  58. http://fedoraproject.org/en/sponsors
+  59. http://fedoraproject.org/wiki/Legal:Main
+  60. http://fedoraproject.org/wiki/Legal:Trademark_guidelines
