@@ -1,0 +1,311 @@
+Fedora Websites Release SOP
+
+   Contents
+
+     * 1 Preparing the website for a release
+
+          * 1.1 Update gpg key
+
+               * 1.1.1 Steps
+
+          * 1.2 Update LINGUAS and languages.conf file
+          * 1.3 Prepare puppet commits
+
+     * 2 Update website
+
+          * 2.1 For Alpha
+          * 2.2 For Beta
+          * 2.3 For GA
+
+     * 3 Fire in the hole
+     * 4 Tips
+
+          * 4.1 Creating Branches
+          * 4.2 Checking Out Branch
+          * 4.3 Merging branches
+          * 4.4 non-js counter
+          * 4.5 alpha/beta banners (static/js/banner.js)
+          * 4.6 commit message example
+
+Preparing the website for a release
+
+  Update gpg key
+
+   As the release approaches, watch the fedora-release package for a new key
+   to be added. Use the update-gpg-keys script in the fedora-web git
+   repository to add it to static/. Manually add it to /keys and /verify.
+
+    Steps
+
+   Get a copy of the new key from the fedora-release repo
+
+     * Currently at
+       [61]http://cvs.fedoraproject.org/viewvc/fedora-release/?root=fedora).
+
+   We usually obsolete keys at the same time, so as we add F-13 keys, we
+   remove the F-10 keys from the fedora.gpg keyblock and move them on the
+   /keys page to the "obsolete keys" section.
+
+   Start by updating fedoraproject.org/update-gpg-keys and adding the keyids
+   of any obsolete keys to the obsolete_keys list.
+
+   Then run that script to add the new key:
+
+ [fedora-web (f13-keys)]$ cd fedoraproject.org/
+ [fedoraproject.org (f13-keys)]$ ./update-gpg-keys ../../fedora-release/RPM-GPG-KEY-fedora-13-primary
+
+   This will add the key to the keyblock in static/fedora.gpg and create a
+   text file for the key in static/$KEYID.txt as well. Verify that these
+   files have been created properly and contain all the keys that they
+   should.
+
+     * Handy checks: gpg static/fedora.gpg or gpg static/$KEYID.txt
+     * Adding "--with-fingerprint" option will add the fingerprint to the
+       output
+
+   Next, update data/content/verify.html to add the new key. The output of
+   'gpg --fingerprint --list-key E8E40FDE' is what we want in the <pre>
+   block. Move any obsolete keys to the obsolete keys section.
+
+   Update data/content/verify.html to remove any obsolete keys from the list
+   of keyid's.
+
+   Carefully verify that the data is correct, 'make en test' and checking
+   [62]http://localhost:5000/keys and [63]http://localhost:5000/verify is
+   wise.
+
+  Update LINGUAS and languages.conf file
+
+   Let's clean our directories and update the po files in the fedora-web git
+   repository
+
+ $ make clean all
+
+   Checks file listing vs what's in LINGUAS (left side is the correct one)
+
+     * The ones that only have a " <" on the right side are the ones that are
+       needed
+
+ $ diff --side-by-side -B <(ls -1 *.po | sed -n "s/.po//p" | sort) <(cat LINGUAS)
+
+   Double check everything matches
+
+ $ ls *.po | wc -l ; wc -l LINGUAS
+
+ $ make httpd/conf/languages.conf
+ $ sed -i "s:@DOCUMENTROOT@:/srv/web/start.fedoraproject.org:g" languages.conf.in
+
+   Commit changes
+
+ $ git commit -a
+
+   In /data/content/get-prerelease.html, from Alpha -> Beta
+
+ $ sed -i s/-Alpha-/-Beta/g <filename>
+
+  Prepare puppet commits
+
+   Prior to release day, prepare puppet commits to move the fedora-web branch
+   to the release (alpha, beta, final, whatever)
+
+     * Update branch
+
+          * Edit: modules/fedora-web/files/syncStatic.sh
+
+     * Redirect /get-prerelease
+
+          * Edit: modules/fedora-web/files/redirects.conf
+
+Update website
+
+  For Alpha
+
+    1. add Alpha banner
+    2. add "Someone say Alpha" note
+    3. update links alpha links in get-prerelease.html
+
+         1. Ensure href's are consistent with actual filenames of mirrored
+            content
+
+              1. You should be able to find the paths in /pub on bapp01 (sudo
+                 su - mirrormanager first)
+
+         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+
+    4. modify:
+
+         1. data/content/get-fedora.html (add alpha note)
+         2. data/content/get-prerelease.html (update links)
+         3. static/js/banner.js (alpha banner)
+
+  For Beta
+
+    1. add countdown banner
+    2. update links beta links in get-prerelease.html
+
+         1. Ensure href's are consistent with actual filenames of mirrored
+            content
+
+              1. You should be able to find the paths in /pub on bapp01 (sudo
+                 su - mirrormanager first)
+
+         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+
+    3. modify:
+
+         1. data/content/counter.html (add languages)
+         2. data/templates/js.html (add release counter and hide banner.js
+         3. static/js/release-counter* (update dates/times, languages)
+         4. data/content/get-prerelease.html (update links)
+         5. data/templates/sidebar (add non-js version of countdown)
+
+  For GA
+
+   Merge beta onto master branch
+
+ $ git checkout master
+ $ git merge f13-beta
+
+   Manually edit the .pot files that are listed as conflicts
+
+   Manually go to each site and 'make all test'
+
+   On GA release day, tag repo F<release-number>.
+
+   Update banner.js to reflect new banner (See file: /static/js/banners.js)
+
+   Change /data/content/get-fedora.html from Alpha -> Beta
+
+     * Note: if you're looking for paths, you should be able to find the
+       paths in /pub on bapp01 (sudo su - mirrormanager first)
+
+   Add alpha/beta banner image (see design team)
+
+Fire in the hole
+
+   After 9:15 AM EDT release day, push the puppet changes (e.g.: cd ~/puppet
+   && git push). This timing ensures that the cron jobs will not
+   automatically push the new website before 10:00 AM. Then, on puppet1 run:
+
+ # Ensure you have the puppet repo checked out to ~/puppet and up to date
+ cd ~/puppet && make HOSTS="bapp1 proxy1 proxy2 proxy3 proxy4 proxy5 proxy6 proxy7" push
+
+   On bapp1, run:
+
+ # Once /usr/local/bin/syncStatic on bapp1 is updated with your changes, run
+ sudo -u apache /usr/local/bin/syncStatic
+
+   This takes about 15 minutes, so try to do this well before you need to
+   push the final site out.
+
+   Finally, when releng gives the OK, run the following on the proxies to
+   make the site live:
+
+ # To sync the changes out, you can use func from puppet1 if you have sudo on puppet1.
+ # Otherwise, SSH to the proxies and call the below command.
+ sudo /usr/bin/rsync -a --no-owner --no-group bapp01::fedoraproject.org/* /srv/web/fedoraproject.org/
+
+ # you probably want to do the other sites too
+ sudo func proxy\* call command run "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::spins.fedoraproject.org/* /srv/web/spins.fedoraproject.org/"
+ sudo func proxy\* call command run "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::start.fedoraproject.org/* /srv/web/start.fedoraproject.org/"
+
+   Push commit to redirect get-prerelease to get-fedora. If you have sudo on
+   puppet1, run:
+
+   $ sudo func proxy\* call command run "/usr/bin/rsync -a --no-owner
+   --no-group bapp1.vpn.fedoraproject.org::fedoraproject.org/*
+   /srv/web/fedoraproject.org/"
+
+   Otherwise, manually run this on each proxy server:
+
+   $ sudo /usr/bin/rsync -a --no-owner --no-group
+   bapp1.vpn.fedoraproject.org::fedoraproject.org/*
+   /srv/web/fedoraproject.org/
+
+   If necessary, clear proxy caches using
+
+   $ rm -rf /srv/cache/mod_cache/*
+
+   Update the static banner on start.fedoraproject.org. The procedure is the
+   same as with fedoraproject.org, except that the command to run on the
+   proxies is
+
+   $ sudo /usr/bin/rsync -a --no-owner --no-group
+   bapp1.vpn.fedoraproject.org::start.fedoraproject.org/*
+   /srv/web/start.fedoraproject.org/
+
+Tips
+
+  Creating Branches
+
+   Alpha
+
+ $git push origin master:refs/heads/f13-alpha
+
+   Beta
+
+ $git push origin f13-alpha:refs/heads/f13-beta
+
+  Checking Out Branch
+
+ $git checkout -t origin/f13-alpha
+ OR
+ $git checkout -t -b f13-alpha origin/f13-alpha
+
+  Merging branches
+
+   Suggested by Ricky
+
+ $ git merge f13-beta
+ $ git checkout --theirs f13-beta [list of conflicting po files]
+ $ git commit
+
+  non-js counter
+
+   <?python
+   from datetime import datetime
+
+   today = datetime.utcnow()
+   release = datetime(2010, 5, 18, 14)
+
+   difference = release - today
+   days = difference.days
+   if difference.seconds > 0 or difference.minutes > 0 or difference.hours > 0: days += 1
+   if days < 0: days = 0
+   days = str(days)
+
+   image_lang = 'en'
+   available_languages = ('ar', 'bn_IN', 'cs', 'da', 'de', 'el', 'en', 'es', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kn', 'ko', 'ks', 'ml', 'nl', 'pa', 'pl', 'pt', 'pt_BR', 'ro', 'ru', 'si', 'sr', 'sv', 'th', 'tr', 'uk', 'zh_CN', 'zh_TW')
+   if lang in available_languages:
+       image_lang = lang
+   image = image_lang + '/fedora13-countdown-banner-' + days + '.' + image_lang + '.png'
+   ?>
+         <div id="banner">
+                 <a href="http://fedoraproject.org/wiki/Releases/13/Schedule"><img src="${Markup(_('%s/static/images/counter/%s') % (path, image))}" alt="${Markup(_('Fedora 13 Goddard released in %s days!') % days)}" /></a>
+                 <a style="text-decoration: none; font-size: 1.6ex; color: #99AABB;" href="${path}/${lang}/counter">${Markup(_('Add a counter to your own site!'))}</a>
+         </div>
+
+  alpha/beta banners (static/js/banner.js)
+
+    [
+     "https://fedoraproject.org/static/images/banners/f13alpha.png",
+     "Fedora 13 Alpha",
+     "https://fedoraproject.org/get-prerelease",
+     5
+   ],
+
+  commit message example
+
+ adding f13 countdown banner
+ - added languages to counter.html
+ - remove banner.js / add release counter to js.html
+ - add non-js banner to sidebar.html
+ - updated release dates in release-count-ext.js and release-counter.js
+ - removed older counter images
+ - added new counter images
+
+ adding new language for fp.o
+ - Persian (fa)
+ - Portuguese (Brazilian) (pt_BR)
+ - Russian (ru)
+
