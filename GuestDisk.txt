@@ -1,0 +1,141 @@
+Guest Disk Resize SOP
+
+   Resize disks in our Xen guests
+
+   Contents
+
+     * 1 Contact Information
+     * 2 How to do it
+
+          * 2.1 Xen Guests
+          * 2.2 KVM/libvirt Guests
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main
+
+   Location: PHX, Tummy, ibiblio, Telia, OSUOSL
+
+   Servers: All xen servers, kvm/libvirt servers.
+
+   Purpose: Resize guest disks
+
+How to do it
+
+  Xen Guests
+
+    1. SSH to the xen server and resize the guest's logical volume. If you
+       want to be extra careful, make a snapshot of the LV first:
+
+ lvcreate -n [guest name]-snap -L 10G -s /dev/VolGroup00/[guest name] # Optional, but always good to be careful
+
+ lvresize -L [new total size]G /dev/VolGroup00/[guest name]
+
+    2. Shutdown the guest and then start it up again:
+
+ xm shutdown -w [guest name]
+
+ xm create [guest name]
+
+    3. Login into the guest:
+
+ xm console [guest name]
+
+    4. On the guest, run
+
+ fdisk /dev/xvda
+
+    5. Delete the third partition (the LVM partition on the guest) and
+       recreate it with the maximum size. Make sure to set its type to LVM.
+    6. Run partprobe:
+
+ partprobe
+
+    7. Check the size of the third partition:
+
+ fdisk -l /dev/xvda3
+
+       If this still reflects the old size, then reboot the guest and verify
+       that its size changed correctly when it comes up again.
+    8. Login to the guest again, and run
+
+ pvresize /dev/xvda3
+
+    9. A vgs should now show the new size. Use lvresize to resize the root
+       lv:
+
+ lvresize -L [new root partition size]G /dev/GuestVolGroup00/root
+
+   10. Finally, resize the root partition:
+
+ resize2fs /dev/GuestVolGroup00/root
+
+       , verify that everything worked out, and delete the snapshot you made
+       if you made one.
+
+  KVM/libvirt Guests
+
+    1. SSH to the kvm server and resize the guest's logical volume. If you
+       want to be extra careful, make a snapshot of the LV first:
+
+ lvcreate -n [guest name]-snap -L 10G -s /dev/VolGroup00/[guest name] # Optional, but always good to be careful
+
+    2. Shutdown the guest:
+
+ sudo virsh shutdown [guest name]
+
+    3. Disable the guests lv:
+
+ lvchange -an /dev/VolGroup00/[guest name]
+
+    4. Resize the lv:
+
+ lvresize -L [NEW TOTAL SIZE]G /dev/VolGroup00/[guest name]
+
+    5. Enable the lv:
+
+ lvchange -ay /dev/VolGroup00/[guest name]
+
+    6. Bring the guest back up:
+
+ sudo virsh start [guest name]
+
+    7. Login into the guest:
+
+ sudo virsh console [guest name]
+
+    8. On the guest, run
+
+ fdisk /dev/vda
+
+    9. Delete the the LVM partition on the guest you want to add space to and
+       recreate it with the maximum size. Make sure to set its type to LVM
+       (8e)
+   10. Run partprobe:
+
+ partprobe
+
+   11. Check the size of the partition:
+
+ fdisk -l /dev/vdaN
+
+       If this still reflects the old size, then reboot the guest and verify
+       that its size changed correctly when it comes up again.
+   12. Login to the guest again, and run
+
+ pvresize /dev/vdaN
+
+   13. A vgs should now show the new size. Use lvresize to resize the root
+       lv:
+
+ lvresize -L [new root partition size]G /dev/GuestVolGroup00/root
+
+   14. Finally, resize the root partition:
+
+ resize2fs /dev/GuestVolGroup00/root
+
+       , verify that everything worked out, and delete the snapshot you made
+       if you made one.
+
