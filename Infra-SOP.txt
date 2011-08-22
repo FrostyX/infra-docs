@@ -1,0 +1,80 @@
+Infrastructure SOP SOP
+
+   We use SOPs (standard operating procedures) to list how we run things in
+   Fedora. A better explanation and a list of SOPs is available at
+   Category:Infrastructure SOPs.
+
+   Use the same "Contact Information" section on all SOPs. Past that,
+   sections vary as needed.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 SOP naming
+     * 3 Stuff every SOP should have
+
+          * 3.1 Header
+          * 3.2 Contact information
+          * 3.3 Footer
+
+     * 4 Create the shortcut
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin
+
+   Location: fedoraproject.org/wiki
+
+   Servers: app servers mediawiki runs on
+
+   Purpose: Keeps sysadmin-main sane
+
+SOP naming
+
+   SOP page names should use spaces/underscores and not use subpages, as per
+   the wiki standard. SOPs need not have "Infrastructure" in their title.
+   Describe the service and end the page name with "SOP".
+
+Stuff every SOP should have
+
+  Header
+
+   At the top of the wiki page, include the following two lines:
+
+ {{header|infra}}
+ {{shortcut|ISOP:NAME}}
+
+  Contact information
+
+   Here's the template:
+
+ == Contact Information ==
+ Owner:
+
+ Contact:
+
+ Location:
+
+ Servers:
+
+ Purpose:
+
+  Footer
+
+   Include your SOP in the infrastructure SOPs category:
+
+ [[Category:Infrastructure SOPs]]
+
+Create the shortcut
+
+   After saving the page the first time, create the shortcut. The shortcut is
+   just a redirect to the original page. Click the red link in the "Shortcut"
+   box at the top of your new page and save it with this line:
+
+ #REDIRECT [[New SOP page name]]
+
+   Obviously, replace New SOP page name with the name of your new SOP's page.
+   (More about redirects)
+
