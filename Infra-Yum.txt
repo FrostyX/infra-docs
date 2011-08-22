@@ -1,0 +1,104 @@
+Infrastructure Yum Repo SOP
+
+   In some cases RPM's in Fedora need to be rebuilt for the Infrastructure
+   team to suit our needs. This repo is provided to the public (except for
+   the RHEL RPMs). Rebuilds go into this repo which are stored on the netapp
+   and shared via the proxy servers.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Building an RPM
+     * 3 Signing the RPM
+
+          * 3.1 Requesting Access
+          * 3.2 Signing the RPM
+
+     * 4 Re-creating the repo
+     * 5 Add information about why the package is in the repo
+     * 6 RHEL repo
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin
+
+   Location: PHX [53]http://infrastructure.fedoraproject.org/
+
+   Servers: puppet1 / Proxy Servers
+
+   Purpose: Provides infrastructure repo for custom Fedora Infrastructure
+   Rebuilds
+
+Building an RPM
+
+   Building an RPM for Infrastructure is significantly easier then building
+   an RPM for Fedora. Basically get your SRPM ready, then submit it to koji
+   for building. Do a koji build --scratch.
+
+   [54]Note.png
+   Remember to build it for every dist / arch you need to deploy it on.
+
+Signing the RPM
+
+  Requesting Access
+
+   Infrastructure RPM's are signed by the Infrastructure key:
+   [55]http://infrastructure.fedoraproject.org/RPM-GPG-KEY-INFRASTRUCTURE
+   Access to this key is restricted. If you feel you need it email KevinFenzi
+   with a request for access (if Kevin isn't around some of the other
+   Infrastructure people also have access like ToshioKuratomi, MikeMcgrath,
+   SethVidal, You'll only need to ask for the key once. It has a password
+   which will be given to you as well.
+
+  Signing the RPM
+
+   Once your key has been set up, you can sign the RPMs with:
+
+ rpm --resign your-package-1.1.rpm
+
+Re-creating the repo
+
+   All of the repositories are located at:
+
+ puppet1:/mnt/fedora/app/fi-repo/el/%{dist}/%{arch}/
+
+   Simply copy your rpm to the proper dist/arch/ then run create repo from
+   that directory.
+
+   [56]Note.png
+   Don't forget to sign and deploy your SRPM!
+
+   This is an example of copying and creating a repo for
+   myPack-1.0.noarch.rpm
+
+ cd /mnt/fedora/app/fi-repo/el/5/
+ cp ~/rpms/RPMS/myPack-1.0.noarch.rpm ./i386/
+ createrepo -d --update ./
+
+   Easy as that.
+
+Add information about why the package is in the repo
+
+   We would like to keep track of why packages are in the infrastructure repo
+   and who is the person who added them.
+
+   When adding a new package, please add information about it here:
+
+   Date / PackageName / Owner / Reason
+
+   2011-03-31 / drupal6-fedora-insight-theme / pfrields / Fedora based theme
+   for insight. Can't be used by other projects. 2011-05-10 / gitolite /
+   jkeating / gitolite package for pkgs01. Needed for new branch scheme.
+
+RHEL repo
+
+   In addition to the Infrastructure repo, there is a RHEL5 repo that all
+   machines update from, accessible only to our machine's IPs. This repo
+   syncs again RHN daily at 1:30 UTC. To manually resync the RHEL repo
+   against RHN, run the following on as root on puppet1:
+
+ rm -rf /var/tmp/rhnsync-cache # Clear cached metadata
+ /mnt/fedora/app/fi-repo/rhel/do-rhel-sync
+
