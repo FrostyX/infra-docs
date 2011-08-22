@@ -1,0 +1,160 @@
+FreeMedia Infrastructure SOP/de
+
+   Diese Seite beschreibt das Standard-Vorgehen für das Fedora FreeMedia
+   Programm. Das deckt sowohl die Aspekte der Infrastruktur als auch des
+   Vorgehens ab.
+
+   Contents
+
+     * 1 Wo sind die wichtigen Seiten?
+     * 2 Ort auf Puppet
+     * 3 Öffnen des Anfrageformulars
+     * 4 Schließen des Anmeldeforumlars
+     * 5 Vorrübergehender Zeitplan
+     * 6 Howto
+     * 7 Tickets bearbeiten
+
+          * 7.1 Einloggen
+          * 7.2 Ungültige Tickets zurückweisen
+          * 7.3 Gültige Tickets akzeptieren
+
+     * 8 Umgang mit nicht erfüllten Anfragen
+     * 9 Wie man mit Bewerbungen umgeht
+
+Wo sind die wichtigen Seiten?
+
+     * Das Formular für Anfragen ist auf
+       [57]https://fedoraproject.org/freemedia/FreeMedia-form.html
+     * Das Ticketing-System ist auf
+       [58]https://fedorahosted.org/freemedia/report
+
+Ort auf Puppet
+
+   $PWD = puppet/modules/freemedia/files
+
+     * Freemedia Formular: FreeMedia-form.html
+     * Backup Formular: FreeMedia-form.html.orig
+     * "Geschlossen" Formular: FreeMedia-close.html
+     * Backend des Verarbeitungsscripts: process.php
+     * Fehler-Seite : FreeMedia-error.html
+
+Öffnen des Anfrageformulars
+
+   Das Anfrageformular wird am ersten Tag jedes neuen Monats geöffnet.
+
+Schließen des Anmeldeforumlars
+
+Vorrübergehender Zeitplan
+
+   Das Anmeldeformular wird nach ein paar Tagen geschlossen. Das kann je nach
+   Kapazität variieren.
+
+Howto
+
+     * Das Anmeldeformular ist auf
+       /puppet/modules/freemedia/files/FreeMedia-form.html und
+       puppet/configs/web/applications/FreeMedia-form.html.orig verfügbar
+     * Das geschlossene Formular ist auf
+       /puppet/modules/freemedia/files/FreeMedia-close.html
+     * Zum Öffnen
+
+  $cd /puppet/modules/freemedia/files; cp FreeMedia-form.html.orig FreeMedia-form.html ;git commit -a -m 'opening freemedia form for month `date +%B`' ;git push
+
+     * Nachdem das Formular geöffnet wurde, gehen Sie zum Ticketing-System
+       und setzen Sie die "Ticket Create" Berechtigung auf "Anonymous".
+     * Zum Schließen
+
+  $cd /puppet/modules/freemedia/files; cp FreeMedia-close.html Freemedia-form.html ; git commit -a -m 'closing freemedia form for month `date +%B`';git push
+
+     * Nachdem das Formular geschlossen wurde, gehen Sie zum Ticketing-System
+       und entfernen Sie die "Ticket Create" Berechtigung von "Anonymous".
+
+Tickets bearbeiten
+
+  Einloggen
+
+     * Mitwirkende sollten folgende Seite besuchen:
+       [59]https://fedorahosted.org/freemedia/report
+     * Bitte mit dem FAS-Account einloggen.
+
+  Ungültige Tickets zurückweisen
+
+     * Falls ein Ticket ungültig ist, akzeptieren Sie das Ticket nicht.
+       Wählen Sie "resolve as:" und klicken Sie auf "invalid" und drücken Sie
+       dann "Submit Changes".
+     * Ein Ticket ist ungültig, wenn:
+
+          * Keine gültige E-Mail Adresse angegeben wurde.
+          * Der Bezirk nicht dem Land entspricht.
+          * Keine gültige Adresse angegeben wurde.
+
+     * Falls Tickets doppelt vorhanden sind, akzeptieren Sie ein einziges und
+       schließen Sie alle anderen als Duplikat. Wählen Sie "resolve as:" und
+       klicken Sie auf "duplicate" und drücken Sie dann "Submit Changes".
+
+  Gültige Tickets akzeptieren
+
+     * Wenn Sie eine Anfrage bearbeiten wollen prüfen Sie bitte ob sie nicht
+       ungültig ist, wie im oberen Abschnitt beschrieben.
+
+     * Wählen Sie "Accept" aus dem Feld "Action" ganz unten und drücken Sie
+       "Submit Changes".
+
+     * Diese akzeptierten Tickets sind unter "My Tickets" und "Accepted
+       Tickets for XX" (XX= gewählte Region, zum Beispiel EMEA) auf
+       [60]https://fedorahosted.org/freemedia/report verfügbar.
+
+     * Wenn Sie den Datenträger versendet haben, wählen Sie das Ticket wieder
+       aus, wählen Sie "resolve as:" und klicken sie auf "Fixed"
+
+   und drücken sie dann "Submit Changes".
+
+     * Falls ein Ticket bis zum Ende des Monats nicht bearbeitet wurde,
+       sollte es mit "shipping status unknown" als Kommentar geschlossen
+       werden.
+
+Umgang mit nicht erfüllten Anfragen
+
+   Wir sollten alle Anfragen bis Ende des Monats bearbeitet haben.
+
+     * Bitte überprüfen sie ihre Region
+
+Wie man mit Bewerbungen umgeht
+
+   Schritte um ein Mitglied der FreeMedia-Gruppe zu werden
+
+    1. Erstellen sie einen Account im Fedora Account System (FAS)
+    2. Erstellen sie eine Benutzerseite im Fedora Wiki, nach dem Muster
+       User:<nick-name>. [61]Hier ist eine Vorlage
+    3. Bewerben sie sich im FAS für die FreeMedia-Gruppe
+    4. Beantragen sie die Mitgliedschaft auf der [62]freemedia Mailingliste
+
+   Regeln um über einen Mitgliedschaftsantrag zu entscheiden
+
+          Für die      Benutzerseite        Für die
+Falls Freemedia-Gruppe   erstellt    Freemedia-Mailingliste          Maßnahme
+          beworben                          beworben
+                                                            Gruppen- und
+1     Ja               Ja            Ja                     Mailinglistenmitgliedschaft
+                                                            bestätigen
+                                                            Zurückstellen + Bewerber
+2     Ja               Ja            Nein                   bitten der Mailingliste
+                                                            innerhalb einer Woche
+                                                            beizutreten
+                                                            Zurückstellen + Bewerber
+3     Ja               Nein          Egal                   bitten innerhalb einer
+                                                            Woche eine Benutzerseite zu
+                                                            erstellen
+4     Nein             Nein          Ja                     Ablehnen
+
+   Anmerkungen:
+
+    1. Da Sie für die Schritte 2 und 3 einen FAS-Account brauchen, wird er in
+       den oberen Regeln nicht erwähnt
+    2. Die Zeit in der man zurückgestellt wird beträgt eine Woche. Falls der
+       Bewerber innerhalb einer Woche nicht reagiert, wird die Bewerbung
+       abgelehnt.
+    3. Wenn Sie Bewerber bitten bestimmte Schritte zu erfüllen, senden sie
+       eine CC an die anderen Freemedia-sponsors um sie wissen zu lassen,
+       dass die Bewerbung überprüft wurde.
+
