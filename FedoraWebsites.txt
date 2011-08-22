@@ -37,10 +37,9 @@ Preparing the website for a release
 
     Steps
 
-   Get a copy of the new key from the fedora-release repo
+   Get a copy of the new key(s) from the fedora-release repo
 
-     * Currently at
-       [61]http://cvs.fedoraproject.org/viewvc/fedora-release/?root=fedora).
+   http://git.fedorahosted.org/git/?p=fedora-release.git
 
    We usually obsolete keys at the same time, so as we add F-13 keys, we
    remove the F-10 keys from the fedora.gpg keyblock and move them on the
@@ -49,12 +48,12 @@ Preparing the website for a release
    Start by updating fedoraproject.org/update-gpg-keys and adding the keyids
    of any obsolete keys to the obsolete_keys list.
 
-   Then run that script to add the new key:
+   Then run that script to add the new key(s):
 
  [fedora-web (f13-keys)]$ cd fedoraproject.org/
  [fedoraproject.org (f13-keys)]$ ./update-gpg-keys ../../fedora-release/RPM-GPG-KEY-fedora-13-primary
 
-   This will add the key to the keyblock in static/fedora.gpg and create a
+   This will add the key(s) to the keyblock in static/fedora.gpg and create a
    text file for the key in static/$KEYID.txt as well. Verify that these
    files have been created properly and contain all the keys that they
    should.
@@ -64,14 +63,15 @@ Preparing the website for a release
        output
 
    Next, update data/content/verify.html to add the new key. The output of
-   'gpg --fingerprint --list-key E8E40FDE' is what we want in the <pre>
-   block. Move any obsolete keys to the obsolete keys section.
+   'gpg --fingerprint --list-options no-show-uid-validity --list-key $KEYID'
+   is what we want in the <pre> block. Move any obsolete keys to the obsolete
+   keys section.
 
    Update data/content/verify.html to remove any obsolete keys from the list
    of keyid's.
 
    Carefully verify that the data is correct, 'make en test' and checking
-   [62]http://localhost:5000/keys and [63]http://localhost:5000/verify is
+   http://localhost:5000/keys and http://localhost:5000/verify is
    wise.
 
   Update LINGUAS and languages.conf file
