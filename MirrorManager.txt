@@ -1,0 +1,68 @@
+MirrorManager Infrastructure SOP
+
+   Mirrormanager manages mirrors for fedora distribution.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Description
+
+          * 2.1 Release Preparation
+          * 2.2 Troubleshooting and Resolution
+
+               * 2.2.1 Regenerating the Publiclist
+               * 2.2.2 Hung admin.fedoraproject.org/mirrormanager
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main, sysadmin-web
+
+   Location: Phoenix
+
+   Servers: app1, app2, app3, app4, app5, app6, bapp1
+
+   Purpose: Manage mirrors for Fedora distribution
+
+Description
+
+   TODO
+
+  Release Preparation
+
+   MirrorManager should automatically detect the new release version, and
+   will create a new Version() object in the database. This is visible on the
+   Version page in the web UI, and on mirrors.fp.o.
+
+   If the versioning scheme changes, it's possible this will fail. If so,
+   contact the Mirror Wrangler.
+
+  Troubleshooting and Resolution
+
+    Regenerating the Publiclist
+
+   On bapp1:
+
+ sudo su - mirrormanager
+
+   then
+
+ /usr/share/mirrormanager/server/update-mirrorlist-server > /tmp/mirrormanager-mirrorlist.log 2>&1 && \
+ /usr/share/mirrormanager/mm_sync_out
+
+   To make this take effect immediately, you may need to remove the cache on
+   the proxies:
+
+ # As root on proxy[1-3]
+ rm -rf /srv/cache/mod_cache/*
+
+    Hung admin.fedoraproject.org/mirrormanager
+
+   This generally happens when an app server loses connection to db2.
+
+    1. on bapp1 and app[1-6], su up, and restart apache.
+    2. on bapp1, if crawlers and update-master-directory-list are likewise
+       hung, kill them too. You may need to delete stale
+       /var/lock/mirrormanager/* lockfiles as well.
+
