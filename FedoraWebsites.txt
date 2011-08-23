@@ -187,8 +187,9 @@ Fire in the hole
    && git push). This timing ensures that the cron jobs will not
    automatically push the new website before 10:00 AM. Then, on puppet1 run:
 
- # Ensure you have the puppet repo checked out to ~/puppet and up to date
- cd ~/puppet && make HOSTS="bapp1 proxy1 proxy2 proxy3 proxy4 proxy5 proxy6 proxy7" push
+  on lockbox01: 
+  
+  'sudo func-command --host=proxy\* --host=bapp01\* '/usr/local/bin/run-puppet nowait' 
 
    On bapp1, run:
 
@@ -206,15 +207,13 @@ Fire in the hole
  sudo /usr/bin/rsync -a --no-owner --no-group bapp01::fedoraproject.org/* /srv/web/fedoraproject.org/
 
  # you probably want to do the other sites too
- sudo func proxy\* call command run "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::spins.fedoraproject.org/* /srv/web/spins.fedoraproject.org/"
- sudo func proxy\* call command run "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::start.fedoraproject.org/* /srv/web/start.fedoraproject.org/"
+ sudo func-command --host=proxy\* "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::spins.fedoraproject.org/* /srv/web/spins.fedoraproject.org/"
+ sudo func-command --host=proxy\* "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::start.fedoraproject.org/* /srv/web/start.fedoraproject.org/"
 
    Push commit to redirect get-prerelease to get-fedora. If you have sudo on
    puppet1, run:
 
-   $ sudo func proxy\* call command run "/usr/bin/rsync -a --no-owner
-   --no-group bapp1.vpn.fedoraproject.org::fedoraproject.org/*
-   /srv/web/fedoraproject.org/"
+  sudo func-command --host=proxy\* "/usr/bin/rsync -a --no-owner --no-group bapp1.vpn.fedoraproject.org::fedoraproject.org/* /srv/web/fedoraproject.org/"
 
    Otherwise, manually run this on each proxy server:
 
