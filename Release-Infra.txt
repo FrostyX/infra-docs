@@ -1,0 +1,340 @@
+Release Infrastructure SOP
+
+   This SOP contains all of the steps required by the Fedora Infrastructure
+   team in order to get a release out. Much of this work overlaps with the
+   Release Engineering team (and at present share many of the same members).
+   Some work may get done by releng, some may get done by Infrastructure, as
+   long as it gets done, it doesn't matter.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Description
+     * 3 Preparations
+
+          * 3.1 Change Freeze
+          * 3.2 Static / cached urls
+
+     * 4 Notes about release day
+     * 5 Day Prior to Release Day
+
+          * 5.1 Step 1 (Torrent)
+          * 5.2 Step 2 (Website)
+          * 5.3 Step 3 (Mirrors)
+          * 5.4 Step 4 (Enable Updates)
+          * 5.5 Step 5 (Lessons Learned page)
+
+     * 6 Release day
+
+          * 6.1 Step 1 (Prep and wait)
+          * 6.2 Step 2 (Torrent)
+          * 6.3 Step 3 (Bit flip)
+          * 6.4 Step 4 (Preupgrade releases.txt)
+          * 6.5 Step 5 (AutoQA repoinfo.conf)
+          * 6.6 Step 6 (Website)
+          * 6.7 Step 7 (Docs)
+          * 6.8 Step 8 (Monitor)
+          * 6.9 Step 9 (Done)
+          * 6.10 Priorities
+
+     * 7 Juggling Resources
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team, Fedora Release Engineering Team
+
+   Contact: #fedora-admin, #fedora-devel, sysadmin-main, sysadmin-releng
+   group
+
+   Location: N/A
+
+   Servers: All
+
+   Purpose: Releasing a new version of Fedora
+
+Description
+
+Preparations
+
+   Before Alpha for a release ships, the following items need to be
+   completed. *Please open a ticket for all of them individually*
+
+    1. New website from the websites team (typically hosted at
+       [69]http://fedoraproject.org/_/), edit syncStatic.sh to freeze the
+       website in preparation for release updates.
+    2. Verify mirror space (for all test releases as well)
+    3. Release day ticket and milestone (keep a log of who is doing what and
+       notes)
+    4. Verify with rel-eng permissions on content are right on the mirrors.
+       Don't leak.
+    5. Add MirrorManager repository redirects. ${version}-Alpha =>
+       ${version}. ${version}-Beta => ${version}. This directs Alpha and Beta
+       users at the pending release. MM's manage-repo-redirects script is
+       used to do this. manage-repo-redirects -a -f 16-Alpha -t 16;
+    6. Communication with Red Hat IS (Give at least 2 months notice, then
+       reminders as the time comes near) (final release only)
+    7. Infrastructure change freeze
+    8. Modify Template:FedoraVersion to reference new version. (Final release
+       only)
+    9. Re-review Lessons Learned pages from previous release, be sure we
+       aren't forgetting things we meant to do after the last release.
+   10. Add the new release to stats gathering scripts on log1
+       (modules/scripts/files/fedoraUsage.sh, also the maps should be
+       updated) (Final release only)
+   11. Move old releases to archive (final release only)
+
+  Change Freeze
+
+   The rules are simple. If we are in a pre release freeze or a full freeze,
+   take a look at [70]the architecture document. If the hostname is in the
+   freeze area, that entire host is frozen. So making global changes is also
+   forbidden. If, for some reason, a change needs to be made, a request must
+   go to the fedora-infrastructure-list requesting it. It will require at
+   least two people to signoff on the change from either sysadmin-main or the
+   releng group. Exceptions to this include:
+
+     * Planned changes as part of the release
+     * Emergencies / outages
+
+   Change freezes will be sent to the fedora-infrastructure-list and begin 2
+   weeks before each release and the final release. The freeze will end one
+   day after the release. Note, if the release slips during a change freeze,
+   the freeze just extends until the day after a release ships.
+
+   To see the latest environments map run:
+
+ sudo yum -y install openoffice.org-draw
+ git clone git://git.fedorahosted.org/git/fedora-infrastructure.git/
+ cd fedora-infrastructure/architecture
+ oodraw Environments.odg
+
+   While the instructions above are the canonical location, a png has been
+   provided for ease of reference. See [71]here
+
+  Static / cached urls
+
+   The following URL's should be setup to be cached via a static page or with
+   mod_cache_mem as needed. These are the links that will be hit hardest
+   during the release.
+
+    1. http://get.fedoraproject.org/
+    2. http://help.fedoraproject.org/
+    3. http://join.fedoraproject.org/
+    4. http://fedoraproject.org/wiki/Releases/16/ReleaseOverview
+    5. http://fedoraproject.org/wiki/Bugs/F16Common
+    6. http://docs.fedoraproject.org/release-notes/index.html
+    7. http://docs.fedoraproject.org/release-notes/f16/index.html
+    8. http://docs.fedoraproject.org/release-notes/f16/en_US/index.html
+    9. http://docs.fedoraproject.org/install-guide/index.html
+   10. http://docs.fedoraproject.org/install-guide/f16/index.html
+   11. http://docs.fedoraproject.org/install-guide/f16/en_US/index.html
+   12. http://fedoraproject.org/wiki/Releases/16/ReleaseSummary
+   13. http://docs.fedoraproject.org/
+
+   Each one of these tasks except for the release day ticket must be
+   completed and closed prior to the release.
+
+Notes about release day
+
+   Release day is always an interesting and unique event. After the final
+   sprint from test to the final release a lot of the developers will be
+   looking forward to a bit of time away, as well as some sleep. Once Release
+   Engineering has built the final tree, and synced it to the mirrors it is
+   our job to make sure everything else (except the bit flip) gets done as
+   painlessly and easily as possible.
+
+   All communication is typically done in #fedora-admin. Typically these
+   channels are laid back and staying on topic isn't strictly enforced. On
+   release day this is not true. We encourage people to come, stay in the
+   room and be quiet unless they have a specific task or question releated to
+   release day. Its nothing personal, but release day can get out of hand
+   quick.
+
+   During normal load, our websites function as normal. This is especially
+   true since we've moved the wiki to mod_fcgi. On release day our load
+   spikes a great deal. During the Fedora 6 launch many services were offline
+   for hours. Some (like the docs) were off for days. A large part of this
+   outage was due to the wiki not being able to handle the load, part was a
+   lack of planning by the Infrastructure team, and part is still a mystery.
+   (There are questions as to whether or not all of the traffic was legit or
+   a ddos.
+
+   The Fedora 7 release went much better. Some services were offline for
+   minutes at a time but very little of it was out longer then that. The wiki
+   crashed, as it always does. We had made sure to make the fedoraproject.org
+   landing page static though. This helped a great deal though we did see
+   load on the proxy boxes as spiky.
+
+Day Prior to Release Day
+
+  Step 1 (Torrent)
+
+   Setup the torrent. All files can be synced with the torrent box (exists at
+   duke) but just not published to the world. Verify with sha1sum. Follow the
+   instructions on the
+   [85]http://fedoraproject.org/wiki/Infrastructure/SOP/TorrentRelease page
+   up to and including step 4.
+
+  Step 2 (Website)
+
+   Verify the website design / content has been finalized with the websites
+   team. Update the [86]Fedora version number wiki template.
+
+  Step 3 (Mirrors)
+
+   Verify enough mirrors are setup and have Fedora ready for release. If for
+   some reason something is broken it needs to be fixed. Many of the mirrors
+   are running a check-in script. This lets us know who has Fedora without
+   having to scan everyone. Hide the Alpha, Beta, and Preview releases from
+   the publiclist page.
+
+  Step 4 (Enable Updates)
+
+   The new Fedora release will likely have 0day updates. Making sure we can
+   push those updates is important.
+
+   Move MirrorManager repository tags from the development/$version/
+   Directory objects, to the releases/$version/ Directory objects. This is
+   done using the move-devel-to-release --version=$version command on bapp01.
+
+   As far as bodhi is concerned
+
+     * Create the new release in bodhi, to allow developers to queue up 0day
+       updates. Make sure this is 'locked' so they don't get pushed. See the
+       bodhi [87]administration page for instructions.
+     * Create mash config files for the new release
+     * If the mash config files have already been created, make sure the
+       delta_dirs are updated to reflect the GA file locations (You should
+       just uncomment the line that says "Enable this once F$version
+       releases" and delete the other delta_dirs line)
+     * Make sure the dist-fX-updates{,-testing} tags are creating in Koji
+     * Make sure the rsync script is updated
+     * When it's time to push, simply unlock the release in bodhi and you
+       should be good to go.
+
+  Step 5 (Lessons Learned page)
+
+   Set up a new page like  to record findings we'll use next release cycle.
+
+Release day
+
+  Step 1 (Prep and wait)
+
+   Verify the mirrors are ready and that the torrent has valid copies of its
+   files (use sha1sum)
+
+   [88]Warning (medium size).png
+   Do not move on to step two until the Release Engineering team has given
+   the ok for the release. It is the releng team's decision as to whether or
+   not we release and they may pull the plug at any moment.
+
+  Step 2 (Torrent)
+
+   Once given the ok to release, the Infrastructure team should publish the
+   torrent and encourage people to seed. Complete the steps on the
+   [89]http://fedoraproject.org/wiki/Infrastructure/SOP/TorrentRelease page
+   after step 4. Also, upload the files to the SixXS IPv6 torrent seeds,
+   using the form linked from [90]http://www.sixxs.net/tools/tracker/
+
+  Step 3 (Bit flip)
+
+   The mirrors sit and wait for a single permissions bit to be altered so
+   that they show up to their services. The bit flip (done by the releng
+   team) will replicate out to the mirrors. Verify that the mirrors have
+   received the change by seeing if it is actually available, just use a spot
+   check. Once that is complete move on.
+
+  Step 4 (Preupgrade releases.txt)
+
+   Preupgrade requires us to update the contents of
+   [91]http://mirrors.fedoraproject.org/releases.txt to include the new
+   release in the preupgrade-ok list. This file is in the fedora-web
+   repository on Fedora Hosted. Add the new release and 'git push' it into
+   place. This change goes live the next time the web sites are built.
+
+  Step 5 (AutoQA repoinfo.conf)
+
+   The [92]AutoQA project maintains a config file (repoinfo.conf) that
+   describes available package repositories and their inheritance. To support
+   automated testing of Fedora packages, the repoinfo.conf file needs to be
+   updated. Please [93]file an autoqa ticket to modify the repoinfo.conf file
+   to include pointers to the new release.
+
+  Step 6 (Website)
+
+   Once all of the distribution pieces are verified (mirrors and torrent),
+   all that is left is to publish the website. At present this is done by
+   making sure the master branch of fedora-web is pulled by the syncStatic.sh
+   script in puppet (which contains instructions for switching this). It will
+   sync in an hour normally but on release day people don't like to wait that
+   long so do the following on puppet1:
+
+ sudo /etc/cron.hourly/syncStatic.sh && sudo func proxy\* call command run "/usr/local/bin/syncFiles.sh fedoraproject.org /srv/web/fedoraproject.org/"
+
+   Verify [94]http://fedoraproject.org/ is working.
+
+   Also, ensure that /get-prerelease now redirects to /get-fedora. The
+   appropriate configuration is available in the puppet configs in
+   modules/fedora-web/files/redirects.conf.
+
+  Step 7 (Docs)
+
+   Just as with the website, the docs site needs to be published. Just as
+   above follow the following steps:
+
+ /root/bin/docs-sync
+
+  Step 8 (Monitor)
+
+   Once the website is live, keep an eye on various news sites for the
+   release announcement. Closely watch the load on all of the boxes, proxy,
+   application and otherwise. If something is getting overloaded, see
+   suggestions on this page in the "Juggling Resources" section.
+
+  Step 9 (Done)
+
+   Just chill, keep an eye on everything and make changes as needed. If you
+   can't keep a service up, try to redirect randomly to some of the mirrors.
+
+  Priorities
+
+   Priorities of during release day (In order):
+
+    1. Website - Anything related to a user landing at fedoraproject.org, and
+       clicking through to a mirror or torrent to download something must be
+       kept up. This is distribution, and without it we can potentially lose
+       many users.
+    2. Linked addresses - We do not have direct control over what Digg,
+       Slashdot or anyone else links to. If they link to something on the
+       wiki and it is going down or link to any other site we control a
+       rewrite should be put in place to direct them to
+       [95]http://fedoraproject.org/get-fedora.
+    3. Torrent - The torrent server has never had problems during a release.
+       Make sure it is up.
+    4. Release Notes - Typically grouped with the docs site, the release
+       notes are often linked to (this is fine, no need to redirect) but keep
+       an eye on the logs and ensure that where we've said the release notes
+       are, that they can be found there. In previous releases we sometimes
+       had to make this available in more than one spot.
+    5. docs.fedoraproject.org - People will want to see whats new in Fedora
+       and get further documentation about it. Much of this is in the release
+       notes.
+    6. wiki - Because it is so resource heavy, and because it is so developer
+       oriented we have no choice but to give the wiki a lower priority.
+    7. Everything else.
+
+Juggling Resources
+
+   In our environment we're running different things on many different
+   servers. Using Xen we can easily give machines more or less ram,
+   processors. We can take down builders and bring up application servers.
+   The trick is to be smart and make sure you understand what is causing the
+   problem. These are some tips to keep in mind:
+
+     * IPTables based bandwidth and connection limiting (successful in the
+       past)
+     * Altering the weight on the proxy balancers (see: [96]Balancers )
+     * Create static pages out of otherwise dynamic content
+     * Redirect pages to a mirror
+     * Add a server / remove un-needed servers
+
