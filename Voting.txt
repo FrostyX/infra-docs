@@ -1,0 +1,101 @@
+Voting Infrastructure SOP
+
+   The live voting instance can be found at
+   https://admin.fedoraproject.org/voting and the staging instance at
+   https://admin.stg.fedoraproject.org/voting/
+
+   The code base can be found at
+   http://git.fedorahosted.org/git/?p=elections.git
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Creating a new election
+
+          * 2.1 Creating the election
+          * 2.2 Adding Candidates
+          * 2.3 Who can vote
+
+     * 3 Modifying an Election
+
+          * 3.1 Changing the details of an Election
+          * 3.2 Removing a candidate
+          * 3.3 Releasing the results of an embargoed election
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, elections
+
+   Location: PHX
+
+   Servers: app servers, bapp01, db02
+
+   Purpose: Provides a system for voting on Fedora matters
+
+Creating a new election
+
+  Creating the election
+
+   Go to voting/admin/newe and fill in the form.
+
+   The "usefas" option results in candidate names being looked up as FAS
+   usernames an displayed as their real name.
+
+   An alias should be added when creating a new election as this is used in
+   the link on the page of listed elections on the frontpage.
+
+   Field             Description
+   Alias             A short name for the election, make sure you set this
+   URL               A URL pointing to more information about the election
+   Start Date        The Start of the elections (UTC)
+   End Date          The Close of the elections (UTC)
+   Seats Elected     How many seats will be elected
+   Embargoed         If this is set then it will require manual intervention
+                     to release the results of the election
+   Allow Nominations Permits nomination of candidates (Not in use)
+   Until When        Closing date for nominations (Not in use)
+                     If set, then Candidates are supposed to have an entry in
+                     FAS,
+   Use FAS
+                     for display purposes FAS user names are converted into
+                     Real Names
+
+  Adding Candidates
+
+   A list of all elections (and their IDs) can be found at
+   voting/admin/list_elections
+
+   Go to voting/admin/newc and fill in the form, using the id found through
+   list_elections.
+
+   This will add extra candidates to the available list.
+
+  Who can vote
+
+   Before anyone can vote you need to manually alter the database to say
+   which groups are permitted to vote in the election.
+
+   There are 2 magic GROUPNAME strings that can be used
+
+     * anycla - (any FAS group not beginning cla_)
+     * anyany - (any FAS group)
+
+   Put one of the above group names or a specific FAS group into the 'Allowed
+   Groups' field.
+
+Modifying an Election
+
+  Changing the details of an Election
+
+   This currently requires direct editing of the database. (Elections table)
+
+  Removing a candidate
+
+   This currently requires direct editing of the database. (Candidates table)
+
+  Releasing the results of an embargoed election
+
+   Visit the elections admin interface and click 'Remove Embargo' for the
+   selected election.

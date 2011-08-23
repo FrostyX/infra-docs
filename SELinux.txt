@@ -1,0 +1,98 @@
+SELinux Infrastructure SOP
+
+   SELinux is a fundamental part of our Operating System but still has a
+   large learning curve and remains quite intimidating to both developers and
+   system administrators. Fedora's Infrastructure has been growing at an
+   unfathomable rate, and is full of custom software that needs to be locked
+   down. The goal of this SOP is to make it simple to track down and fix
+   SELinux policy related issues within Fedora's Infrastructure.
+
+   Fully deploying SELinux is still an ongoing task, and can be tracked in
+   fedora-infrastructure [45]ticket #230.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Step One: Realizing you have a problem
+     * 3 Step Two: Tracking down the violation
+     * 4 Step Three: Fixing the violation
+
+          * 4.1 Allowing ports
+          * 4.2 Toggling an SELinux boolean
+          * 4.3 Setting custom context
+          * 4.4 Deploying custom policy modules
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main, sysadmin-web groups
+
+   Purpose: To ensure that we are able to fully wield the power of SELinux
+   within our infrastructure.
+
+Step One: Realizing you have a problem
+
+   At the moment, we have no easy way to detect SELinux violations across all
+   of our infrastructure. Once the audit/prelude/prewikka IDS stack is fully
+   deployed, this will no longer be an issue, as all violations will be sent
+   as alerts to the prelude-manager.
+
+Step Two: Tracking down the violation
+
+   Generate SELinux policy allow rules from logs of denied operations. This
+   is useful for getting a quick overview of what has been getting denied on
+   the local machine.
+
+ # audit2allow -la
+
+   You can obtain more detailed audit messages by using ausearch to get the
+   most recent violations
+
+ # ausearch -m avc -ts recent
+
+Step Three: Fixing the violation
+
+   Below are examples of using our current puppet configuration to make
+   SELinux deployment changes. These constructs are currently home-brewed,
+   and do not exist in upstream Puppet. For these functions to work, you must
+   ensure that the host or servergroup is configured with 'include selinux',
+   which will enable SELinux in permissive mode. Once a host is properly
+   configured, this can be changed to 'include selinux-enforcing' to enable
+   SELinux Enforcing mode.
+
+  Allowing ports
+
+     semanage_port { '8081-8089': type => 'http_port_t', proto => 'tcp' }
+
+  Toggling an SELinux boolean
+
+   SELinux booleans, which can be viewed by running `semanage boolean -l`,
+   can easily be configured using the following syntax within your puppet
+   configuration.
+
+     selinux_bool { 'httpd_can_network_connect_db': bool => 'on' }
+
+  Setting custom context
+
+   Our infrastructure contains many custom applications, which may utilize
+   non-standard file locations. These issues can lead to trouble with
+   SELinux, but they can easily be resolved by setting custom file context.
+
+     semanage_fcontext { '/var/tmp/l10n-data(/.*)?':
+         type => 'httpd_sys_content_t'
+     }
+
+  Deploying custom policy modules
+
+     * Put your te file in configs/system/selinux/modules in puppet.
+     * Compile your custom policy
+
+     # make -f /usr/share/selinux/devel/Makefile
+
+     * Commit the te and pp files to puppet
+     * Add the module to the appropriate manifest.
+
+     semodule { 'fedora':
+     }
+

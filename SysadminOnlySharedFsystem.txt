@@ -1,0 +1,37 @@
+Sysadmin-only shared filesystem Infrastructure SOP
+
+   Provide a single location to store files for sysadmins to use.
+
+   Contents
+
+     * 1 Contact Information
+     * 2 Description
+     * 3 How to mount it
+     * 4 How to unmount it
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin group
+
+   Location: Phoenix
+
+   Servers: bastion
+
+   Purpose: Provide a single location to store files for sysadmins to use.
+
+Description
+
+   Asset management, contact information, etc will all be on this location.
+   It provides a way for sysadmins to share files with each other that
+   shouldn't really be public.
+
+How to mount it
+
+   sshfs bastion.fedoraproject.org:/srv/sysadmin sysadmin/
+
+How to unmount it
+
+   fusermount -u sysadmin/
+

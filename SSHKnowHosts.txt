@@ -1,0 +1,54 @@
+SSH known hosts Infrastructure SOP
+
+   Provides Known Hosts file that is globally deployed.
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin group
+
+   Location: all
+
+   Servers: all
+
+   Purpose: Provides Known Hosts file that is globally deployed.
+
+Replacing Key
+
+   If you install a new server or change a host key. use ssh-keyscan.
+   Remember to include both the short hostname *AND* the ip address. If a
+   host has multiple IP addresses and names try to combine them into one
+   line:
+
+ [smooge@puppet1 ~]$ ssh-keyscan -t rsa 10.5.126.31,app01.phx2.fedoraproject.org,app01,app1
+ # 10.5.126.31 SSH-2.0-OpenSSH_4.3
+ 10.5.126.31,app01.phx2.fedoraproject.org,app01,app1 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxRUETyFt+jNa8hZ8NCqT04Dfe7ZJ46O1bBWBD6rlVrZtspGTESVUUjQdSdkCv8Y+6C3Ou4xT2DPGS+yu5BdHP4yl9LYgaQF/MVFgdpk1pv206dxLHPiqLl0S8R6pAfF6+s/YX6JpASxjO7dgk8G3jnx/Z5bqzwrzNoHMCAO+U/lYIW1dBdnhL2a7gN1HwH2RScYXVSiAPGwBxAQw5bs3m6njtST7e0whTvHr0azFHw4bGny9iYbbSxwHEhbHoT6+XvdkmbLkYmdABc0qljvTBap8ZjBqjePjPj5S7yTMVwc1vTKAJ0so9smaJAatrwN2dRY/SxUgu4L4/MGmmJcpQQ==
+ # 10.5.126.31 SSH-2.0-OpenSSH_4.3
+ no hostkey alg
+
+ [smooge@puppet1 ~]$ host app6.fedoraproject.org
+ app6.fedoraproject.org has address 80.239.156.213
+ [smooge@puppet1 ~]$ host app6
+ app6.vpn.fedoraproject.org is an alias for app06.vpn.fedoraproject.org.
+ app06.vpn.fedoraproject.org has address 192.168.1.24
+ [smooge@puppet1 ~]$ ssh-keyscan -t rsa1,dsa,rsa 80.239.156.213,192.168.1.24,app6.fedoraproject.org,app6
+ # 80.239.156.213 SSH-2.0-OpenSSH_4.3
+ no hostkey alg
+ # 80.239.156.213 SSH-2.0-OpenSSH_4.3
+ 80.239.156.213,192.168.1.24,app6.fedoraproject.org,app6 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuSP2FVIIK8NKFNFtSzR7ZW2YaeC6+3R9hA1R27Uy3DFmyeUhJrE9PSprKDITYSCS3Wy3hNfkCaeamFI8/nvIwszQEdI9ygHeg5lzR8gn6Uot853xLkXPVWv5eohl0MauJi4J7HU1zYo3eRpy4PwA7XzsNGrmItt9h6KoOKOE8s9gAcCXsl2g8WMrl46mRP1S9jgIfPW0B667HpEPqfIBPyoNBmheHm5LWPs6JwGXmwNzxhZZVgUI+cN67gMJWx6LQ9O7uJA2bBV12qnLC9SGsQt/G23i6VS6EegRAtgWmkhYCKYNkIYAj3kMkwMxWyKF+4EywsKyorM+PZAOboMC3Q==
+ [smooge@puppet1 ~]$
+
+
+   Make sure only an RSA key exists. If a DSA or RSA1 key exists, then there
+   is a misconfiguration on the server that needs to be cleared up. Copy the
+   non-commented ssh-rsa line and place it in the puppet repo under:
+
+ puppet/modules/ssh/files/ssh_known_hosts
+
+   Please put them in numberical ip order.
+
+ sort -t\. -n -k1,1 -k2,2 -k3,3 -k4,4
+
+   is useful finding this.
+
