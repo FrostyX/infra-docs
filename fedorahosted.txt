@@ -2,14 +2,6 @@ Fedorahosted Infrastructure SOP
 
    Provide hosting place for open source projects
 
-   Contents
-
-     * 1 Contact Information
-     * 2 Description
-     * 3 How to setup a new hosted project
-     * 4 How to import data from a cvs repo into git repo
-     * 5 Git notes
-
 Contact Information
 
    Owner: Fedora Infrastructure Team
@@ -37,12 +29,12 @@ How to setup a new hosted project
 
    Important
    This page is for administrators only. People wishing to request a hosted
-   project should use the [51]Ticketing System ; see the
+   project should use the Ticketing System ; see the
    new project request template. (Requires Fedora Account)
 
-    1. Create source group in [53]Fedora Account System (<scm>project
+    1. Create source group in Fedora Account System (<scm>project
        should be the group name)
-    2. Create source repo
+    2. Create source repo <see hosted repository setup SOP>
     3. Log into hosted1
     4. Create new project space:
 
@@ -58,7 +50,7 @@ How to setup a new hosted project
 
     5. If a mailing list is desired:
 
-                    [55]follow the directions for the mailman SOP
+                    follow the directions for the mailman SOP
 
 How to import data from a cvs repo into git repo
 
