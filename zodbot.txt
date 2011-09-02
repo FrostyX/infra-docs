@@ -25,7 +25,7 @@ Contact Information
 
 Description
 
-   [51]zodbot is a supybot based irc bot that we use in our #fedora channels.
+   zodbot is a supybot based irc bot that we use in our #fedora channels.
    It runs on value01 as the daemon user. We do not config manage the
    zodbot.conf because supybot makes changes to it on its own. Therefore it
    gets backed up and is treated as data.
