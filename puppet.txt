@@ -34,12 +34,12 @@ VCS/GIT
  git config --global user.email address@example.com
 
    The following commands will check out all GIT configs from a local shell
-   on puppet01.phx2.fedoraproject.org:
+   on lockbox01.phx2.fedoraproject.org:
 
  git clone /git/puppet
 
    Note that you should not copy or manipulate this repo except on the
-   puppet01 machine.
+   lockbox01 machine.
 
    There is a different procedure for cloning the private repo, as it
    contains private data and should not be world-readable. This repo is
@@ -70,6 +70,8 @@ Altering config files
    Once you have all of your changes in and ready run:
 
  git push
+
+Reporting
 
    Each puppet client pulls from the puppetmaster from a cron job that runs
    at 23 and 53 minutes past the hour +-10min. Output from puppet for each
@@ -160,11 +162,9 @@ Adding new node
    NOTE: --revoke --clean MUST BE PASSED IN THAT ORDER OR PUPPET IGNORES the
    --clean.
 
-  Finalizing
-
-   Sometimes a new node needs to have puppet restarted in order to connect
-   correctly after its certificate has been approved. Simply log in and run
-   'service puppet restart' as root.
+  After the client cert is signed, you need to make sure the client is added 
+  to the infra-hosts repo to allow yum to work with the excludes there. Also, 
+  you may want to run 'fasClient -i' before re-running puppet again. 
 
   Regenerate cert request
 
@@ -185,20 +185,25 @@ Debugging
    This command will generate a lot of output, so use carefully.
 
    If you want to stop puppet from running while you mess with something then
-   do:
+   remove it's 'run-puppet' file in the infra-hosts git repo: 
 
- touch /var/lib/puppet/state/puppetdlock
+	git rm hostname/run-puppet
+	git commit  (Be sure to note exactly why you are disabling puppet). 
+	git push
 
-   as root
-
-   remember to remove this file when you are done.
+   When you are done, readd the file: 
+	
+	touch hostname/run-puppet
+	git add hostname/run-puppet
+	git commit
+	git push
 
 Renaming a node
 
    Sometimes you will need to rename a node due to Smooge deciding that a new
    naming convention is needed. The steps for doing so are the following :
 
-    1. Log onto puppet01 and oldhostname in seperate windows.
+    1. Log onto lockbox01 and oldhostname in seperate windows.
     2. On puppet
 
          1. Edit associated DNS names in any places (.pp files etc) referring
