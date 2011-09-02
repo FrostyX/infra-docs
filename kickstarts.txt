@@ -2,8 +2,8 @@ Kickstart Infrastructure SOP
 
 
    Kickstart scripts provide our install infrastructure. We only have a
-   handful of different kickstart scripts, for both xen guests and the xen
-   hosts themselves.
+   handful of different kickstart scripts, for xen guests, xen hosts and kvm
+   guests and hosts. 
 
 Contact Information
 
@@ -11,22 +11,22 @@ Contact Information
 
    Contact: #fedora-admin, sysadmin-main
 
-   Location: Phoenix
+   Location: Everywhere we have machines. 
 
-   Servers: puppet01 (stores kickstarts and install media)
+   Servers: lockbox01 (stores kickstarts and install media)
 
    Purpose: Provides our install infrastructure
 
 Introduction
 
-   Our kickstart infrastructure lives on the proxy servers and puppet1. All
-   install media and kickstart scripts are located on puppet1. Because the
+   Our kickstart infrastructure lives on the proxy servers and lockbox01. All
+   install media and kickstart scripts are located on lockbox01. Because the
    RHEL binaries are not public we have these bits blocked. You can add
-   needed IPs to (from puppet01):
+   needed IPs to (from lockbox01):
 
  puppet/modules/infra-repo/files/allows
 
-Physical Machine (dom0)
+Physical Machine (dom0 / kvm virthost)
 
    Xen Dom0 installs are far riskier then the DomU installs below. This is
    because if an install goes bad, your options to rebuild it are somewhat
@@ -93,13 +93,14 @@ Physical Machine (dom0)
    and come back. Once you can ping it again, try to open up a VNC session.
    It can take a couple of minutes after the box is back up for it to
    actually allow vnc sessions. The VNC password is in the kickstart script
-   on puppet1: "grep vnc /mnt/fedora/app/fi-repo/rhel/ks/xen-host":
+   on lockbox01: "grep vnc /mnt/fedora/app/fi-repo/rhel/ks/xen-host":
 
  vncviewer $IP:1
 
    If using the standard kickstart script, one can watch as the install
    completes itself, there should be no need to do anything. If using the
-   xen-host-nohd script, one will need to configure the drives.
+   xen-host-nohd script, one will need to configure the drives. The password
+   is in the kickstart file in the kickstart repo. 
 
   Post Install
 
@@ -108,7 +109,7 @@ Physical Machine (dom0)
 
    If all goes well, the vnc session will close, the box will reboot and come
    back up as the new host. The default root password is also listed in the
-   kickstart script, from puppet1: grep rootpw
+   kickstart script, from lockbox01: grep rootpw
    /mnt/fedora/app/fi-repo/rhel/ks/xen-host Most physical machines are to be
    used as xen hosts, If that is the case with this host, just install
    puppet, update the box and follow the normal puppet instructions
@@ -122,7 +123,8 @@ Virtual Machine (domU)
    i386 vs. x86_64).
 
    Almost all of our virtual machines run off of LVM. Step 1 is to create the
-   LVM partition you want.
+   LVM partition you want. Note that the volume group name may vary from host
+   to host, and in some cases may be a iscsi volume. 
 
  lvcreate -n $NEWHOST -L 15G VolGroup00
 
@@ -149,7 +151,7 @@ Virtual Machine (domU)
  virt-install -n $NEWHOST -r 1024 -f /dev/VolGroup/$NEWHOST \
   -l http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/ \
   -x "ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/kvm-rhel-6 \
-  ip=$IP netmask=$NM gateway=$GW dns=$NS1,$NS2 console=tty0 console=ttyS0" \
+  ip=$IP netmask=$NM gateway=10.5.126.254 dns=10.5.126.21,10.5.126.22 console=tty0 console=ttyS0" \
   --vnc --noautoconsole
 
    XEN outside of PHX:
@@ -185,10 +187,10 @@ Virtual Machine (domU)
    1. Ensure the hostname is set properly in /etc/sysconfig/network and
    /etc/hosts
 
-   1. Ensure the system is up to date and can contact its yum mirror yum -y
+   2. Ensure the system is up to date and can contact its yum mirror yum -y
    update .
 
-   1. For an external box make sure /etc/resolv.conf contains search
+   3. For an external box make sure /etc/resolv.conf contains search
    vpn.fedoraproject.org fedoraproject.org while internal hosts (in PHX)
    should contain search phx2.fedoraproject.org (this should be scripted by
    the kickstart file! -matt)
@@ -231,8 +233,7 @@ PPC Machine
 
   Post Install
 
-   To install a different OS change the install source (like Fedora 8's
-   install source)
+   To install a different OS change the install source 
 
    After the install, you'll want to change the network configuration to be
    static instead of dhcp. Just edit /etc/sysconfig/network and
