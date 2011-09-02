@@ -1,7 +1,8 @@
 Bacula Infrastructure SOP
 
    Bacula is our backup solution. Our backups run to backup01 and ultimately
-   to a tape robot
+   to a tape robot. There is also a backup03 now with a newer bacula and tape
+   library. 
 
    Contents
 
@@ -16,11 +17,11 @@ Contact Information
 
    Owner: Fedora Infrastructure Team
 
-   Contact: #fedora-admin, sysadmin-main
+   Contact: #fedora-admin, sysadmin-main, sysadmin-backup
 
    Location: Phoenix
 
-   Servers: backup01
+   Servers: backup01, backup02
 
    Purpose: Our backup solution
 
@@ -75,4 +76,3 @@ Mysql insert failures
    This error is a issue with the old bacula and mysql we have, and there's
    not much to be done about it. Start a new backup if one is needed or wait
    for the next backup to complete.
-
