@@ -33,4 +33,5 @@ proxy and app servers use the vpn to talk to each other.
 NOTE: currently bastion01.fedoraproject.org is mapped to bastion03.phx2.fedoraproject.org
 This is due to dns issues. 
 
-
+When rebuilding these machines, care must be taken to match up the dns names 
+externally, and to preserve the ssh host keys.
