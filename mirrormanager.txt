@@ -4,14 +4,14 @@ MirrorManager Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
+     * 1 Contact Information
+     * 2 Description
 
-          * 2.1 Release Preparation
-          * 2.2 Troubleshooting and Resolution
+          * 2.1 Release Preparation
+          * 2.2 Troubleshooting and Resolution
 
-               * 2.2.1 Regenerating the Publiclist
-               * 2.2.2 Hung admin.fedoraproject.org/mirrormanager
+               * 2.2.1 Regenerating the Publiclist
+               * 2.2.2 Hung admin.fedoraproject.org/mirrormanager
 
 Contact Information
 
@@ -61,8 +61,8 @@ Description
 
    This generally happens when an app server loses connection to db2.
 
-    1. on bapp1 and app[1-6], su up, and restart apache.
-    2. on bapp1, if crawlers and update-master-directory-list are likewise
+    1. on bapp1 and app[1-6], su up, and restart apache.
+    2. on bapp1, if crawlers and update-master-directory-list are likewise
        hung, kill them too. You may need to delete stale
        /var/lock/mirrormanager/* lockfiles as well.
 

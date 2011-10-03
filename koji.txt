@@ -9,21 +9,21 @@ Koji Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Add packages into Buildroot
-     * 4 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Description
+     * 3 Add packages into Buildroot
+     * 4 Troubleshooting and Resolution
 
-          * 4.1 Restarting Koji
-          * 4.2 kojid won't start or some builders won't connect
-          * 4.3 OOM (Out of Memory) Issues
+          * 4.1 Restarting Koji
+          * 4.2 kojid won't start or some builders won't connect
+          * 4.3 OOM (Out of Memory) Issues
 
-               * 4.3.1 Increase Memory
-               * 4.3.2 Decrease weight
+               * 4.3.1 Increase Memory
+               * 4.3.2 Decrease weight
 
-          * 4.4 Disk Space Issues
+          * 4.4 Disk Space Issues
 
-     * 5 Should there be mention of being sure filesystems in chroots are
+     * 5 Should there be mention of being sure filesystems in chroots are
        unmounted before you delete the chroots?
 
 Contact Information
@@ -151,10 +151,10 @@ Troubleshooting and Resolution
    fedora-infrastructure-list and fedora-devel-list, then contact Mike
    McGrath
 
-    1. /mnt/koji
-    2. /mnt/ntap-fedora1/scratch
-    3. /pub/epel
-    4. /pub/fedora
+    1. /mnt/koji
+    2. /mnt/ntap-fedora1/scratch
+    3. /pub/epel
+    4. /pub/fedora
 
    Typically just / will be full. The next thing to do is determine if we
    have any extremely large builds left on the builder. Typical locations
@@ -163,8 +163,8 @@ Troubleshooting and Resolution
 
  du -sh /var/lib/mock/* /mnt/build/*
 
-     * /var/lib/mock/dist-f8-build-10443-1503: classic koji build
-     * /var/lib/mock/fedora-6-ppc-core-57cd31505683ef1afa533197e91608c5a2c52864:
+     * /var/lib/mock/dist-f8-build-10443-1503: classic koji build
+     * /var/lib/mock/fedora-6-ppc-core-57cd31505683ef1afa533197e91608c5a2c52864:
        classic plague build
 
    If nothing jumps out immediately, just start deleting files older than one

@@ -4,29 +4,29 @@ Database Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Creating a New Postgresql Database
-     * 4 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Description
+     * 3 Creating a New Postgresql Database
+     * 4 Troubleshooting and Resolution
 
-          * 4.1 Connection issues
-          * 4.2 Some useful queries
+          * 4.1 Connection issues
+          * 4.2 Some useful queries
 
-               * 4.2.1 What queries are running
-               * 4.2.2 Seeing how "dirty" a table is
-               * 4.2.3 XID Wraparound
+               * 4.2.1 What queries are running
+               * 4.2.2 Seeing how "dirty" a table is
+               * 4.2.3 XID Wraparound
 
-          * 4.3 Restart Procedure
+          * 4.3 Restart Procedure
 
-               * 4.3.1 Koji
-               * 4.3.2 Mirror Manager
+               * 4.3.1 Koji
+               * 4.3.2 Mirror Manager
 
-                    * 4.3.2.1 Vacuuming Mirror Manager
+                    * 4.3.2.1 Vacuuming Mirror Manager
 
-               * 4.3.3 Bodhi
-               * 4.3.4 Smolt
+               * 4.3.3 Bodhi
+               * 4.3.4 Smolt
 
-     * 5 Note about TurboGears and MySQL
+     * 5 Note about TurboGears and MySQL
 
 Contact Information
 
@@ -165,10 +165,10 @@ Troubleshooting and Resolution
    cache isn't updated while we're doing the vacuum. To disable that we can
    turn off the mirrormanager management interface:
 
- $  for i in 2 3 4 5; do ssh app$i supervisorctl stop mirrormanager ; done
+ $  for i in 2 3 4 5; do ssh app$i supervisorctl stop mirrormanager ; done
  $ ssh db2
  $ sudo -u postgres vacuumdb -fzv --dbname mirrormanager
- $  for i in 2 3 4 5; do ssh app$i supervisorctl start mirrormanager ; done
+ $  for i in 2 3 4 5; do ssh app$i supervisorctl start mirrormanager ; done
 
     Bodhi
 

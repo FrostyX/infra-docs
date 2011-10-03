@@ -14,11 +14,11 @@ Bugzilla Sync Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Description
+     * 3 Troubleshooting and Resolution
 
-          * 3.1 Errors while syncing bugzilla with the PackageDB
+          * 3.1 Errors while syncing bugzilla with the PackageDB
 
 Contact Information
 

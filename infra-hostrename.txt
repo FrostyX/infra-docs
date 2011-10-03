@@ -5,13 +5,13 @@ Infrastructure Host Rename SOP
 
    Contents
 
-     * 1 Introduction
-     * 2 Finding out where the host is
-     * 3 Preparation
-     * 4 Renaming the Logical Volume
-     * 5 Doing the actual rename
-     * 6 Telling Puppet about the new host
-     * 7 VPN Stuff
+     * 1 Introduction
+     * 2 Finding out where the host is
+     * 3 Preparation
+     * 4 Renaming the Logical Volume
+     * 5 Doing the actual rename
+     * 6 Telling Puppet about the new host
+     * 7 VPN Stuff
 
 Introduction
 

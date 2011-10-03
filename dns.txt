@@ -9,22 +9,22 @@ DNS Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Troubleshooting, Resolution and Maintenance
+     * 1 Contact Information
+     * 2 Troubleshooting, Resolution and Maintenance
 
-          * 2.1 DNS update
-          * 2.2 Adding a new zone
+          * 2.1 DNS update
+          * 2.2 Adding a new zone
 
-     * 3 GeoDNS
+     * 3 GeoDNS
 
-          * 3.1 Non geodns fedoraproject.org IPs
-          * 3.2 Adding and removing countries
-          * 3.3 IP Country Mapping
+          * 3.1 Non geodns fedoraproject.org IPs
+          * 3.2 Adding and removing countries
+          * 3.3 IP Country Mapping
 
-     * 4 resolv.conf
+     * 4 resolv.conf
 
-          * 4.1 Phoenix
-          * 4.2 Non-Phoenix
+          * 4.1 Phoenix
+          * 4.2 Non-Phoenix
 
 Contact Information
 
@@ -66,7 +66,7 @@ Troubleshooting, Resolution and Maintenance
    First name the zone and generate new set of keys for it. Run this on ns01.
    Note it could take SEVERAL minutes to run:
 
- /usr/sbin/dnssec-keygen -a RSASHA1 -b 1024 -n ZONE c.fedoraproject.org ; /usr/sbin/dnssec-keygen -a RSASHA1 -b 2048 -n ZONE -f KSK c.fedoraproject.org
+ /usr/sbin/dnssec-keygen -a RSASHA1 -b 1024 -n ZONE c.fedoraproject.org ; /usr/sbin/dnssec-keygen -a RSASHA1 -b 2048 -n ZONE -f KSK c.fedoraproject.org
 
    Then copy the created .key and .private files to the private git repo (You
    need to be sysadmin-main to do this). The directory is
@@ -95,10 +95,10 @@ GeoDNS
    now sending users to proxy servers that are near them. The current list of
    available 'zone areas' are:
 
-     * DEFAULT
-     * EU
-     * GB
-     * NA
+     * DEFAULT
+     * EU
+     * GB
+     * NA
 
    DEFAULT contains all the zones. So someone who does not seem to be in or
    near the EU, GB, or NA would get directed to any random set. (South Africa

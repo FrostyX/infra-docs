@@ -11,11 +11,11 @@ Haproxy Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 How it works
-     * 3 Configuration example
-     * 4 Stats
-     * 5 Advanced Usage
+     * 1 Contact Information
+     * 2 How it works
+     * 3 Configuration example
+     * 4 Stats
+     * 5 Advanced Usage
 
 Contact Information
 
@@ -65,7 +65,7 @@ Configuration example
 
    The first line "listen ...." Says to create a farm called 'fpo-wiki'.
    Listening on all IP's on port 10001. fpo-wiki can be arbitrary but make it
-   something obvious. Aside from that the important bit is :10001. Always
+   something obvious. Aside from that the important bit is :10001. Always
    make sure that when creating a new farm, its listening on a unique port.
    In Fedora's case we're starting at 10001, and moving up by one. Just check
    the config file for the lowest open port above 10001.
@@ -78,22 +78,22 @@ Configuration example
    would be used in conjunction with "RewriteRule ^/wiki/(.*)
    [54]http://localhost:10001/wiki/$1 [P,L]".
 
-     * 'server' means we're adding a new node to the farm
-     * 'app1' is the worker name, it is analagous to fpo-wiki but should
+     * 'server' means we're adding a new node to the farm
+     * 'app1' is the worker name, it is analagous to fpo-wiki but should
        match shorthostname of the node to make it easy to follow.
-     * 'app1.fedora.phx.redhat.com:80' is the hostname and port to be
+     * 'app1.fedora.phx.redhat.com:80' is the hostname and port to be
        contacted.
-     * 'check' means to check via bottom line "option httpchk GET
+     * 'check' means to check via bottom line "option httpchk GET
        /wiki/Infrastructure" which will use /wiki/Infrastructure to verify
        the wiki is working. If that URL fails, that entire node will be taken
        out of the farm mix.
-     * 'inter 2s' means to check every 2 seconds. 2s is the same as 2000 in
+     * 'inter 2s' means to check every 2 seconds. 2s is the same as 2000 in
        this case.
-     * 'rise 2' means to not put this node back in the mix until it has had
+     * 'rise 2' means to not put this node back in the mix until it has had
        two successful connections in a row. haproxy will continue to check
        every 2 seconds whether a node is up or down
-     * 'fall 5' means to take a node out of the farm after 5 failures.
-     * 'backup' You'll notice that app4 has a 'backup' option. We don't
+     * 'fall 5' means to take a node out of the farm after 5 failures.
+     * 'backup' You'll notice that app4 has a 'backup' option. We don't
        actually use this for the wiki but do for other farms. It basically
        means to continue checking and treat this node like any other node but
        don't send it any production traffic unless the other two nodes are
@@ -114,11 +114,11 @@ Stats
    https://admin.fedoraproject.org/haproxy/proxy1/ The trailing / is
    important.
 
-     * https://admin.fedoraproject.org/haproxy/proxy1/
-     * https://admin.fedoraproject.org/haproxy/proxy2/
-     * https://admin.fedoraproject.org/haproxy/proxy3/
-     * https://admin.fedoraproject.org/haproxy/proxy4/
-     * https://admin.fedoraproject.org/haproxy/proxy5/
+     * https://admin.fedoraproject.org/haproxy/proxy1/
+     * https://admin.fedoraproject.org/haproxy/proxy2/
+     * https://admin.fedoraproject.org/haproxy/proxy3/
+     * https://admin.fedoraproject.org/haproxy/proxy4/
+     * https://admin.fedoraproject.org/haproxy/proxy5/
 
 Advanced Usage
 

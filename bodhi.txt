@@ -8,16 +8,16 @@ Bodhi Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Adding a new pending release
-     * 3 0-day Release Actions
-     * 4 Pushing EPEL updates
-     * 5 Doing a production bodhi upgrade
-     * 6 Release EOL
-     * 7 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Adding a new pending release
+     * 3 0-day Release Actions
+     * 4 Pushing EPEL updates
+     * 5 Doing a production bodhi upgrade
+     * 6 Release EOL
+     * 7 Troubleshooting and Resolution
 
-          * 7.1 Empty <id/> tags in the updateinfo.xml.gz
-          * 7.2 Creating tables at sqlite:/// when trying to use
+          * 7.1 Empty <id/> tags in the updateinfo.xml.gz
+          * 7.2 Creating tables at sqlite:/// when trying to use
             postgres!?
 
 Contact Information

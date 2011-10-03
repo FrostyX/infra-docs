@@ -4,11 +4,11 @@ User:Ke4qqq/gittosvnsop
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 SVN to GIT migration
+     * 1 Contact Information
+     * 2 Description
+     * 3 SVN to GIT migration
 
-          * 3.1 Questions left to be answered with this SOP
+          * 3.1 Questions left to be answered with this SOP
 
 Contact Information
 
@@ -28,15 +28,15 @@ Description
    those projects want to change the SCM they utilize. This document provides
    documentation for doing so.
 
-    1. An scm for maintaining the code. The currently supported scm's include
+    1. An scm for maintaining the code. The currently supported scm's include
        Mercurial, Git, Bazaar, or SVN. Note: There is no cvs
-    2. A trac instance, which provides a mini-wiki for hosting information
+    2. A trac instance, which provides a mini-wiki for hosting information
        and also provides a ticketing system.
-    3. A mailing list
+    3. A mailing list
 
    [49]Important.png
    This page is for administrators only. People wishing to request a hosted
-   project should use the [50]Ticketing System ; see the
+   project should use the [50]Ticketing System ; see the
    new project request template. (Requires Fedora Account)
 
 SVN to GIT migration
@@ -67,7 +67,7 @@ SVN to GIT migration
 
  svnurl=file:///svn/$1
 
- if ! svn info $svnurl &>/dev/null; then
+ if ! svn info $svnurl &>/dev/null; then
      echo "$1 is not a valid svn repo." >&2
  fi
 
@@ -78,18 +78,18 @@ SVN to GIT migration
      echo "$user=$name <$email>"
  done
 
-    1. Log into hosted1
-    2. Make a temporary directory to convert the repos in
+    1. Log into hosted1
+    2. Make a temporary directory to convert the repos in
 
  $ sudo mkdir /tmp/tmp-$PROJECTNAME.git
 
  $ ce /tmp/tmp-$PROJECTNAME.git
 
-    3. Create an git repo ready to receive migrated SVN data
+    3. Create an git repo ready to receive migrated SVN data
 
  $ sudo git-svn init http://svn.fedorahosted.org/svn/$PROJECTNAME --no-metadata
 
-    4. Tell git to fetch and convert the repository:
+    4. Tell git to fetch and convert the repository:
 
  $ git svn fetch
 
@@ -138,8 +138,8 @@ SVN to GIT migration
 
   Questions left to be answered with this SOP
 
-     * Obviously we need to have requestor review the migration and confirm
+     * Obviously we need to have requestor review the migration and confirm
        it's ok.
-     * Do we then delete the old SCM contents?
-     * Do we need to change the FAS-group type to grant them access to
+     * Do we then delete the old SCM contents?
+     * Do we need to change the FAS-group type to grant them access to
        pull/push from it?

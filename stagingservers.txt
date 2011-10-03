@@ -9,11 +9,11 @@ Staging Servers Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Using
-     * 3 Puppet
-     * 4 Syncing FAS
-     * 5 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Using
+     * 3 Puppet
+     * 4 Syncing FAS
+     * 5 Troubleshooting and Resolution
 
 Contact Information
 

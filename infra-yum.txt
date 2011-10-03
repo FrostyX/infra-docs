@@ -7,16 +7,16 @@ Infrastructure Yum Repo SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Building an RPM
-     * 3 Signing the RPM
+     * 1 Contact Information
+     * 2 Building an RPM
+     * 3 Signing the RPM
 
-          * 3.1 Requesting Access
-          * 3.2 Signing the RPM
+          * 3.1 Requesting Access
+          * 3.2 Signing the RPM
 
-     * 4 Re-creating the repo
-     * 5 Add information about why the package is in the repo
-     * 6 RHEL repo
+     * 4 Re-creating the repo
+     * 5 Add information about why the package is in the repo
+     * 6 RHEL repo
 
 Contact Information
 

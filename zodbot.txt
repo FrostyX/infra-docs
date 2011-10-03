@@ -4,12 +4,12 @@ Zodbot Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 shutdown
-     * 4 startup
-     * 5 Processing interrupted meeting logs
-     * 6 Becoming an admin
+     * 1 Contact Information
+     * 2 Description
+     * 3 shutdown
+     * 4 startup
+     * 5 Processing interrupted meeting logs
+     * 6 Becoming an admin
 
 Contact Information
 

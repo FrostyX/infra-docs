@@ -9,18 +9,18 @@ Voting Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Creating a new election
+     * 1 Contact Information
+     * 2 Creating a new election
 
-          * 2.1 Creating the election
-          * 2.2 Adding Candidates
-          * 2.3 Who can vote
+          * 2.1 Creating the election
+          * 2.2 Adding Candidates
+          * 2.3 Who can vote
 
-     * 3 Modifying an Election
+     * 3 Modifying an Election
 
-          * 3.1 Changing the details of an Election
-          * 3.2 Removing a candidate
-          * 3.3 Releasing the results of an embargoed election
+          * 3.1 Changing the details of an Election
+          * 3.2 Removing a candidate
+          * 3.3 Releasing the results of an embargoed election
 
 Contact Information
 
@@ -79,8 +79,8 @@ Creating a new election
 
    There are 2 magic GROUPNAME strings that can be used
 
-     * anycla - (any FAS group not beginning cla_)
-     * anyany - (any FAS group)
+     * anycla - (any FAS group not beginning cla_)
+     * anyany - (any FAS group)
 
    Put one of the above group names or a specific FAS group into the 'Allowed
    Groups' field.

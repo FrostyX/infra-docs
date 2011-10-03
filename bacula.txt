@@ -6,12 +6,12 @@ Bacula Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Troubleshooting and Resolution
 
-          * 2.1 Intervention Required
+          * 2.1 Intervention Required
 
-     * 3 Mysql insert failures
+     * 3 Mysql insert failures
 
 Contact Information
 

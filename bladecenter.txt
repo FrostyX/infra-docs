@@ -6,11 +6,11 @@ BladeCenter Access Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Common Tasks
+     * 1 Contact Information
+     * 2 Common Tasks
 
-          * 2.1 Logging into the web interface
-          * 2.2 Using the Serial Console of Blades
+          * 2.1 Logging into the web interface
+          * 2.2 Using the Serial Console of Blades
 
 Contact Information
 

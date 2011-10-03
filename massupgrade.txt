@@ -5,24 +5,24 @@ Mass Upgrade Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Preparation
-     * 3 Staging
-     * 4 Special Considerations
+     * 1 Contact Information
+     * 2 Preparation
+     * 3 Staging
+     * 4 Special Considerations
 
-          * 4.1 Disable builders
-          * 4.2 Post reboot action
-          * 4.3 Schedule autoqa01 reboot
-          * 4.4 Bastion01 and Bastion02 and openvpn server
-          * 4.5 Special yum directives
+          * 4.1 Disable builders
+          * 4.2 Post reboot action
+          * 4.3 Schedule autoqa01 reboot
+          * 4.4 Bastion01 and Bastion02 and openvpn server
+          * 4.5 Special yum directives
 
-     * 5 Update Leader
-     * 6 Group A reboots
-     * 7 Group B reboots
-     * 8 Group C reboots
-     * 9 Doing the upgrade
-     * 10 Doing the reboot
-     * 11 Aftermath
+     * 5 Update Leader
+     * 6 Group A reboots
+     * 7 Group B reboots
+     * 8 Group C reboots
+     * 9 Doing the upgrade
+     * 10 Doing the reboot
+     * 11 Aftermath
 
 Contact Information
 
@@ -39,36 +39,36 @@ Contact Information
 
 Preparation
 
-    1. Determine which host group you are going to be doing updates/reboots
+    1. Determine which host group you are going to be doing updates/reboots
        on.
 
-         1. Group "A" are servers that end users will see or note being down
+         1. Group "A" are servers that end users will see or note being down
             and anything that depends on them.
-         2. Group "B" are servers that contributors will see or note being
+         2. Group "B" are servers that contributors will see or note being
             down and anything that depends on them.
-         3. Group "C" are servers that infrastructure will notice are down,
+         3. Group "C" are servers that infrastructure will notice are down,
             or are redundent enough to reboot some with others taking the
             load.
 
-    2. Appoint an 'Update Leader' for the updates.
-    3. Follow the [61]Outage Infrastructure SOP and send advance notification
+    2. Appoint an 'Update Leader' for the updates.
+    3. Follow the [61]Outage Infrastructure SOP and send advance notification
        to the appropriate lists. Try to schedule the update at a time when
        many admins are around to help/watch for problems and when impact for
        the group affected is less. Do NOT do multiple groups on the same day
        if possible.
-    4. Plan an order for rebooting the machines considering two factors:
+    4. Plan an order for rebooting the machines considering two factors:
 
-          * Location of systems on the kvm or xen hosts. [You will normally
+          * Location of systems on the kvm or xen hosts. [You will normally
             reboot all systems on a host together]
-          * Impact of systems going down on other services, operations and
+          * Impact of systems going down on other services, operations and
             users. Thus since the database servers and nfs servers are the
             backbone of many other systems, they and systems that are on the
             same xen boxes would be rebooted before other boxes.
 
-    5. To aid in organizing a mass upgrade/reboot with many people helping,
+    5. To aid in organizing a mass upgrade/reboot with many people helping,
        it may help to create a checklist of machines in a gobby document.
-    6. Schedule downtime in nagios.
-    7. Make doubly sure that various app owners are aware of the reboots
+    6. Schedule downtime in nagios.
+    7. Make doubly sure that various app owners are aware of the reboots
 
 Staging
 
@@ -86,9 +86,9 @@ Special Considerations
    Before the following machines are rebooted, all koji builders should be
    disabled and all running jobs allowed to complete:
 
-     * db04
-     * nfs01
-     * kojipkgs01
+     * db04
+     * nfs01
+     * kojipkgs01
 
    Builders can be removed from koji, updated and re-added. Use:
 
@@ -106,9 +106,9 @@ Special Considerations
    passphrases). Make sure admins that have the passphrases are on hand for
    the reboot:
 
-     * backup-2 (LUKS passphrase on boot)
-     * sign-vault01 (NSS passphrase for sigul service)
-     * sign-bridge01 (NSS passphrase for sigul bridge service)
+     * backup-2 (LUKS passphrase on boot)
+     * sign-vault01 (NSS passphrase for sigul service)
+     * sign-bridge01 (NSS passphrase for sigul bridge service)
 
   Schedule autoqa01 reboot
 
@@ -384,20 +384,20 @@ Doing the reboot
 
    For each host you will want to:
 
-     * connect and verify no one is logged in and using it. If they are
+     * connect and verify no one is logged in and using it. If they are
        contact them to log off, etc
-     * grep default /etc/grub.conf # make sure that the kernel you upgraded
+     * grep default /etc/grub.conf # make sure that the kernel you upgraded
        to will be the one rebooted.
-     * shutdown -h now
+     * shutdown -h now
 
    This is also a good time to double check that each guest you are starting
    up is set to be restarted on reboot of the virt host.
 
 Aftermath
 
-    1. Make sure that everything's running fine
-    2. Reenable nagios notification as needed
-    3. Make sure to perform any manual post-boot setup (such as entering
+    1. Make sure that everything's running fine
+    2. Reenable nagios notification as needed
+    3. Make sure to perform any manual post-boot setup (such as entering
        passphrases for encrypted volumes)
-    4. Close outage ticket.
+    4. Close outage ticket.
 

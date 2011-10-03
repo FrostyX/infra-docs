@@ -7,7 +7,7 @@ Contact Information
    Contact: #fedora-admin, sysadmin-main, sysadmin-tools, sysadmin-hosted
    group
 
-   Location: serverbeach
+   Location: serverbeach
 
    Servers: hosted1, collab1
 
@@ -23,8 +23,8 @@ Common Tasks
 
   Creating a new mailing list
 
-     * Log into hosted1 or collab1
-     * sudo /usr/local/bin/fedora-mailing-list-setup
+     * Log into hosted1 or collab1
+     * sudo /usr/local/bin/fedora-mailing-list-setup
 
  [you@hosted1 ~] $ sudo /usr/local/bin/fedora-mailing-list-setup
  Password:
@@ -151,53 +151,53 @@ Mailman migration
 
    Things required from Red Hat:
 
-     * The list config (whatever the equivalent of
+     * The list config (whatever the equivalent of
        /var/lib/mailman/lists/<listname> is)
-     * The list archives, in mbox form
+     * The list archives, in mbox form
        (/var/lib/mailman/archives/private/<listname>.mbox)
 
    Put these items into their respective places on collab1.
 
    If required at this point, change the list name as follows:
 
-     * Rename the archive and list directories to the new names
-     * Create a file called <newlist-name>.config and put the following in
+     * Rename the archive and list directories to the new names
+     * Create a file called <newlist-name>.config and put the following in
        it:
 
  real_name = '<new list name>'
 
-     * Don't do anything with that file until the next step :)
+     * Don't do anything with that file until the next step :)
 
    For all lists, do the following:
 
-     * In the <newlist-name>.config file created earlier, add the following
+     * In the <newlist-name>.config file created earlier, add the following
        line (create the file if you didn't need to rename the list):
 
  acceptable_aliases = [ 'old-list-name@redhat.com' ]
 
    .
 
-     * Verify the sanity of your new configuration via
+     * Verify the sanity of your new configuration via
        '/usr/lib/mailman/bin/config_list -i <new-list-name>.config -c
        <new-list-name>
-     * If that checks out, eliminate the -c from the previous command in
+     * If that checks out, eliminate the -c from the previous command in
        order to make your changes.
-     * generate aliases for the new list /usr/lib/mailman/bin/genaliases
-     * change the url for the list /usr/lib/mailman/bin/withlist -l -r
+     * generate aliases for the new list /usr/lib/mailman/bin/genaliases
+     * change the url for the list /usr/lib/mailman/bin/withlist -l -r
        fix_url <new-list-name> -u admin.fedoraproject.org
-     * Rebuild the archives using '/usr/lib/mailman/bin/arch --wipe
+     * Rebuild the archives using '/usr/lib/mailman/bin/arch --wipe
        <new-list-name>'
-     * restore selinux contexts restorecon -rv /var/lib/mailman/lists
+     * restore selinux contexts restorecon -rv /var/lib/mailman/lists
        /var/lib/mailman/archives/private
 
   Additional steps
 
-     * rebuilding the archives means all links to the historical mailing
+     * rebuilding the archives means all links to the historical mailing
        lists posts will be broken. Can we get Red Hat to add http redirects
        from www.redhat.com/archives/<old-list-name> to the
-       lists.fedoraproject.org/archives/<new-list-name> ?
-     * we'll need Red Hat to set up forwarding aliases for <old-list-name> to
+       lists.fedoraproject.org/archives/<new-list-name> ?
+     * we'll need Red Hat to set up forwarding aliases for <old-list-name> to
        <new-list-name>
-     * fix the names of list that do not make any sense (e.g.
+     * fix the names of list that do not make any sense (e.g.
        feodra-extras-steering) in the current environment. relevant
 

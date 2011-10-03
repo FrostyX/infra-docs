@@ -6,10 +6,10 @@ Memcached Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Checking Status
-     * 3 Restarting Memcached
-     * 4 Configuring Memcached
+     * 1 Contact Information
+     * 2 Checking Status
+     * 3 Restarting Memcached
+     * 4 Configuring Memcached
 
 Contact Information
 

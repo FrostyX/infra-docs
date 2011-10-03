@@ -6,19 +6,19 @@ Puppet Infrastructure SOP
 
    Contents
 
-     * 1 VCS/GIT
-     * 2 Altering config files
-     * 3 Adding new files
-     * 4 Adding new node
+     * 1 VCS/GIT
+     * 2 Altering config files
+     * 3 Adding new files
+     * 4 Adding new node
 
-          * 4.1 Node Access
-          * 4.2 On the node
-          * 4.3 Signing new ca request
-          * 4.4 Finalizing
-          * 4.5 Regenerate cert request
+          * 4.1 Node Access
+          * 4.2 On the node
+          * 4.3 Signing new ca request
+          * 4.4 Finalizing
+          * 4.5 Regenerate cert request
 
-     * 5 Debugging
-     * 6 Renaming a node
+     * 5 Debugging
+     * 6 Renaming a node
 
 VCS/GIT
 
@@ -201,36 +201,36 @@ Debugging
 Renaming a node
 
    Sometimes you will need to rename a node due to Smooge deciding that a new
-   naming convention is needed. The steps for doing so are the following :
+   naming convention is needed. The steps for doing so are the following :
 
-    1. Log onto lockbox01 and oldhostname in seperate windows.
-    2. On puppet
+    1. Log onto lockbox01 and oldhostname in seperate windows.
+    2. On puppet
 
-         1. Edit associated DNS names in any places (.pp files etc) referring
+         1. Edit associated DNS names in any places (.pp files etc) referring
             to the old host name in puppet
-         2.  sudo /usr/sbin/puppetca --revoke --clean ${OLDHOSTNAME}
+         2.  sudo /usr/sbin/puppetca --revoke --clean ${OLDHOSTNAME}
 
-    3. On oldhostname
+    3. On oldhostname
 
-         1. edit /etc/sysconfig/network,/etc/hosts and any other files not
+         1. edit /etc/sysconfig/network,/etc/hosts and any other files not
             controlled by puppet.
-         2. remove old cert files.
+         2. remove old cert files.
 
   find /var/lib/puppet/ssl -type f -print | xargs rm -v
 
-         3. create new cert files.
+         3. create new cert files.
 
-  /usr/sbin/puppetd --enable ; /usr/sbin/puppetd -t
+  /usr/sbin/puppetd --enable ; /usr/sbin/puppetd -t
 
-    4. On puppet
+    4. On puppet
 
-         1. sign new cert files
+         1. sign new cert files
 
  sudo /usr/sbin/puppetd --list; sudo /usr/sbin/puppetd --sign ${NEWHOSTNAME}
 
-    5. On oldhostname
+    5. On oldhostname
 
-         1. /usr/sbin/puppetd -t
+         1. /usr/sbin/puppetd -t
 
             and begin looking for any problems.
 

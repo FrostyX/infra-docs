@@ -5,19 +5,19 @@ Staging Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Basic workflow and rules
+     * 1 Contact Information
+     * 2 Basic workflow and rules
 
-          * 2.1 Rules
-          * 2.2 Addresses
+          * 2.1 Rules
+          * 2.2 Addresses
 
-     * 3 Puppet
+     * 3 Puppet
 
-          * 3.1 Cherry Picking
-          * 3.2 Master Merging
-          * 3.3 Nodes and the bootstrap
+          * 3.1 Cherry Picking
+          * 3.2 Master Merging
+          * 3.3 Nodes and the bootstrap
 
-     * 4 Firewalls and /etc/hosts
+     * 4 Firewalls and /etc/hosts
 
                               Contact Information
 

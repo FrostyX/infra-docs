@@ -4,7 +4,7 @@ Supervisor Infrastructure SOP
    This SOP is slowly going by the wayside. Almost all new apps are being
    deployed using mod_wsgi. See - [46]TurboGears Infrastructure SOP
 
-   Supervisor is a service that supplements the normal !SystemVinit on a
+   Supervisor is a service that supplements the normal !SystemVinit on a
    machine. It is configured via a config file /etc/supervisord.conf which is
    managed by puppet. The config file contains an entry for each service that
    it is in charge of starting. Supervisor handles starting the services at

@@ -25,8 +25,8 @@ Adding links
    Each link should be constructed by adding ? to the URL, followed by a
    short code that includes:
 
-     * an indicator for the link source (such as the wiki release notes)
-     * an indicator for the Fedora release in specific (such as F15 for the
+     * an indicator for the link source (such as the wiki release notes)
+     * an indicator for the Fedora release in specific (such as F15 for the
        final, or F15a for the Alpha test release)
 
    So a link to get.fp.o from the one-page release notes would become

@@ -7,27 +7,27 @@ Account Deletion SOP
    appropriate privileges. Reasons for accounts to be disabled can be one of
    the following:
 
-     * Person has placed SPAM on the wiki or other sites.
-     * It is seen that the account has been compromised by a third party.
-     * A person wishes to leave the Fedora Project and wants the account
+     * Person has placed SPAM on the wiki or other sites.
+     * It is seen that the account has been compromised by a third party.
+     * A person wishes to leave the Fedora Project and wants the account
        disabled.
 
    Contents
 
-     * [45]1 Disable
+     * [45]1 Disable
 
-          * [46]1.1 Disable Accounts
-          * [47]1.2 Disable Groups
+          * [46]1.1 Disable Accounts
+          * [47]1.2 Disable Groups
 
-     * [48]2 Renames
+     * [48]2 Renames
 
-          * [49]2.1 Rename Accounts
-          * [50]2.2 Rename Groups
+          * [49]2.1 Rename Accounts
+          * [50]2.2 Rename Groups
 
-     * [51]3 Deletion
+     * [51]3 Deletion
 
-          * [52]3.1 Delete Accounts
-          * [53]3.2 Delete Groups
+          * [52]3.1 Delete Accounts
+          * [53]3.2 Delete Groups
 
 Disable
 
@@ -106,24 +106,24 @@ Renames
    Needs more eyes
    This list may not be complete.
 
-     * Check the databases for koji, pkgdb, and bodhi for occurrences of the
+     * Check the databases for koji, pkgdb, and bodhi for occurrences of the
        old username and update them to the new username.
-     * Check fedorapeople.org for home directories and yum repositories under
+     * Check fedorapeople.org for home directories and yum repositories under
        the old username that would need to be renamed
-     * Check (or ask the user to check and update) mailing list subscriptions
+     * Check (or ask the user to check and update) mailing list subscriptions
        on fedorahosted.org and lists.fedoraproject.org under the old
        username@fedoraproject.org email alias
-     * Check whether the user has a username@fedoraproject.org bugzilla
+     * Check whether the user has a username@fedoraproject.org bugzilla
        account in python-fedora and update that. Also ask the user to update
        that in bugzilla.
-     * If the user is in a sysadmin-* group, check for home directories on
+     * If the user is in a sysadmin-* group, check for home directories on
        bastion and other infrastructure boxes that are owned byt them and
        need to be renamed (Could also just tell the user to backup any files
        there themselves b/c they're getting a new home directory).
-     * grep through puppet for occurrences of the username
-     * Check for entries in trac on fedorahosted.org for the username as an
+     * grep through puppet for occurrences of the username
+     * Check for entries in trac on fedorahosted.org for the username as an
        "Assigned to" or "CC" entry.
-     * Add other places to check here
+     * Add other places to check here
 
   Rename Groups
 
@@ -131,13 +131,13 @@ Renames
    Needs more eyes
    This list may not be complete.
 
-     * grep through puppet for occurrences of the group name.
-     * Check for group-members,group-admins,group-sponsors@fedoraproject.org
+     * grep through puppet for occurrences of the group name.
+     * Check for group-members,group-admins,group-sponsors@fedoraproject.org
        email alias presence in any fedorahosted.org or
        lists.fedoraproject.org mailing list
-     * Check for entries in trac on fedorahosted.org for the username as an
+     * Check for entries in trac on fedorahosted.org for the username as an
        "Assigned to" or "CC" entry.
-     * Add other places to check here
+     * Add other places to check here
 
 Deletion
 
@@ -161,20 +161,20 @@ Deletion
    This list may be incomplete. Needs more people to look at this and find
    places that may need to be updated
 
-     * Check everything for the [59]#Rename Accounts case.
-     * Figure out what boxes a user may have had access to in the past. This
+     * Check everything for the [59]#Rename Accounts case.
+     * Figure out what boxes a user may have had access to in the past. This
        means you need to look at all the groups a user may ever have been
        approved for (even if they are not approved for those groups now). For
        instance, any git*, svn*, bzr*, hg* groups would have granted access
        to hosted01 and hosted02. packager would have granted access to
        pkgs.fedoraproject.org. Pretty much any group grants access to
        fedorapeople.org.
-     * For those boxes, run a find over the files there to see if the UID
+     * For those boxes, run a find over the files there to see if the UID
        owns any files on the system.
 
  # find / -uid 100068 -print
 
-     * Any files owned by that uid must be reassigned to another user or
+     * Any files owned by that uid must be reassigned to another user or
        removed.
 
    [60]Warning (medium size).png
@@ -182,7 +182,7 @@ Deletion
    Backups pose a special problem as they may contain the uid that's being
    removed. Need to decide how to handle this
 
-     * Add other places to check here
+     * Add other places to check here
 
   Delete Groups
 
@@ -191,18 +191,18 @@ Deletion
    This list may be incomplete. Needs more people to look at this and find
    places that may need to be updated
 
-     * Check everything for the [62]#Rename Groups case.
-     * Figure out what boxes may have had files owned by that group. This
+     * Check everything for the [62]#Rename Groups case.
+     * Figure out what boxes may have had files owned by that group. This
        means that you'd need to look at the users in that group, what boxes
        they have shell accounts on, and then look at those boxes. groups used
        for hosted would also need to add hosted01 and hosted02 to that list
        and the box that serves the hosted mailing lists.
-     * For those boxes, run a find over the files there to see if the GID
+     * For those boxes, run a find over the files there to see if the GID
        owns any files on the system.
 
  # find / -gid 100068 -print
 
-     * Any files owned by that GID must be reassigned to another group or
+     * Any files owned by that GID must be reassigned to another group or
        removed.
 
    [63]Warning (medium size).png
@@ -210,5 +210,5 @@ Deletion
    Backups pose a special problem as they may contain the gid that's being
    removed. Need to decide how to handle this
 
-     * Add other places to check here
+     * Add other places to check here
 

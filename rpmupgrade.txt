@@ -1,13 +1,13 @@
 RPM Upgrade SOP
    Contents
 
-     * 1 Description
-     * 2 Action
+     * 1 Description
+     * 2 Action
 
-          * 2.1 Build system Verification
+          * 2.1 Build system Verification
 
-     * 3 Verification
-     * 4 Consider Before Running
+     * 3 Verification
+     * 4 Consider Before Running
 
 Description
 
@@ -17,35 +17,35 @@ Description
 
 Action
 
-     * build the rpm with new features in rawhide (we need to wait 2 (two)
+     * build the rpm with new features in rawhide (we need to wait 2 (two)
        weeks before defaulting to new features.)
-     * build a new rpm with the new features for the buildsystem (we need to
+     * build a new rpm with the new features for the buildsystem (we need to
        test that it wont break anything for older releases). the buildsystem
        host rpm installs the packages into the chroot. so it needs to be able
        to handle the new rpms.
-     * issue updates for stable release that support the new features where
+     * issue updates for stable release that support the new features where
        possible.
-     * After 2 weeks in rawhide and the buildsystem has been tested and
+     * After 2 weeks in rawhide and the buildsystem has been tested and
        verified to be ok with the change can the changes to rpm macros be
        triggered.
 
   Build system Verification
 
-     * setup a test koji instance
-     * install new rpm on host and setup external repos for supported
+     * setup a test koji instance
+     * install new rpm on host and setup external repos for supported
        releases.
-     * build the needed redhat-rpm-macros in a rawhide tag
-     * build packages in all releases.
+     * build the needed redhat-rpm-macros in a rawhide tag
+     * build packages in all releases.
 
 Verification
 
-     * check the rpms from the test buildsystem to make sure that they have
+     * check the rpms from the test buildsystem to make sure that they have
        the needed rpm features.
 
 Consider Before Running
 
-     * Should SRPMS be changed? if not try to keep backwards compatibility.
-     * will buildsystem code changes be needed to support the new feature
+     * Should SRPMS be changed? if not try to keep backwards compatibility.
+     * will buildsystem code changes be needed to support the new feature
        (i.e. noarch subpackages). If so this needs much longer planning and
        coordination with the koji devs.
 

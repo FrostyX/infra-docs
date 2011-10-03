@@ -2,30 +2,30 @@ Fedora Websites Release SOP
 
    Contents
 
-     * 1 Preparing the website for a release
+     * 1 Preparing the website for a release
 
-          * 1.1 Update gpg key
+          * 1.1 Update gpg key
 
-               * 1.1.1 Steps
+               * 1.1.1 Steps
 
-          * 1.2 Update LINGUAS and languages.conf file
-          * 1.3 Prepare puppet commits
+          * 1.2 Update LINGUAS and languages.conf file
+          * 1.3 Prepare puppet commits
 
-     * 2 Update website
+     * 2 Update website
 
-          * 2.1 For Alpha
-          * 2.2 For Beta
-          * 2.3 For GA
+          * 2.1 For Alpha
+          * 2.2 For Beta
+          * 2.3 For GA
 
-     * 3 Fire in the hole
-     * 4 Tips
+     * 3 Fire in the hole
+     * 4 Tips
 
-          * 4.1 Creating Branches
-          * 4.2 Checking Out Branch
-          * 4.3 Merging branches
-          * 4.4 non-js counter
-          * 4.5 alpha/beta banners (static/js/banner.js)
-          * 4.6 commit message example
+          * 4.1 Creating Branches
+          * 4.2 Checking Out Branch
+          * 4.3 Merging branches
+          * 4.4 non-js counter
+          * 4.5 alpha/beta banners (static/js/banner.js)
+          * 4.6 commit message example
 
 Preparing the website for a release
 
@@ -58,8 +58,8 @@ Preparing the website for a release
    files have been created properly and contain all the keys that they
    should.
 
-     * Handy checks: gpg static/fedora.gpg or gpg static/$KEYID.txt
-     * Adding "--with-fingerprint" option will add the fingerprint to the
+     * Handy checks: gpg static/fedora.gpg or gpg static/$KEYID.txt
+     * Adding "--with-fingerprint" option will add the fingerprint to the
        output
 
    Next, update data/content/verify.html to add the new key. The output of
@@ -83,14 +83,14 @@ Preparing the website for a release
 
    Checks file listing vs what's in LINGUAS (left side is the correct one)
 
-     * The ones that only have a " <" on the right side are the ones that are
+     * The ones that only have a " <" on the right side are the ones that are
        needed
 
  $ diff --side-by-side -B <(ls -1 *.po | sed -n "s/.po//p" | sort) <(cat LINGUAS)
 
    Double check everything matches
 
- $ ls *.po | wc -l ; wc -l LINGUAS
+ $ ls *.po | wc -l ; wc -l LINGUAS
 
  $ make httpd/conf/languages.conf
  $ sed -i "s:@DOCUMENTROOT@:/srv/web/start.fedoraproject.org:g" languages.conf.in
@@ -108,56 +108,56 @@ Preparing the website for a release
    Prior to release day, prepare puppet commits to move the fedora-web branch
    to the release (alpha, beta, final, whatever)
 
-     * Update branch
+     * Update branch
 
-          * Edit: modules/fedora-web/files/syncStatic.sh
+          * Edit: modules/fedora-web/files/syncStatic.sh
 
-     * Redirect /get-prerelease
+     * Redirect /get-prerelease
 
-          * Edit: modules/fedora-web/files/redirects.conf
+          * Edit: modules/fedora-web/files/redirects.conf
 
 Update website
 
   For Alpha
 
-    1. add Alpha banner
-    2. add "Someone say Alpha" note
-    3. update links alpha links in get-prerelease.html
+    1. add Alpha banner
+    2. add "Someone say Alpha" note
+    3. update links alpha links in get-prerelease.html
 
-         1. Ensure href's are consistent with actual filenames of mirrored
+         1. Ensure href's are consistent with actual filenames of mirrored
             content
 
-              1. You should be able to find the paths in /pub on bapp01 (sudo
+              1. You should be able to find the paths in /pub on bapp01 (sudo
                  su - mirrormanager first)
 
-         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
 
-    4. modify:
+    4. modify:
 
-         1. data/content/get-fedora.html (add alpha note)
-         2. data/content/get-prerelease.html (update links)
-         3. static/js/banner.js (alpha banner)
+         1. data/content/get-fedora.html (add alpha note)
+         2. data/content/get-prerelease.html (update links)
+         3. static/js/banner.js (alpha banner)
 
   For Beta
 
-    1. add countdown banner
-    2. update links beta links in get-prerelease.html
+    1. add countdown banner
+    2. update links beta links in get-prerelease.html
 
-         1. Ensure href's are consistent with actual filenames of mirrored
+         1. Ensure href's are consistent with actual filenames of mirrored
             content
 
-              1. You should be able to find the paths in /pub on bapp01 (sudo
+              1. You should be able to find the paths in /pub on bapp01 (sudo
                  su - mirrormanager first)
 
-         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
 
-    3. modify:
+    3. modify:
 
-         1. data/content/counter.html (add languages)
-         2. data/templates/js.html (add release counter and hide banner.js
-         3. static/js/release-counter* (update dates/times, languages)
-         4. data/content/get-prerelease.html (update links)
-         5. data/templates/sidebar (add non-js version of countdown)
+         1. data/content/counter.html (add languages)
+         2. data/templates/js.html (add release counter and hide banner.js
+         3. static/js/release-counter* (update dates/times, languages)
+         4. data/content/get-prerelease.html (update links)
+         5. data/templates/sidebar (add non-js version of countdown)
 
   For GA
 
@@ -176,7 +176,7 @@ Update website
 
    Change /data/content/get-fedora.html from Alpha -> Beta
 
-     * Note: if you're looking for paths, you should be able to find the
+     * Note: if you're looking for paths, you should be able to find the
        paths in /pub on bapp01 (sudo su - mirrormanager first)
 
    Add alpha/beta banner image (see design team)
@@ -278,9 +278,9 @@ Tips
    if lang in available_languages:
        image_lang = lang
    image = image_lang + '/fedora13-countdown-banner-' + days + '.' + image_lang + '.png'
-   ?>
+   ?>
          <div id="banner">
-                 <a href="http://fedoraproject.org/wiki/Releases/13/Schedule"><img src="${Markup(_('%s/static/images/counter/%s') % (path, image))}" alt="${Markup(_('Fedora 13 Goddard released in %s days!') % days)}" /></a>
+                 <a href="http://fedoraproject.org/wiki/Releases/13/Schedule"><img src="${Markup(_('%s/static/images/counter/%s') % (path, image))}" alt="${Markup(_('Fedora 13 Goddard released in %s days!') % days)}" /></a>
                  <a style="text-decoration: none; font-size: 1.6ex; color: #99AABB;" href="${path}/${lang}/counter">${Markup(_('Add a counter to your own site!'))}</a>
          </div>
 

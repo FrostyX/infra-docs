@@ -8,36 +8,36 @@ Release Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Preparations
+     * 1 Contact Information
+     * 2 Description
+     * 3 Preparations
 
-          * 3.1 Change Freeze
-          * 3.2 Static / cached urls
+          * 3.1 Change Freeze
+          * 3.2 Static / cached urls
 
-     * 4 Notes about release day
-     * 5 Day Prior to Release Day
+     * 4 Notes about release day
+     * 5 Day Prior to Release Day
 
-          * 5.1 Step 1 (Torrent)
-          * 5.2 Step 2 (Website)
-          * 5.3 Step 3 (Mirrors)
-          * 5.4 Step 4 (Enable Updates)
-          * 5.5 Step 5 (Lessons Learned page)
+          * 5.1 Step 1 (Torrent)
+          * 5.2 Step 2 (Website)
+          * 5.3 Step 3 (Mirrors)
+          * 5.4 Step 4 (Enable Updates)
+          * 5.5 Step 5 (Lessons Learned page)
 
-     * 6 Release day
+     * 6 Release day
 
-          * 6.1 Step 1 (Prep and wait)
-          * 6.2 Step 2 (Torrent)
-          * 6.3 Step 3 (Bit flip)
-          * 6.4 Step 4 (Preupgrade releases.txt)
-          * 6.5 Step 5 (AutoQA repoinfo.conf)
-          * 6.6 Step 6 (Website)
-          * 6.7 Step 7 (Docs)
-          * 6.8 Step 8 (Monitor)
-          * 6.9 Step 9 (Done)
-          * 6.10 Priorities
+          * 6.1 Step 1 (Prep and wait)
+          * 6.2 Step 2 (Torrent)
+          * 6.3 Step 3 (Bit flip)
+          * 6.4 Step 4 (Preupgrade releases.txt)
+          * 6.5 Step 5 (AutoQA repoinfo.conf)
+          * 6.6 Step 6 (Website)
+          * 6.7 Step 7 (Docs)
+          * 6.8 Step 8 (Monitor)
+          * 6.9 Step 9 (Done)
+          * 6.10 Priorities
 
-     * 7 Juggling Resources
+     * 7 Juggling Resources
 
 Contact Information
 
@@ -59,29 +59,29 @@ Preparations
    Before Alpha for a release ships, the following items need to be
    completed. *Please open a ticket for all of them individually*
 
-    1. New website from the websites team (typically hosted at
+    1. New website from the websites team (typically hosted at
        [69]http://fedoraproject.org/_/), edit syncStatic.sh to freeze the
        website in preparation for release updates.
-    2. Verify mirror space (for all test releases as well)
-    3. Release day ticket and milestone (keep a log of who is doing what and
+    2. Verify mirror space (for all test releases as well)
+    3. Release day ticket and milestone (keep a log of who is doing what and
        notes)
-    4. Verify with rel-eng permissions on content are right on the mirrors.
+    4. Verify with rel-eng permissions on content are right on the mirrors.
        Don't leak.
-    5. Add MirrorManager repository redirects. ${version}-Alpha =>
+    5. Add MirrorManager repository redirects. ${version}-Alpha =>
        ${version}. ${version}-Beta => ${version}. This directs Alpha and Beta
        users at the pending release. MM's manage-repo-redirects script is
        used to do this. manage-repo-redirects -a -f 16-Alpha -t 16;
-    6. Communication with Red Hat IS (Give at least 2 months notice, then
+    6. Communication with Red Hat IS (Give at least 2 months notice, then
        reminders as the time comes near) (final release only)
-    7. Infrastructure change freeze
-    8. Modify Template:FedoraVersion to reference new version. (Final release
+    7. Infrastructure change freeze
+    8. Modify Template:FedoraVersion to reference new version. (Final release
        only)
-    9. Re-review Lessons Learned pages from previous release, be sure we
+    9. Re-review Lessons Learned pages from previous release, be sure we
        aren't forgetting things we meant to do after the last release.
-   10. Add the new release to stats gathering scripts on log1
+   10. Add the new release to stats gathering scripts on log1
        (modules/scripts/files/fedoraUsage.sh, also the maps should be
        updated) (Final release only)
-   11. Move old releases to archive (final release only)
+   11. Move old releases to archive (final release only)
 
   Change Freeze
 
@@ -93,8 +93,8 @@ Preparations
    least two people to signoff on the change from either sysadmin-main or the
    releng group. Exceptions to this include:
 
-     * Planned changes as part of the release
-     * Emergencies / outages
+     * Planned changes as part of the release
+     * Emergencies / outages
 
    Change freezes will be sent to the fedora-infrastructure-list and begin 2
    weeks before each release and the final release. The freeze will end one
@@ -117,19 +117,19 @@ Preparations
    mod_cache_mem as needed. These are the links that will be hit hardest
    during the release.
 
-    1. http://get.fedoraproject.org/
-    2. http://help.fedoraproject.org/
-    3. http://join.fedoraproject.org/
-    4. http://fedoraproject.org/wiki/Releases/16/ReleaseOverview
-    5. http://fedoraproject.org/wiki/Bugs/F16Common
-    6. http://docs.fedoraproject.org/release-notes/index.html
-    7. http://docs.fedoraproject.org/release-notes/f16/index.html
-    8. http://docs.fedoraproject.org/release-notes/f16/en_US/index.html
-    9. http://docs.fedoraproject.org/install-guide/index.html
-   10. http://docs.fedoraproject.org/install-guide/f16/index.html
-   11. http://docs.fedoraproject.org/install-guide/f16/en_US/index.html
-   12. http://fedoraproject.org/wiki/Releases/16/ReleaseSummary
-   13. http://docs.fedoraproject.org/
+    1. http://get.fedoraproject.org/
+    2. http://help.fedoraproject.org/
+    3. http://join.fedoraproject.org/
+    4. http://fedoraproject.org/wiki/Releases/16/ReleaseOverview
+    5. http://fedoraproject.org/wiki/Bugs/F16Common
+    6. http://docs.fedoraproject.org/release-notes/index.html
+    7. http://docs.fedoraproject.org/release-notes/f16/index.html
+    8. http://docs.fedoraproject.org/release-notes/f16/en_US/index.html
+    9. http://docs.fedoraproject.org/install-guide/index.html
+   10. http://docs.fedoraproject.org/install-guide/f16/index.html
+   11. http://docs.fedoraproject.org/install-guide/f16/en_US/index.html
+   12. http://fedoraproject.org/wiki/Releases/16/ReleaseSummary
+   13. http://docs.fedoraproject.org/
 
    Each one of these tasks except for the release day ticket must be
    completed and closed prior to the release.
@@ -199,17 +199,17 @@ Day Prior to Release Day
 
    As far as bodhi is concerned
 
-     * Create the new release in bodhi, to allow developers to queue up 0day
+     * Create the new release in bodhi, to allow developers to queue up 0day
        updates. Make sure this is 'locked' so they don't get pushed. See the
        bodhi [87]administration page for instructions.
-     * Create mash config files for the new release
-     * If the mash config files have already been created, make sure the
+     * Create mash config files for the new release
+     * If the mash config files have already been created, make sure the
        delta_dirs are updated to reflect the GA file locations (You should
        just uncomment the line that says "Enable this once F$version
        releases" and delete the other delta_dirs line)
-     * Make sure the dist-fX-updates{,-testing} tags are creating in Koji
-     * Make sure the rsync script is updated
-     * When it's time to push, simply unlock the release in bodhi and you
+     * Make sure the dist-fX-updates{,-testing} tags are creating in Koji
+     * Make sure the rsync script is updated
+     * When it's time to push, simply unlock the release in bodhi and you
        should be good to go.
 
   Step 5 (Lessons Learned page)
@@ -300,28 +300,28 @@ Release day
 
    Priorities of during release day (In order):
 
-    1. Website - Anything related to a user landing at fedoraproject.org, and
+    1. Website - Anything related to a user landing at fedoraproject.org, and
        clicking through to a mirror or torrent to download something must be
        kept up. This is distribution, and without it we can potentially lose
        many users.
-    2. Linked addresses - We do not have direct control over what Digg,
+    2. Linked addresses - We do not have direct control over what Digg,
        Slashdot or anyone else links to. If they link to something on the
        wiki and it is going down or link to any other site we control a
        rewrite should be put in place to direct them to
        [95]http://fedoraproject.org/get-fedora.
-    3. Torrent - The torrent server has never had problems during a release.
+    3. Torrent - The torrent server has never had problems during a release.
        Make sure it is up.
-    4. Release Notes - Typically grouped with the docs site, the release
+    4. Release Notes - Typically grouped with the docs site, the release
        notes are often linked to (this is fine, no need to redirect) but keep
        an eye on the logs and ensure that where we've said the release notes
        are, that they can be found there. In previous releases we sometimes
        had to make this available in more than one spot.
-    5. docs.fedoraproject.org - People will want to see whats new in Fedora
+    5. docs.fedoraproject.org - People will want to see whats new in Fedora
        and get further documentation about it. Much of this is in the release
        notes.
-    6. wiki - Because it is so resource heavy, and because it is so developer
+    6. wiki - Because it is so resource heavy, and because it is so developer
        oriented we have no choice but to give the wiki a lower priority.
-    7. Everything else.
+    7. Everything else.
 
 Juggling Resources
 
@@ -331,10 +331,10 @@ Juggling Resources
    The trick is to be smart and make sure you understand what is causing the
    problem. These are some tips to keep in mind:
 
-     * IPTables based bandwidth and connection limiting (successful in the
+     * IPTables based bandwidth and connection limiting (successful in the
        past)
-     * Altering the weight on the proxy balancers (see: [96]Balancers )
-     * Create static pages out of otherwise dynamic content
-     * Redirect pages to a mirror
-     * Add a server / remove un-needed servers
+     * Altering the weight on the proxy balancers (see: [96]Balancers )
+     * Create static pages out of otherwise dynamic content
+     * Redirect pages to a mirror
+     * Add a server / remove un-needed servers
 

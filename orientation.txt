@@ -4,19 +4,19 @@ Orientation Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Welcome to the team
+     * 1 Contact Information
+     * 2 Description
+     * 3 Welcome to the team
 
-          * 3.1 Time commitment
-          * 3.2 Prove Yourself
+          * 3.1 Time commitment
+          * 3.2 Prove Yourself
 
-     * 4 Doing Work
+     * 4 Doing Work
 
-          * 4.1 Puppet
+          * 4.1 Puppet
 
-     * 5 Our Setup
-     * 6 Our Rules
+     * 5 Our Setup
+     * 6 Our Rules
 
 Contact Information
 
@@ -79,10 +79,10 @@ Welcome to the team
    actually doing work without access is difficult. Some of the best things
    you can do are:
 
-     * Keep bugging people for work. It shows you're comitted.
-     * Go through bugs, look at stale bugs and close bugs that have been
+     * Keep bugging people for work. It shows you're comitted.
+     * Go through bugs, look at stale bugs and close bugs that have been
        fixed
-     * Try to duplicate bugs on your workstation and fix them there
+     * Try to duplicate bugs on your workstation and fix them there
 
    Above all stick with it. Part of proving yourself is also to show the time
    commitment it actually does take.

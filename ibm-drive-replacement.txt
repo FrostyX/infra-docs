@@ -15,32 +15,32 @@ Drive Replacement Infrastructure SOP
 
    Contents
 
-     * 1 Database - DriveReplacement
+     * 1 Database - DriveReplacement
 
-          * 1.1 Contact Information
-          * 1.2 Verify the drive is dead
+          * 1.1 Contact Information
+          * 1.2 Verify the drive is dead
 
-               * 1.2.1 Re-adding a drive (poor man's fix)
+               * 1.2.1 Re-adding a drive (poor man's fix)
 
-          * 1.3 Actually replacing the drive (IBM)
+          * 1.3 Actually replacing the drive (IBM)
 
-               * 1.3.1 Collecting Data
-               * 1.3.2 Call IBM
-               * 1.3.3 Get the package, give access to the tech
-               * 1.3.4 Prepwork before the tech arrives
-               * 1.3.5 Tech on site
-               * 1.3.6 Rebuild the array
+               * 1.3.1 Collecting Data
+               * 1.3.2 Call IBM
+               * 1.3.3 Get the package, give access to the tech
+               * 1.3.4 Prepwork before the tech arrives
+               * 1.3.5 Tech on site
+               * 1.3.6 Rebuild the array
 
-          * 1.4 Actually Replacing the Drive (HP)
+          * 1.4 Actually Replacing the Drive (HP)
 
-               * 1.4.1 Collecting data
-               * 1.4.2 Call HP
-               * 1.4.3 Get the package, give access to the tech
-               * 1.4.4 Prepwork before the tech arrives
-               * 1.4.5 Tech on site
-               * 1.4.6 Rebuild the array
+               * 1.4.1 Collecting data
+               * 1.4.2 Call HP
+               * 1.4.3 Get the package, give access to the tech
+               * 1.4.4 Prepwork before the tech arrives
+               * 1.4.5 Tech on site
+               * 1.4.6 Rebuild the array
 
-          * 1.5 Installing RaidMan (IBM Only)
+          * 1.5 Installing RaidMan (IBM Only)
 
                           Database - DriveReplacement
 
@@ -59,11 +59,11 @@ Contact Information
 Verify the drive is dead
 
  $ cat /proc/mdadm
- Personalities : [raid1]
- md0 : active raid1 sdb1[1] sda1[0]
+ Personalities : [raid1]
+ md0 : active raid1 sdb1[1] sda1[0]
        513984 blocks [2/2] [UU]
 
- md1 : active raid1 sdb2[2](F) sda2[0]
+ md1 : active raid1 sdb2[2](F) sda2[0]
        487717248 blocks [2/1] [U_]
 
    This indicates that md1 is in a degraded state and that /dev/sdb2 is the
@@ -89,20 +89,20 @@ Verify the drive is dead
    continues to fail. Replace it.
 
  # cat /proc/mdadm
- Personalities : [raid1]
- md0 : active raid1 sdb1[1] sda1[0]
+ Personalities : [raid1]
+ md0 : active raid1 sdb1[1] sda1[0]
        513984 blocks [2/2] [UU]
 
- md1 : active raid1 sdb2[2](F) sda2[0]
+ md1 : active raid1 sdb2[2](F) sda2[0]
        487717248 blocks [2/1] [U_]
  # mdadm /dev/md1 --remove /dev/sdb2
  # mdadm /dev/md1 --add /dev/sdb2
  # cat /proc/mdstat
- md0 : active raid1 sdb1[1] sda1[0]
+ md0 : active raid1 sdb1[1] sda1[0]
        513984 blocks [2/1] [U_]
          resync=DELAYED
 
- md1 : active raid1 sdb2[2] sda2[0]
+ md1 : active raid1 sdb2[2] sda2[0]
        487717248 blocks [2/1] [U_]
        [=>...................]  recovery =  9.2% (45229120/487717248) finish=145.2min speed=50771K/sec
 
@@ -236,8 +236,8 @@ Actually replacing the drive (IBM)
    Now that the disk has been replaced we need to put a partition table on
    the new drive and add it to the array:
 
-     * /dev/sdGOOD is the *GOOD* drive
-     * /dev/sdBAD is the *BAD* drive
+     * /dev/sdGOOD is the *GOOD* drive
+     * /dev/sdBAD is the *BAD* drive
 
  # dd if=/dev/sdGOOD of=/tmp/sda-mbr.bin bs=512 count=1
  # dd if=/tmp/sda-mbr.bin of=/dev/sdBAD
@@ -245,7 +245,7 @@ Actually replacing the drive (IBM)
 
    Next re-add the drives to the array:
 
-     * /dev/sdBAD1 and /dev/sdBAD2 are the partitons on the new drive which
+     * /dev/sdBAD1 and /dev/sdBAD2 are the partitons on the new drive which
        is no longer bad.
 
  # mdadm /dev/md0 --add /dev/sdBAD1
@@ -277,9 +277,9 @@ Actually Replacing the Drive (HP)
    Now that the disk has been replaced we need to put a partition table on
    the new drive and add it to the array:
 
-     * /dev/cciss/c0dGOOD is the *GOOD* drive. The HP utilities will have a
+     * /dev/cciss/c0dGOOD is the *GOOD* drive. The HP utilities will have a
        code like 1I:1:1
-     * /dev/cciss/c0dBAD is the *BAD* drive. The HP utilities will have a
+     * /dev/cciss/c0dBAD is the *BAD* drive. The HP utilities will have a
        code like 2I:1:1
 
    First we need to create the logical drive on the system.
@@ -292,7 +292,7 @@ Actually Replacing the Drive (HP)
 
    Next re-add the drives to the array:
 
-     * /dev/sdBAD1 and /dev/sdBAD2 are the partitons on the new drive which
+     * /dev/sdBAD1 and /dev/sdBAD2 are the partitons on the new drive which
        is no longer bad.
 
  # mdadm /dev/md0 --add /dev/sdBAD1

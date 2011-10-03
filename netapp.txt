@@ -4,21 +4,21 @@ Netapp Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Public Mirrors
+     * 1 Contact Information
+     * 2 Description
+     * 3 Public Mirrors
 
-          * 3.1 Snapshots
+          * 3.1 Snapshots
 
-     * 4 PHX NFS Storage
+     * 4 PHX NFS Storage
 
-          * 4.1 Access
-          * 4.2 Snapshots
+          * 4.1 Access
+          * 4.2 Snapshots
 
-     * 5 iscsi
+     * 5 iscsi
 
-          * 5.1 Updating LVM
-          * 5.2 Mounting ISCSI
+          * 5.1 Updating LVM
+          * 5.2 Mounting ISCSI
 
 Contact Information
 

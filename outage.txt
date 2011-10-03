@@ -5,33 +5,33 @@ Outage Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Users (No Access)
-     * 3 Planned Outage
+     * 1 Contact Information
+     * 2 Users (No Access)
+     * 3 Planned Outage
 
-          * 3.1 Contacts
+          * 3.1 Contacts
 
      *4 Unplanned Outage
 
-          * 4.1 Check first
-          * 4.2 Reporting or participating in an outage
+          * 4.1 Check first
+          * 4.2 Reporting or participating in an outage
 
-     * 5 Infrastructure Members (Admin Access)
+     * 5 Infrastructure Members (Admin Access)
 
-          * 5.1 Planned Outage
+          * 5.1 Planned Outage
 
-               * 5.1.1 Planning
-               * 5.1.2 Preparations
-               * 5.1.3 Outage
-               * 5.1.4 Post outage cleanup
+               * 5.1.1 Planning
+               * 5.1.2 Preparations
+               * 5.1.3 Outage
+               * 5.1.4 Post outage cleanup
 
-          * 5.2 Unplanned Outage
+          * 5.2 Unplanned Outage
 
-               * 5.2.1 Determine Severity
-               * 5.2.2 First Steps
-               * 5.2.3 Fix it
-               * 5.2.4 Escalate
-               * 5.2.5 The Aftermath
+               * 5.2.1 Determine Severity
+               * 5.2.2 First Steps
+               * 5.2.3 Fix it
+               * 5.2.4 Escalate
+               * 5.2.5 The Aftermath
 
 Contact Information
 
@@ -86,36 +86,36 @@ Unplanned Outage
 
    Don't be general.
 
-     * [66]Stop (medium size).png "The wiki is acting slow"
-     * [67]Checkmark.png "Whenever I try to save
+     * [66]Stop (medium size).png "The wiki is acting slow"
+     * [67]Checkmark.png "Whenever I try to save
        [68]http://fedoraproject.org/wiki/Infrastructure, I get a proxy error
        after 60 seconds"
 
    Don't report an outage that's already been reported.
 
-     * [69]Stop (medium size).png "/join #fedora-admin; Is the build system
+     * [69]Stop (medium size).png "/join #fedora-admin; Is the build system
        broken?"
-     * [70]Checkmark.png "/join #fedora-admin; wait a minute or two; I
+     * [70]Checkmark.png "/join #fedora-admin; wait a minute or two; I
        noticed I can't submit builds, here's the error I get:"
 
    Don't suggest drastic or needless changes during an outage (send it to the
    list)
 
-     * [71]Stop (medium size).png "Why don't you just use lighttpd?"
-     * [72]Checkmark.png "You could try limiting MaxRequestsPerChild in
+     * [71]Stop (medium size).png "Why don't you just use lighttpd?"
+     * [72]Checkmark.png "You could try limiting MaxRequestsPerChild in
        Apache"
 
    Don't get off topic or be too chatty
 
-     * [73]Stop (medium size).png "Transformers was awesome, but yeah, I
+     * [73]Stop (medium size).png "Transformers was awesome, but yeah, I
        think you guys know what to do next"
-     * [74]Checkmark.png ""
+     * [74]Checkmark.png ""
 
    Do research the technologies we're using and answer questions that may
    come up.
 
-     * [75]Stop (medium size).png "Can't you just fix it?"
-     * [76]Checkmark.png "Hey guys, I think this is what you're looking for:
+     * [75]Stop (medium size).png "Can't you just fix it?"
+     * [76]Checkmark.png "Hey guys, I think this is what you're looking for:
        [77]http://httpd.apache.org/docs/2.2/mod/mod_mime.html#addencoding"
 
    [78]Idea.png
@@ -195,18 +195,18 @@ Unplanned Outage
    [86]Stop (medium size).png Don't page someone. [87]Checkmark.png Do page
    someone. )
 
-     * [88]Stop (medium size).png "I can't see the Recent Changes on the
+     * [88]Stop (medium size).png "I can't see the Recent Changes on the
        wiki."
-     * [89]Checkmark.png "The entire wiki is not viewable"
-     * [90]Stop (medium size).png I cannot sign the CLA
-     * [91]Checkmark.png I can't change my password in the account system, I
+     * [89]Checkmark.png "The entire wiki is not viewable"
+     * [90]Stop (medium size).png I cannot sign the CLA
+     * [91]Checkmark.png I can't change my password in the account system, I
        have admin access and my laptop was just stolen
-     * [92]Stop (medium size).png I can't access awstats for
+     * [92]Stop (medium size).png I can't access awstats for
        fedoraproject.org
-     * [93]Checkmark.png The mirrors list is down.
-     * [94]Stop (medium size).png I think someone misspelled some words on
+     * [93]Checkmark.png The mirrors list is down.
+     * [94]Stop (medium size).png I think someone misspelled some words on
        the webpage
-     * [95]Checkmark.png The web page has been hacked and I think someone
+     * [95]Checkmark.png The web page has been hacked and I think someone
        notified slashdot.
 
   First Steps
@@ -236,10 +236,10 @@ Unplanned Outage
    answer the following questions and send them to the
    fedora-infrastructure-list.
 
-    1. What happened?
-    2. What was affected?
-    3. How long was the outage?
-    4. What was the root cause?
+    1. What happened?
+    2. What was affected?
+    3. How long was the outage?
+    4. What was the root cause?
 
    Number 4 is especially important. If a kernel build keeps failing because
    of issues with koji caused by a database failure caused by a full
