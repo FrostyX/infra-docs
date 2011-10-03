@@ -1,0 +1,46 @@
+Guest migration between hosts. 
+
+   Move guests from one host to another. 
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main
+
+   Location: PHX, Tummy, ibiblio, Telia, OSUOSL
+
+   Servers: All xen servers, kvm/libvirt servers.
+
+   Purpose: Migrate guests
+
+How to do it
+
+
+1. Schedule outage time if any. This will need to be long enough to copy 
+the data from one host to another, so will depend on guest disk size. 
+
+2. Shutdown the guest. 
+
+3. virsh dumpxml guestname > guest.xml
+
+4. Copy guest.xml to the new machine. 
+
+5. Create storage on the target host. (lvcreate, etc). 
+
+6. Define the guest on the new machine: 'virsh define guest.xml'
+
+7. On the destination host: 
+
+	nc -l -p 11111
+
+On the source host: 
+
+	cat /dev/mapper/Storage | nc desthost 11111
+
+Wait for the copy to finish. 
+
+8. start the guest on the new host: 'virsh start guest' 
+
+9. On the source host, rename storage and undefine guest so it's not started. 
+
