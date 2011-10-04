@@ -3,14 +3,14 @@ Request for resources SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Introduction
-     * 3 Pre sponsorship
-     * 4 Planning
-     * 5 Development Instance
-     * 6 Staging Instance
-     * 7 Production deployment
-     * 8 Maintenance
+     * 1 Contact Information
+     * 2 Introduction
+     * 3 Pre sponsorship
+     * 4 Planning
+     * 5 Development Instance
+     * 6 Staging Instance
+     * 7 Production deployment
+     * 8 Maintenance
 
 Contact Information
 
@@ -48,9 +48,9 @@ Pre sponsorship
 
    Requirements for continuing:
 
-     * MUST have a RFR ticket.
+     * MUST have a RFR ticket.
 
-     * MUST have the ticket assigned and accepted by someone in
+     * MUST have the ticket assigned and accepted by someone in
        infrastructure sysadmin-main group.
 
 Planning
@@ -61,21 +61,21 @@ Planning
    infrastructure list and IRC. Questions about how the resource could be
    deployed should be considered:
 
-     * Should the resource be load balanced?
+     * Should the resource be load balanced?
 
-     * Does the resource need caching?
+     * Does the resource need caching?
 
-     * Can the resource live on it's own instance to separate it from more
+     * Can the resource live on it's own instance to separate it from more
        critical services?
 
-     * Who all is involved in maintaining and deploying the instance?
+     * Who all is involved in maintaining and deploying the instance?
 
    Requirements for continuing:
 
-     * MUST discuss/note the app on the infrastructure mailing list and
+     * MUST discuss/note the app on the infrastructure mailing list and
        answer feedback there.
 
-     * MUST determine who is involved in the deployment/maintaining the
+     * MUST determine who is involved in the deployment/maintaining the
        resource.
 
 Development Instance
@@ -94,14 +94,14 @@ Development Instance
 
    Requirements for continuing:
 
-     * MUST have RFR sponsor sign off that the resource is ready to move to
+     * MUST have RFR sponsor sign off that the resource is ready to move to
        the next step.
 
-     * MUST have answered any outstanding questions on the infrastructure
+     * MUST have answered any outstanding questions on the infrastructure
        list about the resource. Decisions about caching, load balancing and
        how the resource would be best deployed should be determined.
 
-     * MUST add any needed SOP's for the service. Should there be an Update
+     * MUST add any needed SOP's for the service. Should there be an Update
        SOP? A troubleshooting SOP? Any other tasks that might need to be done
        to the instance when those who know it well are not available?
 
@@ -116,10 +116,10 @@ Staging Instance
 
    Requirements for continuing:
 
-     * MUST have sign off of RFR sponsor that the resource is fully
+     * MUST have sign off of RFR sponsor that the resource is fully
        configured in puppet and ready to be deployed.
 
-     * MUST have a deployment schedule for going to production. This will
+     * MUST have a deployment schedule for going to production. This will
        need to account for things like freezes and availability of
        infrastructure folks.
 

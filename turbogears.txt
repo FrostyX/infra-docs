@@ -5,19 +5,19 @@ TurboGears Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Deploying a new App
+     * 1 Contact Information
+     * 2 Deploying a new App
 
-          * 2.1 Add RPMs to the Fedora Infrastructure Repo
-          * 2.2 Configure the application
+          * 2.1 Add RPMs to the Fedora Infrastructure Repo
+          * 2.2 Configure the application
 
-               * 2.2.1 Create a module
-               * 2.2.2 Create the app config
-               * 2.2.3 Create the proxy config
-               * 2.2.4 Application config file
+               * 2.2.1 Create a module
+               * 2.2.2 Create the app config
+               * 2.2.3 Create the proxy config
+               * 2.2.4 Application config file
 
-     * 3 Upgrading an App
-     * 4 Troubleshooting and Resolution
+     * 3 Upgrading an App
+     * 4 Troubleshooting and Resolution
 
 Contact Information
 
@@ -191,8 +191,8 @@ Deploying a new App
    1. cd ~/puppet/modules/myapp/templates 2. create myapp-proxy.erb.conf and
    put the following into the file:
 
- ProxyPass <%= path %> <%= proxyurl %>/myapp
- ProxyPassReverse <%= path %> <%= proxyurl %>/myapp
+ ProxyPass <%= path %> <%= proxyurl %>/myapp
+ ProxyPassReverse <%= path %> <%= proxyurl %>/myapp
 
    3. Follow the [58]HAProxy SOP to add your app there. This is the addres
    that you give for proxyurl in proxy.pp.
@@ -205,9 +205,9 @@ Deploying a new App
    You should look at other application's config files and the one you've
    been using for testing locally. A few things to note:
 
-     * This file is a template. So using:
+     * This file is a template. So using:
 
- <%= myappDatabasePassword %>
+ <%= myappDatabasePassword %>
 
    will substitute the password from the config file into the template. This
    keeps passwords out of the puppet repository and thus keeps them from

@@ -2,12 +2,12 @@ FH-Projects-Cleanup Infrastructure SOP
 
    Contents
 
-     * 1 Introduction
-     * 2 Our first move
-     * 3 Removing Project's git repo
-     * 4 Removing Trac's project
-     * 5 Removing Project's ML
-     * 6 FAS Group Removal
+     * 1 Introduction
+     * 2 Our first move
+     * 3 Removing Project's git repo
+     * 4 Removing Trac's project
+     * 5 Removing Project's ML
+     * 6 FAS Group Removal
 
 Introduction
 

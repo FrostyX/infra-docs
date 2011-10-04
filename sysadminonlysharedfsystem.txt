@@ -4,10 +4,10 @@ Sysadmin-only shared filesystem Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 How to mount it
-     * 4 How to unmount it
+     * 1 Contact Information
+     * 2 Description
+     * 3 How to mount it
+     * 4 How to unmount it
 
 Contact Information
 

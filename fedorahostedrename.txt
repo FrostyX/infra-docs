@@ -4,10 +4,10 @@ FedoraHosted Project Rename SOP
 
    Contents
 
-     * 1 Rename the Trac instance
-     * 2 Rename the git / svn / hg / ... directory
-     * 3 Rename any old releases directories
-     * 4 Rename the group in FAS
+     * 1 Rename the Trac instance
+     * 2 Rename the git / svn / hg / ... directory
+     * 3 Rename any old releases directories
+     * 4 Rename the group in FAS
 
 Rename the Trac instance
 

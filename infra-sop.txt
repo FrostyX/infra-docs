@@ -9,15 +9,15 @@ Infrastructure SOP SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 SOP naming
-     * 3 Stuff every SOP should have
+     * 1 Contact Information
+     * 2 SOP naming
+     * 3 Stuff every SOP should have
 
-          * 3.1 Header
-          * 3.2 Contact information
-          * 3.3 Footer
+          * 3.1 Header
+          * 3.2 Contact information
+          * 3.3 Footer
 
-     * 4 Create the shortcut
+     * 4 Create the shortcut
 
 Contact Information
 

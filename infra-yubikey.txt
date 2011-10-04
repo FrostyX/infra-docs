@@ -4,20 +4,20 @@ Infrastructure/SOP/Yubikey
 
    Contents
 
-     * 1 Contact Information
-     * 2 User Information
-     * 3 Host Admins
+     * 1 Contact Information
+     * 2 User Information
+     * 3 Host Admins
 
-          * 3.1 pam_yubico
+          * 3.1 pam_yubico
 
-     * 4 Server Admins
+     * 4 Server Admins
 
-          * 4.1 Basic architecture
-          * 4.2 ykval
-          * 4.3 ykksm
-          * 4.4 Physical Yubikey info
+          * 4.1 Basic architecture
+          * 4.2 ykval
+          * 4.3 ykksm
+          * 4.4 Physical Yubikey info
 
-     * 5 fas integration
+     * 5 fas integration
 
 Contact Information
 
@@ -33,11 +33,11 @@ Contact Information
 
    Config Files
 
-     * /etc/httpd/conf.d/yk-ksm.conf
-     * /etc/httpd/conf.d/yk-val.conf
-     * /etc/ykval/ykval-config.php
-     * /etc/ykksm/ykksm-config.php
-     * /etc/fas.cfg
+     * /etc/httpd/conf.d/yk-ksm.conf
+     * /etc/httpd/conf.d/yk-val.conf
+     * /etc/ykval/ykval-config.php
+     * /etc/ykksm/ykksm-config.php
+     * /etc/fas.cfg
 
 User Information
 
@@ -58,10 +58,10 @@ Server Admins
 
    Yubikey authentication takes place in 3 basic phases.
 
-    1. User presses yubikey which generates a one time password
-    2. The one time password makes its way to the yk-val application which
+    1. User presses yubikey which generates a one time password
+    2. The one time password makes its way to the yk-val application which
        verifies it is not a replay
-    3. yk-val passes that otp on to the yk-ksm application which verifies the
+    3. yk-val passes that otp on to the yk-ksm application which verifies the
        key itself is a valid key
 
    If all of those steps succeed, the ykval application sends back an OK and

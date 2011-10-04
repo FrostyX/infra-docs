@@ -8,16 +8,16 @@ Package Database Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Troubleshooting and Resolution
-     * 3 Common Actions
+     * 1 Contact Information
+     * 2 Troubleshooting and Resolution
+     * 3 Common Actions
 
-          * 3.1 Adding a new Pseudo User as a package owner
-          * 3.2 Renaming a package
-          * 3.3 Removing a package
-          * 3.4 Add a new release
-          * 3.5 Update App DB for a release going final
-          * 3.6 Orphaning all the packages for a user
+          * 3.1 Adding a new Pseudo User as a package owner
+          * 3.2 Renaming a package
+          * 3.3 Removing a package
+          * 3.4 Add a new release
+          * 3.5 Update App DB for a release going final
+          * 3.6 Orphaning all the packages for a user
 
 Contact Information
 
@@ -48,13 +48,13 @@ Common Actions
    packages you are assigning to the new user and 9902 to the userid you
    select in step 2
 
-     * Log into db2.
-     * Log into the db as a user that can make changes
+     * Log into db2.
+     * Log into the db as a user that can make changes
 
  $ psql -U postgres fas2
  fas2>
 
-     * Find the current pseudo-users
+     * Find the current pseudo-users
 
  fas2>  select id, username from people where id < 10000 order by id;
  id  |     username
@@ -62,17 +62,17 @@ Common Actions
  9900 | orphan
  9901 | anaconda-maint
 
-     * Create a new account with the next available id after 9900
+     * Create a new account with the next available id after 9900
 
  fas2> insert into people (id, username, human_name, password, email)
  values (9902, 'xen-maint', 'Xen Maintainers', '*', 'xen-maint@redhat.com');
 
-     * Connect to the pkgdb as a user that can make changes
+     * Connect to the pkgdb as a user that can make changes
 
  $ psql -U pkgdbadmin -h db2 pkgdb
  pkgdb>
 
-     * Add the current package owner as a comaintainer of the package. If
+     * Add the current package owner as a comaintainer of the package. If
        this user is not currently on he acls for the package you can use the
        following database queries:
 
@@ -98,7 +98,7 @@ Common Actions
    If the owner is in the acls, you will need to figure out which packages
    already acls and only add the new acls for that one.
 
-     * Reassign the pseudo-user to be the new owner
+     * Reassign the pseudo-user to be the new owner
 
  update packagelisting set owner = 'xen-maint' from package as p
  where packagelisting.packageid = p.id and p.name in ('xen', 'kernel-xen-2.6');
@@ -120,7 +120,7 @@ Common Actions
  cd /cvs/pkgs/rpms
  mv OLDNAME NEWNAME
  cd NEWNAME
- find . -name 'Makefile,v' -exec sed -i 's/NAME := OLDNAME/NAME := NEWNAME/' \{\} \;
+ find . -name 'Makefile,v' -exec sed -i 's/NAME := OLDNAME/NAME := NEWNAME/' \{\} \;
  cd ../../devel
  rm OLDNAME
  ln -s ../rpms/NEWNAME/devel .

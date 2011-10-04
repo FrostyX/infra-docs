@@ -21,19 +21,19 @@ Contact Information
 
 The Setup
 
-    1. on puppet1 cp -a configs/system/planet/grouptmpl
+    1. on puppet1 cp -a configs/system/planet/grouptmpl
        configs/system/planet/newgroupname
-    2. cd to the new directory
-    3. run perl -pi -e "s/%%groupname/newgroupname/g" fpbuilder.conf
+    2. cd to the new directory
+    3. run perl -pi -e "s/%%groupname/newgroupname/g" fpbuilder.conf
        base_config planet-group.cron templates/* replacing newgroupname with
        the groupname you want
-    4. git add the whole dir
-    5. edit manifests/services/planet.pp
-    6. copy and paste everything from begging to end of the design team group
-    7. modify what you copied replacing design with the new group name
-    8. save it
-    9. check everything in
-   10. run puppet on planet and check if it works
+    4. git add the whole dir
+    5. edit manifests/services/planet.pp
+    6. copy and paste everything from begging to end of the design team group
+    7. modify what you copied replacing design with the new group name
+    8. save it
+    9. check everything in
+   10. run puppet on planet and check if it works
 
 Use
 

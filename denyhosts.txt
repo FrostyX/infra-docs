@@ -4,11 +4,11 @@ Denyhosts Infrastructure SOP
 
    Contents
 
-     * 1 Contact Information
-     * 2 Description
-     * 3 Troubleshooting and Resolution
+     * 1 Contact Information
+     * 2 Description
+     * 3 Troubleshooting and Resolution
 
-          * 3.1 Connection issues
+          * 3.1 Connection issues
 
 Contact Information
 

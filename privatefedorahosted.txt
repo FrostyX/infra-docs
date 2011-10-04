@@ -27,7 +27,7 @@ Implementation
 
    On hosted1:
 
-     * sudo -u apache vim /srv/web/trac/projects/<project name>/conf/trac.ini
+     * sudo -u apache vim /srv/web/trac/projects/<project name>/conf/trac.ini
 
    Add the following to the appropriate sections of trac.ini
 

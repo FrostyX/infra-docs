@@ -2,27 +2,27 @@ SCM Admin SOP
 
    Contents
 
-     * 1 Creating New Packages
+     * 1 Creating New Packages
 
-          * 1.1 Obtaining process-git-requests
-          * 1.2 Prerequisites
-          * 1.3 Running the script
-          * 1.4 Steps for manual processing
+          * 1.1 Obtaining process-git-requests
+          * 1.2 Prerequisites
+          * 1.3 Running the script
+          * 1.4 Steps for manual processing
 
-               * 1.4.1 Using pkgdb-client
-               * 1.4.2 Using pkgdb2branch
-               * 1.4.3 Update Koji
+               * 1.4.1 Using pkgdb-client
+               * 1.4.2 Using pkgdb2branch
+               * 1.4.3 Update Koji
 
-          * 1.5 Helper Scripts
+          * 1.5 Helper Scripts
 
-               * 1.5.1 mkbranchwrapper
-               * 1.5.2 setup_package
+               * 1.5.1 mkbranchwrapper
+               * 1.5.2 setup_package
 
-          * 1.6 Pseudo Users for SIGs
+          * 1.6 Pseudo Users for SIGs
 
-     * 2 Deprecate Packages
-     * 3 Undeprecate Packages
-     * 4 Performing mass comaintainer requests
+     * 2 Deprecate Packages
+     * 3 Undeprecate Packages
+     * 4 Performing mass comaintainer requests
 
 Creating New Packages
 
@@ -92,9 +92,9 @@ Creating New Packages
    It is still useful to document the process of handling these requests
    manually in the case that process-git-requests has issues.
 
-    1. Check Bugzilla Ticket to make sure it looks ok
-    2. Add the package information to the packagedb with pkgdb-client
-    3. Use pkgdb2branch to create the branches on the cvs server
+    1. Check Bugzilla Ticket to make sure it looks ok
+    2. Add the package information to the packagedb with pkgdb-client
+    3. Use pkgdb2branch to create the branches on the cvs server
 
    [60]Warning (medium size).png
    WARNING: Do not run multiple instances of pkgdb2branch in parallel!
@@ -252,24 +252,24 @@ Undeprecate Packages
 
 Performing mass comaintainer requests
 
-     * Confirm that the requestor has 'approveacls' on all packages they wish
+     * Confirm that the requestor has 'approveacls' on all packages they wish
        to operate on. If they do not, they MUST request the change via FESCo.
 
-     * Mail maintainers/co-maintainers affected by the change to inform them
+     * Mail maintainers/co-maintainers affected by the change to inform them
        of who requested the change and why.
 
-     * Download a copy of this script:
+     * Download a copy of this script:
 
-     * [63]http://git.fedorahosted.org/git/?p=fedora-infrastructure.git;a=blob;f=scripts/pkgdb_bulk_comaint/comaint.py;hb=HEAD
+     * [63]http://git.fedorahosted.org/git/?p=fedora-infrastructure.git;a=blob;f=scripts/pkgdb_bulk_comaint/comaint.py;hb=HEAD
 
-     * Edit the script to have the proper package owners and package name
+     * Edit the script to have the proper package owners and package name
        pattern.
 
-     * Edit the script to have the proper new comaintainers.
+     * Edit the script to have the proper new comaintainers.
 
-     * Ask someone in sysadmin-web to disable email sending on bapp01 for the
+     * Ask someone in sysadmin-web to disable email sending on bapp01 for the
        pkgdb (following the instructions in comments in the script)
 
-     * Copy the script to an infrastructure host (like cvs01) that can
+     * Copy the script to an infrastructure host (like cvs01) that can
        contact bapp01 and run it.
 

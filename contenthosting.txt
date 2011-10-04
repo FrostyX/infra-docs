@@ -30,16 +30,16 @@ What hosting options are available
    Aside from the hosting at http://fedorahosted.org/ we have a series of
    mirrors we're allowing people to use. They are located at:
 
-     * http://archive.fedoraproject.org/pub/archive/ - For archives of
+     * http://archive.fedoraproject.org/pub/archive/ - For archives of
        historical Fedora releases
-     * http://secondary.fedoraproject.org/pub/fedora-secondary/ - For
+     * http://secondary.fedoraproject.org/pub/fedora-secondary/ - For
        secondary architectures
-     * http://alt.fedoraproject.org/pub/alt/ - For misc content /
+     * http://alt.fedoraproject.org/pub/alt/ - For misc content /
        catchall
-     * http://torrent.fedoraproject.org/ - For torrent hosting
-     * http://spins.fedoraproject.org/ - For official Fedora Spins
+     * http://torrent.fedoraproject.org/ - For torrent hosting
+     * http://spins.fedoraproject.org/ - For official Fedora Spins
        hosting, mirrored somewhat
-     * http://download.fedoraproject.com/pub/ - For official Fedora
+     * http://download.fedoraproject.com/pub/ - For official Fedora
        Releases, mirrored widely
 
 Who can host? What can be hosted?
@@ -67,18 +67,18 @@ Who can host? What can be hosted?
 
   Requesting Space
 
-     * Make sure you have a Fedora account -
+     * Make sure you have a Fedora account -
        https://admin.fedoraproject.org/accounts/
-     * Ensure you have signed the Fedora Project Contributor Agreement (FPCA)
-     * Submit a hosting request -
+     * Ensure you have signed the Fedora Project Contributor Agreement (FPCA)
+     * Submit a hosting request -
        https://fedorahosted.org/fedora-infrastructure/
 
-          * Include who you are, and any group you are working with (e.g. a SIG)
-          * Include Space requirements
-          * Include an estimate of the number of downloads expected (if you can).
-          * Include the nature of the bits you want to host.
+          * Include who you are, and any group you are working with (e.g. a SIG)
+          * Include Space requirements
+          * Include an estimate of the number of downloads expected (if you can).
+          * Include the nature of the bits you want to host.
 
-     * Apply for group hosted-content -
+     * Apply for group hosted-content -
        https://admin.fedoraproject.org/accounts/group/view/hosted-content
 
   Using Space
@@ -104,20 +104,20 @@ Content Pruning / Purging / Removal
 
    If content meets any of the following criteria it may be removed:
 
-     * Content that has reached the end of life (is no longer receiving
+     * Content that has reached the end of life (is no longer receiving
        updates).
-     * Pre-release content that has been superceded.
-     * EOL releases that have been moved to archives.
-     * N-2 or greater releases. If more than 3 versions of a piece of content
+     * Pre-release content that has been superceded.
+     * EOL releases that have been moved to archives.
+     * N-2 or greater releases. If more than 3 versions of a piece of content
        are on the mirror, the oldest may be removed.
 
   Limited Use Content
 
    If content meets any of the following criteria it may be removed:
 
-     * Content with exceedingly limited seeders or downloaders, with little
+     * Content with exceedingly limited seeders or downloaders, with little
        prospect of increasing those numbers and which is older then 1 year.
-     * Content such as videos or audio which are several years old.
+     * Content such as videos or audio which are several years old.
 
   Catch All Removal
 
