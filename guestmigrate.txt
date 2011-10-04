@@ -31,12 +31,15 @@ the data from one host to another, so will depend on guest disk size.
 6. Define the guest on the new machine: 'virsh define guest.xml'
 
 7. On the destination host: 
+     RHEL-5:
+	nc -l -p 11111 | dd of=/dev/mapper/
 
-	nc -l -p 11111
+     RHEL-6
+        nc -l 11111 | dd of=/dev/mapper/
 
 On the source host: 
 
-	cat /dev/mapper/Storage | nc desthost 11111
+	dd if=/dev/mapper/Storage | nc desthost 11111
 
 Wait for the copy to finish. 
 
