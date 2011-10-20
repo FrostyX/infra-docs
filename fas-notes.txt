@@ -17,4 +17,62 @@ Notes about FAS and how to do things in it:
 
     make revoke cert=newcerts/$that_number.pem
 
+How to gather information about a user
+======================================
 
+There are several tables that will have information about a user.  Some of it
+is redundant but it's good to check all the sources there shouldn't be
+inconsistencies::
+
+    select * from people where username = 'USERNAME';
+
+Of interest here are:
+
+:id: for later queries
+:password_changed: tells when the password was last changed
+:last_seen: last login to fas (including through jsonfas from other TG1/2
+    apps.  Maybe wiki and insight as well.  Not fedorahosted trac, shell
+    login, etc)
+:status_change: last time that the user's status was updated via the website.
+    Usually triggered when the user was marked inactive for a mass password
+    change and then they reset their password.
+
+Next table is the log table::
+
+    select * from log where author_id = ID_FROM_PREV_QUERY or description ~ '.*USERNAME.*';
+
+The FAS writes certain events to the log table.  This will get those events.
+We use both the author_id field (who made the change) and the username in a
+description regex search because a few changes are made to users by admins.
+Fields of interest are pretty self explanatory here:
+
+:changetime: when the log was made
+:description: description of the event that's being logged
+
+.. note:: FAS does not log every event that happens to a user.  Only
+    "important" ones.  FAS also cannot record direct changes to the database
+    here (for instance, when we mark accounts inactive administratively via
+    the db).
+
+Lastly, there's the groups and person_roles table.  When a user joins a group,
+the person_roles table is updated to reflect the user's status in the group,
+when they applied, and when they were approved::
+
+    select groups.name, person_roles.* from person_roles, groups where person_id = ID_FROM_INITIAL_QUERY and groups.id = person_roles.group_id;
+
+This will give you the following fields to pay attention to:
+
+:name: Name of the group
+:role_status:  If this is unapproved, it just means the user applied for it.
+    If it is approved, it means they are actually in the group.
+:creation: When the user applied to the group
+:approval: When the user was approved to be in the group
+:role_type: What role the person has or wants to have in the group
+:sponsor_id: If you suspect something is suspicious with one of the roles, you
+    may want to ask the sponsor if they remember sponsoring this person
+
+Account Deletion and renaming
+=============================
+
+.. seealso:: accountdeletion.txt
+    For information on how to disable, rename, and remove accounts.
