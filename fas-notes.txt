@@ -20,6 +20,13 @@ Notes about FAS and how to do things in it:
 How to gather information about a user
 ======================================
 
+You'll want to have direct access to query the database for this.  The common
+way is to have someone in sysadmin-db ssh to the postgres db hosting FAS
+(currently db01).  Then access it via ident auth on the box::
+
+    sudo -u postgres psql fas2
+
+
 There are several tables that will have information about a user.  Some of it
 is redundant but it's good to check all the sources there shouldn't be
 inconsistencies::
