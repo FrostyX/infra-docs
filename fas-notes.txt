@@ -1,0 +1,20 @@
+Notes about FAS and how to do things in it:
+
+- where are certs for fas accounts for koji, etc?
+  on fas01 /var/lib/fedora-ca - makefile targets allow you to do
+  things with them.
+ 
+   look in index.txt for certs. One's marked with an 'R' in the left-most
+   column are 'REVOKED'
+
+   to revoke a cert:
+    cd /var/lib/fedora-ca
+    find the cert number in index.txt - the number is the 3rd column in the
+    file - you can match it to the user by searching for their username. You
+    want the highest number cert for their account.
+     
+    once you have the number you would run (as root or fas)
+
+    make revoke cert=newcerts/$that_number.pem
+
+
