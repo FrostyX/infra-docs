@@ -83,3 +83,9 @@ Account Deletion and renaming
 
 .. seealso:: accountdeletion.txt
     For information on how to disable, rename, and remove accounts.
+
+Pseudo Users
+============
+
+.. seealso:: nonhumanaccounts.txt
+    For information on creating pseudo user accounts for use in pkgdb/bugzilla
