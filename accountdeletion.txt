@@ -13,11 +13,11 @@ Account Deletion SOP
        disabled.
 
    Contents
-
      * [45]1 Disable
 
           * [46]1.1 Disable Accounts
           * [47]1.2 Disable Groups
+     * User Requested disables
 
      * [48]2 Renames
 
@@ -29,8 +29,9 @@ Account Deletion SOP
           * [52]3.1 Delete Accounts
           * [53]3.2 Delete Groups
 
-Disable
 
+Disable
+=======
    Disabling accounts is the easiest to accomplish as it just blocks people
    from using their account. It does not remove the account name and
    associated UID so we don't have to worry about future, unintentional
@@ -93,8 +94,61 @@ Disable
  fas2=# commit;
  fas2=# /q
 
-Renames
+User Requested Disables
+=======================
 
+According to our Privacy Policy, a user may request that their personal
+information from FAS if they want to disable their account.  We can do this
+but need to do some extra work over simply setting the account status to
+disabled.
+
+Record User's CLA information
+-----------------------------
+
+If the user has signed the CLA/FPCA, then they may have contributed something
+to Fedora that we'll need to contact them about at a later date.  For that, we
+need to keep at least the following information:
+
+* Fedora username
+* human name
+* email address
+
+All of this information should be on the CLA email that is sent out when a
+user signs up.  We need to verify with spot (Tom Callaway) that he has that
+record.  If not, we need to get it to him.  Something like::
+
+    select id, username, human_name, email, telephone, facsimile, postal_address from people where username = 'USERNAME';
+
+and send it to spot to keep.
+
+Remove the personal information
+-------------------------------
+
+The following sequence of db commands should do it::
+
+ fas2=# begin;
+ fas2=# select * from people where username = 'USERNAME';
+
+   Here you need to verify that the account looks right, that there is only
+   one match, or other issues. If there are multiple matches you need to
+   contact one of the main sysadmin-db's on how to proceed.
+
+ fas2=# update people set human_name = '', gpg_keyid = null, ssh_key = null, unverified_email = null, comments = null, postal_address = null, telephone = null, facsimile = null, affiliation = null, ircnick = null, status = 'inactive', lcocale = 'C', timezone = null, latitude = null, longitude = null, country_code = null, email = 'disabled1@fedoraproject.org'  where username = 'USERNAME';
+  
+    Make sure only one record was updated
+
+ fas2=# select * from people where username = 'USERNAME';
+
+    Make sure the correct record was updated
+
+ fas2=# commit;
+
+.. note:: The email address is both not null and unique in the database.  Due
+    to this, you need to set it to a new string for every user who requests
+    deletion like this.
+
+Renames
+=======
    In general, renames do not require as much work as deletions but they
    still require coordination. This is because renames do not change the
    UID/GID but some of our applications save information based on
