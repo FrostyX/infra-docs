@@ -133,7 +133,7 @@ The following sequence of db commands should do it::
    one match, or other issues. If there are multiple matches you need to
    contact one of the main sysadmin-db's on how to proceed.
 
- fas2=# update people set human_name = '', gpg_keyid = null, ssh_key = null, unverified_email = null, comments = null, postal_address = null, telephone = null, facsimile = null, affiliation = null, ircnick = null, status = 'inactive', lcocale = 'C', timezone = null, latitude = null, longitude = null, country_code = null, email = 'disabled1@fedoraproject.org'  where username = 'USERNAME';
+ fas2=# update people set human_name = '', gpg_keyid = null, ssh_key = null, unverified_email = null, comments = null, postal_address = null, telephone = null, facsimile = null, affiliation = null, ircnick = null, status = 'inactive', locale = 'C', timezone = null, latitude = null, longitude = null, country_code = null, email = 'disabled1@fedoraproject.org'  where username = 'USERNAME';
   
     Make sure only one record was updated
 
