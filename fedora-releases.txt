@@ -155,7 +155,11 @@ Day Prior to Release Day
 
    Verify the website design / content has been finalized with the websites
    team. Update the Fedora version number wiki template if this is a final
-   release. 
+   release. It will need to be changed in: 
+
+http://fedoraproject.org/wiki/Template:FedoraVersionNumber
+http://fedoraproject.org/wiki/Template:FedoraVersion
+http://fedoraproject.org/wiki/Template:FedoraVersionName 
 
   Step 3 (Mirrors)
 
@@ -402,6 +406,7 @@ Final:
 			releases.txt gets a final entry for preupgrade,
 				branched entry removed. 
 		bfo gets updated to have a Final entry. 
+                update wiki version numbers and names. 
 	After release:
 		Update /topic in #fedora-admin
 		post to infrastructure list that freeze is over. 
