@@ -25,6 +25,8 @@ Introduction
    needed IPs to (from lockbox01):
 
  puppet/modules/infra-repo/files/allows
+ puppet/configs/httpd/websites/infrastructure.fedoraproject.org/allows
+ puppet/modules/puppet/files/fileserver.conf
 
 Physical Machine (dom0 / kvm virthost)
 
