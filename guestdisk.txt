@@ -27,11 +27,12 @@ How to do it
   Xen Guests
 
     1. SSH to the xen server and resize the guest's logical volume. If you
-       want to be extra careful, make a snapshot of the LV first:
-
- lvcreate -n [guest name]-snap -L 10G -s /dev/VolGroup00/[guest name] # Optional, but always good to be careful
+       want to be extra careful, make a snapshot of the LV afterwards so that
+       you can reverse any of the subsequent changes:
 
  lvresize -L [new total size]G /dev/VolGroup00/[guest name]
+
+ lvcreate -n [guest name]-snap -L 10G -s /dev/VolGroup00/[guest name] # Optional, but always good to be careful
 
     2. Shutdown the guest and then start it up again:
 
@@ -55,7 +56,7 @@ How to do it
 
     7. Check the size of the third partition:
 
- fdisk -l /dev/xvda3
+ fdisk -l /dev/xvda
 
        If this still reflects the old size, then reboot the guest and verify
        that its size changed correctly when it comes up again.
