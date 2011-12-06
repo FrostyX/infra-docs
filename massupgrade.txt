@@ -42,13 +42,15 @@ Preparation
     1. Determine which host group you are going to be doing updates/reboots
        on.
 
-         1. Group "A" are servers that end users will see or note being down
-            and anything that depends on them.
-         2. Group "B" are servers that contributors will see or note being
-            down and anything that depends on them.
-         3. Group "C" are servers that infrastructure will notice are down,
-            or are redundent enough to reboot some with others taking the
-            load.
+         Group "A" are servers that end users will see or note being down
+         and anything that depends on them.
+
+         Group "B" are servers that contributors will see or note being
+         down and anything that depends on them.
+
+         Group "C" are servers that infrastructure will notice are down,
+         or are redundent enough to reboot some with others taking the
+         load.
 
     2. Appoint an 'Update Leader' for the updates.
     3. Follow the [61]Outage Infrastructure SOP and send advance notification
@@ -88,7 +90,7 @@ Special Considerations
 
      * db04
      * nfs01
-     * kojipkgs01
+     * kojipkgs02
 
    Builders can be removed from koji, updated and re-added. Use:
 
@@ -150,9 +152,6 @@ Group A reboots
    List of machines currently in A group (note: this is going to be
    automated):
 
- retrace01.fedoraproject.org
- telia1.fedoraproject.org
-
  torrent01.fedoraproject.org
  ibiblio01.fedoraproject.org
 
@@ -178,7 +177,6 @@ Group A reboots
 
  ns1.fedoraproject.org
  app05.fedoraproject.org
- app6.fedoraproject.org
  backup02.fedoraproject.org
  bastion01.phx2.fedoraproject.org
  fas01.phx2.fedoraproject.org
@@ -186,14 +184,11 @@ Group A reboots
  log02.phx2.fedoraproject.org
  memcached03.phx2.fedoraproject.org
  noc01.phx2.fedoraproject.org
- noc02.fedoraproject.org
  ns02.fedoraproject.org
  ns04.phx2.fedoraproject.org
  ns05.fedoraproject.org
  proxy02.fedoraproject.org
  proxy04.fedoraproject.org
- proxy5.fedoraproject.org
- smtp-mm01.fedoraproject.org
  smtp-mm03.fedoraproject.org
  lockbox02.phx2.fedoraproject.org
 
@@ -232,9 +227,9 @@ Group C reboots
  publictest02.fedoraproject.org
  publictest04.fedoraproject.org
  insight01.dev.fedoraproject.org
+ insight02.dev.fedoraproject.org
  fakefas01.fedoraproject.org
  proxy6.fedoraproject.org
- ask01.dev.fedoraproject.org
  paste01.dev.fedoraproject.org
  osuosl1.fedoraproject.org
 
@@ -243,12 +238,17 @@ Group C reboots
 
  bastion02.phx2.fedoraproject.org NOTE: will take down the entire VPN!
  proxy01.phx2.fedoraproject.org
- value01.phx2.fedoraproject.org
- xen05.phx2.fedoraproject.org
+ virthost05.phx2.fedoraproject.org
 
  proxy3.fedoraproject.org
  smtp-mm02.fedoraproject.org
  tummy1.fedoraproject.org
+
+ app6.fedoraproject.org
+ noc02.fedoraproject.org
+ proxy5.fedoraproject.org
+ smtp-mm1.fedoraproject.org
+ telia1.fedoraproject.org
 
    Other Group C hosts:
 
@@ -264,13 +264,10 @@ Group C reboots
 
  bnfs01.phx2.fedoraproject.org
 
- autoqa01.c.fedoraproject.org (check with QA before rebooting this host/guest)
- dhcp02.c.fedoraproject.org
- cnode01.fedoraproject.org
-
  autoqa01.qa.fedoraproject.org
  autoqa-stg01.qa.fedoraproject.org
  bastion-comm01.qa.fedoraproject.org
+ lockbox-comm01.qa.fedoraproject.org
  virthost-comm01.qa.fedoraproject.org
 
  compose-x86-01.phx2.fedoraproject.org
@@ -321,12 +318,7 @@ Group C reboots
  xen03.phx2.fedoraproject.org
 
  (disable each builder in turn, update and reenable).
- ppc05.phx2.fedoraproject.org
- ppc06.phx2.fedoraproject.org
- ppc07.phx2.fedoraproject.org
- ppc08.phx2.fedoraproject.org
- ppc09.phx2.fedoraproject.org
- ppc10.phx2.fedoraproject.org
+ ppc11.phx2.fedoraproject.org
  ppc12.phx2.fedoraproject.org
  x86-01.phx2.fedoraproject.org
  x86-02.phx2.fedoraproject.org
