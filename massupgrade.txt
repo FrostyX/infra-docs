@@ -170,8 +170,11 @@ Group A reboots
  db05.phx2.fedoraproject.org
  virthost03.phx2.fedoraproject.org
 
- db02.phx2.fedoraproject.org
- xen15.phx2.fedoraproject.org
+ db01.phx2.fedoraproject.org
+ virthost04.phx2.fedoraproject.org
+
+ ask01.phx2.fedoraproject.org
+ virthost06.phx2.fedoraproject.org
 
  (due to being on the same virt host as above)
 
@@ -207,13 +210,12 @@ Group B reboots
  pkgs01.phx2.fedoraproject.org
  bvirthost03.phx2.fedoraproject.org
 
- kojipkgs01.phx2.fedoraproject.org
- bxen03.phx2.fedoraproject.org
+ kojipkgs02.phx2.fedoraproject.org
+ bvirthost04.phx2.fedoraproject.org
 
  (due to being on the same virt host as one of above)
 
  koji01.phx2.fedoraproject.org
- releng02.phx2.fedoraproject.org
 
 Group C reboots
 
@@ -262,6 +264,11 @@ Group C reboots
  value01.stg.phx2.fedoraproject.org
  virthost13.phx2.fedoraproject.org
 
+ db02.stg.phx2.fedoraproject.org
+ fas01.stg.phx2.fedoraproject.org
+ pkgs01.stg.phx2.fedoraproject.org
+ virthost10.phx2.fedoraproject.org
+
  bnfs01.phx2.fedoraproject.org
 
  autoqa01.qa.fedoraproject.org
@@ -285,6 +292,17 @@ Group C reboots
  smolt01
  memcached04.phx2.fedoraproject.org
  virthost01.phx2.fedoraproject.org
+
+ app02.phx2.fedoraproject.org
+ value03.phx2.fedoraproject.org
+ virthost07.phx2.fedoraproject.org
+
+ app03.phx2.fedoraproject.org
+ value04.phx2.fedoraproject.org
+ virthost08.phx2.fedoraproject.org
+
+ app04.phx2.fedoraproject.org
+ virthost09.phx2.fedoraproject.org
 
  serverbeach1.fedoraproject.org
 
