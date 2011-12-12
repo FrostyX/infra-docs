@@ -96,3 +96,31 @@ Step Three: Fixing the violation
      semodule { 'fedora':
      }
 
+
+  Fixing odd errors from the logs:
+     If you see messages like this in the log reports:
+
+ restorecon:/etc/selinux/targeted/contexts/files/file_contexts: Multiple same / specifications for /home/fedora.
+ matchpathcon: / /etc/selinux/targeted/contexts/files/file_contexts: Multiple same / / specifications for /home/fedora.
+
+Then it is likely you have an overlapping filecontext in your local selinux context configuration - in this case likely
+one added by puppet accidentally.
+
+To find it run this:
+ semanage fcontext -l | grep /path/being/complained/about
+
+sometimes it is just an ordering problem and reversing them solves it
+other times it is just an overlap, period.
+
+look at the context and delete the one you do not want or reorder.
+To delete run:
+semanage fcontext -d '/entry/you/wish/to/delete'
+
+This just removes that filecontext - no need to worry about files being deleted.
+
+Then rerun the triggering command and see if the problem is solved.
+
+
+
+
+  
