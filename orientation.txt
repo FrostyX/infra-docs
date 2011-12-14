@@ -93,7 +93,7 @@ Doing Work
    work needs to be done in the ticketing system. Be proactive about this.
    The tickets can be found at:
 
-   [54]https://fedorahosted.org/fedora-infrastructure/report/1
+   https://fedorahosted.org/fedora-infrastructure/report/1
 
    When you find a ticket that interests you contact your sponsor or the
    ticket owner and offer help. While you're getting used to the way things
@@ -114,11 +114,11 @@ Doing Work
   Puppet
 
    Everything we do gets done in puppet. We have a separate SOP for puppet at
-   [55]Infrastructure/SOP/Puppet It is important that you not make changes
+   Infrastructure/SOP/Puppet It is important that you not make changes
    directly on servers. This is for many reasons but just always make changes
    in puppet. If you want to get more familiar with puppet, set it up
    yourself and give it a try. The docs are available at
-   [56]http://reductivelabs.com/trac/puppet/wiki/DocumentationStart
+   http://reductivelabs.com/trac/puppet/wiki/DocumentationStart
 
 Our Setup
 
@@ -146,7 +146,7 @@ Our Rules
    The Fedora Infrastructure Team does have some rules. First is the security
    policy. Please ensure you are compliant with:
 
-   [57]http://infrastructure.fedoraproject.org/csi/security-policy/
+   http://infrastructure.fedoraproject.org/csi/security-policy/
 
    before logging in to any of our servers. Many of those items rely on the
    honor system.
