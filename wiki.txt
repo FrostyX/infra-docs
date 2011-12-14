@@ -8,7 +8,7 @@ Contact Information
 
    Contact: #fedora-admin or #fedora-websites on irc.freenode.net
 
-   Location: [45]http://fedoraproject.org/wiki/
+   Location: http://fedoraproject.org/wiki/
 
    Servers: proxy[1-3] app[1-2,4]
 
