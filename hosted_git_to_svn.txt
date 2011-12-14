@@ -1,6 +1,4 @@
-User:Ke4qqq/gittosvnsop
-
-   Migrated hosted repositories to that of another type.
+Migrating hosted repositories to that of another type.
 
    Contents
 
