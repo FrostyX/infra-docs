@@ -24,9 +24,9 @@ FreeMedia Infrastructure SOP/de
 Wo sind die wichtigen Seiten?
 
      * Das Formular für Anfragen ist auf
-       [57]https://fedoraproject.org/freemedia/FreeMedia-form.html
+       https://fedoraproject.org/freemedia/FreeMedia-form.html
      * Das Ticketing-System ist auf
-       [58]https://fedorahosted.org/freemedia/report
+       https://fedorahosted.org/freemedia/report
 
 Ort auf Puppet
 
@@ -125,9 +125,9 @@ Wie man mit Bewerbungen umgeht
 
     1. Erstellen sie einen Account im Fedora Account System (FAS)
     2. Erstellen sie eine Benutzerseite im Fedora Wiki, nach dem Muster
-       User:<nick-name>. [61]Hier ist eine Vorlage
+       User:<nick-name>. Hier ist eine Vorlage
     3. Bewerben sie sich im FAS für die FreeMedia-Gruppe
-    4. Beantragen sie die Mitgliedschaft auf der [62]freemedia Mailingliste
+    4. Beantragen sie die Mitgliedschaft auf der freemedia Mailingliste
 
    Regeln um über einen Mitgliedschaftsantrag zu entscheiden
 

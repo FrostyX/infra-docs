@@ -27,7 +27,7 @@ FreeMedia Infrastructure SOP
 Location of Resources
 
      * The web form is at
-       [62]https://fedoraproject.org/freemedia/FreeMedia-form.html
+       https://fedoraproject.org/freemedia/FreeMedia-form.html
      * The TRAC is at [63]https://fedorahosted.org/freemedia/report
 
 Location on Puppet
@@ -81,7 +81,7 @@ How to
           * After closing the form, go to trac and remove "Ticket Create and
             Ticket View" privilege from "Anonymous".
 
-   [64]Note.png
+   Note
 
      * Have to check about monthly cron.
      * Have to write about changing init.pp for closing and opening
@@ -91,7 +91,7 @@ Handling of tickets
   Login
 
      * Contributors are requested to visit
-       [65]https://fedorahosted.org/freemedia/report
+       https://fedorahosted.org/freemedia/report
      * Please login with your FAS account.
 
   Rejecting Invalid Tickets
@@ -117,7 +117,7 @@ Handling of tickets
        press the "Submit Changes" button.
 
      * These accepted tickets will be available from
-       [66]https://fedorahosted.org/freemedia/report user both "My Tickets"
+       https://fedorahosted.org/freemedia/report user both "My Tickets"
        and "Accepted Tickets for XX" (XX= your region e.g APAC)
 
      * When You ship the request, please go to the ticket again, go to
@@ -139,9 +139,9 @@ How to handle membership applications
 
     1. Create an account in Fedora Account System (FAS)
     2. Create an user page in Fedora Wiki with contact data. Like
-       User:<nick-name>. [67]Here is a template
+       User:<nick-name>. Here is a template
     3. Apply to Free-Media Group in FAS
-    4. Apply to [68]Free-Media mailing list subscription
+    4. Apply to Free-Media mailing list subscription
 
    Rules for deciding over membership applications
 
