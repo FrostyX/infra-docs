@@ -87,6 +87,25 @@ Add a new host
 
    for PHX2 hosts.
 
+Remove a host
+
+ # This is to ensure that the clone is not world-readable at any point.
+ RESTORE_UMASK=$(umask -p)
+ umask 0077
+ git clone /git/private
+ $RESTORE_UMASK
+ cd private/vpn/openvpn
+
+   Next prepare your environment and run the build-key script. This example
+   is for host "proxy4.fedora.phx.redhat.com"
+
+ . ./vars
+ ./revoke-full $FQDN
+ git add .
+ git commit -a
+ git push
+
+
 TODO
 
    Deploy an additional VPN server outside of PHX. OpenVPN does support
