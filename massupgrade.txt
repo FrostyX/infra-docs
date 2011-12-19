@@ -158,11 +158,11 @@ Group A reboots
  people02.fedoraproject.org
  internetx01.fedoraproject.org
 
- collab1.fedoraproject.org
- serverbeach2.fedoraproject.org
+ collab03.fedoraproject.org
+ serverbeach08.fedoraproject.org
 
- hosted1.fedoraproject.org
- serverbeach4.fedoraproject.org
+ hosted03.fedoraproject.org
+ serverbeach10.fedoraproject.org
 
  insight01.phx2.fedoraproject.org
  virthost02.phx2.fedoraproject.org
@@ -178,8 +178,6 @@ Group A reboots
 
  (due to being on the same virt host as above)
 
- ns1.fedoraproject.org
- app05.fedoraproject.org
  backup02.fedoraproject.org
  bastion01.phx2.fedoraproject.org
  fas01.phx2.fedoraproject.org
@@ -238,7 +236,7 @@ Group C reboots
  proxy07.fedoraproject.org
  bodhost01.fedoraproject.org
 
- bastion02.phx2.fedoraproject.org NOTE: will take down the entire VPN!
+ bastion02.phx2.fedoraproject.org
  proxy01.phx2.fedoraproject.org
  virthost05.phx2.fedoraproject.org
 
@@ -304,17 +302,12 @@ Group C reboots
  app04.phx2.fedoraproject.org
  virthost09.phx2.fedoraproject.org
 
- serverbeach1.fedoraproject.org
+ hosted04.fedoraproject.org
+ serverbeach07.fedoraproject.org
 
- hosted2.fedoraproject.org
- serverbeach5.fedoraproject.org
-
- collab2.fedoraproject.org
- serverbeach3.fedoraproject.org
-
- app02.phx2.fedoraproject.org
- db01.stg.phx2.fedoraproject.org
- xen09.phx2.fedoraproject.org
+ collab04.fedoraproject.org
+ ns-sb01.fedoraproject.org
+ serverbeach09.fedoraproject.org
 
  bapp01.phx2.fedoraproject.org
  ns03.phx2.fedoraproject.org
