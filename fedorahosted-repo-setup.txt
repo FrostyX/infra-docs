@@ -2,29 +2,29 @@ Hosted repository setup
 
    Contents
 
-     * 1 Mercurial Repository
+     * 1 Mercurial Repository
 
-          * 1.1 Commit Mail
+          * 1.1 Commit Mail
 
-     * 2 Git Repository
+     * 2 Git Repository
 
-          * 2.1 Commit Mail
-          * 2.2 CIAbot Notifications
+          * 2.1 Commit Mail
+          * 2.2 CIAbot Notifications
 
-     * 3 Bazaar Repository
-     * 4 SVN Repository
+     * 3 Bazaar Repository
+     * 4 SVN Repository
 
-          * 4.1 Commit Mail
+          * 4.1 Commit Mail
 
 Mercurial Repository
 
    You'll need to know three things in order to start the mercurial
    repository.
 
-    1. PROJECTNAME -- what the project wants to be called.
-    2. OLDURL -- how to access the project's current sourcecode in their
+    1. PROJECTNAME -- what the project wants to be called.
+    2. OLDURL -- how to access the project's current sourcecode in their
        mercurial repository.
-    3. PROJECTGROUP -- the group setup in the account system for readwrite
+    3. PROJECTGROUP -- the group setup in the account system for readwrite
        access to the repository.
 
    The Mercurial repository lives on the hosted server. Access it by logging
@@ -77,15 +77,15 @@ Git Repository
 
    You'll need to know several things in order to start the git repository.
 
-    1. PROJECTNAME -- what the project wants to be called.
-    2. OLDURL -- how to access the project's current source code in their git
+    1. PROJECTNAME -- what the project wants to be called.
+    2. OLDURL -- how to access the project's current source code in their git
        repository.
-    3. PROJECTGROUP -- the group setup in the account system for write access
+    3. PROJECTGROUP -- the group setup in the account system for write access
        to the repository.
-    4. COMMITLIST -- comma-separated list of email addresses for commits
+    4. COMMITLIST -- comma-separated list of email addresses for commits
        (optional)
-    5. DESCRIPTION -- description of the project (optional)
-    6. PROJECTOWNER -- the FAS username of the project owner
+    5. DESCRIPTION -- description of the project (optional)
+    6. PROJECTOWNER -- the FAS username of the project owner
 
    The git repository lives on the hosted server. Access it by logging into
    hosted1 Then follow these steps:
@@ -114,7 +114,7 @@ Git Repository
 
  $ # Ensure ownership and modes are correct
  $ sudo find -type d -exec chmod g+s \{\} \;
- $ sudo find -perm /u+w -a ! -perm /g+w -exec chmod g+w \{\} \;
+ $ sudo find -perm /u+w -a ! -perm /g+w -exec chmod g+w \{\} \;
  $ sudo chown -R $PROJECTOWNER:$PROJECTGROUP .
 
    This should setup all the files needed for the repository. The repository
@@ -170,13 +170,13 @@ Bazaar Repository
 
    You'll need to know three things in order to start a bazaar repository.
 
-    1. PROJECTNAME -- what the project wants to be called.
-    2. OLDBRANCHURL -- how to access the project's current sourcecode in
+    1. PROJECTNAME -- what the project wants to be called.
+    2. OLDBRANCHURL -- how to access the project's current sourcecode in
        their previous bazaar repository. Note that a project may have
        multiple branches that they want to import. Each branch will have a
        separate URL. (The project can import the new branches after the
        repository is created if they want.)
-    3. PROJECTGROUP -- the group setup in the account system for readwrite
+    3. PROJECTGROUP -- the group setup in the account system for readwrite
        access to the repository.
 
    The bzr repository lives on the hosted server. Access it by logging into
@@ -215,10 +215,10 @@ SVN Repository
 
    You'll need to know two things in order to start a svn repository.
 
-    1. PROJECTNAME -- what the project wants to be called.
-    2. PROJECTGROUP -- The Fedora account system group with read-write
+    1. PROJECTNAME -- what the project wants to be called.
+    2. PROJECTGROUP -- The Fedora account system group with read-write
        access.
-    3. COMMITLIST -- comma-separated list of email addresses for commits
+    3. COMMITLIST -- comma-separated list of email addresses for commits
        (optional)
 
    SVN lives on the hosted server. Access it by logging into hosted1. Then
