@@ -1,0 +1,33 @@
+SSH known hosts Infrastructure SOP
+
+   Provides Known Hosts file that is globally deployed.
+
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin group
+
+   Location: all
+
+   Servers: all
+
+   Purpose: Provides Known Hosts file that is globally deployed.
+
+Replacing Key
+
+
+ We have written a script to grab all the pubkeys from the captured items in
+puppet. check out puppet:
+
+   git clone /git/puppet
+   cd puppet/modules/ssh/files
+   sudo python fetch-ssh-keys.py > ssh_known_hosts
+   git commit -a
+   git push
+
+That should do it.
+
+Just like magic, or something.
+
+
