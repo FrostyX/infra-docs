@@ -10,7 +10,7 @@ Contact Information
 
    Location: Serverbeach
 
-   Servers: hosted1, hosted2
+   Servers: hosted3, hosted4
 
    Purpose: Provide hosting place for open source projects
 
