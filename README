@@ -5,8 +5,13 @@ Operating Procedures). These explain what we do, when we do it and, often,
 why we do it.
 
 == Cloning this repo ==
-login to lockbox01.phx2.fedoraproject.org
-git clone /git/infra-docs/
+To write:
+ login to lockbox01.phx2.fedoraproject.org
+  git clone /git/infra-docs/
+
+  anon:
+  git clone http://infrastructure.fedoraproject.org/infra/infra-docs.git/
+
 
 git grep is your friend in this dir.
 Files should be in text.
