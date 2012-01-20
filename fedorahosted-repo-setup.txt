@@ -30,6 +30,9 @@ Mercurial Repository
    The Mercurial repository lives on the hosted server. Access it by logging
    into hosted1 Then follow these steps:
 
+ # Fetch latest content from the FAS Database.
+ $ fasClient -i -f
+
  $ cd /hg
  $ sudo hg clone -U $OLDURL $PROJECTNAME (or sudo mkdir $PROJECTNAME; cd $PROJECTNAME; sudo hg init)
  $ sudo find $PROJECTNAME -type d -exec chmod g+s \{\} \;
@@ -89,6 +92,9 @@ Git Repository
 
    The git repository lives on the hosted server. Access it by logging into
    hosted1 Then follow these steps:
+
+ # Fetch latest content from the FAS Database.
+ $ fasClient -i -f
 
  $ cd /git
 
@@ -184,6 +190,9 @@ Bazaar Repository
 
    The first stage is to create the Bazaar repository.
 
+ # Fetch latest content from the FAS Database.
+ $ fasClient -i -f
+
  $ cd /srv/bzr/
  $ # This creates a Bazaar repository which has shared storage between branches
  $ sudo bzr init-repo $PROJECTNAME --no-trees
@@ -223,6 +232,9 @@ SVN Repository
 
    SVN lives on the hosted server. Access it by logging into hosted1. Then
    run the following steps:
+
+ # Fetch latest content from the FAS Database.
+ $ fasClient -i -f
 
  $ cd /svn/
  $ sudo svnadmin create $PROJECTNAME
