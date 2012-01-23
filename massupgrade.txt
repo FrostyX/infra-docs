@@ -152,8 +152,8 @@ Group A reboots
    List of machines currently in A group (note: this is going to be
    automated):
 
- torrent01.fedoraproject.org
- ibiblio01.fedoraproject.org
+ torrent02.fedoraproject.org
+ ibiblio02.fedoraproject.org
 
  people02.fedoraproject.org
  internetx01.fedoraproject.org
@@ -178,6 +178,7 @@ Group A reboots
 
  (due to being on the same virt host as above)
 
+ app05.fedoraproject.org
  backup02.fedoraproject.org
  bastion01.phx2.fedoraproject.org
  fas01.phx2.fedoraproject.org
@@ -214,6 +215,8 @@ Group B reboots
  (due to being on the same virt host as one of above)
 
  koji01.phx2.fedoraproject.org
+ releng03.phx2.fedoraproject.org
+ releng04.phx2.fedoraproject.org
 
 Group C reboots
 
@@ -223,14 +226,14 @@ Group C reboots
 
    Group C hosts that have proxy servers on them:
 
+ app01.dev.fedoraproject.org
+ darkserver01.dev.fedoraproject.org
  publictest01.fedoraproject.org
- publictest02.fedoraproject.org
  publictest04.fedoraproject.org
  insight01.dev.fedoraproject.org
  insight02.dev.fedoraproject.org
  fakefas01.fedoraproject.org
- proxy6.fedoraproject.org
- paste01.dev.fedoraproject.org
+ proxy06.fedoraproject.org
  osuosl1.fedoraproject.org
 
  proxy07.fedoraproject.org
@@ -240,20 +243,19 @@ Group C reboots
  proxy01.phx2.fedoraproject.org
  virthost05.phx2.fedoraproject.org
 
- proxy3.fedoraproject.org
+ proxy03.fedoraproject.org
  smtp-mm02.fedoraproject.org
- tummy1.fedoraproject.org
+ tummy01.fedoraproject.org
 
- app6.fedoraproject.org
+ app06.fedoraproject.org
  noc02.fedoraproject.org
- proxy5.fedoraproject.org
- smtp-mm1.fedoraproject.org
- telia1.fedoraproject.org
+ proxy05.fedoraproject.org
+ smtp-mm01.fedoraproject.org
+ telia01.fedoraproject.org
 
    Other Group C hosts:
 
  app01.stg.phx2.fedoraproject.org
- app01.dev.fedoraproject.org
  app02.stg.phx2.fedoraproject.org
  koji01.stg.phx2.fedoraproject.org
  noc01.stg.phx2.fedoraproject.org
