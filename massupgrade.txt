@@ -285,6 +285,10 @@ Group C reboots
  download04.phx2.fedoraproject.org
  download05.phx2.fedoraproject.org
 
+ download-rdu01.vpn.fedoraproject.org
+ download-rdu02.vpn.fedoraproject.org
+ download-rdu03.vpn.fedoraproject.org
+
  app07.phx2.fedoraproject.org
  fas03.phx2.fedoraproject.org
  insight01.stg.phx2.fedoraproject.org
