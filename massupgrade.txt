@@ -251,6 +251,7 @@ Group C reboots
  noc02.fedoraproject.org
  proxy05.fedoraproject.org
  smtp-mm01.fedoraproject.org
+ keys01.fedoraproject.org
  telia01.fedoraproject.org
 
    Other Group C hosts:
