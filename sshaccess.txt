@@ -47,7 +47,7 @@ Contact Information
      User FAS_USERNAME
 
  # Add other machines to this line as desired.
- Host *.phx2.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org
+ Host *.phx2.fedoraproject.org *.qa.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org
      ProxyCommand ssh -W %h:%p bastion.fedoraproject.org
 
    One slight annoyance with this method is that you must include the
