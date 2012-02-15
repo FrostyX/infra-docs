@@ -66,20 +66,16 @@ Preparations
     2. Verify mirror space (for all test releases as well)
     3. Release day ticket and milestone (keep a log of who is doing what and notes)
     4. Verify with rel-eng permissions on content are right on the mirrors.  Don't leak.
-    5. Add MirrorManager repository redirects. ${version}-Alpha =>
-       ${version}. ${version}-Beta => ${version}. This directs Alpha and Beta
-       users at the pending release. MM's manage-repo-redirects script is
-       used to do this. manage-repo-redirects -a -f 16-Alpha -t 16;
-    6. Communication with Red Hat IS (Give at least 2 months notice, then
+    5. Communication with Red Hat IS (Give at least 2 months notice, then
        reminders as the time comes near) (final release only)
-    7. Infrastructure change freeze
-    8. Modify Template:FedoraVersion to reference new version. (Final release only)
-    9. Re-review Lessons Learned pages from previous release, be sure we
+    6. Infrastructure change freeze
+    7. Modify Template:FedoraVersion to reference new version. (Final release only)
+    8. Re-review Lessons Learned pages from previous release, be sure we
        aren't forgetting things we meant to do after the last release.
-   10. Add the new release to stats gathering scripts on log1
+    9. Add the new release to stats gathering scripts on log1
        (modules/scripts/files/fedoraUsage.sh, also the maps should be
        updated) (Final release only)
-   11. Move old releases to archive (final release only)
+   10. Move old releases to archive (final release only)
 
   Change Freeze
 
