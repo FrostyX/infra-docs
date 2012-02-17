@@ -1,0 +1,63 @@
+Setup Koji Builder SOP
+
+Contents:
+- Setting up a new koji builder
+- Resetting/installing an old koji builder
+
+
+Setting up a new koji builder involves a goodly number of steps:
+
+First get an instance spun up following the kickstart sop.
+Define a hostname for it on the 125 network and a $hostname-nfs name
+for it on the .127 network.
+
+Once you have that make sure the instance has 2 network connections:
+- eth0 should be on the .125 network
+- eth1 should be on the .127 network
+
+For VM eth0 should be on br0, eth1 on br1 on the vmhost.
+
+Steps:
+
+- install the system as normal
+
+- run python /root/tmp/setup-nfs-network.py
+  this should print out the -nfs hostname that you made above
+
+- change root pw
+
+- disable selinux on the machine in /etc/sysconfig/selinux 
+
+- reboot
+
+- setup ssl cert into private/builders - use fqdn of host as DN
+ - login to fas01 as root
+ - cd /var/lib/fedora-ca
+ - ./certhelper.py normal --outdir=/tmp/  \
+         --name=$fqdn_of_the_new_builder  --cadir=. --caname=Fedora
+ - info for the cert should be like this
+   Country Name (2 letter code) [US]:
+   State or Province Name (full name) [North Carolina]:
+   Locality Name (eg, city) [Raleigh]:
+   Organization Name (eg, company) [Fedora Project]:
+   Organizational Unit Name (eg, section) []:Fedora Builders
+   Common Name (eg, your name or your servers hostname) []:$fqdn_of_new_builder
+   Email Address []:buildsys@fedoraproject.org
+  - scp the file in /tmp/$fqdn_of_new_builder over to lockbox01
+  - put file in the private repo under private/builders/$fqdn
+  - git add + commit
+  - git push
+
+- run puppet on the buildhost
+   - /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
+- sign the puppet cert on lockbox
+   - sudo puppetca -s $fqdn_of_new_builder
+- run ./sync-hosts in infra-hosts repo; git commit; git push
+- as a koji admin run
+  - koji add-host $fqdn_ofbuilder i386 x86_64
+    (note: those are yum basearchs on the end - season to taste)
+- run puppet again (and again and again) on the new builder
+
+
+Resetting/installing an old koji builder:
+- everything above except don't make a cert
