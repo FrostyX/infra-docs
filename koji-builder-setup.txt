@@ -43,18 +43,18 @@ Steps:
    Organizational Unit Name (eg, section) []:Fedora Builders
    Common Name (eg, your name or your servers hostname) []:$fqdn_of_new_builder
    Email Address []:buildsys@fedoraproject.org
-  - scp the file in /tmp/$fqdn_of_new_builder over to lockbox01
-  - put file in the private repo under private/builders/$fqdn
+  - scp the file in /tmp/${fqdn}_key_and_cert.pem over to lockbox01
+  - put file in the private repo under private/builders/${fqdn}.pem
   - git add + commit
   - git push
 
 - run puppet on the buildhost
    - /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
 - sign the puppet cert on lockbox
-   - sudo puppetca -s $fqdn_of_new_builder
+   - sudo puppetca -s $fqdn
 - run ./sync-hosts in infra-hosts repo; git commit; git push
 - as a koji admin run
-  - koji add-host $fqdn_ofbuilder i386 x86_64
+  - koji add-host $fqdnr i386 x86_64
     (note: those are yum basearchs on the end - season to taste)
 - run puppet again (and again and again) on the new builder
 
