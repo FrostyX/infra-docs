@@ -1,0 +1,4 @@
+If time stalls on a VM, set the time with `date -s` then run `ntpdate` to let
+it sync up as normal.
+
+Smallest. SOP. Ever.
