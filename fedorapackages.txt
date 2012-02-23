@@ -59,7 +59,7 @@ Checking for AGPL violations
     application. You can easily query our app servers to determine if any AGPL
     violating code modifications have been made to the package.
 
-        func-command -h "*app*" -h "community*" "rpm -V fedoracommunity"
+        func-command --host="*app*" --host="community*" "rpm -V fedoracommunity"
 
     You can safely ignore any changes to non-code files in the output. If any
     violations are found, the Infrastructure Team should be notified immediately.
