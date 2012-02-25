@@ -123,7 +123,7 @@ Update website
 
     1. add Alpha banner
     2. add "Someone say Alpha" note
-    3. update links alpha links in get-prerelease.html
+    3. update alpha links in get-prerelease.html
 
          1. Ensure href's are consistent with actual filenames of mirrored
             content
@@ -132,6 +132,8 @@ Update website
                  su - mirrormanager first)
 
          2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+
+         3. change the Release Notes link to the Alpha Release Notes wiki page
 
     4. modify:
 
@@ -155,6 +157,9 @@ Update website
                  su - mirrormanager first)
 
          2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+
+         3. change the Release Notes link to the fedorapeople Beta Release
+            Notes (revert previous) 
 
     3. modify:
 
