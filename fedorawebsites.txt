@@ -123,7 +123,7 @@ Update website
 
     1. add Alpha banner
     2. add "Someone say Alpha" note
-    3. update links alpha links in get-prerelease.html
+    3. update alpha links in get-prerelease.html
 
          1. Ensure href's are consistent with actual filenames of mirrored
             content
@@ -133,11 +133,17 @@ Update website
 
          2. need link to rel-eng SOP here (RFE, doesn't exist yet)
 
+         3. change the Release Notes link to the Alpha Release Notes wiki page
+
     4. modify:
 
          1. data/content/get-fedora.html (add alpha note)
          2. data/content/get-prerelease.html (update links)
          3. static/js/banner.js (alpha banner)
+
+    5. update the transifex resource
+         See in tips to know how to do it
+
 
   For Beta
 
@@ -152,6 +158,9 @@ Update website
 
          2. need link to rel-eng SOP here (RFE, doesn't exist yet)
 
+         3. change the Release Notes link to the fedorapeople Beta Release
+            Notes (revert previous) 
+
     3. modify:
 
          1. data/content/counter.html (add languages)
@@ -160,6 +169,9 @@ Update website
          4. data/content/get-prerelease.html (update links)
          5. data/templates/sidebar (add non-js version of countdown)
 
+    4. update the transifex resource
+         See in tips to know how to do it
+
   For GA
 
    Merge beta onto master branch
@@ -167,7 +179,8 @@ Update website
  $ git checkout master
  $ git merge f13-beta
 
-   Manually edit the .pot files that are listed as conflicts
+   Manually edit the .pot files that are listed as conflicts and correct the
+   transifex config file (fedoraproject.org/.tx/config) to use the correct resource
 
    Manually go to each site and 'make all test'
 
@@ -308,4 +321,29 @@ Tips
  - Persian (fa)
  - Portuguese (Brazilian) (pt_BR)
  - Russian (ru)
+
+
+  update the transifex resource
+ 
+ once you've created the new branch, and make necessary html changes
+ $ git checkout f17-alpha
+
+ pull the up to date translations 
+ $ make pullpos
+
+ edit the .tx/config file, the resource name should be updated to create the
+ new one, like:
+ [fedora-web.fedoraproject-org-f17-alpha]
+
+ push current translations to the new resource. --skip don't stop if failed to
+push (fails if no translated strings)
+ $ tx push -t --skip
+
+ refresh the pot
+ $ make pot
+
+ then commit and push your .tx/config and pot files.
+ Please log to https://fedora.transifex.net/projects/p/fedora-web/resources/
+ and set the important flag, then notice translators.
+ 
 
