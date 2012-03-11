@@ -40,7 +40,8 @@ that they are talking to each other.
 and release all resources. 
 
 3. On the current secondary node, watch /var/log/ha-log and confirm that it has 
-marked the other node dead and takes over resources. 
+marked the other node dead and takes over resources. Note that this may take 
+a few minutes. 
 
 4. Optionally you can restart heartbeat on the old primary and it should 
 rejoin as a secondary (unless 'autofallback' is on on the config). 
