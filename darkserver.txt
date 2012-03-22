@@ -40,8 +40,8 @@ Setting up the database
 
     root@localhost# mysql -u root
     mysql> CREATE DATABASE darkserver;
-    mysql> GRANT ALL ON darkserver.* TO kojiplugin@'koji-hub-ip' IDENTIFIED BY 'XXX';
-    mysql> GRANT ALL ON darkserver.* TO dark@'darkserver-ip' IDENTIFIED BY 'XXX';  
+    mysql> GRANT INSERT ON darkserver.* TO kojiplugin@'koji-hub-ip' IDENTIFIED BY 'XXX';
+    mysql> GRANT SELECT ON darkserver.* TO dark@'darkserver-ip' IDENTIFIED BY 'XXX';  
 
     Setup this db configuration in the conf file under /etc/darkserver/darkserverweb.conf
 
@@ -52,6 +52,9 @@ Setting up the database
     database=darkserver
 
     Now setup the db tables if it is a new install.
+
+    (For this you may need to 'GRANT * ON darkserver.*' to the web user, and
+     then 'REVOKE * ON darkserver.*' after running.)
 
     root@localhost# python /usr/lib/python2.6/site-packages/darkserverweb/manage.py syncdb
 
