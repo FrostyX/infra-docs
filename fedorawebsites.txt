@@ -140,8 +140,14 @@ Update website
          1. data/content/get-fedora.html (add alpha note)
          2. data/content/get-prerelease.html (update links)
          3. static/js/banner.js (alpha banner)
+         4. data/content/verify.html (alpha checksum + signature)
 
-    5. update the transifex resource
+    5. add checksum files
+         They should be in bapp01, could use the following command then scp:
+         find /pub/fedora/linux/releases/test/17-Alpha/ -type f -name \
+         *CHECKSUM* -exec cp '{}' . \;
+
+    6. update the transifex resource
          See in tips to know how to do it
 
 
@@ -168,8 +174,14 @@ Update website
          3. static/js/release-counter* (update dates/times, languages)
          4. data/content/get-prerelease.html (update links)
          5. data/templates/sidebar (add non-js version of countdown)
+         6. data/content/verify.html
 
-    4. update the transifex resource
+    4. remove:
+          static/checksums/Fedora-XX-Alpha*
+
+    5. add new checksums
+
+    6. update the transifex resource
          See in tips to know how to do it
 
   For GA
@@ -194,6 +206,8 @@ Update website
        paths in /pub on bapp01 (sudo su - mirrormanager first)
 
    Add alpha/beta banner image (see design team)
+
+   update data/content/verify.html and the static/checksums/
 
 Fire in the hole
 
