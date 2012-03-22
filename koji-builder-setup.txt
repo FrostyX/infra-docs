@@ -21,6 +21,12 @@ Steps:
 
 - install the system as normal
 
+   virt-install -n $builder_fqdn -r $memsize -f $path_to_lvm  --vcpus=$numprocs \
+   -l http://10.5.126.23/repo/rhel/RHEL6-x86_64/ \
+   -x "ksdevice=eth0 ks=http://10.5.126.23/repo/rhel/ks/kvm-rhel-6 \
+        ip=$ip netmask=$netmask gateway=$gw dns=$dns console=tty0 console=ttyS0" \
+       --network=bridge=br0 --network=bridge=br1 --vnc --noautoconsole
+
 - run python /root/tmp/setup-nfs-network.py
   this should print out the -nfs hostname that you made above
 
@@ -60,4 +66,38 @@ Steps:
 
 
 Resetting/installing an old koji builder:
-- everything above except don't make a cert
+- disable the builder in koji (ask a koji admin)
+- halt the old system (halt -p)
+- undefine the vm instance on the buildvmhost:
+    virsh undefine $builder_fqdn
+- reinstall it - from the buildvmhost run:
+
+   virt-install -n $builder_fqdn -r $memsize -f $path_to_lvm  --vcpus=$numprocs \
+   -l http://10.5.126.23/repo/rhel/RHEL6-x86_64/ \
+   -x "ksdevice=eth0 ks=http://10.5.126.23/repo/rhel/ks/kvm-rhel-6 \
+        ip=$ip netmask=$netmask gateway=$gw dns=$dns console=tty0 console=ttyS0" \
+       --network=bridge=br0 --network=bridge=br1 --vnc --noautoconsole
+
+- watch install via vnc:
+  vncviewer -via bastion.fedoraproject.org $builder_fqdn:1
+- when the install finishes:
+ - start the instance on the buildvmhost:
+   virsh start $builder_fqdn
+- set it to autostart on the buildvmhost:
+  virsh autostart $builder_fqdn
+- when the guest comes up
+  - login via ssh using the temp root password
+  - python /root/tmp/setup-nfs-network.py
+  - change root password
+  - disable selinux in /etc/sysconfig/selinux
+  - reboot
+- on lockbox remove old puppet cert: puppetca --revoke --clean $builder_fqdn
+- on the builder run: /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
+- sign the puppet cert on lockbox: puppetca -s $builder_fqdn
+- run puppet over and over until it stops changing things (1-4 times)
+- reboot one last time
+- ask a koji admin to re-enable the host
+
+
+   
+

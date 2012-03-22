@@ -78,6 +78,68 @@ time you want to view from the merged logs. This will mail a report
 notification to all the people in the sysadmin-logs group.
 
 
+Audit logs, centrally:
+We've taken the audit logs and enabled our rsyslogd on the hosts to relay
+the audit log contents to our central log server.
+Here's how we did that:
+1. modify the selinux policy so that rsyslogd can read the file(s) in
+   /var/log/audit/audit.log
+
+BEGIN Selinux policy module:
+module audit_via_syslog 1.0;
+
+require {
+    type syslogd_t;
+    type auditd_log_t;
+    class dir { search };
+    class file { getattr read open };
+
+}
+
+#============= syslogd_t ==============
+allow syslogd_t auditd_log_t:dir search;
+allow syslogd_t auditd_log_t:file { getattr read open };
+
+END selinux policy module
+
+2. add config to rsyslog on the clients to repeatedly send all changes 
+   to their audit.log file to the central syslog server as local6
+   
+  # monitor auditd log and send out over local6 to central loghost
+  $ModLoad imfile.so
+
+  # auditd audit.log
+  $InputFileName /var/log/audit/audit.log
+  $InputFileTag tag_audit_log:
+  $InputFileStateFile audit_log
+  $InputFileSeverity info
+  $InputFileFacility local6
+  $InputRunFileMonitor
+
+then modify your emitter to the syslog server to send local6.* there
+
+3. on the syslog server - setup log destinations for:
+    - merged audit logs of all hosts
+      (explicitly drop any non-AVC audit message here)
+       magic exclude line is:
+
+       :msg, !contains, "type=AVC" ~
+       
+
+       that line must be directly above the log entry you want to filter
+       and it has a cascade effect on everything below it unless you 
+       disable the filter  
+
+    - per-host audit logs - this is everything from audit.log
+
+4. On the syslog server - we can run audit2allow/audit2why on the audit logs
+   sent there by doing this:
+   
+   grep 'hostname' /var/log/merged/audit.log | sed 's/^.*tag_audit_log: //' | audit2allow 
+   
+   the sed is to remove the log prefix garbage from syslog transferring the msg
+
+
 Future:
 - additional log reports for errors from http processes or servers
 - SEC - Simple Event Coordinator to report, immediately, on events from a 

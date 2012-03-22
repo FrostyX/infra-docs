@@ -385,16 +385,14 @@ Doing the reboot
    virtualization hosts that the servers are on. You can see the guests per
    virt host on lockbox01 in /var/log/virthost-lists.out
 
-   For each host you will want to:
+   To reboot sets of boxes based on which virthost they are we've written a special
+   script which facilitates it:
 
-     * connect and verify no one is logged in and using it. If they are
-       contact them to log off, etc
-     * grep default /etc/grub.conf # make sure that the kernel you upgraded
-       to will be the one rebooted.
-     * shutdown -h now
+   func-vhost-reboot virthost-fqdn
 
-   This is also a good time to double check that each guest you are starting
-   up is set to be restarted on reboot of the virt host.
+   ex:
+
+sudo func-vhost-reboot virthost13.phx2.fedoraproject.org
 
 Aftermath
 
@@ -403,4 +401,15 @@ Aftermath
     3. Make sure to perform any manual post-boot setup (such as entering
        passphrases for encrypted volumes)
     4. Close outage ticket.
+
+
+Non virthost reboots:
+   If you need to reboot specific hosts and make sure they recover - consider using:
+
+sudo func-host-reboot hostname hostname1 hostname2 ...
+
+   If you want to reboot the hosts one at a time waiting for each to come back before rebooting the next
+   pass a -o to func-host-reboot.
+
+
 
