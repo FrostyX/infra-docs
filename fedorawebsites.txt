@@ -18,14 +18,12 @@ Fedora Websites Release SOP
           * 2.3 For GA
 
      * 3 Fire in the hole
+
      * 4 Tips
 
           * 4.1 Creating Branches
           * 4.2 Checking Out Branch
           * 4.3 Merging branches
-          * 4.4 non-js counter
-          * 4.5 alpha/beta banners (static/js/banner.js)
-          * 4.6 commit message example
 
 Preparing the website for a release
 
@@ -82,16 +80,9 @@ Preparing the website for a release
 
  $ make clean all
 
-   Checks file listing vs what's in LINGUAS (left side is the correct one)
+   Use the script to update the POT, POs and the LINGUAS file (at the root)
 
-     * The ones that only have a " <" on the right side are the ones that are
-       needed
-
- $ diff --side-by-side -B <(ls -1 *.po | sed -n "s/.po//p" | sort) <(cat LINGUAS)
-
-   Double check everything matches
-
- $ ls *.po | wc -l ; wc -l LINGUAS
+ $ ./l10N_update.sh -w fedoraproject.org
 
  $ make httpd/conf/languages.conf
  $ sed -i "s:@DOCUMENTROOT@:/srv/web/start.fedoraproject.org:g" languages.conf.in
@@ -100,9 +91,6 @@ Preparing the website for a release
 
  $ git commit -a
 
-   In /data/content/get-prerelease.html, from Alpha -> Beta
-
- $ sed -i s/-Alpha-/-Beta/g <filename>
 
   Prepare puppet commits
 
@@ -122,29 +110,33 @@ Update website
   For Alpha
 
     1. add Alpha banner
-    2. add "Someone say Alpha" note
-    3. update alpha links in get-prerelease.html
+    2. update the global variables
 
-         1. Ensure href's are consistent with actual filenames of mirrored
-            content
+         2.1 change curr_state to 'Alpha'
 
-              1. You should be able to find the paths in /pub on bapp01 (sudo
+         2.2 check that next_name reflect the name of the next release
+
+    3. test and check all links in get-fedora.html, get-prerelease.html,
+       verify.html
+
+         3.1 Ensure href's are consistent with actual filenames of mirrored
+            content.
+
+             You should be able to find the paths in /pub on bapp01 (sudo
                  su - mirrormanager first)
 
-         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+         3.2 need link to rel-eng SOP here (RFE, doesn't exist yet)
 
-         3. change the Release Notes link to the Alpha Release Notes wiki page
+         3.3 change the Release Notes link to the Alpha Release Notes wiki page
 
     4. modify:
 
-         1. data/content/get-fedora.html (add alpha note)
-         2. data/content/get-prerelease.html (update links)
-         3. static/js/banner.js (alpha banner)
-         4. data/content/verify.html (alpha checksum + signature)
+         4.1 static/js/banner.js (alpha banner )
+         4.2 data/content/verify.html (add the alpha GPG signature)
 
     5. add checksum files
          They should be in bapp01, could use the following command then scp:
-         find /pub/fedora/linux/releases/test/17-Alpha/ -type f -name \
+         $ find /pub/fedora/linux/releases/test/17-Alpha/ -type f -name \
          *CHECKSUM* -exec cp '{}' . \;
 
     6. update the transifex resource
@@ -153,35 +145,39 @@ Update website
 
   For Beta
 
-    1. add countdown banner
-    2. update links beta links in get-prerelease.html
+    1. add countdown banners. Could use the
+       static/images/counter/get_counter.sh script.
 
-         1. Ensure href's are consistent with actual filenames of mirrored
+    2. update the global variables (curr_state to 'Beta')
+
+    3. test and check all links in get-fedora.html, get-prerelease.html,
+       verify.html
+
+        3.1 Ensure href's are consistent with actual filenames of mirrored
             content
 
-              1. You should be able to find the paths in /pub on bapp01 (sudo
+            You should be able to find the paths in /pub on bapp01 (sudo
                  su - mirrormanager first)
 
-         2. need link to rel-eng SOP here (RFE, doesn't exist yet)
+        3.2 need link to rel-eng SOP here (RFE, doesn't exist yet)
 
-         3. change the Release Notes link to the fedorapeople Beta Release
+        3.3 change the Release Notes link to the fedorapeople Beta Release
             Notes (revert previous) 
 
-    3. modify:
+    4. modify:
 
-         1. data/content/counter.html (add languages)
-         2. data/templates/js.html (add release counter and hide banner.js
-         3. static/js/release-counter* (update dates/times, languages)
-         4. data/content/get-prerelease.html (update links)
-         5. data/templates/sidebar (add non-js version of countdown)
-         6. data/content/verify.html
+        4.1 data/content/counter.html (add languages)
+        4.2 data/content/index.html (add languages and define the release date, 
+            add the counter instead of the Alpha banner))
+        4.3 data/templates/js.html (add release counter and hide banner.js
+        4.4 static/js/release-counter* (update dates/times, languages)
 
-    4. remove:
+    5. remove:
           static/checksums/Fedora-XX-Alpha*
 
-    5. add new checksums
+    6. add new checksums
 
-    6. update the transifex resource
+    7. update the transifex resource
          See in tips to know how to do it
 
   For GA
@@ -194,20 +190,15 @@ Update website
    Manually edit the .pot files that are listed as conflicts and correct the
    transifex config file (fedoraproject.org/.tx/config) to use the correct resource
 
+   Edit fedoraproject.org/build/globalvar.py to define curr_state = '' and updating iso_size
+
    Manually go to each site and 'make all test'
 
    On GA release day, tag repo F<release-number>.
 
    Update banner.js to reflect new banner (See file: /static/js/banners.js)
 
-   Change /data/content/get-fedora.html from Alpha -> Beta
-
-     * Note: if you're looking for paths, you should be able to find the
-       paths in /pub on bapp01 (sudo su - mirrormanager first)
-
-   Add alpha/beta banner image (see design team)
-
-   update data/content/verify.html and the static/checksums/
+   update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
 
 Fire in the hole
 
@@ -287,31 +278,6 @@ Tips
  $ git checkout --theirs f13-beta [list of conflicting po files]
  $ git commit
 
-  non-js counter
-
-   <?python
-   from datetime import datetime
-
-   today = datetime.utcnow()
-   release = datetime(2010, 5, 18, 14)
-
-   difference = release - today
-   days = difference.days
-   if difference.seconds > 0 or difference.minutes > 0 or difference.hours > 0: days += 1
-   if days < 0: days = 0
-   days = str(days)
-
-   image_lang = 'en'
-   available_languages = ('ar', 'bn_IN', 'cs', 'da', 'de', 'el', 'en', 'es', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'kn', 'ko', 'ks', 'ml', 'nl', 'pa', 'pl', 'pt', 'pt_BR', 'ro', 'ru', 'si', 'sr', 'sv', 'th', 'tr', 'uk', 'zh_CN', 'zh_TW')
-   if lang in available_languages:
-       image_lang = lang
-   image = image_lang + '/fedora13-countdown-banner-' + days + '.' + image_lang + '.png'
-   ?>
-         <div id="banner">
-                 <a href="http://fedoraproject.org/wiki/Releases/13/Schedule"><img src="${Markup(_('%s/static/images/counter/%s') % (path, image))}" alt="${Markup(_('Fedora 13 Goddard released in %s days!') % days)}" /></a>
-                 <a style="text-decoration: none; font-size: 1.6ex; color: #99AABB;" href="${path}/${lang}/counter">${Markup(_('Add a counter to your own site!'))}</a>
-         </div>
-
   alpha/beta banners (static/js/banner.js)
 
     [
@@ -320,22 +286,6 @@ Tips
      "https://fedoraproject.org/get-prerelease",
      5
    ],
-
-  commit message example
-
- adding f13 countdown banner
- - added languages to counter.html
- - remove banner.js / add release counter to js.html
- - add non-js banner to sidebar.html
- - updated release dates in release-count-ext.js and release-counter.js
- - removed older counter images
- - added new counter images
-
- adding new language for fp.o
- - Persian (fa)
- - Portuguese (Brazilian) (pt_BR)
- - Russian (ru)
-
 
   update the transifex resource
  
