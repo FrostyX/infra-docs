@@ -21,15 +21,22 @@ Contact Information
 
    Location: Phoenix
 
-   Servers: app1, app2, app3, app4, app5, app6, bapp1
+   Servers: app01, app02, app03, app04, app05, app06, bapp02
 
    Purpose: Manage mirrors for Fedora distribution
 
 Description
 
-   TODO
+   Mirrormanager handles our mirroring system. It keeps track of lists of
+valid mirrors and handles handing out metalink urls to end users to download
+packages from. 
 
-  Release Preparation
+On the backend app server (bapp01 or bapp02), mirrormanager runs crawlers to
+check mirror contents, a job to update the public lists and other
+housekeeping jobs. This data is then synced to the app* servers to serve to
+end users. 
+
+= Release Preparation =
 
    MirrorManager should automatically detect the new release version, and
    will create a new Version() object in the database. This is visible on the
@@ -38,13 +45,13 @@ Description
    If the versioning scheme changes, it's possible this will fail. If so,
    contact the Mirror Wrangler.
 
-  Troubleshooting and Resolution
+Troubleshooting and Resolution
 
-    Regenerating the Publiclist
+= Regenerating the Publiclist =
 
-   On bapp1:
+   On bapp02:
 
- sudo su - mirrormanager
+ sudo -u  mirrormanager -i
 
    then
 
@@ -54,15 +61,23 @@ Description
    To make this take effect immediately, you may need to remove the cache on
    the proxies:
 
- # As root on proxy[1-3]
+ # As root on proxy0[1-7]
  rm -rf /srv/cache/mod_cache/*
 
-    Hung admin.fedoraproject.org/mirrormanager
+= Hung admin.fedoraproject.org/mirrormanager =
 
    This generally happens when an app server loses connection to db2.
 
-    1. on bapp1 and app[1-6], su up, and restart apache.
-    2. on bapp1, if crawlers and update-master-directory-list are likewise
+    1. on bapp02 and app[1-6], su up, and restart apache.
+    2. on bapp02, if crawlers and update-master-directory-list are likewise
        hung, kill them too. You may need to delete stale
        /var/lock/mirrormanager/* lockfiles as well.
+
+= Restarting mirrorlist_server = 
+
+mirrorlist_server on the app* machines is managed via supervisord. If you want
+to restart it, use: 
+
+    supervisorctl restart
+
 
