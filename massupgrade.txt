@@ -102,6 +102,9 @@ Special Considerations
 
    (note: you must be a koji admin).
 
+  Additionally, rel-eng and builder boxes may need a special version of rpm. 
+  Make sure to check with rel-eng on any rpm upgrades for them. 
+
   Post reboot action
 
    The following machines require post-boot actions (mostly entering
@@ -111,6 +114,17 @@ Special Considerations
      * backup-2 (LUKS passphrase on boot)
      * sign-vault01 (NSS passphrase for sigul service)
      * sign-bridge01 (NSS passphrase for sigul bridge service)
+     * serverbeach* (requires fixing firewall rules): 
+
+  Each serverbeach host needs 3 or 4 iptables rules added anytime it's
+rebooted or libvirt is upgraded: 
+
+iptables -I FORWARD -o virbr0 -j ACCEPT 
+iptables -I FORWARD -i virbr0 -j ACCEPT 
+iptables -t nat -I POSTROUTING -s 192.168.122.3/32 -j SNAT --to-source 66.135.62.187
+(The source is the internal guest ips, the to-source is the external ips that
+map to that guest ip). If there are multiple guests, each one needs 
+the above SNAT rule inserted. 
 
   Schedule autoqa01 reboot
 
