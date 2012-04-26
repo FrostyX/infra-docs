@@ -45,6 +45,7 @@ Contact Information
 
 <snip here>
  Host bastion.fedoraproject.org
+     User FAS_USERNAME
      ProxyCommand none
      ForwardAgent no
  Host *.phx2.fedoraproject.org *.qa.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org
