@@ -27,4 +27,13 @@ A. multiple steps:
     
    notes --p2p and --tunnelled are so it goes direct from one host to the other
    but uses ssh.
+  
+   Once the migration is complete you will probably need to run this
+   on the new virthost:
+   virsh dumpxml myguest > /etc/libvirt/qemu/myguest.xml
+   virsh destroy myguest
+   virsh define /etc/libvirt/qemu/myguest.xml
+   virsh autostart myguest
+   virsh start myguest
+
 
