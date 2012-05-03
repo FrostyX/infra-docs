@@ -19,14 +19,14 @@ Contact Information
 
    Location: Phoenix
 
-   Servers: value01
+   Servers: value03
 
    Purpose: Provides our IRC bot
 
 Description
 
    zodbot is a supybot based irc bot that we use in our #fedora channels.
-   It runs on value01 as the daemon user. We do not config manage the
+   It runs on value03 as the daemon user. We do not config manage the
    zodbot.conf because supybot makes changes to it on its own. Therefore it
    gets backed up and is treated as data.
 
