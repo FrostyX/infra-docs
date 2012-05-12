@@ -197,6 +197,8 @@ Update website
    On GA release day, tag repo F<release-number>.
 
    Update banner.js to reflect new banner (See file: /static/js/banners.js)
+   Add the release banner in static/images/banners/ 
+    (see https://fedoraproject.org/wiki/F17_Artwork/Submissions/Banners)
 
    update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
 
