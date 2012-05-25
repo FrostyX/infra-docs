@@ -40,6 +40,22 @@ startup
                      # This requirement will go away in a later meetbot release.
  sudo -u daemon supybot -d /var/lib/zodbot/conf/zodbot.conf
 
+Startup issues
+
+  If the bot won't connect, with an error like:
+
+    "Nick/channel is temporarily unavailable"
+
+  found in /var/lib/zodbot/logs/messages.log, hop on Freenode (with your own
+  IRC client) and do the following:
+  
+  /msg nickserv release zodbot [the password]
+
+  The password can be found on the bot's host in
+  /var/lib/zodbot/conf/zodbot.conf
+
+  This should allow the bot to connect again.
+
 Processing interrupted meeting logs
 
    zodbot forgets about meetings if they are in progress when the bot goes
