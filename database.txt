@@ -27,6 +27,8 @@ Database Infrastructure SOP
                * 4.3.4 Smolt
 
      * 5 Note about TurboGears and MySQL
+     * 6 Restoring from backups or specific dbs
+
 
 Contact Information
 
@@ -186,3 +188,25 @@ Note about TurboGears and MySQL
    There's a known bug in TurboGears that causes MySQL clients not to
    automatically reconnect when lost. Typically a restart of the TurboGears
    application will correct this issue.
+
+Restoring from backups or specific dbs.
+
+   Our backups store the latest copy in /backups/ on each db server.
+These backups are created automatically by the db-backup script run fron cron.
+Look in /usr/local/bin for the backup script.
+
+  To restore partially or completely you need to:
+   1. setup postgres on a system
+   2. start postgres/run initdb
+     - if this new system running postgres has already run puppet then it will
+       have wrong config files in /var/lib/pgsql/data - clear them out before
+       you start postgres so initdb can work.
+   3. grab the backups you need from /backups  - also grab global.sql
+      edit up global.sql to only create/alter the dbs you care about
+   4. as postgres run: psql -U postgres -f global.sql
+   5. when this completes you can restore each db with (as postgres user):
+       - createdb $dbname
+       - pg_restore -d dbname dbname_backup_file.db
+   6. restart postgres and check your data.
+
+       
