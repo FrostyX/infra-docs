@@ -89,3 +89,26 @@ Pseudo Users
 
 .. seealso:: nonhumanaccounts.txt
     For information on creating pseudo user accounts for use in pkgdb/bugzilla
+
+fas staging:
+===========
+
+we have a staging fas db setup on db02.stg.phx2.fedoraproject.org - it accessed
+by fas01.stg.phx2.fedoraproject.org
+
+This system is not autopopulated by production fas - it must be done manually.
+To do this you must:
+dump the fas2 db on db-fas01.phx2.fedoraproject.org:
+sudo -u postgres pg_dump -C fas2 > fas2.dump
+scp fas2.dump db02.stg.phx2.fedoraproject.org:/tmp
+
+then on fas01.stg.phx2.fedoraproject.org:
+  /etc/init.d/httpd stop
+
+then on db02.stg.phx2.fedoraproject.org:
+echo "drop database fas2\;" | sudo -u postgres psql ; cat fas2.dump | sudo -u postgres psql
+
+then on fas01.stg.phx2.fedoraproject.org:
+ /etc/init.d/httpd start
+
+that should do it.
