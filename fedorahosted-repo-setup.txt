@@ -139,7 +139,7 @@ Git Repository
  $ sudo git config hooks.maildomain fedoraproject.org
  $ sudo git config hooks.emailprefix [projectname]
  $ sudo git config repouri "http://git.fedorahosted.org/git/?p=projectname.git"
- $ sudo ln -svf /usr/local/bin/git-notifier ./post-receive
+ $ sudo ln -svf /usr/local/bin/git-notifier ./hooks/post-receive
 
   CIAbot Notifications
 
