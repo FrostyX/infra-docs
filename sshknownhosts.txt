@@ -30,4 +30,12 @@ That should do it.
 
 Just like magic, or something.
 
+----------------------
 
+Adding  a host alias to the ssh_known_hosts
+
+If you need to add a host alias to a host in ssh_known_hosts simply
+go to the dir for the host in infra-hosts and add a file named host_aliases
+to the git repo in that dir. Put one alias per line and save.
+
+Then the next time fetch-ssh-keys.py runs it will add those aliases to known hosts
