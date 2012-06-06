@@ -228,7 +228,7 @@ Group B reboots
 
  (due to being on the same virt host as one of above)
 
- koji01.phx2.fedoraproject.org
+ koji04.phx2.fedoraproject.org
  releng03.phx2.fedoraproject.org
  releng04.phx2.fedoraproject.org
 
@@ -270,19 +270,21 @@ Group C reboots
 
    Other Group C hosts:
 
- app01.stg.phx2.fedoraproject.org
  app02.stg.phx2.fedoraproject.org
- koji01.stg.phx2.fedoraproject.org
  noc01.stg.phx2.fedoraproject.org
  proxy01.stg.phx2.fedoraproject.org
  releng01.stg.phx2.fedoraproject.org
  value01.stg.phx2.fedoraproject.org
  virthost13.phx2.fedoraproject.org
 
+ app01.stg.phx2.fedoraproject.org
+ koji01.stg.phx2.fedoraproject.org
  db02.stg.phx2.fedoraproject.org
  fas01.stg.phx2.fedoraproject.org
- pkgs01.stg.phx2.fedoraproject.org
  virthost10.phx2.fedoraproject.org
+
+ pkgs01.stg.phx2.fedoraproject.org
+ virthost11.phx2.fedoraproject.org
 
  bnfs01.phx2.fedoraproject.org
 
@@ -323,7 +325,10 @@ Group C reboots
  app04.phx2.fedoraproject.org
  virthost09.phx2.fedoraproject.org
 
- hosted04.fedoraproject.org
+ hosted01.fedoraproject.org
+ serverbeach06.fedoraproject.org
+
+ hosted02.fedoraproject.org
  serverbeach07.fedoraproject.org
 
  collab04.fedoraproject.org
@@ -336,11 +341,12 @@ Group C reboots
 
  dhcp01.phx2.fedoraproject.org
  relepel01.phx2.fedoraproject.org
+ sign-bridge02.phx2.fedoraproject.org
+ koji03.phx2.fedoraproject.org
  bvirthost05.phx2.fedoraproject.org
 
- koji02.phx2.fedoraproject.org
- sign-bridge01.phx2.fedoraproject.org
- bxen04.phx2.fedoraproject.org
+ releng01.phx2.fedoraproject.org
+ bvirthost06.phx2.fedoraproject.org
 
  (disable each builder in turn, update and reenable).
  ppc11.phx2.fedoraproject.org
@@ -363,11 +369,9 @@ Group C reboots
  x86-17.phx2.fedoraproject.org
  x86-18.phx2.fedoraproject.org
 
- backup01
-
  backup03
 
- sign-vault01
+ sign-vault02
 
 Doing the upgrade
 
