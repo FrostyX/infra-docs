@@ -169,8 +169,8 @@ Group A reboots
  torrent02.fedoraproject.org
  ibiblio02.fedoraproject.org
 
- people02.fedoraproject.org
- internetx01.fedoraproject.org
+ people03.fedoraproject.org
+ ibiblio03.fedoraproject.org
 
  collab03.fedoraproject.org
  serverbeach08.fedoraproject.org
@@ -202,11 +202,11 @@ Group A reboots
  noc01.phx2.fedoraproject.org
  ns02.fedoraproject.org
  ns04.phx2.fedoraproject.org
- ns05.fedoraproject.org
- proxy02.fedoraproject.org
  proxy04.fedoraproject.org
  smtp-mm03.fedoraproject.org
  lockbox02.phx2.fedoraproject.org
+ mm3test.fedoraproject.org
+ packages02.phx2.fedoraproject.org
 
 Group B reboots
 
@@ -239,6 +239,11 @@ Group C reboots
    Outages here should be announced on the infrastructure list.
 
    Group C hosts that have proxy servers on them:
+
+ proxy02.fedoraproject.org
+ ns05.fedoraproject.org
+ hosted-lists01.fedoraproject.org
+ internetx01.fedoraproject.org
 
  app01.dev.fedoraproject.org
  darkserver01.dev.fedoraproject.org
@@ -320,9 +325,11 @@ Group C reboots
  app03.phx2.fedoraproject.org
  value04.phx2.fedoraproject.org
  ns03.phx2.fedoraproject.org
+ darkserver01.phx2.fedoraproject.org
  virthost08.phx2.fedoraproject.org
 
  app04.phx2.fedoraproject.org
+ packages02.phx2.fedoraproject.org
  virthost09.phx2.fedoraproject.org
 
  hosted01.fedoraproject.org
