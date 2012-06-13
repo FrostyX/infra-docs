@@ -7,8 +7,7 @@ Guest Disk Resize SOP
      * 1 Contact Information
      * 2 How to do it
 
-          * 2.1 Xen Guests
-          * 2.2 KVM/libvirt Guests
+          * 2.1 KVM/libvirt Guests
 
 Contact Information
 
@@ -23,58 +22,6 @@ Contact Information
    Purpose: Resize guest disks
 
 How to do it
-
-  Xen Guests
-
-    1. SSH to the xen server and resize the guest's logical volume. If you
-       want to be extra careful, make a snapshot of the LV afterwards so that
-       you can reverse any of the subsequent changes:
-
- lvresize -L [new total size]G /dev/VolGroup00/[guest name]
-
- lvcreate -n [guest name]-snap -L 10G -s /dev/VolGroup00/[guest name] # Optional, but always good to be careful
-
-    2. Shutdown the guest and then start it up again:
-
- xm shutdown -w [guest name]
-
- xm create [guest name]
-
-    3. Login into the guest:
-
- xm console [guest name]
-
-    4. On the guest, run
-
- fdisk /dev/xvda
-
-    5. Delete the third partition (the LVM partition on the guest) and
-       recreate it with the maximum size. Make sure to set its type to LVM.
-    6. Run partprobe:
-
- partprobe
-
-    7. Check the size of the third partition:
-
- fdisk -l /dev/xvda
-
-       If this still reflects the old size, then reboot the guest and verify
-       that its size changed correctly when it comes up again.
-    8. Login to the guest again, and run
-
- pvresize /dev/xvda3
-
-    9. A vgs should now show the new size. Use lvresize to resize the root
-       lv:
-
- lvresize -L [new root partition size]G /dev/GuestVolGroup00/root
-
-   10. Finally, resize the root partition:
-
- resize2fs /dev/GuestVolGroup00/root
-
-       , verify that everything worked out, and delete the snapshot you made
-       if you made one.
 
   KVM/libvirt Guests
 
