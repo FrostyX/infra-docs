@@ -45,7 +45,7 @@ Contact Information
 
    Purpose: This SOP is generic for any outage
 
-   Emergency: [64]https://admin.fedoraproject.org/pager
+   Emergency: https://admin.fedoraproject.org/pager
 
 Users (No Access)
 
@@ -81,46 +81,43 @@ Unplanned Outage
   Reporting or participating in an outage
 
    If you think you've found an outage, get as much information as you can
-   about it at a glance. Copy any errors you get to [65]http://pastebin.ca/.
+   about it at a glance. Copy any errors you get to http://pastebin.ca/.
    Use the following guidelines:
 
    Don't be general.
 
-     * [66]Stop (medium size).png "The wiki is acting slow"
-     * [67]Checkmark.png "Whenever I try to save
-       [68]http://fedoraproject.org/wiki/Infrastructure, I get a proxy error
+     * Stop "The wiki is acting slow"
+     * "Whenever I try to save http://fedoraproject.org/wiki/Infrastructure, I get a proxy error
        after 60 seconds"
 
    Don't report an outage that's already been reported.
 
-     * [69]Stop (medium size).png "/join #fedora-admin; Is the build system
-       broken?"
-     * [70]Checkmark.png "/join #fedora-admin; wait a minute or two; I
-       noticed I can't submit builds, here's the error I get:"
+     * Stop "/join #fedora-admin; Is the build system broken?"
+     * "/join #fedora-admin; wait a minute or two; I                                                       noticed I can't submit builds, here's the error I get:"
 
    Don't suggest drastic or needless changes during an outage (send it to the
    list)
 
-     * [71]Stop (medium size).png "Why don't you just use lighttpd?"
-     * [72]Checkmark.png "You could try limiting MaxRequestsPerChild in
+     * "Why don't you just use lighttpd?"
+     * "You could try limiting MaxRequestsPerChild in
        Apache"
 
    Don't get off topic or be too chatty
 
-     * [73]Stop (medium size).png "Transformers was awesome, but yeah, I
+     * Stop "Transformers was awesome, but yeah, I
        think you guys know what to do next"
-     * [74]Checkmark.png ""
+    
 
    Do research the technologies we're using and answer questions that may
    come up.
 
-     * [75]Stop (medium size).png "Can't you just fix it?"
-     * [76]Checkmark.png "Hey guys, I think this is what you're looking for:
-       [77]http://httpd.apache.org/docs/2.2/mod/mod_mime.html#addencoding"
+     * Stop "Can't you just fix it?"
+     * "Hey guys, I think this is what you're looking for:
+       http://httpd.apache.org/docs/2.2/mod/mod_mime.html#addencoding"
 
-   [78]Idea.png
+   Idea
    If no one can be contacted after 10 minutes or so please see the section
-   below called [79]Determine Severity to determine whether or not someone
+   below called Determine Severity to determine whether or not someone
    should get paged.
 
                      Infrastructure Members (Admin Access)
@@ -138,23 +135,23 @@ Planned Outage
 
    All major planned outages should occur with at least 1 week notice. This
    is not always possible, use best judgment. Please use our standard outage
-   template at: [80]Infrastructure/OutageTemplate Make sure to have another
+   template at: Infrastructure/OutageTemplate Make sure to have another
    person review your template/announcement to check times and services
    affected. Make sure to send the announcement to the lists that are
    affected by the outage: announce, devel-announce, etc.
 
-   Always create a ticket in the ticketing system: [81]Infrastructure/Tickets
+   Always create a ticket in the ticketing system: Infrastructure/Tickets
    Send an email to the fedora-infrastructure-list with more details if
    warranted.
 
-   Remember to follow an existing [82]SOP as much as possible. If anything is
+   Remember to follow an existing SOP as much as possible. If anything is
    missing from the SOP please add it.
 
   Preparations
 
    Remember to schedule an outage in nagios. This is important not just so
    notifications don't get sent but also important for trending and
-   reporting. [83]https://admin.fedoraproject.org/nagios/
+   reporting. https://admin.fedoraproject.org/nagios/
 
   Outage
 
@@ -172,7 +169,7 @@ Planned Outage
    change is ready. Make sure to close the ticket for the outage when it's
    over.
 
-   [84]Idea.png
+   Idea
    Additionally update any SOP's that may have changed in the course of the
    outage
 
@@ -189,32 +186,32 @@ Unplanned Outage
    Some outages require immediate fixing, some don't. A page should never go
    out because someone can't sign the cla. Most of our admins are in US time,
    use your best judgment. If it's bad enough to warrant an emergency page,
-   page one of the admins at: [85]https://admin.fedoraproject.org/pager
+   page one of the admins at: https://admin.fedoraproject.org/pager
 
    Use the following as loose guidelines, just use your best judgment. (
-   [86]Stop (medium size).png Don't page someone. [87]Checkmark.png Do page
+   Stop Don't page someone. Do page
    someone. )
 
-     * [88]Stop (medium size).png "I can't see the Recent Changes on the
+     * Stop "I can't see the Recent Changes on the
        wiki."
-     * [89]Checkmark.png "The entire wiki is not viewable"
-     * [90]Stop (medium size).png I cannot sign the CLA
-     * [91]Checkmark.png I can't change my password in the account system, I
+     * "The entire wiki is not viewable"
+     * Stop  I cannot sign the CLA
+     * I can't change my password in the account system, I
        have admin access and my laptop was just stolen
-     * [92]Stop (medium size).png I can't access awstats for
+     * Stop I can't access awstats for
        fedoraproject.org
-     * [93]Checkmark.png The mirrors list is down.
-     * [94]Stop (medium size).png I think someone misspelled some words on
+     * The mirrors list is down.
+     * Stop I think someone misspelled some words on
        the webpage
-     * [95]Checkmark.png The web page has been hacked and I think someone
+     * The web page has been hacked and I think someone
        notified slashdot.
 
   First Steps
 
    After an outage has been verified, acknowledge the outage in nagios:
-   [96]https://admin.fedoraproject.org/nagios/ and head in to #fedora-admin
+   https://admin.fedoraproject.org/nagios/ and head in to #fedora-admin
    to figure out who is around and coordinate the next course of action.
-   Consult any relevent [97]SOP's for corrective actions.
+   Consult any relevent SOP's for corrective actions.
 
   Fix it
 
@@ -228,7 +225,7 @@ Unplanned Outage
    afraid to tap another team member. Sometimes it's required, sometimes it's
    not. The last layer of defense is to page someone. At present our team is
    small enough that a full escalation path wouldn't do much good. Consult
-   the contact information on each [98]SOP for more information.
+   the contact information on each SOP for more information.
 
   The Aftermath
 
