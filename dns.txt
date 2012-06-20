@@ -95,24 +95,9 @@ Troubleshooting, Resolution and Maintenance
    Look for the: "vpn IN NS" records at the top of fedoraproject.org and copy them for the new child zone.
   
 
-Disabling a proxy with rr-zone:
-
-    on all nameservers - run this:
-
-     /usr/local/bin/rr-zone /etc/rr-zone.cfg disable <ip of proxy>; /var/named/chroot/sign-zones; /etc/init.d/named reload
-
-    to enable a proxy run:
-
-     /usr/local/bin/rr-zone /etc/rr-zone.cfg enable <ip of proxy>; /var/named/chroot/sign-zones; /etc/init.d/named reload
-
-    to reset the dyn zone to it's default configuration (all proxy enabled) run
-
-     /usr/local/bin/rr-zone /etc/rr-zone.cfg reset; /var/named/chroot/sign-zones; /etc/init.d/named reload
-
-    
-    previous enable/disable commands will be preserved between runs. Only running  'reset' will make it forget those 
-    stored commands. This was done to make sure that someone else disabling a proxy was not inadvertently trod on
-    by another sysadmin doing something else.
+Editing/disabling a proxy in dns:
+  - for more information on disabling a proxy from see the README file in the git dns tree
+   on lockbox or see http://infrastructure.fedoraproject.org/infra/dns/README
 
 GeoDNS
 
