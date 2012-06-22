@@ -75,11 +75,11 @@ Physical Machine (dom0 / kvm virthost)
         ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
         --title="install el6" --initrd=/boot/initrd-install.img
 
-   The default here is to use the xen-host-nohd config which requires you to
-   connect via VNC to the box and configure its drives. If this is a new
-   machine or you are fine with blowing everything away, you can instead use
-   http://infrastructure.fedoraproject.org/rhel/ks/xen-host as your
-   kickstart
+   The default here is to use the hardware-rhel-6-nohd config which requires
+   you to connect via VNC to the box and configure its drives. If this is a
+   new machine or you are fine with blowing everything away, you can instead
+   use http://infrastructure.fedoraproject.org/rhel/ks/hardware-rhel-6-minimal
+   as your kickstart
 
    Double and triple check your configuration settings (cat
    /boot/grub/menu.lst), especially your IP information. In places like
@@ -95,14 +95,15 @@ Physical Machine (dom0 / kvm virthost)
    and come back. Once you can ping it again, try to open up a VNC session.
    It can take a couple of minutes after the box is back up for it to
    actually allow vnc sessions. The VNC password is in the kickstart script
-   on lockbox01: "grep vnc /mnt/fedora/app/fi-repo/rhel/ks/xen-host":
+   on lockbox01:
+   grep vnc /mnt/fedora/app/fi-repo/rhel/ks/hardware-rhel-6-nohd
 
  vncviewer $IP:1
 
    If using the standard kickstart script, one can watch as the install
    completes itself, there should be no need to do anything. If using the
-   xen-host-nohd script, one will need to configure the drives. The password
-   is in the kickstart file in the kickstart repo. 
+   hardware-rhel-6-nohd script, one will need to configure the drives. The
+   password is in the kickstart file in the kickstart repo. 
 
   Post Install
 
@@ -111,10 +112,12 @@ Physical Machine (dom0 / kvm virthost)
 
    If all goes well, the vnc session will close, the box will reboot and come
    back up as the new host. The default root password is also listed in the
-   kickstart script, from lockbox01: grep rootpw
-   /mnt/fedora/app/fi-repo/rhel/ks/xen-host Most physical machines are to be
-   used as xen hosts, If that is the case with this host, just install
-   puppet, update the box and follow the normal puppet instructions
+   kickstart script, from lockbox01:
+   grep rootpw /mnt/fedora/app/fi-repo/rhel/ks/hardware-rhel-6-nohd
+
+   Most physical machines are to be used as virtual hosts.
+   If that is the case with this host, just install puppet, update the box and
+   follow the normal puppet instructions
 
 Virtual Machine (domU)
 
