@@ -13,21 +13,21 @@ Account Deletion SOP
        disabled.
 
    Contents
-     * [45]1 Disable
+     * 1 Disable
 
-          * [46]1.1 Disable Accounts
-          * [47]1.2 Disable Groups
+          * 1.1 Disable Accounts
+          * 1.2 Disable Groups
      * User Requested disables
 
-     * [48]2 Renames
+     * 2 Renames
 
-          * [49]2.1 Rename Accounts
-          * [50]2.2 Rename Groups
+          * 2.1 Rename Accounts
+          * 2.2 Rename Groups
 
-     * [51]3 Deletion
+     * 3 Deletion
 
-          * [52]3.1 Delete Accounts
-          * [53]3.2 Delete Groups
+          * 3.1 Delete Accounts
+          * 3.2 Delete Groups
 
 
 Disable
@@ -65,10 +65,10 @@ Disable
    There is no explicit way to disable groups in FAS2. Instead, we close the
    group for adding new members and optionally remove existing members from
    it. This can be done from the web UI if you are an administrator of the
-   group or you are in the accounts group. First, go to the group info page
-   (ex: [[54][1]]). Then click the (edit) link next to Group Details. Make
-   sure that the Invite Only box is checked. This will prevent other users
-   from requesting the group on their own.
+   group or you are in the accounts group. First, go to the group info page. 
+   Then click the (edit) link next to Group Details. Make sure that the 
+   Invite Only box is checked. This will prevent other users from requesting 
+   the group on their own.
 
    If you want to remove the existing users, View the Group info, then click
    on the View Member List link. Click on All under the Results heading. Then
@@ -156,7 +156,7 @@ Renames
 
   Rename Accounts
 
-   [55]Warning (medium size).png
+   Warning
    Needs more eyes
    This list may not be complete.
 
@@ -181,7 +181,7 @@ Renames
 
   Rename Groups
 
-   [56]Warning (medium size).png
+   Warning
    Needs more eyes
    This list may not be complete.
 
@@ -201,7 +201,7 @@ Deletion
    filesystem permissions so we have to look there as well. Not catching
    these places may lead to security issus should the UID/GID ever be reused.
 
-   [57]Note.png
+   Note
    Recommended to rename instead
    When not strictly necessary to purge all traces of an account, it's
    highlyrecommended to rename the user or group to something like
@@ -210,12 +210,12 @@ Deletion
 
   Delete Accounts
 
-   [58]Warning (medium size).png
+   Warning
    Needs more eyes
    This list may be incomplete. Needs more people to look at this and find
    places that may need to be updated
 
-     * Check everything for the [59]#Rename Accounts case.
+     * Check everything for the #Rename Accounts case.
      * Figure out what boxes a user may have had access to in the past. This
        means you need to look at all the groups a user may ever have been
        approved for (even if they are not approved for those groups now). For
@@ -231,7 +231,7 @@ Deletion
      * Any files owned by that uid must be reassigned to another user or
        removed.
 
-   [60]Warning (medium size).png
+   Warning
    What to do about backups?
    Backups pose a special problem as they may contain the uid that's being
    removed. Need to decide how to handle this
@@ -240,12 +240,12 @@ Deletion
 
   Delete Groups
 
-   [61]Warning (medium size).png
+   Warning
    Needs more eyes
    This list may be incomplete. Needs more people to look at this and find
    places that may need to be updated
 
-     * Check everything for the [62]#Rename Groups case.
+     * Check everything for the #Rename Groups case.
      * Figure out what boxes may have had files owned by that group. This
        means that you'd need to look at the users in that group, what boxes
        they have shell accounts on, and then look at those boxes. groups used
@@ -259,7 +259,7 @@ Deletion
      * Any files owned by that GID must be reassigned to another group or
        removed.
 
-   [63]Warning (medium size).png
+   Warning
    What to do about backups?
    Backups pose a special problem as they may contain the gid that's being
    removed. Need to decide how to handle this
