@@ -17,8 +17,8 @@ Configuration
 Instances:
 
   Fedora Project runs two nagios instances, nagios (noc01) 
-  [https://admin.fedoraproject.org/nagios] and nagios-external (noc02) 
-  [http://admin.fedoraproject.org/nagios-external], you must be in 
+  https://admin.fedoraproject.org/nagios and nagios-external (noc02) 
+  http://admin.fedoraproject.org/nagios-external, you must be in 
   the 'sysadmin' group to access them.
 
 Staging Istances:
@@ -46,7 +46,7 @@ Production and staging istances through SSH:
   Note: Please make sure you are into 'sysadmin' and 'sysadmin-noc' FAS groups 
         before trying to access these hosts.
 
-  [See SSH Access SOP]
+  See SSH Access SOP
 
 NRPE:
 
