@@ -39,8 +39,20 @@ Description
   ``/etc/fedmsg.d/ssl.py`` which is kept in puppet in
   ``puppet/modules/fedmsg/templates/fedmsg.d/ssl.py.erb``.
 
+  Each service-host has its own key.  This means:
 
-  TODO -- write about permissions on the private keys
+   - A key is not shared across multiple instances of a service on
+     different machines.  i.e., bodhi on app01 and bodhi on app02 should have
+     different key/cert pairs.
+   - A key is not shared across multiple services on a host.  i.e., mediawiki
+     on app01 and bodhi on app01 should have different key/cert pairs.
+
+  The attempt here is to minimize the number of potential attack vectors.
+  Each private key should be readable only by the service that needs it.
+  bodhi runs under mod_wsgi in apache and should run as its own unique bodhi
+  user (not as apache).  The permissions for its.phx2.fedoraproject.org
+  private_key, when deployed by puppet, should be read-only for that local
+  bodhi user.
 
   TODO -- write about the CRL
    - it is created by the rebuild script.
@@ -61,9 +73,9 @@ Adding a new key for a new service-host
 ---------------------------------------
 
   In ``config/secure/fedmsg`` run::
-  
+
     $ ./build-and-sign-key <service>-<fqdn>
- 
+
   For instance, if we bring up a new app host, app10.phx2.fedoraproject.org,
   we'll need to generate a new cert/key pair for each fedmsg-enabled service
   that will be running on it, so you'd run::
@@ -86,9 +98,9 @@ Adding a new key for a new service-host
 Revoking a key
 --------------
 
-  
+
   In ``config/secure/fedmsg`` run::
-  
+
     $ ./revoke-full <service>-<fqdn>
 
   This will alter ``config/secure/fedmsg/keys/crl.pem`` which should be picked
