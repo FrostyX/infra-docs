@@ -1,0 +1,98 @@
+fedmsg (Fedora Messaging) Certs, Keys, and CA - SOP
+===================================================
+
+  X509 certs, private RSA keys, Certificate Authority, and Certificate
+  Revocation List.
+
+Contact Information
+-------------------
+
+  Owner:        Fedora Infrastructure Team
+  Contact:      #fedora-admin, #fedora-apps
+  Servers:      app0[1-7], packages0[1-2], fas01, pkgs01
+  Purpose:      Certify fedmsg messages come from authentic sources.
+
+Description
+-----------
+
+  fedmsg sends JSON-encoded messages from many services to a zeromq messaging
+  bus.  We're not concerned with encrypting the messages, only with signing them
+  so an attacker cannot spoof.
+
+  Every instance of each service on each host has its own cert and private key,
+  signed by the CA.  By convention, we name the certs <service>-<fqdn>.{crt,key}
+  For instance, bodhi has the following certs:
+
+    - bodhi-app01.phx2.fedoraproject.org
+    - bodhi-app02.phx2.fedoraproject.org
+    - bodhi-app03.phx2.fedoraproject.org
+      ...
+    - bodhi-app01.stg.phx2.fedoraproject.org
+    - bodhi-app02.stg.phx2.fedoraproject.org
+
+  Scripts to generate new keys, sign them, and revoke them live in the private
+  repo in ``config/secure/fedmsg/``.  The keys and certs themselves (including
+  ca.crt and the CRL) live in a ``keys/`` subdirectory there, so in
+  ``config/secure/fedmsg/keys``.
+
+  fedmsg is locally configured to find the key it needs by looking in
+  ``/etc/fedmsg.d/ssl.py`` which is kept in puppet in
+  ``puppet/modules/fedmsg/templates/fedmsg.d/ssl.py.erb``.
+
+
+  TODO -- write about permissions on the private keys
+
+  TODO -- write about the CRL
+   - it is created by the rebuild script.
+   - but, where is it hosted/publicly available?
+
+
+Wiping and Rebuilding Everything
+--------------------------------
+
+  There is a script in ``config/secure/fedmsg/`` named
+  ``rebuild-all-fedmsg-certs``.  You can run it with no arguments to wipe out
+  the old and generate a new CA root certificate, a signing cert and key, and
+  all key/cert pairs for all service-hosts.
+
+  .. note:: Warning -- Obviously, this will wipe everything.  Do you want that?
+
+Adding a new key for a new service-host
+---------------------------------------
+
+  In ``config/secure/fedmsg`` run::
+  
+    $ ./build-and-sign-key <service>-<fqdn>
+ 
+  For instance, if we bring up a new app host, app10.phx2.fedoraproject.org,
+  we'll need to generate a new cert/key pair for each fedmsg-enabled service
+  that will be running on it, so you'd run::
+
+    $ ./build-and-sign-key shell-app10.phx2.fedoraproject.org
+    $ ./build-and-sign-key bodhi-app10.phx2.fedoraproject.org
+    $ ./build-and-sign-key mediawiki-app10.phx2.fedoraproject.org
+
+  Just creating the keys isn't quite enough, there are two more things you'll
+  need to do.
+
+  You need to edit ``config/secure/fedmsg/rebuild-all-fedmsg-certs`` and
+  add the command you just ran, so that next time certs need to be blown away
+  and recreated, the new service-hosts will be included.
+
+  You need to ensure that the keys are distributed to the host with the proper
+  permissions.  Only the bodhi user should be able to access bodhi's private
+  key.
+
+Revoking a key
+--------------
+
+  
+  In ``config/secure/fedmsg`` run::
+  
+    $ ./revoke-full <service>-<fqdn>
+
+  This will alter ``config/secure/fedmsg/keys/crl.pem`` which should be picked
+  up and served publicly, and then consumed by all fedmsg consumers globally.
+
+  .. note:: At the time of this writing, the CRL is not actually used.  I need
+            one publicly available first so we can test it out.
