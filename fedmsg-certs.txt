@@ -12,6 +12,16 @@ Contact Information
   Servers:      app0[1-7], packages0[1-2], fas01, pkgs01
   Purpose:      Certify fedmsg messages come from authentic sources.
 
+TODOs
+-----
+ - write about the CRL
+
+   - it is created by the rebuild script.
+   - but, where is it hosted/publicly available?
+
+ - rewrite this doc to keep the cert-build scripts in a public location (like
+   puppet) but keep the keys in ``config/secure/fedmsg``.
+
 Description
 -----------
 
@@ -54,9 +64,6 @@ Description
   private_key, when deployed by puppet, should be read-only for that local
   bodhi user.
 
-  TODO -- write about the CRL
-   - it is created by the rebuild script.
-   - but, where is it hosted/publicly available?
 
 
 Wiping and Rebuilding Everything
