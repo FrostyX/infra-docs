@@ -12,13 +12,6 @@ Contact Information
   Servers:      app0[1-7], packages0[1-2], fas01, pkgs01
   Purpose:      Certify fedmsg messages come from authentic sources.
 
-TODOs
------
- - write about the CRL
-
-   - it is created by the rebuild script.
-   - but, where is it hosted/publicly available?
-
 Description
 -----------
 
@@ -60,6 +53,9 @@ Description
   user (not as apache).  The permissions for its.phx2.fedoraproject.org
   private_key, when deployed by puppet, should be read-only for that local
   bodhi user.
+
+  For more information on how fedmsg uses these certs see
+  http://fedmsg.readthedocs.org/en/latest/crypto.html
 
 
 Configuring the Scripts
@@ -126,6 +122,8 @@ Revoking a key
   This will alter ``private/config/secure/fedmsg/keys/crl.pem`` which should be
   picked up and served publicly, and then consumed by all fedmsg consumers
   globally.
+
+  ``crl.pem`` is publicly available at http://fedoraproject.org/fedmsg/crl.pem
 
   .. note:: At the time of this writing, the CRL is not actually used.  I need
             one publicly available first so we can test it out.
