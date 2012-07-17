@@ -35,7 +35,7 @@ An optional company name []:
 Repeat the steps above but add in the following:
 
 openssl x509 -req -days 30 -in ${ssl_name}.csr -signkey ${ssl_name}.pem
--out ${ssl_name}.crt
+-out ${ssl_name}.cert
 Signature ok
 subject=/C=US/ST=NM/L=Raleigh/O=Red Hat/OU=Fedora
 Project/CN=lists.fedorahosted.org/emailAddress=admin@fedoraproject.org
