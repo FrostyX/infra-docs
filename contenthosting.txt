@@ -88,7 +88,7 @@ Who can host? What can be hosted?
    your quota, etc. If you have any questions or concerns about this please
    let us know. Generally you will use rsync. For example:
 
- rsync -av --progress ./my.iso alt.fedoraproject.org:/srv/pub/alt/mySpace/
+ rsync -av --progress ./my.iso secondary01.fedoraproject.org:/srv/pub/alt/mySpace/
 
   Important Notice About Backups
 

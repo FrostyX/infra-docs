@@ -8,7 +8,7 @@ export ssl_name=<fqdn of host> # lists.fedorahosted.org for example
 # 8192 does not work with various boxes so we use 4096 currently.
 openssl genrsa -out ${ssl_name}.pem 4096
 # 
-openssl req -new  -key ${ssl_name}.pem -out lists.fedorahosted.org.csr
+openssl req -new  -key ${ssl_name}.pem -out $(ssl_name}.csr
 
 Country Name (2 letter code) [XX]:US
 State or Province Name (full name) []:NM
