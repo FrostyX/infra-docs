@@ -125,5 +125,9 @@ Revoking a key
 
   ``crl.pem`` is publicly available at http://fedoraproject.org/fedmsg/crl.pem
 
+  .. note:: Even though crl.pem lives in the private repo, we're just keeping
+            it there for convenience.  It really *should* be served publicly,
+            so don't panic.  :)
+
   .. note:: At the time of this writing, the CRL is not actually used.  I need
             one publicly available first so we can test it out.
