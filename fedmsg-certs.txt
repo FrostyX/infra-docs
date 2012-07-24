@@ -33,7 +33,7 @@ Description
   Scripts to generate new keys, sign them, and revoke them live in the puppet
   repo in ``puppet/modules/fedmsg/files/cert-tools/``.  The keys and certs
   themselves (including ca.crt and the CRL) live in the private repo in
-  ``private/config/secure/fedmsg/keys/``
+  ``private/fedmsg-certs/keys/``
 
   fedmsg is locally configured to find the key it needs by looking in
   ``/etc/fedmsg.d/ssl.py`` which is kept in puppet in
@@ -65,7 +65,7 @@ Configuring the Scripts
   located in ``puppet/modules/fedmsg/files/cert-tools``.
 
   Before you use them, you'll need to point them at the right directory to
-  modify.  By default, this is ``~/private/config/secure/fedmsg/keys/``.  You
+  modify.  By default, this is ``~/private/fedmsg-certs/keys/``.  You
   can change that by editing ``puppet/modules/fedmsg/files/cert-tools/vars`` in
   the event that you have the private repo checked out to an alternate location.
 
@@ -119,7 +119,7 @@ Revoking a key
     $ source ./vars
     $ ./revoke-full <service>-<fqdn>
 
-  This will alter ``private/config/secure/fedmsg/keys/crl.pem`` which should be
+  This will alter ``private/fedmsg-certs/keys/crl.pem`` which should be
   picked up and served publicly, and then consumed by all fedmsg consumers
   globally.
 
