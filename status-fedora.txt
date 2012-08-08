@@ -17,6 +17,7 @@ Contact Information
     Servers:   An OpenShift instance
     Purpose:   Give status information to users about the current
                 status of our public services.
+    Upstream:  http://git.fedorahosted.org/git/fedora-status.git
 
 How it works
 ------------
@@ -27,16 +28,10 @@ will create the HTML page.
 
 Updating the page
 -----------------
- To update the status at http://status.fedoraproject.org/, you
-should first checkout the OpenShift git repo available at:
-    ssh://1aa9e6a413c546b29736adca52b46dff@status-fedora1.rhcloud.com/~/git/status.git/
- For this to work, your ssh key must have been added to OpenShift.
- After the checkout, cd to the status directory.
- To change the status of any service, use the ./manage.py command,
-this will pull the repo (so you are modifying the latest version),
-update the statuses.json file, git commit the statuses.json file,
-and finally it will push the new status to OpenShift, which will then
-update the static html file service to the users.
+ 1. Check out the repo at
+ssh://1aa9e6a413c546b29736adca52b46dff@status-fedora1.rhcloud.com/~/git/status.git/
+ 2. cd status
+ 3. Run ./manage.py
 
 Usage of manage.py
 ------------------
