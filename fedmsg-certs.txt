@@ -99,7 +99,7 @@ Adding a new key for a new service-host
     $ ./build-and-sign-key bodhi-app10.phx2.fedoraproject.org
     $ ./build-and-sign-key mediawiki-app10.phx2.fedoraproject.org
 
-  Just creating the keys isn't quite enough, there are two more things you'll
+  Just creating the keys isn't quite enough, there are three more things you'll
   need to do.
 
   You need to edit
@@ -112,6 +112,13 @@ Adding a new key for a new service-host
   key.  This can be accomplished by using the ``fedmsg::certificate`` in
   puppet.  It should distribute your new keys to the correct hosts and
   correctly permission them.
+
+  Lastly, if you haven't already updated the global fedmsg config, you'll need
+  to.  You need to add your new service-node to ``fedmsg.d/endpoint.py`` and
+  to ``fedmsg.d/ssl.py``.  Those can be found in
+  ``puppet/modules/fedmsg/templates/fedmsg.d``.  See
+  http://fedmsg.readthedocs.org/en/latest/config.html for more information on
+  the layout and meaning of those files.
 
 Revoking a key
 --------------
