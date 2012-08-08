@@ -109,7 +109,9 @@ Adding a new key for a new service-host
 
   You need to ensure that the keys are distributed to the host with the proper
   permissions.  Only the bodhi user should be able to access bodhi's private
-  key.
+  key.  This can be accomplished by using the ``fedmsg::certificate`` in
+  puppet.  It should distribute your new keys to the correct hosts and
+  correctly permission them.
 
 Revoking a key
 --------------
