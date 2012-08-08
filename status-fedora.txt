@@ -1,0 +1,52 @@
+Fedora Status Service - SOP
+===========================
+
+     Fedora-Status is the software that generates the page at
+    http://status.fedoraproject.org/. This page should be kept
+    up to date with the current status of the services ran by
+    Fedora Infrastructure.
+     This page is hosted at an OpenShift instance available at
+    http://status-fedora1.rhcloud.com/ (status.fp.o is an alias).
+     The upstream repository is fedora-status on FedoraHosted.org.
+
+Contact Information
+-------------------
+
+    Owner:     Fedora Infrastructure Team
+    Contact:   #fedora-admin, #fedora-noc
+    Servers:   An OpenShift instance
+    Purpose:   Give status information to users about the current
+                status of our public services.
+
+How it works
+------------
+ To keep this website as stable as can be, the page is
+generated at the time of upload by OpenShift.
+ As soon as you push to the OpenShift repo, a build hook
+will create the HTML page.
+
+Updating the page
+-----------------
+ To update the status at http://status.fedoraproject.org/, you
+should first checkout the OpenShift git repo available at:
+    ssh://1aa9e6a413c546b29736adca52b46dff@status-fedora1.rhcloud.com/~/git/status.git/
+ For this to work, your ssh key must have been added to OpenShift.
+ After the checkout, cd to the status directory.
+ To change the status of any service, use the ./manage.py command,
+this will pull the repo (so you are modifying the latest version),
+update the statuses.json file, git commit the statuses.json file,
+and finally it will push the new status to OpenShift, which will then
+update the static html file service to the users.
+
+Usage of manage.py
+------------------
+ manage.py has three positional arguments: <service> <new_status> <new_message>.
+ service is the service you want to modify the visible status of, this is one
+of the names in the right side of a  block on the status page, when you want
+to update all services at once, just let this be "-".
+ new_status should be "good", "minor" or "major", and will be the new
+status for the given service(s).
+ new_message is the message to detail the status in the box, you can also
+let this be "-" to use "Everything seems to be working."
+ manage.py also has an optional argument --general-info, which will
+update the text in the bar under the global status.
