@@ -44,13 +44,20 @@ FAS Accounts
 
     2. Have a FAS admin set the account status to "bot" and set its UID below
        10000. Make sure to check that this does not break any group
-       references or file ownerships first. (TODO: add method for determining
-       the next available UID)
+       references or file ownerships first.
 
-          * On db2:
+          * On db-fas01:
             $ sudo -u postgres psql fas2;
+            -- Set it to a bot account so its not inactivated
             => UPDATE people SET status='bot' WHERE username='username';
-            => UPDATE people SET uid='newuid' WHERE username='username';
+            -- delete references to the current uid
+            => delete from visit_identity where user_id in (select id from
+            -- Find the last used id in the range we use for bots
+            => select id, username from people where id < 10000 order by id;
+                  people where uername = 'username');
+            -- Set the account to use the newid  This should be one more than
+               the largest id returned by the previous query
+            => UPDATE people SET id=NEWID WHERE username='username';
 
     3. Get the account into any necessary groups for permissions that it may
        need. Common ones include:
