@@ -29,7 +29,9 @@ will create the HTML page.
 Updating the page
 -----------------
  1. Check out the repo at
-ssh://1aa9e6a413c546b29736adca52b46dff@status-fedora1.rhcloud.com/~/git/status.git/
+ssh://bab5ba6eb9b94f2083fdeefc5e87309b@status-fedora2.rhcloud.com/~/git/status.git/
+
+(old repo is at: ssh://1aa9e6a413c546b29736adca52b46dff@status-fedora1.rhcloud.com/~/git/status.git/ )
  2. cd status
  3. Run ./manage.py
 
