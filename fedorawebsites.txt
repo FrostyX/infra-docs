@@ -289,7 +289,12 @@ Tips
      5
    ],
 
-  update the transifex resource
+ update the transifex resource
+ 
+ block the current resource to not let translators submit on the "old" branch
+ log at
+https://fedora.transifex.com/projects/p/fedora-web/resource/fedoraproject-org-master/edit/
+ for example.
  
  once you've created the new branch, and make necessary html changes
  $ git checkout f17-alpha
@@ -301,10 +306,13 @@ Tips
  new one, like:
  [fedora-web.fedoraproject-org-f17-alpha]
 
+ create the remote resource
+ $ tx push -s
+
  push current translations to the new resource. --skip don't stop if failed to
 push (fails if no translated strings)
  $ tx push -t --skip
-
+ 
  refresh the pot
  $ make pot
 
