@@ -9,31 +9,32 @@ Contact Information
 
    Location: serverbeach
 
-   Servers: hosted1, collab1
+   Servers: hosted-lists01, collab03
 
    Purpose: Provides mailing list services.
 
 Description
 
    Mailing list services for Fedora Hosted projects are located on the
-   hosted1.fedoraproject.org server. Fedora Project mailing lists are on
-   collab1.
+   hosted-lists01.fedoraproject.org server.
+
+   Fedora Project mailing lists are on collab03.
 
 Common Tasks
 
   Creating a new mailing list
 
-     * Log into hosted1 or collab1
+     * Log into hosted-lists01 or collab03
      * sudo /usr/local/bin/fedora-mailing-list-setup
 
- [you@hosted1 ~] $ sudo /usr/local/bin/fedora-mailing-list-setup
+ [you@hosted-lists01 ~] $ sudo /usr/local/bin/fedora-mailing-list-setup
  Password:
  Project name: project
  List name: project-devel
  Admin username: username # This is the admin user for the list.
  FAS Username: yourfasusername # This is the admin adding the lists username
  FAS Password:                                 # This is the fas password for the admin user adding the list.
- [you@hosted1 ~] $
+ [you@hosted-lists01 ~] $
 
    Note that list names should make sense, and not contain the words 'fedora'
    or 'list' - the fact that it has to do with Fedora and that it's a list
@@ -84,7 +85,7 @@ Troubleshooting and Resolution
 
 List Administration
 
-   The mailman site password for hosted1 or collab1 can be found it
+   The mailman site password for hosted-lists01 or collab03 can be found it
    /root/mm_sitepass
 
  sudo cat /root/mm_sitepass
@@ -122,11 +123,11 @@ ML password reset
 
 Errors from mailman cron jobs showing things like:
 
-  Subject: Cron <mailman@collab1> /usr/lib/mailman/cron/senddigests
+  Subject: Cron <mailman@collab03> /usr/lib/mailman/cron/senddigests
   return unicode(s, self.input_codec).encode(self.output_codec)
   UnicodeError: ISO-2022-JP encoding error: invalid character \xfa
 
-- login to the machine hosting the list (collab1 or hosted1).
+- login to the machine hosting the list (collab03 or hosted-lists01).
 - as root, modify /etc/passwd to make the shell for the mailman user be
   /bin/bash
 - as root su to the mailman user:
@@ -156,7 +157,7 @@ Mailman migration
      * The list archives, in mbox form
        (/var/lib/mailman/archives/private/<listname>.mbox)
 
-   Put these items into their respective places on collab1.
+   Put these items into their respective places on collab03.
 
    If required at this point, change the list name as follows:
 
