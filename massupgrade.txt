@@ -175,9 +175,6 @@ Group A reboots
  collab03.fedoraproject.org
  serverbeach08.fedoraproject.org
 
- hosted03.fedoraproject.org
- serverbeach10.fedoraproject.org
-
  insight01.phx2.fedoraproject.org
  virthost02.phx2.fedoraproject.org
 
