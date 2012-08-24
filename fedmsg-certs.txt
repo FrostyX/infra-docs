@@ -99,10 +99,13 @@ Adding a new key for a new service-host
     $ ./build-and-sign-key bodhi-app10.phx2.fedoraproject.org
     $ ./build-and-sign-key mediawiki-app10.phx2.fedoraproject.org
 
-  Just creating the keys isn't quite enough, there are three more things you'll
+  Just creating the keys isn't quite enough, there are four more things you'll
   need to do.
 
-  You need to edit
+  First, you need to commit them to the private repo (where they were created)
+  and push.
+
+  Second, You need to edit
     ``puppet/modules/fedmsg/files/cert-tools/rebuild-all-fedmsg-certs``
   and add the command you just ran, so that next time certs need to be blown
   away and recreated, the new service-hosts will be included.
