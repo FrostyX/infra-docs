@@ -209,7 +209,9 @@ Unplanned Outage
   First Steps
 
    After an outage has been verified, acknowledge the outage in nagios:
-   https://admin.fedoraproject.org/nagios/ and head in to #fedora-admin
+   https://admin.fedoraproject.org/nagios/, update the related system on the
+   status dashboard (see the status-fedora SOP) and verify changes at
+   http://status.fedoraproject.org, then head in to #fedora-admin
    to figure out who is around and coordinate the next course of action.
    Consult any relevent SOP's for corrective actions.
 
@@ -226,6 +228,11 @@ Unplanned Outage
    not. The last layer of defense is to page someone. At present our team is
    small enough that a full escalation path wouldn't do much good. Consult
    the contact information on each SOP for more information.
+
+  The Resolution
+
+   Once the services are restored, an update to the status dashboard should be
+   pushed to show the services are restored. 
 
   The Aftermath
 
