@@ -31,7 +31,8 @@ Outage Infrastructure SOP
                * 5.2.2 First Steps
                * 5.2.3 Fix it
                * 5.2.4 Escalate
-               * 5.2.5 The Aftermath
+               * 5.2.5 The Resolution
+               * 5.2.6 The Aftermath
 
 Contact Information
 
@@ -76,7 +77,9 @@ Unplanned Outage
    When reporting an outage remember that the admins will typically drop
    everything they are doing to check what the problem is. They won't be
    happy to find out your cert has expired or you're using the wrong
-   username.
+   username. Additionally, check the status dashboard
+   (http://status.fedoraproject.org) to verify that there is no previously
+   reported outage that may be causing and/or related to your issue.
 
   Reporting or participating in an outage
 
@@ -155,6 +158,9 @@ Planned Outage
 
   Outage
 
+   Prior to beginning an outage to any monitored service on
+   http://status.fedoraproject.org please push an update to reflect the outage
+   (see status-fedora SOP).
    Report all information in #fedora-admin. Coordination is extremely
    important, it's rare for our group to meet in person and IRC is our only
    real-time communication device. If a web site is out please put up some
@@ -164,10 +170,14 @@ Planned Outage
 
    Once the outage is over ensure that all services are up and running.
    Ensure all nagios services are back to green. Notify everyone in
-   #fedora-admin to scan our services for issues. If the outage included a
+   #fedora-admin to scan our services for issues. Once all services are
+   cleared update the status.fp.o dashboard. If the outage included a
    new feature or major change for a group, please notify that group that the
    change is ready. Make sure to close the ticket for the outage when it's
-   over.
+   over. 
+
+   Once the services are restored, an update to the status dashboard should be
+   pushed to show the services are restored.
 
    Idea
    Additionally update any SOP's that may have changed in the course of the
