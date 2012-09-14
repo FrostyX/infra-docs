@@ -52,10 +52,11 @@ VCS/GIT
 
    or if you've got a checkout already:
 
- cd puppet
+ cd puppet (or private depending on what you want to pull)
  git pull
 
-   You should pull changes before starting in on any changes yourself.
+   You should pull changes before starting in on any changes yourself. This
+   saves unnecessary edit conflicts and headaches later.
 
 Altering config files
 
