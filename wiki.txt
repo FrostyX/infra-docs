@@ -18,6 +18,9 @@ Description
 
    Our wiki currently runs mediawiki.
 
+Request:
+    Whenever you changes anything on the wiki (bugfix, configuration, plugins,
+...), please update the page at https://fedoraproject.org/wiki/WikiChanges .
 
 Dealing with Spammers:
   If you find a spammer is editing pages in the wiki do the following:

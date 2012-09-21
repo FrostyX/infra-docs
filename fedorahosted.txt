@@ -10,7 +10,7 @@ Contact Information
 
    Location: Serverbeach
 
-   Servers: hosted3, hosted4
+   Servers: hosted01, hosted02
 
    Purpose: Provide hosting place for open source projects
 
@@ -35,7 +35,7 @@ How to setup a new hosted project
     1. Create source group in Fedora Account System (<scm>project
        should be the group name)
     2. Create source repo <see hosted repository setup SOP>
-    3. Log into hosted1
+    3. Log into hosted01
     4. Create new project space:
 
  $ sudo /usr/local/bin/hosted-setup.sh <project name> <project admin> <scm type>
