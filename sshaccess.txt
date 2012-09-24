@@ -43,7 +43,7 @@ Contact Information
 
    then, add the following:
 
-<snip here>
+
  Host bastion.fedoraproject.org
      User FAS_USERNAME
      ProxyCommand none
@@ -51,7 +51,7 @@ Contact Information
  Host *.phx2.fedoraproject.org *.qa.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org
      User FAS_USERNAME
      ProxyCommand ssh -W %h:%p bastion.fedoraproject.org
-<snip here>
+
 
    One slight annoyance with this method is that you must include the
    .phx2.fedoraproject.org part when you SSH to Fedora machines in order for
