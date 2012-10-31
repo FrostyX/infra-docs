@@ -142,6 +142,7 @@ Update website
     6. update the transifex resource
          See in tips to know how to do it
 
+    7. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
 
   For Beta
 
@@ -169,8 +170,7 @@ Update website
         4.1 data/content/counter.html (add languages)
         4.2 data/content/index.html (add languages and define the release date, 
             add the counter instead of the Alpha banner))
-        4.3 data/templates/js.html (add release counter and hide banner.js
-        4.4 static/js/release-counter* (update dates/times, languages)
+        4.3 static/js/release-counter* (update dates/times, languages)
 
     5. remove:
           static/checksums/Fedora-XX-Alpha*
@@ -179,6 +179,8 @@ Update website
 
     7. update the transifex resource
          See in tips to know how to do it
+
+    8. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
 
   For GA
 
