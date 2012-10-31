@@ -15,7 +15,7 @@ Description
 -----------
 
   Users outside of Fedora Infrastructure can listen to the production message
-  bus by connecting specific addresses.  This is required for local users to
+  bus by connecting to specific addresses.  This is required for local users to
   run their own hubs and message processors ("Consumers").  It is also
   required for user-facing tools like fedmsg-notify to work.
   
@@ -44,7 +44,7 @@ Connection Flow
   The flow for the raw zmq stream provided by fedmsg-gateway looks something
   like this:
 
-    Client -> haproxy(proxy01) -> fedmsg-gateway(proxy01)
+    Client -> haproxy(proxy01) -> fedmsg-gateway(busgateway01)
 
   haproxy is listening on a public port.
 
