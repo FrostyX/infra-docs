@@ -7,9 +7,10 @@ fedmsg (Fedora Messaging) Certs, Keys, and CA - SOP
 Contact Information
 -------------------
 
-  Owner:        Fedora Infrastructure Team
-  Contact:      #fedora-admin, #fedora-apps
-  Servers:      app0[1-7], packages0[1-2], fas01, pkgs01
+  Owner:        Messaging SIG, Fedora Infrastructure Team
+  Contact:      #fedora-admin, #fedora-apps, #fedora-noc
+  Servers:      app0[1-7], packages0[1-2], fas0[1-3], pkgs01, busgateway01,
+                value0{1,3}, releng0{1,4}, relepel03
   Purpose:      Certify fedmsg messages come from authentic sources.
 
 Description
