@@ -3,6 +3,8 @@ fedmsg-gateway SOP
 
   Outgoing raw ZeroMQ message stream.
 
+  .. see-also:  `fedmsg-websocket.txt`_
+
 Contact Information
 -------------------
 
