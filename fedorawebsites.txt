@@ -167,11 +167,9 @@ Update website
 
     4. modify:
 
-        4.1 data/content/counter.html (add languages)
-        4.2 data/content/index.html (add languages and define the release date, 
-            add the counter instead of the Alpha banner))
-        4.3 static/js/release-counter* (update dates/times, languages)
-        4.4 static/js/banner.js (beta banner )
+        4.1 data/content/index.html (define the release date)
+        4.2 static/js/release-counter* (update dates/times, languages)
+        4.3 static/js/banner.js (beta banner )
 
     5. remove:
           static/checksums/Fedora-XX-Alpha*
