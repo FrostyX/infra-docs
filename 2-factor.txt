@@ -13,6 +13,14 @@ Using two factor
 
 http://fedoraproject.org/wiki/Infrastructure_Two_Factor_Auth
 
+To enroll a Yubikey, use the fedora-burn-yubikey script like normal.
+To enroll using Google Authenticator, go to
+https://admin.fedoraproject.org/totpprovision
+
+What's enough authentication?
+=============================
+FAS Password+Google Authenticator or FAS Password+Yubikey
+
 ---------------------------------------------
 Administrating and troubleshooting two factor
 ---------------------------------------------
@@ -21,15 +29,27 @@ Two factor auth is implemented by a modified copy of the
 https://github.com/mricon/totp-cgi project doing the authentication and
 pam_url submitting the authentication tokens.
 
-To enroll a Yubikey, use the fedora-burn-yubikey script like normal, then
-go to the FAS web interface and set your Yubikey to enabled.
+totp-cgi runs on the fas servers (currently fas01.stg and fas01/fas02/fas03 in
+production), listening on port 8443 for pam_url requests.
+
+Google authenticator and yubikeys are supported as tokens to use with your
+password. 
+
+Google authenticator: 
+=====================
+
+This is handled via totpcgi. There's a command line tool to manage users, 
+totpprov. See 'man totpprov' for more info. Admins can use this tool to revoke 
+lost tokens (google authenticator only) with 'totpprov delete-user username' 
 
 To enroll using Google Authenticator, go to
 https://admin.fedoraproject.org/totpprovision
 
-What's enough authentication?
-=============================
-FAS Password+Google Authenticator or FAS Password+Yubikey
+YubiKeys:
+=========
+
+Yubikeys are enrolled and managed in FAS. Users can self-enroll using the
+fedora-burn-yubikey utility included in the fedora-packagers package.
 
 What do I do if I loose my token?
 =================================
@@ -37,3 +57,24 @@ Send an email to admin@fedoraproject.org
 
 How to remove a token (so the user can re-enroll)?
 ==================================================
+First we MUST verify that the user is who they say they are, using any of the
+following: 
+
+- Personal contact where the person can be verified by member of
+  sysadmin-main. 
+
+- Correct answers to security questions. 
+
+- Email request to admin@fedoraproject.org that is gpg encrypted by the key
+  listed for the user in fas. 
+
+Then: 
+
+1. For google authenticator, login to one of the fas machines and run: 
+totpprov delete-user username
+
+2. For yubikey: TBD
+
+The user can then go to https://admin.fedoraproject.org/totpcgiprovision/
+and reprovision a new device. 
+
