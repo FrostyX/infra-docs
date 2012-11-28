@@ -49,7 +49,7 @@ YubiKeys:
 =========
 
 Yubikeys are enrolled and managed in FAS. Users can self-enroll using the
-fedora-burn-yubikey utility included in the fedora-packagers package.
+fedora-burn-yubikey utility included in the fedora-packager package.
 
 What do I do if I loose my token?
 =================================
