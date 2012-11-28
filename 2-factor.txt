@@ -1,0 +1,30 @@
+===============
+Two factor auth
+===============
+
+Fedora Infrastructure has implemented a form of two factor auth for people who
+have sudo access on Fedora machines.  In the future we may expand this to
+include more than sudo but this was deemed to be a high value, low hanging 
+fruit.
+
+----------------
+Using two factor
+----------------
+
+http://fedoraproject.org/wiki/Infrastructure_Two_Factor_Auth
+
+---------------------------------------------
+Administrating and troubleshooting two factor
+---------------------------------------------
+
+Two factor auth is implemented by a modified copy of the
+https://github.com/mricon/totp-cgi project doing the authentication and
+pam_url submitting the authentication tokens.
+
+[more]
+
+What's enough authentication?
+=============================
+
+How to remove a token (so the user can re-enroll)?
+==================================================
