@@ -45,7 +45,8 @@ lost tokens (google authenticator only) with 'totpprov delete-user username'
 YubiKeys:
 =========
 
-Yubikeys are enrolled and managed in fas. 
+Yubikeys are enrolled and managed in FAS. Users can self-enroll using the
+fedora-burn-yubikey utility included in the fedora-packagers package.
 
 How to remove a token (so the user can re-enroll)?
 ==================================================
