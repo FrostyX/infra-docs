@@ -21,10 +21,13 @@ Two factor auth is implemented by a modified copy of the
 https://github.com/mricon/totp-cgi project doing the authentication and
 pam_url submitting the authentication tokens.
 
-[more]
+To enroll a Yubikey, use the fedora-burn-yubikey script like normal.
+To enroll using Google Authenticator, go to
+https://admin.fedoraproject.org/totpprovision
 
 What's enough authentication?
 =============================
+FAS Password+Google Authenticator or FAS Password+Yubikey
 
 How to remove a token (so the user can re-enroll)?
 ==================================================
