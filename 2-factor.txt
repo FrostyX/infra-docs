@@ -73,7 +73,8 @@ Then:
 1. For google authenticator, login to one of the fas machines and run: 
 totpprov delete-user username
 
-2. For yubikey: TBD
+2. For yubikey: login to one of the fas machines and run: 
+/usr/local/bin/yubikey-remove.py username
 
 The user can then go to https://admin.fedoraproject.org/totpcgiprovision/
 and reprovision a new device. 
