@@ -43,7 +43,12 @@ totpprov. See 'man totpprov' for more info. Admins can use this tool to revoke
 lost tokens (google authenticator only) with 'totpprov delete-user username' 
 
 To enroll using Google Authenticator, go to
-https://admin.fedoraproject.org/totpprovision
+https://admin.fedoraproject.org/totpcgiprovision
+
+Until it is pushed to production you can use:
+https://admin.stg.fedoraproject.org/totpcgiprovision/
+
+You'll be prompted to login with your fas username and password.
 
 YubiKeys:
 =========

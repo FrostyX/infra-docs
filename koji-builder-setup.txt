@@ -39,7 +39,7 @@ Steps:
 - setup ssl cert into private/builders - use fqdn of host as DN
  - login to fas01 as root
  - cd /var/lib/fedora-ca
- - ./certhelper.py normal --outdir=/tmp/  \
+ - ./kojicerthelper.py normal --outdir=/tmp/  \
          --name=$fqdn_of_the_new_builder  --cadir=. --caname=Fedora
  - info for the cert should be like this
    Country Name (2 letter code) [US]:
