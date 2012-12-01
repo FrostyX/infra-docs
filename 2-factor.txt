@@ -56,8 +56,8 @@ YubiKeys:
 Yubikeys are enrolled and managed in FAS. Users can self-enroll using the
 fedora-burn-yubikey utility included in the fedora-packager package.
 
-What do I do if I loose my token?
-=================================
+What do I do if I lose my token?
+================================
 Send an email to admin@fedoraproject.org
 
 How to remove a token (so the user can re-enroll)?
