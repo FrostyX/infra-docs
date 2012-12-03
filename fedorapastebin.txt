@@ -6,6 +6,7 @@ Contents
     * 2 Introduction
     * 3 Installation
     * 4 Dashboard 
+    * 5 Add a word to censored list
 
 
 1. Contact Information
@@ -59,3 +60,16 @@ Sticky-notes has a dashboard (URL: /admin/) that can be used to :
         -- General configuration (included in config.php).
         -- Project Honey Pot configuration (not a FOSS service)
         -- Word censor configuration: a list of words to be censored in pastes. 
+
+5. Add a word to censored list
+------------------------------
+
+If a word is in censored list, any paste containing that word will be
+rejected, to add one, edit the variable '$sg_censor' in sticky-notes configuration file.
+
+$sg_censor = "WORD1
+WORD2
+...
+...
+WORDn";
+
