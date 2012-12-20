@@ -86,6 +86,9 @@ Wiping and Rebuilding Everything
 Adding a new key for a new service-host
 ---------------------------------------
 
+  First, checkout the puppet private repo as that's where the keys are going
+  to be stored.  The scripts will assume this is checked out to ~/private.
+
   In ``puppet/modules/fedmsg/files/cert-tools`` run::
 
     $ source ./vars
@@ -100,11 +103,15 @@ Adding a new key for a new service-host
     $ ./build-and-sign-key bodhi-app10.phx2.fedoraproject.org
     $ ./build-and-sign-key mediawiki-app10.phx2.fedoraproject.org
 
+  .. note:: at the monent, stg hosts use the same certs as their production
+    counterparts.  So you create the certs for, for example
+    app01.phx2.fedoraproject.org and that will be used by app01.stg.
+
   Just creating the keys isn't quite enough, there are four more things you'll
   need to do.
 
-  First, you need to commit them to the private repo (where they were created)
-  and push.
+  The private keys are created in your checkout of the private repo under
+  ~/private/private/fedmsg-certs/keys . git add, commit, and push them.
 
   Second, You need to edit
     ``puppet/modules/fedmsg/files/cert-tools/rebuild-all-fedmsg-certs``
