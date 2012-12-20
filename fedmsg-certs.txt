@@ -103,10 +103,6 @@ Adding a new key for a new service-host
     $ ./build-and-sign-key bodhi-app10.phx2.fedoraproject.org
     $ ./build-and-sign-key mediawiki-app10.phx2.fedoraproject.org
 
-  .. note:: at the monent, stg hosts use the same certs as their production
-    counterparts.  So you create the certs for, for example
-    app01.phx2.fedoraproject.org and that will be used by app01.stg.
-
   Just creating the keys isn't quite enough, there are four more things you'll
   need to do.
 
