@@ -94,7 +94,7 @@ Git Repository
    hosted1 Then follow these steps:
 
  # Fetch latest content from the FAS Database.
- $ fasClient -i -f
+ $ sudo fasClient -i -f
 
  $ cd /git
 
