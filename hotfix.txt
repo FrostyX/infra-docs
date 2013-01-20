@@ -1,0 +1,24 @@
+HOTFIXES SOP 
+
+From time to time we have to quickly patch a problem or issue 
+in applications in our infrastructure. 
+
+When we apply these, they are in the modules/hotfix area of puppet. 
+
+The process is: 
+
+- Create a diff of any files changed in the fix. 
+- Check in the _original_ files and hotfix manifest
+- Check in now your diffs of those same files. 
+- puppet will replace the files on the affected machines 
+completely with the fixed versions. 
+- If you need to back it out, you can revert the diff step, 
+wait and then remove the first checkin
+
+When you make a hotfix you should file a ticket with the issue
+or problem and note the hotfix. It should be marked keywords
+'hotfix' and have HOTFIX in the title. 
+
+Also, if at all possible a bug should be filed with the upstream
+application to get the fix in the next version. 
+
