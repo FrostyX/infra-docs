@@ -1,0 +1,31 @@
+===============================
+Using github for Infra Projects
+===============================
+
+We're presently using github to host git repositories and issue tracking for
+some infrastructure projects.  Anything we need to know should be recorded
+here.
+
+---------------------
+Setting up a new repo
+---------------------
+
+Create projects inside of the fedora-infra group:
+
+https://github.com/fedora-infra
+
+That will allow us to more easily track what projects we have.
+
+[TODO] How do we create a new project and import it?
+
+
+Add an EasyFix tag
+==================
+
+The EasyFix tag is used to mark bugs that are potentially fixable by new
+contributors getting used to our source code or relatively new to python
+programming.
+
+curl -k -u '$GITHUB_USERNAME:$GITHUB_PASSWORD' https://api.github.com/repos/fedora-infra/python-fedora/labels -H "Content-Type: application/json" -d '{"name":"EasyFix","color":"3b6eb4"}'
+
+[TODO] how do we then add this to http://fedoraproject.org/easyfix ?
