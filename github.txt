@@ -25,12 +25,13 @@ Add an EasyFix label
 The EasyFix label is used to mark bugs that are potentially fixable by new
 contributors getting used to our source code or relatively new to python
 programming.  GitHub doesn't provide this label automatically so we have to
-add it.  AFAIK, adding labels is only available via the web API so use the
-following curl command to add it:
+add it.  You can add the label from the issues page of the repository or use
+this curl command to add it:
 
 curl -k -u '$GITHUB_USERNAME:$GITHUB_PASSWORD' https://api.github.com/repos/fedora-infra/python-fedora/labels -H "Content-Type: application/json" -d '{"name":"EasyFix","color":"3b6eb4"}'
 
-You can then add the github repo to the list that easyfix.fedoraproject.org
-scans for easyfix tickets here:
+Please try to use the same color for consistency between Fedora Infrastructure
+Projects.  You can then add the github repo to the list that
+easyfix.fedoraproject.org scans for easyfix tickets here:
 
 https://fedoraproject.org/wiki/Easyfix
