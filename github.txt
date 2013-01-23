@@ -18,6 +18,38 @@ That will allow us to more easily track what projects we have.
 
 [TODO] How do we create a new project and import it?
 
+- After creating a new repo, click on the Settings tab to set up some fancy
+  things.
+
+  - Set the default branch from 'master' to 'develop'.  Having the default
+    branch be develop is nice:  new contributors will automatically start
+    committing there if they're not paying attention to what branch they're
+    on.  You almost never want to commit directly to the master branch.
+
+    If there does not exist a develop branch, you should create one by
+    branching off of master.
+
+        $ git clone GIT_URL
+        $ git checkout -b develop
+        $ git push --all
+
+  - Set up an IRC hook for notifications.  From the "settings" tab click on
+    "service hooks".  Scroll down to "IRC" and click it.  At the top right, a
+    form will appear.  Scroll to it and enter in information like:
+
+    - Server, irc.freenode.net
+    - Port, 6667
+    - Room, fedora-apps
+    - Nick, <nothing>
+    - Branch Regexes, <nothing>
+    - Password, <nothing>
+    - Ssl, <off>
+    - Message Without Join, <on>
+    - No Colors, <off>
+    - Long Url, <off>
+    - Notice, <on>
+    - Active, <on>
+
 
 Add an EasyFix label
 ====================
