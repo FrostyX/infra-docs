@@ -172,11 +172,8 @@ Group A reboots
  people03.fedoraproject.org
  ibiblio03.fedoraproject.org
 
- collab03.fedoraproject.org
- serverbeach08.fedoraproject.org
-
- insight01.phx2.fedoraproject.org
- virthost02.phx2.fedoraproject.org
+ collab01.fedoraproject.org
+ serverbeach09.fedoraproject.org
 
  db05.phx2.fedoraproject.org
  virthost03.phx2.fedoraproject.org
@@ -250,13 +247,9 @@ Group C reboots
 
  app01.dev.fedoraproject.org
  darkserver01.dev.fedoraproject.org
- publictest01.fedoraproject.org
- publictest04.fedoraproject.org
- insight01.dev.fedoraproject.org
- insight02.dev.fedoraproject.org
  fakefas01.fedoraproject.org
  proxy06.fedoraproject.org
- osuosl1.fedoraproject.org
+ osuosl01.fedoraproject.org
 
  proxy07.fedoraproject.org
  bodhost01.fedoraproject.org
@@ -269,7 +262,6 @@ Group C reboots
  noc02.fedoraproject.org
  proxy05.fedoraproject.org
  smtp-mm01.fedoraproject.org
- keys01.fedoraproject.org
  telia01.fedoraproject.org
 
  app08.fedoraproject.org
@@ -306,6 +298,8 @@ Group C reboots
 
  compose-x86-01.phx2.fedoraproject.org
 
+ compose-x86-02.phx2.fedoraproject.org
+
  download01.phx2.fedoraproject.org
  download02.phx2.fedoraproject.org
  download03.phx2.fedoraproject.org
@@ -316,9 +310,7 @@ Group C reboots
  download-rdu02.vpn.fedoraproject.org
  download-rdu03.vpn.fedoraproject.org
 
- app07.phx2.fedoraproject.org
  fas03.phx2.fedoraproject.org
- insight01.stg.phx2.fedoraproject.org
  secondary01.phx2.fedoraproject.org
  memcached04.phx2.fedoraproject.org
  virthost01.phx2.fedoraproject.org
@@ -343,9 +335,8 @@ Group C reboots
  hosted02.fedoraproject.org
  serverbeach07.fedoraproject.org
 
- collab04.fedoraproject.org
- ns-sb01.fedoraproject.org
- serverbeach09.fedoraproject.org
+ collab02.fedoraproject.org
+ serverbeach08.fedoraproject.org
 
  dhcp01.phx2.fedoraproject.org
  relepel01.phx2.fedoraproject.org
