@@ -88,6 +88,10 @@ Re-creating the repo
 
    Easy as that.
 
+   Perform the same process above with the source rpm (SRPM) and add it to
+   puppet1:/mnt/fedora/app/fi-repo/el/%{dist}/SRPMS/ ; we need to be able to
+   unpack rpms and find what changed if things go wrong down the road.
+
 Add information about why the package is in the repo
 
    We would like to keep track of why packages are in the infrastructure repo
