@@ -137,7 +137,7 @@ Git Repository
  $ sudo git config hooks.mailinglist $COMMITLIST
  $ sudo git config hooks.maildomain fedoraproject.org
  $ sudo git config hooks.emailprefix "[$PROJECTNAME]"
- $ sudo git config hooks.repouri "http://git.fedorahosted.org/git/?p=$PROJECTNAME.git"
+ $ sudo git config hooks.repouri "http://git.fedorahosted.org/cgit/$PROJECTNAME.git"
  $ sudo ln -svf /usr/local/bin/git-notifier ./hooks/post-receive
 
 Bazaar Repository
