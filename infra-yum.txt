@@ -58,6 +58,14 @@ Signing the RPM
 
  rpm --resign your-package-1.1.rpm
 
+   In order for rpm to be able to find the key, you'll need a ~/.rpmmacros
+   file with the following contents:
+
+ %_signature gpg
+ %_gpg_path /root/.gnupg
+ %_gpg_name Fedora Admin <admin@fedoraproject.org>
+ %__gpg /usr/bin/gpg
+
 Re-creating the repo
 
    All of the repositories are located at:
