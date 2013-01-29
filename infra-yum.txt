@@ -75,6 +75,7 @@ Re-creating the repo
 
  cd /mnt/fedora/app/fi-repo/el/5/
  cp ~/rpms/RPMS/myPack-1.0.noarch.rpm ./i386/
+ cd i386/
  createrepo -d --update ./
 
    Easy as that.
