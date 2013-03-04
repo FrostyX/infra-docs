@@ -61,21 +61,46 @@ Creating a New Postgresql Database
    several steps that should be taken to make the database server as secure
    as possible.
 
- db2 $ sudo -u postgres createdb -E utf8 NEWDB
- db2 $ sudo -u postgres createuser -P -E NEWDBUSER
+We want to separate the database permissions so that we don't have the
+user/password combination that can do anything it likes to the database on
+every host (the webapp user can usually do a lot of things even without those
+extra permissions but every little bit helps).
+
+Say we have an app called "raffle".  We'd have three users:
+
+* raffleadmin: able to make any changes they want to this particular
+  database.  It should not be used in day to day but only for things
+  like updating the database schema when an update occurs.
+  We could very likely disable this account in the db whenever we are not
+  using it.
+* raffleapp: the database user that the web application uses.  This will
+  likely need to be able to insert and select from all tables.  It will
+  probably need to update most tables as well.  There may be some tables
+  that it does *not* need delete on.  It should almost certainly not
+  need schema modifying permissions.  (With postgres, it likely also
+  needs permission to insert/select on sequences as well).
+* rafflereadonly: Only able to read data from tables, not able to modify
+  anything.  Sadly, we aren't using this often but it can be useful for
+  scripts that need to talk directly to the database without modifying it.
+
+ db2 $ sudo -u postgres createuser -P -E NEWDBadmin
  Password: <randomly generated password>
+ db2 $ sudo -u postgres createuser -P -E NEWDBapp
+ Password: <randomly generated password>
+ db2 $ sudo -u postgres createuser -P -E NEWDBreadonly
+ Password: <randomly generated password>
+ db2 $ sudo -u postgres createdb -E utf8 NEWDB -O NEWDBadmin
  db2 $ sudo -u postgres psql NEWDB
  NEWDB=# revoke all on database NEWDB from public;
  NEWDB=# revoke all on schema public from public;
- NEWDB=# grant all on schema public to NEWDBUSER;
- NEWDB=# [grant other permissions to NEWDBUSER as appropriate for your app]
-
-   If you're doing this on a postgresql8.3 install (currently just db3),
-   perform the next step as well:
-
+ NEWDB=# grant all on schema public to NEWDBadmin;
+ NEWDB=# [grant permissions to NEWDBapp as appropriate for your app]
+ NEWDB=# [grant permissions to NEWDBreadonly as appropriate for a user that
+         is only trusted enough to read information]
  NEWDB=# grant connect on database NEWDB to nagiosuser;
 
-   If your application needs to have the NEWDBUSER and password to connect to
+
+   If your application needs to have the NEWDBapp and password to connect to
    the database, you probably want to add these to puppet as well. Put the
    password in the private repo in puppet1. Then use a templatefile to
    incorporate it into the config file. See fas.pp for an example.
