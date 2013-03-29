@@ -180,6 +180,8 @@ Update website
 
 	* disable POs pulling on master: `touch ./fedoraproject.org/PO_FREEZE`
 
+	* `make pullpos` and commit the POs to the repo
+
 	* create the fXX branch from master
 
 	* delete ./fedoraproject.org/PO_FREEZE on that branch (revert previous
