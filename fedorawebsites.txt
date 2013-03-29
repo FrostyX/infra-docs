@@ -8,8 +8,7 @@ Fedora Websites Release SOP
 
                * 1.1.1 Steps
 
-          * 1.2 Update LINGUAS and languages.conf file
-          * 1.3 Prepare puppet commits
+          * 1.2 Prepare puppet commits
 
      * 2 Update website
 
@@ -72,25 +71,6 @@ Preparing the website for a release
    Carefully verify that the data is correct, 'make en test' and checking
    http://localhost:5000/keys and http://localhost:5000/verify is
    wise.
-
-  Update LINGUAS and languages.conf file
-
-   Let's clean our directories and update the po files in the fedora-web git
-   repository
-
- $ make clean all
-
-   Use the script to update the POT, POs and the LINGUAS file (at the root)
-
- $ ./l10N_update.sh -w fedoraproject.org
-
- $ make httpd/conf/languages.conf
- $ sed -i "s:@DOCUMENTROOT@:/srv/web/start.fedoraproject.org:g" languages.conf.in
-
-   Commit changes
-
- $ git commit -a
-
 
   Prepare puppet commits
 
