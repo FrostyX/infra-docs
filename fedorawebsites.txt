@@ -72,22 +72,14 @@ Preparing the website for a release
    http://localhost:5000/keys and http://localhost:5000/verify is
    wise.
 
-  Prepare puppet commits
-
-   Prior to release day, prepare puppet commits to move the fedora-web branch
-   to the release (alpha, beta, final, whatever)
-
-     * Update branch
-
-          * Edit: modules/fedora-web/files/syncStatic.sh
-
-     * Redirect /get-prerelease
-
-          * Edit: modules/fedora-web/files/redirects.conf
 
 Update website
 
   For Alpha
+
+    The release day, remove the redirect to /get-prerelease
+
+        * Edit: modules/fedora-web/files/redirects.conf
 
     1. add Alpha banner
     2. update the global variables
@@ -123,6 +115,7 @@ Update website
          See in tips to know how to do it
 
     7. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+
 
   For Beta
 
