@@ -47,8 +47,8 @@ Preparing the website for a release
 
    Then run that script to add the new key(s):
 
-    [fedora-web (f18-keys)]$ cd fedoraproject.org/
-    [fedoraproject.org (f18-keys)]$ scripts/update-gpg-keys /path/to/RPM-GPG-KEY-fedora-18-primary
+    [fedora-web (f18-keys)]$ cd tools/
+    [tools (f18-keys)]$ scripts/update-gpg-keys /path/to/RPM-GPG-KEY-fedora-18-primary
 
    This will add the key(s) to the keyblock in static/fedora.gpg and create a
    text file for the key in static/$KEYID.txt as well. Verify that these
@@ -61,7 +61,7 @@ Preparing the website for a release
 
    Next, add new key(s) to data/content/keys.html, and move any obsolete keys to
    the proper section in that document.  A script to aid in generating the HTML
-   for new keys is at scripts/make-gpg-key-html.  It will print HTML to stdout
+   for new keys is at tools/make-gpg-key-html.  It will print HTML to stdout
    for each RPM-GPG-KEY-* file given as arguments.  This is suitable for
    copy/paste (or directly importing if your editor supports this).
 
@@ -77,11 +77,10 @@ Update website
 
   For Alpha
 
-    The release day, remove the redirect to /get-prerelease
-
-        * Edit: modules/fedora-web/files/redirects.conf
+    0. create the fXX-Alpha branch from master
 
     1. add Alpha banner
+
     2. update the global variables
 
          2.1 change curr_state to 'Alpha'
@@ -111,16 +110,31 @@ Update website
          $ find /pub/fedora/linux/releases/test/17-Alpha/ -type f -name \
          *CHECKSUM* -exec cp '{}' . \;
 
-    6. update the transifex resource
-         See in tips to know how to do it
+    6. update the new POT and push it to Transifex
 
     7. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+
+    8. The release day
+
+	* Prepare the puppet commit to remove the redirect to /get-prerelease
+          Edit: modules/fedora-web/files/redirects.conf
+
+	* Merge the branch fXX-Alpha on master and tag it
+
+         $ git checkout master
+         $ git merge fXX-Alpha
+         $ git tag -a FXX-Alpha -m 'Releasing Fedora XX Alpha'
+
+	* Delete the file ./fedoraproject.org/PO_FREEZE if exists on master
+
+	* At the right time, push it then follow "Fire in the hole" bellow
 
 
   For Beta
 
-    1. add countdown banners. Could use the
-       static/images/counter/get_counter.sh script.
+    0. create the fXX-Beta branch from master
+
+    1. add countdown banners. Could use the tools/get_counter.sh script.
 
     2. update the global variables (curr_state to 'Beta')
 
@@ -135,9 +149,6 @@ Update website
 
         3.2 need link to rel-eng SOP here (RFE, doesn't exist yet)
 
-        3.3 change the Release Notes link to the fedorapeople Beta Release
-            Notes (revert previous) 
-
     4. modify:
 
         4.1 data/content/index.html (define the release date)
@@ -149,32 +160,57 @@ Update website
 
     6. add new checksums
 
-    7. update the transifex resource
-         See in tips to know how to do it
+    7. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
 
-    8. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+    8. The release day
+
+	* Merge the branch fXX-Beta on master and tag it
+
+         $ git checkout master
+         $ git merge fXX-Beta
+         $ git tag -a FXX-Beta -m 'Releasing Fedora XX Beta'
+
+	* Delete the file ./fedoraproject.org/PO_FREEZE if exists on master
+
+	* At the right time, push it then follow "Fire in the hole" bellow
 
   For GA
 
-   Merge beta onto master branch
+    0. Prepare the new branch
 
- $ git checkout master
- $ git merge f13-beta
+	* disable POs pulling on master: `touch ./fedoraproject.org/PO_FREEZE`
 
-   Manually edit the .pot files that are listed as conflicts and correct the
-   transifex config file (fedoraproject.org/.tx/config) to use the correct resource
+	* create the fXX branch from master
 
-   Edit fedoraproject.org/build/globalvar.py to define curr_state = '' and updating iso_size
+	* delete ./fedoraproject.org/PO_FREEZE on that branch (revert previous
+	  commit)
 
-   Manually go to each site and 'make all test'
+    1. update the global variables (curr_state to '' and update iso_size)
 
-   On GA release day, tag repo F<release-number>.
+    2. add the newsbar in fedoraproject.org/data/content/index
+       See https://fedoraproject.org/wiki/Websites/workflow/checklist#News
 
-   Update banner.js to reflect new banner (See file: /static/js/banners.js)
-   Add the release banner in static/images/banners/ 
-    (see https://fedoraproject.org/wiki/F17_Artwork/Submissions/Banners)
+    3. update the POT for the translators
 
-   update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
+    4. update banner.js to reflect new banner (See file: /static/js/banners.js)
+ 
+    5. add the release banner in static/images/banners/ 
+       (see https://fedoraproject.org/wiki/F17_Artwork/Submissions/Banners)
+
+    6. update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
+
+    7. The release day
+
+	* Merge the branch fXX on master and tag it
+
+	 $ git checkout master
+	 $ git merge fXX
+	 $ git tag -a FXX -m 'Releasing Fedora XX'
+
+	* Check that ./fedoraproject.org/PO_FREEZE does not exist on master
+
+	* At the right time, push it then follow "Fire in the hole" bellow
+
 
 Fire in the hole
 
@@ -262,36 +298,4 @@ Tips
      "https://fedoraproject.org/get-prerelease",
      5
    ],
-
- update the transifex resource
- 
- block the current resource to not let translators submit on the "old" branch
- log at
-https://fedora.transifex.com/projects/p/fedora-web/resource/fedoraproject-org-master/edit/
- for example.
- 
- once you've created the new branch, and make necessary html changes
- $ git checkout f17-alpha
-
- pull the up to date translations 
- $ make pullpos
-
- edit the .tx/config file, the resource name should be updated to create the
- new one, like:
- [fedora-web.fedoraproject-org-f17-alpha]
-
- create the remote resource
- $ tx push -s
-
- push current translations to the new resource. --skip don't stop if failed to
-push (fails if no translated strings)
- $ tx push -t --skip
- 
- refresh the pot
- $ make pot
-
- then commit and push your .tx/config and pot files.
- Please log to https://fedora.transifex.net/projects/p/fedora-web/resources/
- and set the important flag, then notice translators.
- 
 
