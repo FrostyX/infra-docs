@@ -1,0 +1,76 @@
+Contact Information
+
+   Owner: Fedora Infrastructure Team
+
+   Contact: #fedora-admin, sysadmin-main, sysadmin-dba group
+
+   Location: Phoenix
+
+   Servers: arm01, arm02, arm03, arm04
+
+   Purpose: Information on working with the arm SOC's
+
+Description
+===========
+
+We have 4 arm chassis in phx2, each containing 24 SOC's (System On Chip). 
+
+Each chassis has 2 physical network connections going out from it. 
+The first one is used for the management interface on each SOC. 
+The second one is used for eth0 for each SOC.
+
+Each SOC: 
+=========
+
+* Has eth0 and eth1 (unused) and a management interface. 
+* has 4 cores
+* Has 4GB ram
+* Has a 300GB disk
+
+SOC's are addressed by: 
+
+arm{Chassisnumber}-builder{number}.arm.fedoraproject.org
+
+Where Chassisnumber is 01 to 04 
+and 
+number is 00-23 
+
+IPMI tool Management
+====================
+
+The SOC's are managed via their mgmt interfaces using a custom ipmitool 
+as well as a custom python script called 'cxmanage'. The ipmitool changes 
+have been submitted upstream and cxmanage is under review in Fedora. 
+
+The ipmitool is currently installed on noc01 and it has ability to 
+talk to them on their management interface. noc01 also serves dhcp and
+is a pxeboot server for the SOCs.
+
+Some common commands: 
+
+To set the SOC to boot the next time only with pxe: 
+ipmitool -U admin -P thepassword -H arm03-builder11-mgmt.arm.fedoraproject.org chassis bootdev pxe
+
+To set the SOC power off: 
+ipmitool -U admin -P thepassword -H arm03-builder11-mgmt.arm.fedoraproject.org power off
+
+To set the SOC power on: 
+ipmitool -U admin -P thepassword -H arm03-builder11-mgmt.arm.fedoraproject.org power on
+
+To get a serial over lan console from the SOC: 
+ipmitool -U admin -P thepassword -H arm03-builder11-mgmt.arm.fedoraproject.org -I lanplus sol activate
+
+cxmanage
+========
+
+The cxmanage tool can be used to update firmware or gather diag info. 
+
+Until cxmanage is packaged, you can use it from a python virtualenv: 
+
+virtualenv --system-site-packages cxmanage
+cd cxmanage
+source bin/activate
+pip install --extra-index-url=http://sources.calxeda.com/python/packages/ cxmanage
+<use cxmanage>
+deactivate
+
