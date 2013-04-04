@@ -2,7 +2,7 @@ Contact Information
 
    Owner: Fedora Infrastructure Team
 
-   Contact: #fedora-admin, sysadmin-main, sysadmin-dba group
+   Contact: #fedora-admin, sysadmin-main, sysadmin-releng
 
    Location: Phoenix
 
@@ -19,6 +19,13 @@ Each chassis has 2 physical network connections going out from it.
 The first one is used for the management interface on each SOC. 
 The second one is used for eth0 for each SOC.
 
+Current allocations (2013-04-04): 
+
+arm01 -> secondary arch builders attached to arm.koji.fedoraproject.org
+arm02 -> primary arch builders attached to koji.fedoraproject.org
+arm03 -> releng and qa and infra instances. 
+arm04 -> TBD
+
 Each SOC: 
 =========
 
@@ -34,6 +41,16 @@ arm{Chassisnumber}-builder{number}.arm.fedoraproject.org
 Where Chassisnumber is 01 to 04 
 and 
 number is 00-23 
+
+PXE installs
+============
+Kickstarts for the machines are in the kickstarts repo. 
+
+PXE config is on noc01. 
+
+The kickstart installs Fedora 18 and sets them up with a base package set. 
+Note that the SOC's can be installed as armv7 or armv5. Secondary arch 
+still supports armv5 on older f17/f18 installs, but thats it. 
 
 IPMI tool Management
 ====================
