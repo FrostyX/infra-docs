@@ -107,7 +107,9 @@ Adding a new key for a new service-host
   need to do.
 
   The private keys are created in your checkout of the private repo under
-  ~/private/private/fedmsg-certs/keys . git add, commit, and push them.
+  ~/private/private/fedmsg-certs/keys . There will be four files for each cert
+  you created: <hexdigits>.pem (ex: 5B.pem) and <service>-<fqdn>.{crt,csr,key}
+  git add, commit, and push all of those.
 
   Second, You need to edit
     ``puppet/modules/fedmsg/files/cert-tools/rebuild-all-fedmsg-certs``
