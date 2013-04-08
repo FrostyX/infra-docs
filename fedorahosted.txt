@@ -76,3 +76,22 @@ Git notes
    and make sure that receive.denyNonFastforwards is set to false. Make sure
    to reenable this once the user has finished their push.
 
+How to allow a project to redirect parts of their release tree
+
+   A project may want to host parts of their release tree elsewhere (for
+   instance, moving docs from hosting inside of the fedorhosted release tree
+   to an external service).  To do that, modify:
+
+      configs/web/fedorahosted.org/release.conf
+
+   Adding a new Directory section like this:
+
+      # Allow python-fedora project to redirect documentation/release tree elsewhere 
+      <Directory /srv/web/releases/p/y/python-fedora>
+      AllowOverride FileInfo
+      </Directory>
+
+   Then tell the project that they can create a .htaccess file with the
+Redirect:
+
+     Redirect permanent /releases/p/y/python-fedora/doc http://pythonhosted.org/python-fedora
