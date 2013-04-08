@@ -91,7 +91,9 @@ How to allow a project to redirect parts of their release tree
       AllowOverride FileInfo
       </Directory>
 
-   Then tell the project that they can create a .htaccess file with the
-Redirect:
+  Then tell the project that they can create a .htaccess file with the
+  Redirect (Note that the release tree can be reached by two URLs so you need to
+  redirect both of them):
 
      Redirect permanent /releases/p/y/python-fedora/doc http://pythonhosted.org/python-fedora
+     Redirect permanent /released/python-fedora/doc/ http://pythonhosted.org/python-fedora
