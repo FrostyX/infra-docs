@@ -81,6 +81,9 @@ Update website
 
     1. add Alpha banner
 
+       Source: https://fedoraproject.org/wiki/F19_Artwork/Submissions/Banners
+       Target: static/images/banners/f19alpha.png
+
     2. update the global variables
 
          2.1 change curr_state to 'Alpha'
@@ -100,10 +103,7 @@ Update website
 
          3.3 change the Release Notes link to the Alpha Release Notes wiki page
 
-    4. modify:
-
-         4.1 static/js/banner.js (alpha banner )
-         4.2 data/content/verify.html (add the alpha GPG signature)
+    4. add the GPG signature in data/content/verify.html
 
     5. add checksum files
          They should be in bapp01, could use the following command then scp:
@@ -153,7 +153,6 @@ Update website
 
         4.1 data/content/index.html (define the release date)
         4.2 static/js/release-counter* (update dates/times, languages)
-        4.3 static/js/banner.js (beta banner )
 
     5. remove:
           static/checksums/Fedora-XX-Alpha*
@@ -194,14 +193,12 @@ Update website
 
     3. update the POT for the translators
 
-    4. update banner.js to reflect new banner (See file: /static/js/banners.js)
- 
-    5. add the release banner in static/images/banners/ 
+    4. add the release banner in static/images/banners/ 
        (see https://fedoraproject.org/wiki/F17_Artwork/Submissions/Banners)
 
-    6. update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
+    5. update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
 
-    7. The release day
+    6. The release day
 
 	* Merge the branch fXX on master and tag it
 
