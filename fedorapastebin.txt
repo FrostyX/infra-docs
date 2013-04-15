@@ -26,7 +26,7 @@ Contents
 
 Fedora pastebin is powered by sticky-notes which is included in EPEL. 
 
-sticky-notes-fedora-skin package (infra-repo) provides Fedora theming (skin).
+Fedora theming (skin) is included in puppet module.
 
 
 3. Installation
