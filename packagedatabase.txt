@@ -43,12 +43,17 @@ Common Actions
    pseudo user to the account system and assigning that person as the package
    maintainer.
 
-   [56]Idea.png
+.. warning:: pseudo users often have a dash in their name.  We create email
+        aliases via puppet that have dashes in their name in order to not
+        collide with fas usernames (users cannot create usernames with dashes
+        via the webui).  Make sure that any pseudo-users you create do not
+        clash with existing email aliases.
+
    In the following examples, replace ("xen", "kernel-xen-2.6") with the
    packages you are assigning to the new user and 9902 to the userid you
    select in step 2
 
-     * Log into db2.
+     * Log into fas-db01.
      * Log into the db as a user that can make changes
 
  $ psql -U postgres fas2
@@ -69,7 +74,7 @@ Common Actions
 
      * Connect to the pkgdb as a user that can make changes
 
- $ psql -U pkgdbadmin -h db2 pkgdb
+ $ psql -U pkgdbadmin -h db01 pkgdb
  pkgdb>
 
      * Add the current package owner as a comaintainer of the package. If
