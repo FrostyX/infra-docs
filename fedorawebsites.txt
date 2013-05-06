@@ -178,6 +178,7 @@ Update website
     0. Prepare the new branch
 
 	* disable POs pulling on master: `touch ./fedoraproject.org/PO_FREEZE`
+          commit this
 
 	* `make pullpos` and commit the POs to the repo
 
@@ -186,17 +187,25 @@ Update website
 	* delete ./fedoraproject.org/PO_FREEZE on that branch (revert previous
 	  commit)
 
-    1. update the global variables (curr_state to '' and update iso_size)
+        * update the global variables (curr_state to '' and update iso_size)
 
-    2. add the newsbar in fedoraproject.org/data/content/index
+        * push your commits in both branches (master an fXX). Don't forget
+          that before overriding the POT in transifex as we use the same
+          resource for both branches.
+
+    1. add the newsbar in fedoraproject.org/data/content/index
        See https://fedoraproject.org/wiki/Websites/workflow/checklist#News
 
-    3. update the POT for the translators
-
-    4. add the release banner in static/images/banners/ 
+    2. add the release banner in static/images/banners/ 
        (see https://fedoraproject.org/wiki/F17_Artwork/Submissions/Banners)
 
-    5. update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
+    3. update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
+
+    4. update the POT for the translators (once the slideshow content is
+       updated). make pot && make pushpot
+
+    5. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+
 
     6. The release day
 
