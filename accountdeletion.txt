@@ -220,7 +220,7 @@ Deletion
        means you need to look at all the groups a user may ever have been
        approved for (even if they are not approved for those groups now). For
        instance, any git*, svn*, bzr*, hg* groups would have granted access
-       to hosted01 and hosted02. packager would have granted access to
+       to hosted03 and hosted04. packager would have granted access to
        pkgs.fedoraproject.org. Pretty much any group grants access to
        fedorapeople.org.
      * For those boxes, run a find over the files there to see if the UID
@@ -249,7 +249,7 @@ Deletion
      * Figure out what boxes may have had files owned by that group. This
        means that you'd need to look at the users in that group, what boxes
        they have shell accounts on, and then look at those boxes. groups used
-       for hosted would also need to add hosted01 and hosted02 to that list
+       for hosted would also need to add hosted03 and hosted04 to that list
        and the box that serves the hosted mailing lists.
      * For those boxes, run a find over the files there to see if the GID
        owns any files on the system.
