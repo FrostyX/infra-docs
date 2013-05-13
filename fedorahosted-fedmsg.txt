@@ -46,8 +46,8 @@ How to enable the fedmsg plugin for a fedora hosted project.
        Make a backup of the old post-receive hook.  It should be empty when
        you encounter it, but just to be safe::
 
-        $ mv /srv/git/projects/$PROJECT.git/hooks/post-receive \
-            /srv/git/projects/$PROJECT.git/hooks/post-receive.orig
+        $ mv /srv/git/$PROJECT.git/hooks/post-receive \
+            /srv/git/$PROJECT.git/hooks/post-receive.orig
        
        Then, symlink in the new post-receive hook with::
 
