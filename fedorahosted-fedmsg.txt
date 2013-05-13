@@ -52,7 +52,7 @@ How to enable the fedmsg plugin for a fedora hosted project.
        Then, symlink in the new post-receive hook with::
 
         $ ln -s /usr/local/share/git/hooks/post-receive-fedorahosted-fedmsg \
-            /srv/git/projects/$PROJECT.git/hooks/post-receive
+            /srv/git/$PROJECT.git/hooks/post-receive
 
        That hooks is managed by puppet -- if you want to modify it you can do
        so there.
