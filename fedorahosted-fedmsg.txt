@@ -57,6 +57,15 @@ How to enable the fedmsg plugin for a fedora hosted project.
        That hooks is managed by puppet -- if you want to modify it you can do
        so there.
 
+       .. note:: IF there was an old post-receive hook in place, you should
+          check to see if it did something important.  The 'fedora-web' git
+          repo (which was converted early on) had such a hook.  See
+          /srv/git/fedora-web.git/hooks for an example of how to handle
+          multiple git hooks.  Something like
+          /usr/share/git-core/post-receive-chained can be used to chain the
+          hook across multiple scripts.
+
+
 How to setup the fedmsg plugin on a new fedorahosted node.
 
     1) Create certs for the new node as per the fedmsg-certs.txt doc.
