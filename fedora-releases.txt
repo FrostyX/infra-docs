@@ -95,15 +95,10 @@ Preparations
    day after the release. Note, if the release slips during a change freeze,
    the freeze just extends until the day after a release ships.
 
-   To see the latest environments map run:
+   You can get a list of frozen/non-frozen hosts by: 
 
- sudo yum -y install openoffice.org-draw
- git clone git://git.fedorahosted.org/git/fedora-infrastructure.git/
- cd fedora-infrastructure/architecture
- oodraw Environments.odg
-
-   While the instructions above are the canonical location, a png has been
-   provided for ease of reference. 
+   git clone http://infrastructure.fedoraproject.org/infra/ansible.git
+   scripts/freezelist -i inventory/inventory
 
    Each one of these tasks except for the release day ticket must be
    completed and closed prior to the release.
@@ -168,7 +163,7 @@ http://fedoraproject.org/wiki/Template:FedoraVersionName
    You can check this by looking at: 
 	
 	wget
-"http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/16-Alpha"
+"http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/16-Alpha&country=global"
 
 	(replace 16 and Alpha with the version and release.)
 
@@ -185,7 +180,7 @@ http://fedoraproject.org/wiki/Template:FedoraVersionName
 
      * Create the new release in bodhi, to allow developers to queue up 0day
        updates. Make sure this is 'locked' so they don't get pushed. See the
-       bodhi [87]administration page for instructions.
+       bodhi administration page for instructions.
      * Create mash config files for the new release
      * If the mash config files have already been created, make sure the
        delta_dirs are updated to reflect the GA file locations (You should
@@ -226,33 +221,8 @@ Release day
    received the change by seeing if it is actually available, just use a spot
    check. Once that is complete move on.
 
-  Step 4 (Preupgrade releases.txt)
-
-   Preupgrade requires us to update the contents of
-   http://mirrors.fedoraproject.org/releases.txt to include the new
-   release in the preupgrade-ok list. This file is in the fedora-web
-   repository on Fedora Hosted. Add the new release and 'git push' it into
-   place. This change goes live the next time the web sites are built.
-   For Alpha and Beta add something like: 
-
-[Fedora 16 Branched Pre-release (Verne)]
-stable=False
-preupgrade-ok=True
-version=16
-mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-16&arch=$basearch
-installmirrorlist=http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/development/16/$basearch/os/
-
-   Note that this only needs to be added when branched exists, until final
-   release. 
-
-   For final: 
-
-[Fedora 16 (Verne)]
-stable=True
-preupgrade-ok=True
-version=16
-mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-16&arch=$basearch
-installmirrorlist=http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/16/Fedora/$basearch/os/
+  Step 4 (preupgrade)
+   This step is no longer needed.
 
   Step 5 (AutoQA repoinfo.conf)
 
@@ -275,7 +245,7 @@ installmirrorlist=http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/li
    
    Once that completes, on lockbox01: 
 
-   sudo func-command --host=proxy\* "/usr/local/bin/syncFiles.sh fedoraproject.org /srv/web/fedoraproject.org/"
+   sudo -i ansible proxy\* "/usr/bin/rsync --delete -a --no-owner --no-group bapp02::fedoraproject.org/ /srv/web/fedoraproject.org/"
 
    Verify http://fedoraproject.org/ is working.
 
@@ -314,7 +284,7 @@ installmirrorlist=http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/li
        Slashdot or anyone else links to. If they link to something on the
        wiki and it is going down or link to any other site we control a
        rewrite should be put in place to direct them to
-       [95]http://fedoraproject.org/get-fedora.
+       http://fedoraproject.org/get-fedora.
     3. Torrent - The torrent server has never had problems during a release.
        Make sure it is up.
     4. Release Notes - Typically grouped with the docs site, the release
@@ -376,7 +346,7 @@ Beta:
 		mirror sizes, release day ticket. 
 	After release is a "go":
 		Make sure torrents are setup and ready to go. 
-		fedora-web needs a branch for fN-alpha. In it: 
+		fedora-web needs a branch for fN-beta. In it: 
 			Beta used on get-prerelease
 			get-prerelease doesn't direct to release
 			verify is updated with Beta info
