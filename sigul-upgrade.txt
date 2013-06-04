@@ -42,10 +42,10 @@ Then apply updates.
 console and start the sigul_server process. Enter password when prompted. 
 
 5. On the primary server, down the floating ip address: 
-ip addr del 10.5.125.71 dev eth0
+ip addr del 10.5.125.75 dev eth0
 
 6. On the secondary server, up the floating ip address: 
-ip addr add 10.5.125.71 dev eth0
+ip addr add 10.5.125.75 dev eth0
 
 7. Have rel-eng folks sign some packages to confirm all is working. 
 
