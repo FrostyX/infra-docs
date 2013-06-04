@@ -33,23 +33,23 @@ floating ip address for sign-vault02 on it.
 2. Login to the non primary server via serial or management console. 
 (There is no ssh access to these servers)
 
-2. Take a lvm snapshot: 
+3. Take a lvm snapshot: 
 lvcreate --size 5G --snapshot --name YYYMMDD /dev/mapper/vg_signvault04-lv_root
 Replace YYMMDD with todays year, month, day and the vg with the correct name 
 Then apply updates. 
 
-3. Confirm the server comes back up ok, login to serial console or management
+4. Confirm the server comes back up ok, login to serial console or management
 console and start the sigul_server process. Enter password when prompted. 
 
-4. On the primary server, down the floating ip address: 
+5. On the primary server, down the floating ip address: 
 ip addr del 10.5.125.71 dev eth0
 
-5. On the secondary server, up the floating ip address: 
+6. On the secondary server, up the floating ip address: 
 ip addr add 10.5.125.71 dev eth0
 
-6. Have rel-eng folks sign some packages to confirm all is working. 
+7. Have rel-eng folks sign some packages to confirm all is working. 
 
-7. Update/reboot the old primary server and confirm it comes back up ok. 
+8. Update/reboot the old primary server and confirm it comes back up ok. 
 
 Changes to database: 
 
