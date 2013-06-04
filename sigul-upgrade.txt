@@ -30,9 +30,13 @@ Sign-vault03/04:
 1. Determine which server is currently primary. It's the one that has the
 floating ip address for sign-vault02 on it. 
 
-2. On the non primary server, apply updates and reboot. 
-Note that you will need to login as root via serial or management console.
-There is no ssh access to these servers. 
+2. Login to the non primary server via serial or management console. 
+(There is no ssh access to these servers)
+
+2. Take a lvm snapshot: 
+lvcreate --size 5G --snapshot --name YYYMMDD /dev/mapper/vg_signvault04-lv_root
+Replace YYMMDD with todays year, month, day and the vg with the correct name 
+Then apply updates. 
 
 3. Confirm the server comes back up ok, login to serial console or management
 console and start the sigul_server process. Enter password when prompted. 
