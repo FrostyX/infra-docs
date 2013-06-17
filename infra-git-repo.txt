@@ -52,7 +52,9 @@ this repo can run /usr/local/bin/syncgittree.sh w/o inputting a password
 If you want zodbot commit notifications
 =======================================
 
-The zodbot announce script is in the puppet 'scripts' module.
+The zodbot announce script is in the puppet 'scripts' module.  It is
+*important* that you symlink it in, and not copy it.  We only want to have to
+change it once place.
 
 cd $gitdir/hooks
 ln -s /usr/local/bin/zodbot-announce-commits.py .
