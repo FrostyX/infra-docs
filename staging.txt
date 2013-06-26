@@ -100,7 +100,7 @@ files, etc). Just update on the host and test.
 
 2. If you need to make puppet changes in the module of the application: 
 
-- cp modules/$yourmodulename modules-staging/$yourmodulename
+- cp -r modules/$yourmodulename modules-staging/$yourmodulename
 - git add modules-staging/$yourmodulename; git commit -a
 - make changes you need to modules-staging/$yourmodulename
 - test, make more changes to it, etc. 
