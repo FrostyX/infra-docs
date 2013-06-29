@@ -8,8 +8,9 @@ Memcached Infrastructure SOP
 
      * 1 Contact Information
      * 2 Checking Status
-     * 3 Restarting Memcached
-     * 4 Configuring Memcached
+     * 3 Flushing Memcached
+     * 4 Restarting Memcached
+     * 5 Configuring Memcached
 
 Contact Information
 
@@ -19,7 +20,7 @@ Contact Information
 
    Location: PHX
 
-   Servers: app1, app2
+   Servers: memcached03, memcached04
 
    Purpose: Provide caching for Fedora web applications.
 
@@ -28,9 +29,20 @@ Checking Status
    Our memcached instances are currently firewalled to only allow access from
    wiki application servers. To check the status of an instance, use:
 
- echo stats | nc app{1,2} 11211
+ echo stats | nc memcached0{3,4} 11211
 
    from an allowed host.
+
+
+Flushing Memcached
+
+   Sometimes, wrong contents get cached, and the cache should be flushed.
+   To do this, use:
+
+ echo flush_all | nc memcached0{3,4} 11211
+
+   from an allowed host.
+
 
 Restarting Memcached
 
