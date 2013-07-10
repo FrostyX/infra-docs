@@ -27,7 +27,7 @@ Contact Information
 
    Contact: #fedora-admin
 
-   Persons: lmacken, f13
+   Persons: lmacken
 
    Location: Phoenix
 
