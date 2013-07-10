@@ -14,10 +14,11 @@ Bodhi Infrastructure SOP
      * 4 Pushing EPEL updates
      * 5 Doing a production bodhi upgrade
      * 6 Release EOL
-     * 7 Troubleshooting and Resolution
+     * 7 Adding notices to the front page or new update form
+     * 8 Troubleshooting and Resolution
 
-          * 7.1 Empty <id/> tags in the updateinfo.xml.gz
-          * 7.2 Creating tables at sqlite:/// when trying to use
+          * 8.1 Empty <id/> tags in the updateinfo.xml.gz
+          * 8.2 Creating tables at sqlite:/// when trying to use
             postgres!?
 
 Contact Information
@@ -117,6 +118,10 @@ Release EOL
    database:
 
  [masher@releng02 bodhi]$ PYTHONPATH=$(pwd) python bodhi/tools/rmrelease.py F13
+
+Adding notices to the front page or new update form
+
+   You can easily add notification messages to the front page of bodhi using the `frontpage_notice` option in `puppet/modules/bodhi/templates/bodhi-prod.cfg.erb`. If you want to flash a message on the New Update Form, you can use the `newupdate_notice` variable instead. This can be useful for announcing things like service outages, etc.
 
 Troubleshooting and Resolution
 
