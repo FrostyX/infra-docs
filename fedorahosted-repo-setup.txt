@@ -95,7 +95,7 @@ Git Repository
  # Fetch latest content from the FAS Database.
  $ sudo fasClient -i -f
 
- $ cd /git
+ $ cd /srv/git
 
  $ # Clone an existing repository:
  $ sudo git clone --bare $OLDURL $PROJECTNAME.git
@@ -113,7 +113,7 @@ Git Repository
  $ echo $DESCRIPTION | sudo tee description > /dev/null
 
  $ # Setup and run post-update hook.
- $ # (We symlink this because /git is on a filesystem with noexec set)
+ $ # (We symlink this because /srv/git is on a filesystem with noexec set)
  $ sudo ln -svf /usr/share/git-core/templates/hooks/post-update.sample ./hooks/post-update
  $ sudo git update-server-info
 
