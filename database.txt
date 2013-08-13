@@ -24,7 +24,6 @@ Database Infrastructure SOP
                     * 4.3.2.1 Vacuuming Mirror Manager
 
                * 4.3.3 Bodhi
-               * 4.3.4 Smolt
 
      * 5 Note about TurboGears and MySQL
      * 6 Restoring from backups or specific dbs
@@ -201,11 +200,6 @@ Troubleshooting and Resolution
 
    Anytime postgresql is restarted Bodhi will need to be restarted no sop
    currently exists for this.
-
-    Smolt
-
-   Anytime MySQL is restarted, Smolt will need to be restarted. no SOP
-   currently exists for this
 
 Note about TurboGears and MySQL
 
