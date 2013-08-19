@@ -38,6 +38,10 @@ Contact Information
 
    Purpose: Provides DNS to our users
 
+.. warning:: This is **out of date content**.  DNS is now managed in a
+    different repo, /git/dns.  Please see the README file in that repo
+    to manage DNS: http://infrastructure.fedoraproject.org/infra/dns/README
+
 Troubleshooting, Resolution and Maintenance
 
   DNS update
