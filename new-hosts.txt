@@ -1,0 +1,167 @@
+You should be able to follow these steps in order to create a new set of hosts in infrastructure.
+
+== DNS ==
+
+See the DNS SOP:
+  <strike>http://infrastructure.fedoraproject.org/infra/docs/dns.txt</strike>
+
+Until the above is updated, see the documentation here:
+  http://infrastructure.fedoraproject.org/infra/dns/README
+
+=== Walk through ===
+
+* Note, when the DNS SOP is updated, this should be added to it in an "Add a new host" section
+
+Get a DNS repo checkout on lockbox01:
+  $ git clone /git/dns
+  $ cd dns
+  $ # The following hook does checking that the zone files are syntactically valid
+  $ cp hooks/pre-commit .git/hooks/pre-commit
+  $ chmod 0755 .git/hooks/pre-commit
+
+An example always helps, so you can use git grep for something that has been recently added to the data center/network that you want:
+  
+  $ git grep badges-web01
+  built/126.5.10.in-addr.arpa:69       IN        PTR      badges-web01.stg.phx2.fedoraproject.org.
+  [...lots of other stuff in built/ ignore these as they'll be generated later...]
+  master/126.5.10.in-addr.arpa:69       IN        PTR      badges-web01.stg.phx2.fedoraproject.org.
+  master/126.5.10.in-addr.arpa:101      IN        PTR      badges-web01.phx2.fedoraproject.org.
+  master/126.5.10.in-addr.arpa:102      IN        PTR      badges-web02.phx2.fedoraproject.org.
+  master/168.192.in-addr.arpa:109.1   IN      PTR     badges-web01.vpn.fedoraproject.org
+  master/168.192.in-addr.arpa:110.1   IN      PTR     badges-web02.vpn.fedoraproject.org
+  master/phx2.fedoraproject.org:badges-web01.stg   IN      A       10.5.126.69
+  master/phx2.fedoraproject.org:badges-web01        IN  A       10.5.126.101
+  master/phx2.fedoraproject.org:badges-web02        IN  A       10.5.126.102
+  master/vpn.fedoraproject.org:badges-web01    IN A         192.168.1.109
+  master/vpn.fedoraproject.org:badges-web02    IN A         192.168.1.110
+
+So those are the files we need to edit.  In the above example, two of those files are for the host on the PHX network.  The other two are for the host to be able to talk over the VPN.  Although the VPN is not always needed, the common case is that the host will need it.  (If any clients *need to connect to it via the proxy servers* or it is not hosted in PHX2 it will need a VPN connection).
+
+Edit the zone file for the reverse lookup first (the *in-addr.arpa file) and find ips to use.  The ips will be listed with a domain name of "unused."  If you're configuring a web application server, you probably want two hosts for stg and at least two for production.  Two in production means that we don't need downtime for reboots and updates.  Two in stg means that we'll be less likely to encounter problems related to having multiple web application servers when we take a change tested in stg into production:
+
+  -105      IN        PTR      unused.
+  -106      IN        PTR      unused.
+  -107      IN        PTR      unused.
+  -108      IN        PTR      unused.
+  +105      IN        PTR      elections01.stg.phx2.fedoraproject.org.
+  +106      IN        PTR      elections02.stg.phx2.fedoraproject.org.
+  +107      IN        PTR      elections01.phx2.fedoraproject.org.
+  +108      IN        PTR      elections02.phx2.fedoraproject.org.
+
+Edit the forward domain (phx2.fedoraproject.org in our example) next:
+
++ elections01.stg IN      A       10.5.126.105
++ elections02.stg IN      A       10.5.126.106
++ elections01     IN      A       10.5.126.107
++ elections02     IN      A       10.5.126.108
+
+Repeat these two steps if you need to make them available on the VPN.  Note: if your stg hosts are in PHX2, you don't need to configure VPM for them as all our stg proxy servers are in PHX2.
+
+Also remember to update the Serial at the top of all zone files.
+
+Now that the files are edited, you need to run a script to build the zones and then push them to the dns servers.
+
+  $ ./do-domains # This builds the files
+  $ git add .
+  $ git commit -a -m 'done build'
+  $ git push
+
+  $ sudo -i ansible ns\* -a '/usr/local/bin/update-dns' # This tells the dns servers to load the new files
+
+== Make certs ==
+
+When doing 2 factor auth for sudo, the hosts that we connect from need to have valid SSL Certs.  These are currently stored in puppet:
+
+  $ git clone /git/private && chmod 0700 private
+  $ cd private/2fa-certs
+  $ . ./var
+  $ ./build-and-sign-key $FQDN  # ex: elections01.stg.phx2.fedoraproject.org
+
+The $FQDN should be the phx2 domain name if it's in phx2, vpn if not in phx2, and if it has no vpn and is not in phx2 we should add it to the vpn.
+
+  $ git add .
+  $ git commit -a
+  $ git push
+
+== ansible ==
+
+  $ git clone /git/ansible
+  $ cd ansible
+
+To see an example:
+
+  $ git grep badges-web01 (example)
+  $ find . -name badges-web01\*
+  $ find . -name badges-web'\'*'
+
+=== inventory ===
+
+The ansible inventory file lists all the hosts that ansible knows about and also allows you to create sets of hosts that you can refer to via a group name.  For a typical web application server set of hosts we'd create things like this:
+
++ [elections]
++ elections01.phx2.fedoraproject.org
++ elections02.phx2.fedoraproject.org
++
++ [elections-stg]
++ elections01.stg.phx2.fedoraproject.org
++ elections02.stg.phx2.fedoraproject.org
+
+[... find the staging group and add there: ...]
+
+  [staging]
+  db-fas01.stg.phx2.fedoraproject.org
++ elections01.stg.phx2.fedoraproject.org
++ elections02.stg.phx2.fedoraproject.org
+
+The hosts should use their fully qualified domain names here.  The rules are slightly different than for 2fa certs.  If the host is in PHX2, use the .phx2.fedoraproject.org domain name.  If they aren't in PHX2, then they usually just have .fedoraproject.org as their domain name.  (If in doubt about a not-in-PHX2 host, just ask).
+
+=== Work in progress ===
+From here to the end of file is still being worked on
+
+=== host_vars and group_vars ===
+
+ansible consults files in inventory/group_vars and inventory/host_vars to set parameters that can be used in templates and playbooks.  You may need to edit these
+
+It's usually easy to copy the host_vars and group_vars from an existing host that's similar to the one you are working on and then modify a few names to make it work.  For instance, for a web application server:
+
+  $ cd ~/ansible/inventory/group_vars
+  $ cp badges-web elections
+
+Change the following:
+- fas_client_groups: sysadmin-noc,sysadmin-badges
++ fas_client_groups: sysadmin-noc,sysadmin-web
+
+(You can change disk size, mem_size, number of cpus, and ports too if you need them).
+
+If there's anything that should be different 
+
+  $ cd ~/ansible/inventory/host_vars
+  $ cp badges-web01.stg.phx2.fedoraproject.org
+
+
+19:16:01 <nirik> 3. add ./inventory/host_vars/FQDN host_vars for the new host.
+19:16:56 <nirik> that will have in it ip addresses, dns resolv.conf, ks url/repo, volume group to make the host lv in, etc etc.
+19:17:10 <nirik> 4. add any needed vars to inventory/group_vars/ for the group
+19:17:33 <nirik> this has memory size, lvm size, cpus, etc
+19:17:45 <nirik> 5. add tasks/virt_instance_create.yml task to top of group/host playbook
+19:18:10 <nirik> 6. run the playbook and it will go to the virthost you set, create the lv, guest, install it, wait for it to come up, then continue configuring it.
+
+=== mailman.yml
+copy it from another file.
+
+# ./ans-vhost-freemem --hosts=virtost\*
+
+group vars
+- vmhost (of the host that will host the VM)
+- kickstart info (url of the kickstart itself and the repo)
+- datacenter (although most likely won't change)
+
+The host playbook is rather basic
+- Change the name
+- Most things won't change much
+
+# ansible-playbook /srv/web/infra/ansible/infra/ansible/playbooks/grous/mailman.yml
+
+
+== References ==
+* The making a new instance section of: http://meetbot.fedoraproject.org/meetbot/fedora-meeting-1/2013-07-17/infrastructure-ansible-meetup.2013-07-17-19.00.html
