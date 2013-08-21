@@ -107,7 +107,7 @@ Git Repository
  $ # Create a new repository:
  $ sudo mkdir $PROJECTNAME.git
  $ cd $PROJECTNAME.git
- $ sudo git --bare init --shared=true
+ $ sudo git init --bare --shared=true
 
  $ # Give the repository a nice description for gitweb
  $ echo $DESCRIPTION | sudo tee description > /dev/null
