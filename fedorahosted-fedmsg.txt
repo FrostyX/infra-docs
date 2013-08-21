@@ -43,8 +43,17 @@ How to enable the fedmsg plugin for a fedora hosted project.
 
     2) Enable the git hook
 
-       Make a backup of the old post-receive hook.  It should be empty when
-       you encounter it, but just to be safe::
+       There is an ansible playbook that does this.  There is no
+       need to do it by hand anymore.  Run:
+
+         $ sudo -i ansible-playbook \
+             /srv/web/infra/ansible/playbooks/fedorahosted_fedmsg_git.yml \
+             --extra-vars '{"repos":["yanex.git"]}'
+
+
+       *If* you were to do it by hand, without the playbook, you could follow
+       the instructions below: Make a backup of the old post-receive hook.  It
+       should be empty when you encounter it, but just to be safe::
 
         $ mv /srv/git/$PROJECT.git/hooks/post-receive \
             /srv/git/$PROJECT.git/hooks/post-receive.orig
