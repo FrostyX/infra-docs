@@ -31,11 +31,12 @@ Fedora Release Infrastructure SOP
           * 6.3 Step 3 (Bit flip)
           * 6.4 Step 4 (Preupgrade releases.txt)
           * 6.5 Step 5 (AutoQA repoinfo.conf)
-          * 6.6 Step 6 (Website)
-          * 6.7 Step 7 (Docs)
-          * 6.8 Step 8 (Monitor)
-          * 6.9 Step 9 (Done)
-          * 6.10 Priorities
+          * 6.6 Step 6 (Fedora Packages yum-repo.conf)
+          * 6.7 Step 7 (Website)
+          * 6.8 Step 8 (Docs)
+          * 6.9 Step 9 (Monitor)
+          * 6.10 Step 10 (Done)
+          * 6.11 Priorities
 
      * 7 Juggling Resources
 
@@ -232,7 +233,13 @@ Release day
    updated. Please file an autoqa ticket to modify the repoinfo.conf file
    to include pointers to the new release.
 
-  Step 6 (Website)
+  Step 6 (Fedora-Packages yum-repo.conf)
+
+   The Fedora Packages webapp needs to have its yum config updated to consume
+   the latest release.  Add a new block of entries to
+   puppet/modules/fedoracommunity/files/yum-repo.conf
+
+  Step 7 (Website)
 
    Once all of the distribution pieces are verified (mirrors and torrent),
    all that is left is to publish the website. At present this is done by
@@ -253,21 +260,21 @@ Release day
    appropriate configuration is available in the puppet configs in
    modules/fedora-web/files/redirects.conf.
 
-  Step 7 (Docs)
+  Step 8 (Docs)
 
    Just as with the website, the docs site needs to be published. Just as
    above follow the following steps:
 
  /root/bin/docs-sync
 
-  Step 8 (Monitor)
+  Step 9 (Monitor)
 
    Once the website is live, keep an eye on various news sites for the
    release announcement. Closely watch the load on all of the boxes, proxy,
    application and otherwise. If something is getting overloaded, see
    suggestions on this page in the "Juggling Resources" section.
 
-  Step 9 (Done)
+  Step 10 (Done)
 
    Just chill, keep an eye on everything and make changes as needed. If you
    can't keep a service up, try to redirect randomly to some of the mirrors.
