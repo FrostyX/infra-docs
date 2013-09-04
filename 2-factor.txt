@@ -76,7 +76,7 @@ following:
 Then: 
 
 1. For google authenticator, login to one of the fas machines and run: 
-totpprov delete-user username
+sudo totpprov delete-user username
 
 2. For yubikey: login to one of the fas machines and run: 
 /usr/local/bin/yubikey-remove.py username
