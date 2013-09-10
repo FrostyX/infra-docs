@@ -110,11 +110,14 @@ Update website
          $ find /pub/fedora/linux/releases/test/17-Alpha/ -type f -name \
          *CHECKSUM* -exec cp '{}' . \;
 
-    6. update the new POT and push it to Transifex
+    6. update spins.fpo and the spins category of main fpo with available
+       spins. Refere to https://fedoraproject.org/wiki/Releases/20/Spins
 
-    7. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+    7. update the new POT and push it to Transifex
 
-    8. The release day
+    8. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+
+    9. The release day
 
 	* Prepare the puppet commit to remove the redirect to /get-prerelease
           Edit: modules/fedora-web/files/redirects.conf
@@ -159,9 +162,12 @@ Update website
 
     6. add new checksums
 
-    7. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+    7. update spins.fpo and the spins category of main fpo with available
+       spins. Refere to https://fedoraproject.org/wiki/Releases/20/Spins
 
-    8. The release day
+    8. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+
+    9. The release day
 
 	* Merge the branch fXX-Beta on master and tag it
 
