@@ -201,13 +201,16 @@ Update website
 
     3. update the static/checksums/ (and remove static/checksums/Fedora-XX-Beta*)
 
-    4. update the POT for the translators (once the slideshow content is
+    4. update spins.fpo and the spins category of main fpo with available
+       spins. Refere to https://fedoraproject.org/wiki/Releases/20/Spins
+
+    5. update the POT for the translators (once the slideshow content is
        updated). make pot && make pushpot
 
-    5. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
+    6. add this build on stg.fedoraproject.org (puppet syncStatic.sh.stg)
 
 
-    6. The release day
+    7. The release day
 
 	* Merge the branch fXX on master and tag it
 
