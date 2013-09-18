@@ -84,3 +84,6 @@ sudo totpprov delete-user username
 The user can then go to https://admin.fedoraproject.org/totpcgiprovision/
 and reprovision a new device. 
 
+If the user emails admin@fedoraproject.org with the signed request, make sure
+to reply to all indicating that a reset was performed.  This is so that other
+admins don't step in and reset it again after its been reset once.
