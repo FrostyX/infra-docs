@@ -35,7 +35,7 @@ An example always helps, so you can use git grep for something that has been rec
   master/vpn.fedoraproject.org:badges-web01    IN A         192.168.1.109
   master/vpn.fedoraproject.org:badges-web02    IN A         192.168.1.110
 
-So those are the files we need to edit.  In the above example, two of those files are for the host on the PHX network.  The other two are for the host to be able to talk over the VPN.  Although the VPN is not always needed, the common case is that the host will need it.  (If any clients *need to connect to it via the proxy servers* or it is not hosted in PHX2 it will need a VPN connection).
+So those are the files we need to edit.  In the above example, two of those files are for the host on the PHX network.  The other two are for the host to be able to talk over the VPN.  Although the VPN is not always needed, the common case is that the host will need it.  (If any clients *need to connect to it via the proxy servers* or it is not hosted in PHX2 it will need a VPN connection).  An common exception is here the staging environment: since we only have one proxy server in staging and it is in PHX2, a VPN connection is not typically needed for staging hosts.
 
 Edit the zone file for the reverse lookup first (the *in-addr.arpa file) and find ips to use.  The ips will be listed with a domain name of "unused."  If you're configuring a web application server, you probably want two hosts for stg and at least two for production.  Two in production means that we don't need downtime for reboots and updates.  Two in stg means that we'll be less likely to encounter problems related to having multiple web application servers when we take a change tested in stg into production:
 
