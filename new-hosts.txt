@@ -138,11 +138,20 @@ Change the following:
 
 (You can change disk size, mem_size, number of cpus, and ports too if you need them).
 
-If there's anything that should be different 
+Some things will definitely need to be defined differently for each host in a
+group -- notably, ip_address.  You should use the ip_address you claimed in
+the dns repo.
 
   $ cd ~/ansible/inventory/host_vars
-  $ cp badges-web01.stg.phx2.fedoraproject.org
+  $ cp badges-web01.stg.phx2.fedoraproject.org elections01.stg.phx2.fedoraproject.org
+  <edit appropriately>
 
+The host will need vmhost declaration.  There is a script in
+ansible/scripts/vhost-info that will report how much free memory and how many
+free cpus each vmhost has.  You can use that to inform your decision.
+By convention, staging hosts go on virthost12.
+
+Each vmhost has a different volume group.  TODO -- how to figure that out?
 
 19:16:01 <nirik> 3. add ./inventory/host_vars/FQDN host_vars for the new host.
 19:16:56 <nirik> that will have in it ip addresses, dns resolv.conf, ks url/repo, volume group to make the host lv in, etc etc.
@@ -155,6 +164,7 @@ If there's anything that should be different
 copy it from another file.
 
 # ./ans-vhost-freemem --hosts=virtost\*
+
 
 group vars
 - vmhost (of the host that will host the VM)
