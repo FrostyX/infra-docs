@@ -59,7 +59,12 @@ Repeat these two steps if you need to make them available on the VPN.  Note: if 
 
 Also remember to update the Serial at the top of all zone files.
 
-Now that the files are edited, you need to run a script to build the zones and then push them to the dns servers.
+Once the files are edited, you need to run a script to build the zones.  But first, commit the changes you just made to the "source".
+
+  $ git add .
+  $ git commit -a -m 'Added staging and production elections hosts.'
+
+Once that is committed, you need to run a script to build the zones and then push them to the dns servers.
 
   $ ./do-domains # This builds the files
   $ git add .
