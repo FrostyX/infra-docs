@@ -15,7 +15,7 @@ http://fedoraproject.org/wiki/Infrastructure_Two_Factor_Auth
 
 To enroll a Yubikey, use the fedora-burn-yubikey script like normal.
 To enroll using Google Authenticator, go to
-https://admin.fedoraproject.org/totpprovision
+https://admin.fedoraproject.org/totpcgiprovision
 
 What's enough authentication?
 =============================
