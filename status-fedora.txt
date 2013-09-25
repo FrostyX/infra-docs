@@ -33,12 +33,14 @@ ssh://bab5ba6eb9b94f2083fdeefc5e87309b@status-fedora2.rhcloud.com/~/git/status.g
  2. cd status
  3. Run ./manage.py
 
-manage.py takes 3 arguments, [service] [status] "[short summary message]"
+manage.py takes 3+ arguments, [status] "[short summary message]" [service] ([service] .....)
 
 [service] values can be found on http://status.fedoraproject.org/ on the RIGHT
 SIDE of the header of each box. Examples are: 'wiki', 'pkgdb', and 'fedmsg'.
 
 You can use "-" (dash) to imply "All services"
+
+It accepts any number of additional services
 
 [status] should be:
   'major' - A major service ourage.
@@ -53,10 +55,11 @@ status.
 
 Examples:
 
-./manage.py wiki major "We're performing maintenance on the wiki database"
-./manage.py zodbot minor "Some IRC channels are having issues doing XYZ."
-./manage.py - good -   # Set all services to good/default.
-./manage.py wiki good - # Set wiki status to 'good' with the default message.
+./manage.py major "We're performing maintenance on the wiki database" wiki
+./manage.py zodbot minor "Some IRC channels are having issues doing XYZ." zodbot
+./manage.py good - -   # Set all services to good/default.
+./manage.py good - wiki # Set wiki status to 'good' with the default message.
+./manage.py good - wiki zodbot  # Set both wiki and zodbot to good with default message.
 
 You can use the --general-info flag to set a "global" message, which appears
 under the main status bar at the top of the page. Use this for big events that
