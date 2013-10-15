@@ -291,7 +291,7 @@ Tips
 
    Beta
 
- $git push origin f13-alpha:refs/heads/f13-beta
+ $git push origin master:refs/heads/f13-beta
 
   Checking Out Branch
 
