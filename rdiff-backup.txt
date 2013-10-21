@@ -20,7 +20,7 @@ We are now running a rdiff-backup of all our critical data on a daily basis.
 This allows us to keep incremental changes over time as well has have a recent copy
 in case of disaster recovery. 
 
-The backups are run from backup03 every day at 22:10UTC. 
+The backups are run from backup03 every day at 22:10UTC as root. 
 All config is in ansible. 
 
 The cron job checks out the ansible repo from git, then runs ansible-playbook with
@@ -41,7 +41,8 @@ manner as above with the rdiff-backup ssh key.
 For each backup an email will be sent to sysadin-backup-members with a summary. 
 
 Backups are stored on a netapp volume, so in addition to the incrementals 
-that rdiff-backup provides there are netapp snapshots. 
+that rdiff-backup provides there are netapp snapshots. This netapp volume is 
+mounted on /fedora_backups and is running dedup on the netapp side. 
 
 Rebooting backup03
 ==================
@@ -77,4 +78,9 @@ rdiff backup keeps a copy of the most recent version of files on disk, so if you
 wish to restore the last backup copy, simply rsync from backup03. If you wish an older
 incremental, see rdiff-backup man page for how to specify the exact time. 
 
+Retention 
+=========
+
+Backups are currently kept forever, but likely down the road we will look at 
+pruning them some to match available space. 
 
