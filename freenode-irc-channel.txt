@@ -45,11 +45,11 @@ Adding new channel
      * Add Some other Operators/Managers to the access list. This would allow
        them to manage the channel if you are asleep or absent.
 
-   /msg chanserv access #channel add NICK manager
+   /msg chanserv access #channel add NICK +ARfiorstv
 
-   or
+You can see what the various flags mean at: 
 
-   /msg chanserv access #channel add NICK op
+http://toxin.jottit.com/freenode_chanserv_commands#cs03
 
    You may want to consider adding some or all of the folks in #fedora-ops
    who manage other channels to help you with yours. You can see this list
