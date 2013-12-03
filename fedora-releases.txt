@@ -35,8 +35,9 @@ Fedora Release Infrastructure SOP
           * 6.7 Step 7 (Website)
           * 6.8 Step 8 (Docs)
           * 6.9 Step 9 (Monitor)
-          * 6.10 Step 10 (Done)
-          * 6.11 Priorities
+          * 6.10 Step 10 (Badges)
+          * 6.11 Step 11 (Done)
+          * 6.12 Priorities
 
      * 7 Juggling Resources
 
@@ -274,7 +275,39 @@ Release day
    application and otherwise. If something is getting overloaded, see
    suggestions on this page in the "Juggling Resources" section.
 
-  Step 10 (Done)
+  Step 10 (Badges)
+
+   We have some badge rules that are dependent on which release of Fedora
+   we're on.  As you have time, please performs the following on your local
+   box:
+
+    $ git clone ssh://git.fedorahosted.org/git/badges.git
+    $ cd badges
+
+   Edit rules/tester-it-still-works.yml and update the release tag to match
+   the now old but stable release.  For instance, if we just released fc21,
+   then the tag in that badge rule should be fc20.
+
+    $ git commit -a -m 'Updated tester badge rule for f21 release.'
+    $ git push origin master
+
+   Then, on lockbox, perform the following
+
+    $ git clone https://git.fedorahosted.org/git/badges.git
+    $ cd badges
+    $ git remote add lockbox /git/badges
+    $ git push lockbox master
+
+   We keep these two different repos so 1) external people can contribute to
+   the fedorahosted one but 2) only sysadmins can actually push to the repo
+   on lockbox used by our ansible playbooks.
+
+   Once you've pushed to the /git/badges repo on lockbox, run the
+   badges-backend playbook with:
+
+    $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/groups/badges-backend.yml
+
+  Step 11 (Done)
 
    Just chill, keep an eye on everything and make changes as needed. If you
    can't keep a service up, try to redirect randomly to some of the mirrors.
