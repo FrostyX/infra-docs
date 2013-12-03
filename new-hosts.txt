@@ -79,7 +79,7 @@ When doing 2 factor auth for sudo, the hosts that we connect from need to have v
 
   $ git clone /git/private && chmod 0700 private
   $ cd private/2fa-certs
-  $ . ./var
+  $ . ./vars
   $ ./build-and-sign-key $FQDN  # ex: elections01.stg.phx2.fedoraproject.org
 
 The $FQDN should be the phx2 domain name if it's in phx2, vpn if not in phx2, and if it has no vpn and is not in phx2 we should add it to the vpn.
