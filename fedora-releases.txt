@@ -142,7 +142,7 @@ Day Prior to Release Day
 
    Setup the torrent. All files can be synced with the torrent box
    but just not published to the world. Verify with sha1sum. Follow the
-   instructions on the torrentrelease.txt pag  up to and including step 4.
+   instructions on the torrentrelease.txt sop up to and including step 4.
 
   Step 2 (Website)
 
@@ -150,9 +150,11 @@ Day Prior to Release Day
    team. Update the Fedora version number wiki template if this is a final
    release. It will need to be changed in: 
 
-http://fedoraproject.org/wiki/Template:FedoraVersionNumber
-http://fedoraproject.org/wiki/Template:FedoraVersion
-http://fedoraproject.org/wiki/Template:FedoraVersionName 
+https://fedoraproject.org/wiki/Template:CurrentFedoraVersion
+
+   Additionally, there are redirects in the puppet proxy.pp file for cloud
+   Images. These should be pushed as soon as the content is available. 
+   See: https://fedorahosted.org/fedora-infrastructure/ticket/3866 for example
 
   Step 3 (Mirrors)
 
@@ -165,9 +167,9 @@ http://fedoraproject.org/wiki/Template:FedoraVersionName
    You can check this by looking at: 
 	
 	wget
-"http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/16-Alpha&country=global"
+"http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/20-Alpha&country=global"
 
-	(replace 16 and Alpha with the version and release.)
+	(replace 20 and Alpha with the version and release.)
 
   Step 4 (Enable Updates)
 
@@ -176,7 +178,8 @@ http://fedoraproject.org/wiki/Template:FedoraVersionName
 
    Move MirrorManager repository tags from the development/$version/
    Directory objects, to the releases/$version/ Directory objects. This is
-   done using the move-devel-to-release --version=$version command on bapp01.
+   done using the move-devel-to-release --version=$version command on bapp02.
+   This is usually done now a week or two after release. 
 
    As far as bodhi is concerned
 
@@ -223,10 +226,7 @@ Release day
    received the change by seeing if it is actually available, just use a spot
    check. Once that is complete move on.
 
-  Step 4 (preupgrade)
-   This step is no longer needed.
-
-  Step 5 (AutoQA repoinfo.conf)
+  Step 4 (AutoQA repoinfo.conf)
 
    The AutoQA project maintains a config file (repoinfo.conf) that
    describes available package repositories and their inheritance. To support
@@ -234,13 +234,13 @@ Release day
    updated. Please file an autoqa ticket to modify the repoinfo.conf file
    to include pointers to the new release.
 
-  Step 6 (Fedora-Packages yum-repo.conf)
+  Step 5 (Fedora-Packages yum-repo.conf)
 
    The Fedora Packages webapp needs to have its yum config updated to consume
    the latest release.  Add a new block of entries to
    puppet/modules/fedoracommunity/files/yum-repo.conf
 
-  Step 7 (Website)
+  Step 6 (Website)
 
    Once all of the distribution pieces are verified (mirrors and torrent),
    all that is left is to publish the website. At present this is done by
@@ -261,21 +261,21 @@ Release day
    appropriate configuration is available in the puppet configs in
    modules/fedora-web/files/redirects.conf.
 
-  Step 8 (Docs)
+  Step 7 (Docs)
 
    Just as with the website, the docs site needs to be published. Just as
    above follow the following steps:
 
  /root/bin/docs-sync
 
-  Step 9 (Monitor)
+  Step 8 (Monitor)
 
    Once the website is live, keep an eye on various news sites for the
    release announcement. Closely watch the load on all of the boxes, proxy,
    application and otherwise. If something is getting overloaded, see
    suggestions on this page in the "Juggling Resources" section.
 
-  Step 10 (Badges)
+  Step 9 (Badges)
 
    We have some badge rules that are dependent on which release of Fedora
    we're on.  As you have time, please performs the following on your local
@@ -307,7 +307,7 @@ Release day
 
     $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/groups/badges-backend.yml
 
-  Step 11 (Done)
+  Step 10 (Done)
 
    Just chill, keep an eye on everything and make changes as needed. If you
    can't keep a service up, try to redirect randomly to some of the mirrors.
