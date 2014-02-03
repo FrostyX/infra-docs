@@ -89,7 +89,13 @@ Modifying an Election
 
   Changing the details of an Election
 
-   This currently requires direct editing of the database. (Elections table)
+   * Note -- this page can also be used to verify details of an election
+     before it opens for voting.
+
+   After finding the id of the election iusing the list_elections url, url you
+   want to edit, browse to: voting/admin/edit/?eid=$ELECTION_ID
+   That will give you a form that can be used to edit most of the election
+   details.
 
   Removing a candidate
 
