@@ -118,3 +118,10 @@ JOIN votes AS v ON e.id=v.election_id WHERE e.shortdesc in ('FAmSCo - February
 2014') GROUP BY e.id, e.shortdesc;
 
 
+  You may also want to include the vote tally per candidate for convenience
+  when the FPL emails the election results:
+
+  SELECT e.id, e.shortdesc, c.name, c.novotes FROM elections AS e LEFT JOIN
+fvotecount AS c ON e.id=c.election_id WHERE e.shortdesc in ('FAmSCo - February
+2014', 'FESCo - February 2014') ;
+
