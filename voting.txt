@@ -101,7 +101,20 @@ Modifying an Election
 
    This currently requires direct editing of the database. (Candidates table)
 
-  Releasing the results of an embargoed election
+Releasing the results of an embargoed election
 
    Visit the elections admin interface and click 'Remove Embargo' for the
    selected election.
+
+Other things you might need to query
+
+  The current election software doesn't retrieve all of the information that
+  we like to include in our results emails.  So we have to query the database
+  for the extra information.  You can use something like this to retrieve the
+  total number of voters for the election:
+
+  SELECT e.id, e.shortdesc, COUNT(distinct v.voter) FROM elections AS e LEFT
+JOIN votes AS v ON e.id=v.election_id WHERE e.shortdesc in ('FAmSCo - February
+2014') GROUP BY e.id, e.shortdesc;
+
+
