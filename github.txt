@@ -38,12 +38,12 @@ That will allow us to more easily track what projects we have.
     form will appear.  Scroll to it and enter in information like:
 
     - Server, irc.freenode.net
-    - Port, 6667
-    - Room, fedora-apps
+    - Port, 6697
+    - Room, #fedora-apps
     - Nick, <nothing>
     - Branch Regexes, <nothing>
     - Password, <nothing>
-    - Ssl, <off>
+    - Ssl, <on>
     - Message Without Join, <on>
     - No Colors, <off>
     - Long Url, <off>
