@@ -230,7 +230,7 @@ Update website
 
 	* Update the short links for the Cloud Images for 'Fedora XX', 'Fedora
 	  XX-1' and 'Latest'
-	  - Log into lockbox1 and update the /puppet/manifest/proxy.pp file
+	  - Log into lockbox1 and update the /puppet/manifests/services/proxy.pp file
 	    accordingly.
 
 Fire in the hole
