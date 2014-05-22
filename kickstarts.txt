@@ -49,19 +49,6 @@ Physical Machine (dom0 / kvm virthost)
 
    Download the vmlinuz and initrd images.
 
-   for a rhel5 install:
-
- wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL5-x86_64/images/pxeboot/vmlinuz \
-     -O /boot/vmlinuz-install
- wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL5-x86_64/images/pxeboot/initrd.img \
-     -O /boot/initrd-install.img
-
- grubby --add-kernel=/boot/vmlinuz-install \
-        --args="ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/xen-host-nohd \
-        method=http://infrastructure.fedoraproject.org/repo/rhel/RHEL5-x86_64/ \
-        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
-        --title="install el5" --initrd=/boot/initrd-install.img
-
    for a rhel6 install:
 
  wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/images/pxeboot/vmlinuz \
@@ -136,8 +123,6 @@ Virtual Machine (domU)
    Machines in PHX that are running on the netapp over iscsi are stored on
    volgroup xenGuests
 
-   If building on Telia1 make sure to use the second xen bridge "-b xenbr1"
-
   Installation
 
    Once the size of the new machine is set, we need to run the virt-install.
@@ -157,14 +142,6 @@ Virtual Machine (domU)
   -l http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/ \
   -x "ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/kvm-rhel-6 \
   ip=$IP netmask=$NM gateway=10.5.126.254 dns=10.5.126.21,10.5.126.22 console=tty0 console=ttyS0" \
-  --vnc --noautoconsole
-
-   XEN outside of PHX:
-
- virt-install -n $NEWHOST -r 1024 -f /dev/VolGroup/$NEWHOST \
-  -l http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/ \
-  -x "ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/xen-rhel-6 \
-  ip=$IP netmask=$NM gateway=$GW dns=$NS1,$NS2" \
   --vnc --noautoconsole
 
    These installs should not require any user intervention. If you would like
@@ -304,6 +281,6 @@ Server Beach
    found this will work. Once you have your IP addresses all that is required
    is to create an aliased interface on the host with that IP.
    /etc/sysconfig/network-scripts/ifcfg-eth0:1 A reboot later and you can
-   treat this xen host as a normal xen host (with bridged networking and
+   treat this kvm host as a normal kvm host (with bridged networking and
    such)
 

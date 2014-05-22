@@ -1,4 +1,5 @@
-You should be able to follow these steps in order to create a new set of hosts in infrastructure.
+You should be able to follow these steps in order to create a new set of
+hosts in infrastructure.
 
 == DNS ==
 
@@ -10,7 +11,8 @@ Until the above is updated, see the documentation here:
 
 === Walk through ===
 
-* Note, when the DNS SOP is updated, this should be added to it in an "Add a new host" section
+* Note, when the DNS SOP is updated, this should be added to it in an
+  "Add a new host" section
 
 Get a DNS repo checkout on lockbox01:
   $ git clone /git/dns
@@ -19,7 +21,8 @@ Get a DNS repo checkout on lockbox01:
   $ cp hooks/pre-commit .git/hooks/pre-commit
   $ chmod 0755 .git/hooks/pre-commit
 
-An example always helps, so you can use git grep for something that has been recently added to the data center/network that you want:
+An example always helps, so you can use git grep for something that has
+been recently added to the data center/network that you want:
   
   $ git grep badges-web01
   built/126.5.10.in-addr.arpa:69       IN        PTR      badges-web01.stg.phx2.fedoraproject.org.
@@ -35,9 +38,24 @@ An example always helps, so you can use git grep for something that has been rec
   master/vpn.fedoraproject.org:badges-web01    IN A         192.168.1.109
   master/vpn.fedoraproject.org:badges-web02    IN A         192.168.1.110
 
-So those are the files we need to edit.  In the above example, two of those files are for the host on the PHX network.  The other two are for the host to be able to talk over the VPN.  Although the VPN is not always needed, the common case is that the host will need it.  (If any clients *need to connect to it via the proxy servers* or it is not hosted in PHX2 it will need a VPN connection).  An common exception is here the staging environment: since we only have one proxy server in staging and it is in PHX2, a VPN connection is not typically needed for staging hosts.
+So those are the files we need to edit.  In the above example, two of
+those files are for the host on the PHX network.  The other two are for
+the host to be able to talk over the VPN.  Although the VPN is not
+always needed, the common case is that the host will need it.  (If any
+clients *need to connect to it via the proxy servers* or it is not
+hosted in PHX2 it will need a VPN connection).  An common exception is
+here the staging environment: since we only have one proxy server in
+staging and it is in PHX2, a VPN connection is not typically needed for
+staging hosts.
 
-Edit the zone file for the reverse lookup first (the *in-addr.arpa file) and find ips to use.  The ips will be listed with a domain name of "unused."  If you're configuring a web application server, you probably want two hosts for stg and at least two for production.  Two in production means that we don't need downtime for reboots and updates.  Two in stg means that we'll be less likely to encounter problems related to having multiple web application servers when we take a change tested in stg into production:
+Edit the zone file for the reverse lookup first (the *in-addr.arpa file)
+and find ips to use.  The ips will be listed with a domain name of
+"unused."  If you're configuring a web application server, you probably
+want two hosts for stg and at least two for production.  Two in
+production means that we don't need downtime for reboots and updates.
+Two in stg means that we'll be less likely to encounter problems related
+to having multiple web application servers when we take a change tested
+in stg into production:
 
   -105      IN        PTR      unused.
   -106      IN        PTR      unused.
@@ -55,16 +73,20 @@ Edit the forward domain (phx2.fedoraproject.org in our example) next:
 + elections01     IN      A       10.5.126.107
 + elections02     IN      A       10.5.126.108
 
-Repeat these two steps if you need to make them available on the VPN.  Note: if your stg hosts are in PHX2, you don't need to configure VPM for them as all our stg proxy servers are in PHX2.
+Repeat these two steps if you need to make them available on the VPN.
+Note: if your stg hosts are in PHX2, you don't need to configure VPM for
+them as all our stg proxy servers are in PHX2.
 
 Also remember to update the Serial at the top of all zone files.
 
-Once the files are edited, you need to run a script to build the zones.  But first, commit the changes you just made to the "source".
+Once the files are edited, you need to run a script to build the zones.
+But first, commit the changes you just made to the "source".
 
   $ git add .
   $ git commit -a -m 'Added staging and production elections hosts.'
 
-Once that is committed, you need to run a script to build the zones and then push them to the dns servers.
+Once that is committed, you need to run a script to build the zones and
+then push them to the dns servers.
 
   $ ./do-domains # This builds the files
   $ git add .
@@ -75,14 +97,17 @@ Once that is committed, you need to run a script to build the zones and then pus
 
 == Make certs ==
 
-When doing 2 factor auth for sudo, the hosts that we connect from need to have valid SSL Certs.  These are currently stored in puppet:
+When doing 2 factor auth for sudo, the hosts that we connect from need
+to have valid SSL Certs.  These are currently stored in puppet:
 
   $ git clone /git/private && chmod 0700 private
   $ cd private/2fa-certs
   $ . ./vars
   $ ./build-and-sign-key $FQDN  # ex: elections01.stg.phx2.fedoraproject.org
 
-The $FQDN should be the phx2 domain name if it's in phx2, vpn if not in phx2, and if it has no vpn and is not in phx2 we should add it to the vpn.
+The $FQDN should be the phx2 domain name if it's in phx2, vpn if not in
+phx2, and if it has no vpn and is not in phx2 we should add it to the
+vpn.
 
   $ git add .
   $ git commit -a
@@ -101,7 +126,10 @@ To see an example:
 
 === inventory ===
 
-The ansible inventory file lists all the hosts that ansible knows about and also allows you to create sets of hosts that you can refer to via a group name.  For a typical web application server set of hosts we'd create things like this:
+The ansible inventory file lists all the hosts that ansible knows about
+and also allows you to create sets of hosts that you can refer to via a
+group name.  For a typical web application server set of hosts we'd
+create things like this:
 
 + [elections]
 + elections01.phx2.fedoraproject.org
@@ -118,7 +146,11 @@ The ansible inventory file lists all the hosts that ansible knows about and also
 + elections01.stg.phx2.fedoraproject.org
 + elections02.stg.phx2.fedoraproject.org
 
-The hosts should use their fully qualified domain names here.  The rules are slightly different than for 2fa certs.  If the host is in PHX2, use the .phx2.fedoraproject.org domain name.  If they aren't in PHX2, then they usually just have .fedoraproject.org as their domain name.  (If in doubt about a not-in-PHX2 host, just ask).
+The hosts should use their fully qualified domain names here.  The rules
+are slightly different than for 2fa certs.  If the host is in PHX2, use
+the .phx2.fedoraproject.org domain name.  If they aren't in PHX2, then
+they usually just have .fedoraproject.org as their domain name.  (If in
+doubt about a not-in-PHX2 host, just ask).
 
 === Work in progress ===
 From here to the end of file is still being worked on
