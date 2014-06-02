@@ -1,6 +1,8 @@
 SSH known hosts Infrastructure SOP
 
-   Provides Known Hosts file that is globally deployed.
+   Provides Known Hosts file that is globally deployed and publicly available
+   at:
+   https://admin.fedoraproject.org/ssh_known_hosts
 
 Contact Information
 
