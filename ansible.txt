@@ -175,7 +175,7 @@ Example repo with all kinds of examples:
 
 https://github.com/ansible/ansible-examples
 
-Jina2 docs:
+Jinja2 docs:
 
 http://jinja.pocoo.org/docs/
 
