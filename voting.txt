@@ -30,15 +30,18 @@ Contact Information
 
    Location: PHX
 
-   Servers: app servers, bapp01, db02
+   Servers: elections0{1,2}, elections01.stg, db02
 
    Purpose: Provides a system for voting on Fedora matters
 
 Creating a new election
 
-  Creating the election
+  Creating the elections
 
-   Go to voting/admin/newe and fill in the form.
+   Log in
+
+   Go to "Admin" in the menu at the top, select "Create new election" and fill
+   in the form.
 
    The "usefas" option results in candidate names being looked up as FAS
    usernames an displayed as their real name.
@@ -47,43 +50,50 @@ Creating a new election
    the link on the page of listed elections on the frontpage.
 
    Field             Description
-   Alias             A short name for the election, make sure you set this
+   Alias             A short name for the election. It is the name that will be
+                     used in the templates.
+                     Example: FESCo2014
+   Summary           A simple name that will be used in the URLs and as in the
+                     links in the application
+                     Example: FESCo elections 2014
+   Description       A short description about the elections that will be
+                     displayed above the choices in the voting page
+   Type              Allow setting the types of elections (more on that below)
+   Maxium Range/Votes  Allow setting options for some election type (more on
+                       that below)
    URL               A URL pointing to more information about the election
+                     Example: the wiki page presenting the election
    Start Date        The Start of the elections (UTC)
    End Date          The Close of the elections (UTC)
-   Seats Elected     How many seats will be elected
-   Embargoed         If this is set then it will require manual intervention
+   Number Elected    The number of seats that will be selected among the
+                     candidates after the election
+   Candidates are FAS users?  Checkbox allowing integration between FAS account
+                              and their names retrieved from FAS.
+   Embargo results   If this is set then it will require manual intervention
                      to release the results of the election
-   Allow Nominations Permits nomination of candidates (Not in use)
-   Until When        Closing date for nominations (Not in use)
-                     If set, then Candidates are supposed to have an entry in
-                     FAS,
-   Use FAS
-                     for display purposes FAS user names are converted into
-                     Real Names
+   Legal voters groups  Used to restrict the votes to one or more FAS groups
+   Admin groups      Give admin rights on that election to one or more FAS
+                     groups
+
 
   Adding Candidates
 
-   A list of all elections (and their IDs) can be found at
-   voting/admin/list_elections
+   The list of all the elections can be found at voting/admin/
 
-   Go to voting/admin/newc and fill in the form, using the id found through
-   list_elections.
+   Click on the election of interest and and select "Add a candidate".
+
+   Each candidate is added with a name and an URL. The name can be his/her FAS
+   username (interesting if the checkbox that candidates are FAS users has been
+   checked when creating the calendar) or something else.
+   The URL can be a reference to the wiki page where they nominated themselves.
 
    This will add extra candidates to the available list.
 
   Who can vote
 
-   Before anyone can vote you need to manually alter the database to say
-   which groups are permitted to vote in the election.
-
-   There are 2 magic GROUPNAME strings that can be used
-
-     * anycla - (any FAS group not beginning cla_)
-     * anyany - (any FAS group)
-
-   Put one of the above group names or a specific FAS group into the 'Allowed
-   Groups' field.
+   If no 'Legal voters groups' have been defined when creating the election, the
+   election will be opened to anyone having signed the CLA and being in one
+   other group (commonly referred to CLA+1).
 
 Modifying an Election
 
@@ -92,19 +102,51 @@ Modifying an Election
    * Note -- this page can also be used to verify details of an election
      before it opens for voting.
 
-   After finding the id of the election iusing the list_elections url, url you
-   want to edit, browse to: voting/admin/edit/?eid=$ELECTION_ID
-   That will give you a form that can be used to edit most of the election
-   details.
+   The list of all the elections can be found at /voting/admin/
+
+   After finding the right election, click on it to have the overview and select
+   "Edit election" under the description.
+
+  Edit a candidate
+
+  On the election overview page found via /voting/admin/ (and clicking on the
+  election of interest), next to each candidate is an `[edit]` button allowing
+  the admins to edit the information relative to the candidate.
 
   Removing a candidate
 
-   This currently requires direct editing of the database. (Candidates table)
+   
+  On the election overview page found via /voting/admin/ (and clicking on the
+  election of interest), next to each candidate is an `[x]` button allowing
+  the admins to remove the candidatei from the election.
+
 
 Releasing the results of an embargoed election
 
-   Visit the elections admin interface and click 'Remove Embargo' for the
-   selected election.
+   Visit the elections admin interface and edit the election to uncheck the
+   'Embargo results?' checkbox.
+
+Results
+
+  Admins have early access to the results of the elections (regardless of the
+  embargo status).
+
+  The list of the closed elections can be found at /voting/archives.
+
+  Find there the election of interest and click on the "Results" link in the
+  last column of the table.
+  This will show you the Results page included who was elected based on the
+  number of seats elected entered when creating the election.
+
+  You may use these information to send out the results email.
+
+
+
+== Legacy
+
+The information below should now be included in the Results page (see above) but
+I left them here in case.
+                                ----------
 
 Other things you might need to query
 
