@@ -288,6 +288,11 @@ Release day
    the now old but stable release.  For instance, if we just released fc21,
    then the tag in that badge rule should be fc20.
 
+   Edit rules/tester-you-can-pry-it-from-my-cold-dead-hands.yml and update
+   the release tag to match the release that is about to reach EOL.  For
+   instance, if we just released fc21, then the tag in that badge rule
+   should be fc19.
+
     $ git commit -a -m 'Updated tester badge rule for f21 release.'
     $ git push origin master
 
