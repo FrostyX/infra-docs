@@ -1,0 +1,26 @@
+Fedora Cloud
+============
+
+If you need to install OpenStack install, either make sure the machine is clean.
+Or use ansible.git/files/fedora-cloud/uninstall.sh script to brute force wipe off.
+
+After that wipe, you have to:
+ * ifdown eth1
+ * configure eth1 to become normal Ethernet with ip
+ * yum install openstack-neutron-openvswitch
+ * /usr/bin/systemctl restart neutron-ovs-cleanup
+ * ifup eth1
+
+Before installing make sure:
+ * make sure rdo repo is enabled
+ * yum install openstack-packstack openstack-packstack-puppet openstack-puppet-modules-
+   vim /usr/lib/python2.7/site-packages/packstack/plugins/dashboard_500.py
+   and missing parentheses:
+     host_resources.append((ssl_key, 'ssl_ps_server.key'))
+
+Now you can run playbook:
+ sudo rbac-playbook hosts/fed-cloud09.cloud.fedoraproject.org.yml
+
+If you run it after wipe (i.e. db has been reset), you have to:
+ * import ssh keys of users (only possible via webUI - RHBZ 1128233
+ * reset user passwords
