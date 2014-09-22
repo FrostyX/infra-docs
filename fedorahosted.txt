@@ -32,8 +32,8 @@ How to setup a new hosted project
    project should use the Ticketing System ; see the
    new project request template. (Requires Fedora Account)
 
-    1. Create source group in Fedora Account System (<scm>project
-       should be the group name)
+    1. Create source group in Fedora Account System (<scm><project>
+       should be the group name (ex gitepel, svnkernel, etc))
     2. Create source repo <see hosted repository setup SOP>
     3. Log into hosted03
     4. Create new project space:
