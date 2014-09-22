@@ -24,3 +24,7 @@ Now you can run playbook:
 If you run it after wipe (i.e. db has been reset), you have to:
  * import ssh keys of users (only possible via webUI - RHBZ 1128233
  * reset user passwords
+
+Troubleshooting:
+ * could not connect to VM? - check your security group, default SG does not
+   allow any connection.
