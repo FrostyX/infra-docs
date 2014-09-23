@@ -3,6 +3,9 @@ Fedora Cloud
 
 If you need to install OpenStack install, either make sure the machine is clean.
 Or use ansible.git/files/fedora-cloud/uninstall.sh script to brute force wipe off.
+Then remove on fed-clou09 the file
+  /etc/packstack_sucessfully_finished
+to enforce run of packstack and few other commands.
 
 After that wipe, you have to:
  * ifdown eth1
