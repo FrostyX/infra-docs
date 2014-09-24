@@ -54,6 +54,11 @@ should run to completion.
 Deploying the Taskotron Clients
 -------------------------------
 
+Before deploying the taskotron clients, get the host key of the taskotron
+master and populate 'buildmaster_pubkey' in the client's group_vars file. This
+will make sure that git checkouts from the master node work without human
+intervention.
+
 Deploying the Taskotron clients is a matter of running the proper group
 playbook once the variable files are properly filled in. No additional
 configuration is needed.
