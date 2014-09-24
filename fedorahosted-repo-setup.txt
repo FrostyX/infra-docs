@@ -141,6 +141,7 @@ Git Repository
  $ sudo ln -svf /usr/share/git-core/post-receive-chained ./hooks/post-receive
  $ sudo mkdir ./hooks/post-receive-chained.d
  $ sudo ln -svf /usr/local/bin/git-notifier ./hooks/post-receive-chained.d/post-receive-email
+ $ sudo ln -svf /usr/local/share/git/hooks/post-receive-fedorahosted-fedmsg ./hooks/post-receive-chained.d/post-receive-fedmsg
 
 Bazaar Repository
 
