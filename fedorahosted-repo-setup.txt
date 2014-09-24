@@ -140,7 +140,7 @@ Git Repository
  $ sudo git config hooks.repouri "http://git.fedorahosted.org/cgit/$PROJECTNAME.git"
  $ sudo ln -svf /usr/share/git-core/post-receive-chained ./hooks/post-receive
  $ sudo mkdir ./hooks/post-receive-chained.d
- $ sudo ln -svf /usr/local/bin/git-notifier ./hooks/post-receive-chained.d/post-recieve-email
+ $ sudo ln -svf /usr/local/bin/git-notifier ./hooks/post-receive-chained.d/post-receive-email
 
 Bazaar Repository
 
