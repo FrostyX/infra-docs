@@ -21,6 +21,7 @@ That will allow us to more easily track what projects we have.
 - After creating a new repo, click on the Settings tab to set up some fancy
   things.
 
+  If using git-flow for your project:
   - Set the default branch from 'master' to 'develop'.  Having the default
     branch be develop is nice:  new contributors will automatically start
     committing there if they're not paying attention to what branch they're
@@ -34,8 +35,9 @@ That will allow us to more easily track what projects we have.
         $ git push --all
 
   - Set up an IRC hook for notifications.  From the "settings" tab click on
-    "service hooks".  Scroll down to "IRC" and click it.  At the top right, a
-    form will appear.  Scroll to it and enter in information like:
+    "Webhooks & Services."  Under the "Add Service" dropdown, find "IRC" and
+    click it. You might need to enter your password.
+    In the form, you probably want the following values:
 
     - Server, irc.freenode.net
     - Port, 6697
