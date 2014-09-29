@@ -52,3 +52,4 @@ as host variable in inventory/host_vars/FQDN.yml
 Troubleshooting:
  * could not connect to VM? - check your security group, default SG does not
    allow any connection.
+ * packstack end up with error, it is likely race condition in puppet - BZ 1135529. Just run it again.
