@@ -3,6 +3,8 @@ Fedora Cloud
 
 If you need to install OpenStack install, either make sure the machine is clean.
 Or use ansible.git/files/fedora-cloud/uninstall.sh script to brute force wipe off.
+Note that by default, it does not wipe LVM group with VM, you have to clean
+them manually (there is commented line in that script)
 Then remove on fed-clou09 the file
   /etc/packstack_sucessfully_finished
 to enforce run of packstack and few other commands.
@@ -27,6 +29,25 @@ Now you can run playbook:
 If you run it after wipe (i.e. db has been reset), you have to:
  * import ssh keys of users (only possible via webUI - RHBZ 1128233
  * reset user passwords
+
+
+= Compute nodes =
+
+Compute node is much easier and is written as role. Use:
+
+  vars_files:
+   - ... SNIP
+   - /srv/web/infra/ansible/vars/fedora-cloud.yml
+   - "{{ private }}/files/openstack/passwords.yml"
+
+  roles:
+  ... SNIP 
+  - cloud_compute
+
+And define:
+  compute_private_ip: 172.23.0.10
+as host variable in inventory/host_vars/FQDN.yml 
+
 
 Troubleshooting:
  * could not connect to VM? - check your security group, default SG does not
