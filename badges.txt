@@ -29,6 +29,20 @@ The process is "fedmsg-hub" and the logs are in /var/log/fedmsg/fedmsg-hub.log
 
 The frontend runs under apache/mod_wsgi on badges-web0{1,2} nodes.
 
+Pushing out new badges
+----------------------
+
+Badge artists and badge developers should be pushing stuff yaml rules and pngs
+and svg art to this repo:
+
+  https://git.fedorahosted.org/cgit/badges.git
+
+There is a playbook that will take any new content from there and push it out
+onto our servers.
+
+    $ sudo -i ansible-playbook $(pwd)/playbooks/manual/push-badges.yml
+
+
 Manually awarding a badge
 -------------------------
 
