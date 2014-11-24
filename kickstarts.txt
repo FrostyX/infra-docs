@@ -67,9 +67,19 @@ Physical Machine (dom0 / kvm virthost)
  wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/images/pxeboot/vmlinuz -O /boot/vmlinuz-install
  wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/images/pxeboot/initrd.img -O /boot/initrd-install.img
 
+For phx2 hosts: 
+
  grubby --add-kernel=/boot/vmlinuz-install \
         --args="ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-nohd \
         repo=http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/ \
+        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
+        --title="install el7" --initrd=/boot/initrd-install.img
+
+For non phx2 hosts: 
+
+ grubby --add-kernel=/boot/vmlinuz-install \
+        --args="ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-ext \
+        repo=http://209.132.181.6/repo/rhel/RHEL7-x86_64/ \
         ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
