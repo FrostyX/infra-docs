@@ -6,14 +6,17 @@ Copr
    http://copr-fe.cloud.fedoraproject.org/
    Backend:
    http://copr-be.cloud.fedoraproject.org/
+   Package singer:
+   http://copr-keygen.cloud.fedoraproject.org/
 
    Devel instances:
    http://copr-fe-dev.cloud.fedoraproject.org/
    http://copr-be-dev.cloud.fedoraproject.org/
+   http://copr-keygen-dev.cloud.fedoraproject.org/
 
 Contact Information
 
-   Owner: msuchy (mirek)
+   Owner: msuchy (mirek, vgologuz)
 
    Contact: #fedora-admin, #fedora-buildsys
 
@@ -21,7 +24,14 @@ Contact Information
 
    Purpose: Build system
 
+
 Deploy informations:
+   Using playbooks and rbac:
+    sudo rbac-playbook groups/copr-backend.yml
+    sudo rbac-playbook groups/copr-frontend.yml
+    sudo rbac-playbook groups/copr-keygen.yml
+
+
    https://git.fedorahosted.org/cgit/copr.git/plain/copr-setup.txt
 
    On backend should run copr-backend service (which spawns 3 processes).
@@ -39,4 +49,10 @@ Deploy informations:
 
 Logs
    For backend:
-   /var/log/copr/backend.log /var/log/copr/workers/worker-*
+     /var/log/copr/backend.log /var/log/copr/workers/worker-*
+   For frontend:
+     httpd logs: /var/log/httpd/{error,access}_log
+   For keygen:
+     /var/log/copr-keygen/main.log
+     httpd logs: /var/log/httpd/{error,access}_log
+
