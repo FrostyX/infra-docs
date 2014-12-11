@@ -34,18 +34,20 @@ Deploy informations:
 
    https://git.fedorahosted.org/cgit/copr.git/plain/copr-setup.txt
 
-   On backend should run copr-backend service (which spawns 3 processes).
+   On backend should run copr-backend service (which spawns several processes).
    Backend spawns VM from Fedora Cloud. You could not login to those machines directly.
    You have to:
-   ssh root@copr-be-dev.cloud.fedoraproject.org
+   ssh root@copr-be.cloud.fedoraproject.org
    su - copr
-   . /home/copr/cloud/ec2rc.sh
+   source /home/copr/cloud/ec2rc.sh
    euca-describe-instances
    # instance type m1.builder are those spawned by backend, check 18th column with internal IP
    # log there if you want
    ssh root@172.16.3.3
    # or terminate that instance (ID is in 2nd column)
    euca-terminate-instances i-000003b3
+   # you can delete all instances in error state or simply forgotten by:
+   /home/copr/delete-forgotten-instances.pl
 
 Logs
    For backend:
