@@ -56,3 +56,5 @@ Troubleshooting:
  * ERROR : append() takes exactly one argument (2 given
    vi /usr/lib/python2.7/site-packages/packstack/plugins/dashboard_500.py
    and add one more surrounding () 
+ * Local ip for ovs agent must be set when tunneling is enabled 
+   ssh to fed-cloud09; ifdown eth0; ifup eth1
