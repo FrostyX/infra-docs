@@ -66,6 +66,11 @@ configuration is needed.
 Updating
 --------
 
+This part of the SOP can also be used to idle taskotron - just skip the update
+and reboot steps but turn off fedmsg-hub and shut down the buildslave
+services. The buildslave and fedmsg-hub processes will need to be restarted to
+un-idle the system but buildbot will restart anything that was running once the
+buildslaves come back up.
 
 NOTE: it would be wise to update resultsdb while the taskotron system is not
 processing jobs - that is covered in a separate SOP.
@@ -80,6 +85,8 @@ jobs that have been triggered
 5. run the update_grokmirror_repos.yml playbook on the system to update
 6. update and reboot the master node
 7. update and reboot the client nodes
+8. start the buildslave process on all client nodes (they aren't set to start
+   at boot)
 
 Once all affected machines are back up, verify that all services have come
 back up cleanly and start the process of running any jobs which may have been
