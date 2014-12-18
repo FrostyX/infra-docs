@@ -30,9 +30,9 @@ Location of Resources
        https://fedoraproject.org/freemedia/FreeMedia-form.html
      * The TRAC is at [63]https://fedorahosted.org/freemedia/report
 
-Location on Puppet
+Location on ansible
 
-   $PWD = puppet/modules/freemedia/files
+   $PWD = roles/freemedia/files
 
      * Freemedia form: FreeMedia-form.html
      * Backup form: FreeMedia-form.html.orig
@@ -54,17 +54,17 @@ Tentative timeline
 How to
 
      * The form is available at
-       /puppet/modules/freemedia/files/FreeMedia-form.html and
-       puppet/configs/web/applications/FreeMedia-form.html.orig
+       roles/freemedia/files/FreeMedia-form.html and
+       roles/freemedia/files//FreeMedia-form.html.orig
      * The closed form is at
-       /puppet/modules/freemedia/files/FreeMedia-close.html
+       roles/freemedia/files/FreeMedia-close.html
 
   Open
 
      * 
-          * Goto /puppet/modules/freemedia/manifests/
-          * Open init.pp
-          * Goto line 25.
+          * Goto roles/freemedia/tasks
+          * Open main.yml
+          * Goto line 33.
           * To Open: Change the line to read << source =>
             "puppet:///freemedia/FreeMedia-form.html", >> ((without << >>))
           * After opening the form, go to trac and grant "Ticket Create and
@@ -73,9 +73,9 @@ How to
   Close
 
      * 
-          * Goto /puppet/modules/freemedia/manifests/
-          * Open init.pp
-          * Goto line 25.
+          * Goto roles/freemedia/tasks
+          * Open main.yml
+          * Goto line 33.
           * To Close: Change the line to read << source =>
             "puppet:///freemedia/FreeMedia-close.html", >> (without << >>)
           * After closing the form, go to trac and remove "Ticket Create and
