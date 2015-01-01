@@ -1,5 +1,8 @@
 SCM Admin SOP
 
+WARNING: Most information here (probably 1.4 and later) is not updated for
+pkgdb2 and therefore not correct anymore.
+
    Contents
 
      * 1 Creating New Packages
@@ -31,10 +34,10 @@ Creating New Packages
 
   Obtaining process-git-requests
 
-   The script is not currently packaged; lives in the fedora-infrastructure
+   The script is not currently packaged; lives in the rel-eng
    git repository. You can check it out with
 
- git clone git://git.fedorahosted.org/git/fedora-infrastructure.git
+ git clone https://git.fedorahosted.org/git/releng
 
    and keep this up to date by running
 
