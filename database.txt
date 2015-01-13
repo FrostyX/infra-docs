@@ -119,8 +119,8 @@ Troubleshooting and Resolution
    This can help you find out what queries are cuurently running on the
    server::
 
- select datname, procpid, query_start, backend_start, current_query from
- pg_stat_activity where current_query not like '<IDLE>%' order by query_start;
+ select datname, pid, query_start, backend_start, query from
+ pg_stat_activity where state<>'idle' order by query_start;
 
    This can help you find how many connections to the db server are for each
    individual database::
