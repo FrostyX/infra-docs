@@ -9,7 +9,7 @@ Copr
    Package singer:
    http://copr-keygen.cloud.fedoraproject.org/
 
-   Devel instances:
+   Devel instances (NO NEED TO CARE ABOUT THEM, JUST THOSE ABOVE):
    http://copr-fe-dev.cloud.fedoraproject.org/
    http://copr-be-dev.cloud.fedoraproject.org/
    http://copr-keygen-dev.cloud.fedoraproject.org/
@@ -23,6 +23,40 @@ Contact Information
    Location: Fedora Cloud
 
    Purpose: Build system
+
+TROUBLESHOOTING:
+
+   Almost every problem with Copr is due problem in OpenStack, in such case:
+     ssh root@copr-be.cloud.fedoraproject.org
+     systemctl stop copr-backend
+     source /home/copr/cloud/ec2rc.sh
+     /home/copr/delete-forgotten-instances.pl
+   wait a minute and check
+     euca-describe-instances
+   sometimes you have to run delete-forgotten-instances.pl as openstack is
+   sometimes stuborn.
+     systemctl start copr-backend
+
+   If this does not help you, then stop and kill all OpenStack VM builders
+   and:
+     ssh root@fed-cloud02.cloud.fedoraproject.org
+     source keystonerc
+     for i in $(nova-manage floating list | grep 7ed4d | grep None | sort | awk
+'{ print $2}'); do nova-manage floating delete $i; nova-manage floating create
+$i; done
+   or even (USUALLY NOT NEEDED):
+     for i in /etc/init.d/openstack-*; do $i condrestart; done
+   and then start copr backend service again.
+
+   Sometimes OpenStack can not handle spawning too much VM at the same time.
+   So it is safer to edit on copr-be.cloud.fedoraproject.org:
+      vi /etc/copr/copr-be.conf
+   and change:
+      group0_max_workers=12
+   to "6". Start copr-backend service and some time later increase it to
+   original value. Copr automaticaly detect change in script and increase
+   number of workers.
+     
 
 
 Deploy informations:
