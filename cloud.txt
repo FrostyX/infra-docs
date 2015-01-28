@@ -48,8 +48,13 @@ And define:
   compute_private_ip: 172.23.0.10
 as host variable in inventory/host_vars/FQDN.yml 
 
+= Important =
 
-Troubleshooting:
+When reinstalling make sure you removed all members on Dell Equalogic
+(credentials are in /etc/cinder/cinder.conf on compute node) otherwise the
+space will be blocked!!!
+
+= Troubleshooting =
  * could not connect to VM? - check your security group, default SG does not
    allow any connection.
  * packstack end up with error, it is likely race condition in puppet - BZ 1135529. Just run it again.
@@ -57,6 +62,7 @@ Troubleshooting:
    vi /usr/lib/python2.7/site-packages/packstack/plugins/dashboard_500.py
    and add one more surrounding () 
  * Local ip for ovs agent must be set when tunneling is enabled 
-   ssh to fed-cloud09; ifdown eth0; ifup eth1
+   restart fed-cloud09 or:
+   ssh to fed-cloud09; ifdown eth1; ifup eth1; ifup br-ex
  * mongodb problem? follow
    https://ask.openstack.org/en/question/54015/mongodbpp-error-when-installing-rdo-on-centos-7/?answer=54076#post-id-54076
