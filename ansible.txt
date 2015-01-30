@@ -56,10 +56,11 @@ some private information that has not yet been moved to ansible-private.
 Cron job/scheduled runs
 =======================
 
-This is still being finalized in https://fedorahosted.org/fedora-infrastructure/ticket/4045
+With use of run_ansible-playbook_cron.py that is run daily via cron we walk through
+playbooks and run them with `--check --diff` params to perform a dry-run.
 
-Once in place it should run daily. Currently, all playbook runs are manual, so 
-you need to make sure and re-run against anything that would be affected by changes. 
+This way we make sure all the playbooks are idempotent and there is no
+unexpected changes on servers (or playbooks).
 
 Accelerate mode
 ===============
