@@ -72,7 +72,7 @@ For phx2 hosts:
  grubby --add-kernel=/boot/vmlinuz-install \
         --args="ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-nohd \
         repo=http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/ \
-        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
+        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS net.ifnames=0 biosdevname=0" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
 For non phx2 hosts: 
@@ -80,7 +80,7 @@ For non phx2 hosts:
  grubby --add-kernel=/boot/vmlinuz-install \
         --args="ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-ext \
         repo=http://209.132.181.6/repo/rhel/RHEL7-x86_64/ \
-        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
+        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS net.ifnames=0 biosdevname=0" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
 
