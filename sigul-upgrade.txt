@@ -1,8 +1,9 @@
 Sigul servers upgrades/reboots
 -----------------------
-Fedora currently has 1 sign-bridge and 2 sign-vault machines. When upgrading
-or rebooting these machines, some special steps must be taken to ensure
-everything is working as expected. 
+Fedora currently has 1 sign-bridge and 2 sign-vault machines for primary, there
+is a similar setup for secondary architectures. When upgrading or rebooting
+these machines, some special steps must be taken to ensure everything is
+working as expected.
 
 Contact Information
 -------------------
@@ -23,7 +24,7 @@ Sign-bridge02:
 
 2. Reboot virtual instance
 
-3. Once it comes back, start the sigul_bridge service and enter password. 
+3. Once it comes back, start the sigul_bridge service and enter empty password.
 
 Sign-vault03/04: 
 
