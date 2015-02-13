@@ -29,14 +29,13 @@ Fedora Release Infrastructure SOP
           * 6.1 Step 1 (Prep and wait)
           * 6.2 Step 2 (Torrent)
           * 6.3 Step 3 (Bit flip)
-          * 6.4 Step 4 (Preupgrade releases.txt)
-          * 6.5 Step 5 (AutoQA repoinfo.conf)
-          * 6.6 Step 6 (Fedora Packages yum-repo.conf)
-          * 6.7 Step 7 (Website)
-          * 6.8 Step 8 (Docs)
-          * 6.9 Step 9 (Monitor)
-          * 6.10 Step 10 (Badges)
-          * 6.11 Step 11 (Done)
+          * 6.5 Step 4 (Taskotron)
+          * 6.6 Step 5 (Fedora Packages yum-repo.conf)
+          * 6.7 Step 6 (Website)
+          * 6.8 Step 7 (Docs)
+          * 6.9 Step 8 (Monitor)
+          * 6.10 Step 9 (Badges)
+          * 6.11 Step 10 (Done)
           * 6.12 Priorities
 
      * 7 Juggling Resources
@@ -226,13 +225,13 @@ Release day
    received the change by seeing if it is actually available, just use a spot
    check. Once that is complete move on.
 
-  Step 4 (AutoQA repoinfo.conf)
+  Step 4 (Taskotron)
 
-   The AutoQA project maintains a config file (repoinfo.conf) that
-   describes available package repositories and their inheritance. To support
-   automated testing of Fedora packages, the repoinfo.conf file needs to be
-   updated. Please file an autoqa ticket to modify the repoinfo.conf file
-   to include pointers to the new release.
+   Please file a Taskotron ticket and ask for the new release support to be
+   added (log in to Phabricator using your FAS_account@fedoraproject.org email
+   address):
+    
+   https://phab.qadevel.cloud.fedoraproject.org/maniphest/task/create/?projects=PHID-PROJ-prgpoumlmfdczdr4dyv3
 
   Step 5 (Fedora-Packages yum-repo.conf)
 
