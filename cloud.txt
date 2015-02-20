@@ -1,6 +1,16 @@
 Fedora Cloud
 ============
 
+= Quick start =
+
+Controler:
+sudo  rbac-playbook hosts/fed-cloud09.cloud.fedoraproject.org.yml
+
+Compute nodes:
+sudo  rbac-playbook groups/openstack-compute-nodes.yml
+
+= Description =
+
 If you need to install OpenStack install, either make sure the machine is clean.
 Or use ansible.git/files/fedora-cloud/uninstall.sh script to brute force wipe off.
 Note that by default, it does not wipe LVM group with VM, you have to clean
@@ -47,6 +57,12 @@ Compute node is much easier and is written as role. Use:
 And define:
   compute_private_ip: 172.23.0.10
 as host variable in inventory/host_vars/FQDN.yml 
+
+You should also add IP to 
+  vars/fedora-cloud.yml
+
+And when adding new compute node, please update:
+  files/fedora-cloud/hosts
 
 = Important =
 
