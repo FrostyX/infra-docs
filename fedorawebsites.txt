@@ -29,14 +29,14 @@ ites Release SOP
     At this point we should drop the GPG key from the list in verify/ and move
     the keys to the obsolete keys page in keys/obsolete.html.
 
-    1.1 Update GPG key
+    1.2 Update GPG key
 
     After another couple of weeks and as the next release approaches, watch
     the fedora-release package for a new key to be added. Use the update-gpg-keys
     script in the fedora-web git repository to add it to static/. Manually add it
     to /keys and /verify.
 
-      1.1.1 Steps
+      1.2.1 Steps
 
       a) Get a copy of the new key(s) from the fedora-release repo, you will
          find FXX-primary and FXX-secondary keys. Save them in ./tools to make the
