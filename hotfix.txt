@@ -26,7 +26,7 @@ Ansible based items:
 For ansible, they should be placed after the task that installs
 the package to be changed or modified. Either in roles or tasks. 
 
-hotfix tasks should be called "HOTFIX: description" 
+hotfix tasks should be called "HOTFIX description" 
 They should also link in comments to any upstream bug or ticket.
 They should also have tags of 'hotfix' 
 
