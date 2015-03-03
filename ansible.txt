@@ -62,15 +62,6 @@ playbooks and run them with `--check --diff` params to perform a dry-run.
 This way we make sure all the playbooks are idempotent and there is no
 unexpected changes on servers (or playbooks).
 
-Accelerate mode
-===============
-
-All playbooks should be able to use the ansible accelerate mode. This mode connects to 
-each host in the playbook and starts a process listening on port 5099. Then, this process
-is used for subsequent plays, avoiding the setup/teardown costs of ssh connections. 
-This requires python-keyczar on each node as well as firewall rules allowing lockbox01
-and backup02 to access all machines on port 5099.
-
 Logging
 =======
 
