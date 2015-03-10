@@ -6,40 +6,6 @@ Fedora Release Infrastructure SOP
    Some work may get done by releng, some may get done by Infrastructure, as
    long as it gets done, it doesn't matter.
 
-   Contents
-
-     * 1 Contact Information
-     * 2 Description
-     * 3 Preparations
-
-          * 3.1 Change Freeze
-          * 3.2 Static / cached urls
-
-     * 4 Notes about release day
-     * 5 Day Prior to Release Day
-
-          * 5.1 Step 1 (Torrent)
-          * 5.2 Step 2 (Website)
-          * 5.3 Step 3 (Mirrors)
-          * 5.4 Step 4 (Enable Updates)
-          * 5.5 Step 5 (Lessons Learned page)
-
-     * 6 Release day
-
-          * 6.1 Step 1 (Prep and wait)
-          * 6.2 Step 2 (Torrent)
-          * 6.3 Step 3 (Bit flip)
-          * 6.5 Step 4 (Taskotron)
-          * 6.6 Step 5 (Fedora Packages yum-repo.conf)
-          * 6.7 Step 6 (Website)
-          * 6.8 Step 7 (Docs)
-          * 6.9 Step 8 (Monitor)
-          * 6.10 Step 9 (Badges)
-          * 6.11 Step 10 (Done)
-          * 6.12 Priorities
-
-     * 7 Juggling Resources
-
 Contact Information
 
    Owner: Fedora Infrastructure Team, Fedora Release Engineering Team
@@ -57,39 +23,37 @@ Description
 
 Preparations
 
-   Before Alpha for a release ships, the following items need to be
-   completed. *Please open a ticket for all of them individually*
-   Tickets should be opened at freeze time. 
+   Before a release ships, the following items need to be completed. 
 
     1. New website from the websites team (typically hosted at
-       http://fedoraproject.org/_/), edit syncStatic.sh to freeze the
-       website in preparation for release updates.
+       http://getfedora.org/_/)
     2. Verify mirror space (for all test releases as well)
-    3. Release day ticket and milestone (keep a log of who is doing what and notes)
-    4. Verify with rel-eng permissions on content are right on the mirrors.  Don't leak.
-    5. Communication with Red Hat IS (Give at least 2 months notice, then
+    3. Verify with rel-eng permissions on content are right on the mirrors.  Don't leak.
+    4. Communication with Red Hat IS (Give at least 2 months notice, then
        reminders as the time comes near) (final release only)
-    6. Infrastructure change freeze
-    7. Modify Template:FedoraVersion to reference new version. (Final release only)
-    8. Re-review Lessons Learned pages from previous release, be sure we
-       aren't forgetting things we meant to do after the last release.
-    9. Add the new release to stats gathering scripts on log1
+    5. Infrastructure change freeze
+    6. Modify Template:FedoraVersion to reference new version. (Final release only)
+    7. Add the new release to stats gathering scripts on log1
        (modules/scripts/files/fedoraUsage.sh, also the maps should be
        updated) (Final release only)
-   10. Move old releases to archive (final release only)
+    8. Move old releases to archive (post final release only)
+    9. Switch release from development/N to normal releases/N/ tree in mirror
+       manager (post final release only)
 
   Change Freeze
 
-   The rules are simple. If we are in a pre release freeze or a full freeze,
-   take a look at the architecture document. If the hostname is in the
-   freeze area, that entire host is frozen. So making global changes is also
-   forbidden. If, for some reason, a change needs to be made, a request must
-   go to the fedora-infrastructure-list requesting it. It will require at
-   least two people to signoff on the change from either sysadmin-main or the
-   releng group. Exceptions to this include:
+   The rules are simple:
 
-     * Planned changes as part of the release
-     * Emergencies / outages
+   * Hosts with the ansible variable "freezes" "True" are frozen. 
+   * You may make changes as normal on hosts that are not frozen. 
+     (For example, staging is never frozen)
+   * Changes to frozen hosts requires a freeze break request sent to
+     the fedora infrastructure list, containing a description of the 
+     problem or issue, actions to be taken and (if possible) patches 
+     to ansible that will be applied. These freeze breaks must then get
+     two approvals from sysadmin-main or sysadmin-releng group members
+     before being applied. 
+   * Changes to recover from outages are acceptable to frozen hosts if needed.
 
    Change freezes will be sent to the fedora-infrastructure-list and begin 2
    weeks before each release and the final release. The freeze will end one
@@ -100,9 +64,6 @@ Preparations
 
    git clone http://infrastructure.fedoraproject.org/infra/ansible.git
    scripts/freezelist -i inventory/inventory
-
-   Each one of these tasks except for the release day ticket must be
-   completed and closed prior to the release.
 
 Notes about release day
 
@@ -135,6 +96,11 @@ Notes about release day
    landing page static though. This helped a great deal though we did see
    load on the proxy boxes as spiky.
 
+   Recent releases have been quite smooth due to a number of changes: we 
+   have a good deal more bandwith on master mirrors, more cpus and memory, 
+   as well as prerelease versions are much easier to come by for those
+   interested before release day. 
+
 Day Prior to Release Day
 
   Step 1 (Torrent)
@@ -151,7 +117,8 @@ Day Prior to Release Day
 
 https://fedoraproject.org/wiki/Template:CurrentFedoraVersion
 
-   Additionally, there are redirects in the puppet proxy.pp file for cloud
+   Additionally, there are redirects in the ansible 
+   playbooks/include/proxies-redirects.yml file for Cloud
    Images. These should be pushed as soon as the content is available. 
    See: https://fedorahosted.org/fedora-infrastructure/ticket/3866 for example
 
@@ -169,35 +136,6 @@ https://fedoraproject.org/wiki/Template:CurrentFedoraVersion
 "http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/20-Alpha&country=global"
 
 	(replace 20 and Alpha with the version and release.)
-
-  Step 4 (Enable Updates)
-
-   The new Fedora release will likely have 0day updates. Making sure we can
-   push those updates is important.
-
-   Move MirrorManager repository tags from the development/$version/
-   Directory objects, to the releases/$version/ Directory objects. This is
-   done using the move-devel-to-release --version=$version command on bapp02.
-   This is usually done now a week or two after release. 
-
-   As far as bodhi is concerned
-
-     * Create the new release in bodhi, to allow developers to queue up 0day
-       updates. Make sure this is 'locked' so they don't get pushed. See the
-       bodhi administration page for instructions.
-     * Create mash config files for the new release
-     * If the mash config files have already been created, make sure the
-       delta_dirs are updated to reflect the GA file locations (You should
-       just uncomment the line that says "Enable this once F$version
-       releases" and delete the other delta_dirs line)
-     * Make sure the dist-fX-updates{,-testing} tags are creating in Koji
-     * Make sure the rsync script is updated
-     * When it's time to push, simply unlock the release in bodhi and you
-       should be good to go.
-
-  Step 5 (Lessons Learned page)
-
-   Set up a new page like  to record findings we'll use next release cycle.
 
 Release day
 
@@ -225,7 +163,7 @@ Release day
    received the change by seeing if it is actually available, just use a spot
    check. Once that is complete move on.
 
-  Step 4 (Taskotron)
+  Step 4 (Taskotron) (final release only)
 
    Please file a Taskotron ticket and ask for the new release support to be
    added (log in to Phabricator using your FAS_account@fedoraproject.org email
@@ -244,21 +182,16 @@ Release day
    Once all of the distribution pieces are verified (mirrors and torrent),
    all that is left is to publish the website. At present this is done by
    making sure the master branch of fedora-web is pulled by the syncStatic.sh
-   script in puppet (which contains instructions for switching this). It will
-   sync in an hour normally but on release day people don't like to wait that
-   long so do the following on bapp01:
+   script in ansible. It will sync in an hour normally but on release day 
+   people don't like to wait that long so do the following on bapp02:
 
    sudo -u apache /usr/local/bin/lock-wrapper syncStatic 'sh -x /usr/local/bin/syncStatic'
    
    Once that completes, on lockbox01: 
 
-   sudo -i ansible proxy\* "/usr/bin/rsync --delete -a --no-owner --no-group bapp02::fedoraproject.org/ /srv/web/fedoraproject.org/"
+   sudo -i ansible proxy\* "/usr/bin/rsync --delete -a --no-owner --no-group bapp02::getfedora.org/ /srv/web/getfedora.org/"
 
-   Verify http://fedoraproject.org/ is working.
-
-   Also, ensure that /get-prerelease now redirects to /get-fedora. The
-   appropriate configuration is available in the puppet configs in
-   modules/fedora-web/files/redirects.conf.
+   Verify http://getfedora.org/ is working.
 
   Step 7 (Docs)
 
@@ -274,7 +207,7 @@ Release day
    application and otherwise. If something is getting overloaded, see
    suggestions on this page in the "Juggling Resources" section.
 
-  Step 9 (Badges)
+  Step 9 (Badges) (final release only)
 
    We have some badge rules that are dependent on which release of Fedora
    we're on.  As you have time, please performs the following on your local
@@ -353,7 +286,7 @@ Juggling Resources
 
      * IPTables based bandwidth and connection limiting (successful in the
        past)
-     * Altering the weight on the proxy balancers (see: [96]Balancers )
+     * Altering the weight on the proxy balancers
      * Create static pages out of otherwise dynamic content
      * Redirect pages to a mirror
      * Add a server / remove un-needed servers
@@ -420,3 +353,8 @@ Final:
 	After release:
 		Update /topic in #fedora-admin
 		post to infrastructure list that freeze is over. 
+
+   Move MirrorManager repository tags from the development/$version/
+   Directory objects, to the releases/$version/ Directory objects. This is
+   done using the move-devel-to-release --version=$version command on bapp02.
+   This is usually done now a week or two after release. 
