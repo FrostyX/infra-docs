@@ -25,6 +25,10 @@ Description
   done.
 
   The backend process is a 'fedmsg-hub' daemon, controlled by systemd.
+
+  Disable an account (on notifs-backend01):
+
+    $ sudo -u fedmsg /usr/local/bin/fmn-disable-account USERNAME
  
   Restart:
 
