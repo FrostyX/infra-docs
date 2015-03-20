@@ -43,9 +43,10 @@ You can use "-" (dash) to imply "All services"
 It accepts any number of additional services
 
 [status] should be:
-  'major' - A major service ourage.
-  'minor' - A minor service outage (e.g. limited/geographical outage)
-  'good'  - Everything is fine and the service is functioning 100%.
+  'major'     - A major service ourage.
+  'minor'     - A minor service outage (e.g. limited/geographical outage)
+  'scheduled' - The current downtime to this service is related to a scheduled outage
+  'good'      - Everything is fine and the service is functioning 100%.
 
 [short summary message] is what appears in the body of the box and should tell
 users what is happening/why the service is down.
