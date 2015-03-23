@@ -50,11 +50,14 @@ FAS Accounts
             $ sudo -u postgres psql fas2;
             -- Set it to a bot account so its not inactivated
             => UPDATE people SET status='bot' WHERE username='username';
+
             -- delete references to the current uid
             => delete from visit_identity where user_id in (select id from
+                  people where username = 'username');
+
             -- Find the last used id in the range we use for bots
             => select id, username from people where id < 10000 order by id;
-                  people where uername = 'username');
+
             -- Set the account to use the newid  This should be one more than
                the largest id returned by the previous query
             => UPDATE people SET id=NEWID WHERE username='username';
