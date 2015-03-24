@@ -19,12 +19,12 @@ Each chassis has 2 physical network connections going out from it.
 The first one is used for the management interface on each SOC. 
 The second one is used for eth0 for each SOC.
 
-Current allocations (2013-04-04): 
+Current allocations (2015-03-24): 
 
-arm01 -> secondary arch builders attached to arm.koji.fedoraproject.org
+arm01 -> releng, retrace and former secondary arch, will be added to primary
 arm02 -> primary arch builders attached to koji.fedoraproject.org
-arm03 -> releng and qa and infra instances. 
-arm04 -> TBD
+arm03 -> In cloud network, public qa/packager and copr instances
+arm04 -> primary arch builders attached to koji.fedoraproject.org
 
 Each SOC: 
 =========
@@ -48,9 +48,7 @@ Kickstarts for the machines are in the kickstarts repo.
 
 PXE config is on noc01. 
 
-The kickstart installs Fedora 18 and sets them up with a base package set. 
-Note that the SOC's can be installed as armv7 or armv5. Secondary arch 
-still supports armv5 on older f17/f18 installs, but thats it. 
+The kickstart installs Fedora 21 and sets them up with a base package set. 
 
 IPMI tool Management
 ====================
@@ -62,6 +60,9 @@ have been submitted upstream and cxmanage is under review in Fedora.
 The ipmitool is currently installed on noc01 and it has ability to 
 talk to them on their management interface. noc01 also serves dhcp and
 is a pxeboot server for the SOCs.
+
+However you will need to add it to your path: 
+export PATH=$PATH:/opt/calxeda/bin/
 
 Some common commands: 
 
@@ -76,6 +77,41 @@ ipmitool -U admin -P thepassword -H arm03-builder11-mgmt.arm.fedoraproject.org p
 
 To get a serial over lan console from the SOC: 
 ipmitool -U admin -P thepassword -H arm03-builder11-mgmt.arm.fedoraproject.org -I lanplus sol activate
+
+DISK mapping
+============
+
+Each SOC has a disk. They are however mapped to the internal 00-23 in a non
+direct manner: 
+
+HDD Bay	EnergyCard	SOC (Port 1) SOC Num
+0		0	 	3    03
+1	 	0	 	0    00
+2		0	 	1    01
+3		0	 	2    02
+4		1	 	3    07
+5	 	1	 	0    04
+6	 	1	 	1    05
+7	 	1	 	2    06
+8	 	2	 	3    11
+9	 	2	 	0    08
+10	 	2		1    09
+11	 	2	 	2    10
+12	 	3	 	3    15
+13	 	3	 	0    12
+14	 	3	 	1    13
+15	 	3	 	2    14
+16	 	4	 	3    19
+17	 	4		0    16
+18	 	4	 	1    17
+19	 	4	 	2    18
+20	 	5	 	3    23
+21	 	5	 	0    20
+22	 	5	 	1    21
+23	 	5	 	2    22
+
+Looking at the system from the front, the bay numbering starts from left to
+right.
 
 cxmanage
 ========
@@ -135,5 +171,3 @@ http://sources.calxeda.com/python/packages/cxmanage/
 Contacts: 
 
 help.desk@boston.co.uk is the contact to send repair requests to. 
-
-
