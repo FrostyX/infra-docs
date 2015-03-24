@@ -50,3 +50,17 @@ Description
   Upgrade (from lockbox):
   
     $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/manual/upgrade/fmn.yml
+
+Mailing Lists
+-------------
+
+We use FMN as a way to forward certain kinds of messages to mailing lists so
+people can read them the good old fashioned way that they like to.  To
+accomplish this, we create 'bot' FAS accounts with their own FMN profiles and
+we set their email addresses to the lists in question.
+
+If you need to change the way some set of messages are forwarded, you'll need
+to login as those accounts in the web interface (or do surgery on the DB
+yourself).  You can find the usernames and passwords of these bot accounts in
+the ansible private repo, in the vars file as things like
+``fmn_meetingminutes_user`` and ``fmn_meetingminutes_pass``.
