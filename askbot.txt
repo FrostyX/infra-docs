@@ -14,7 +14,8 @@ Ask Fedora SOP
      * 3 Setting up the forum               
      * 4 Adding administrators              
      * 5 Change settings within the forum   
-     * 6 Debugging                          
+     * 6 Database tweaks
+     * 7 Debugging                          
 
 
 Contact Information
@@ -251,6 +252,39 @@ border:3px solid #CCCCCC;
 margin:0px;
 background: -moz-linear-gradient(top, #DDDDDD, #FFFFFF);
 }
+
+
+Database tweaks
+
+   To automatically delete expired sessions, we run a trigger
+   that makes PostgreSQL delete them upon inserting a new one.
+
+   The code used to create this trigger was:
+askfedora=# CREATE FUNCTION delete_old_sessions() RETURNS trigger
+askfedora-# LANGUAGE plpgsql
+askfedora-# AS $$
+askfedora$# BEGIN
+askfedora$# DELETE FROM django_session WHERE expire_date<current_timestamp;
+askfedora$# RETURN NEW;
+askfedora$# END
+askfedora$# $$;
+CREATE FUNCTION
+askfedora=# CREATE TRIGGER old_sessions_gc
+askfedora-# AFTER INSERT ON django_session
+askfedora-# EXECUTE PROCEDURE delete_old_sessions();
+
+   In case this trigger causes any problems, please remove it
+   by running: DROP TRIGGER old_sessions_gc;
+   
+   To make this perform, we have a custom index that's not in
+   upstream askbot, please remember to add that when recreating
+   the trigger:
+CREATE INDEX CONCURRENTLY django_session_expire_date ON django_session (expire_date);
+
+   If you deleted the trigger, or reinstalled without trigger,
+   please make sure to run manage.py clean_sessions regularly,
+   so you don't end up with a database that's too massive in
+   size.
 
 
 Debugging
