@@ -13,7 +13,7 @@ Orientation Infrastructure SOP
 
      * 4 Doing Work
 
-          * 4.1 Puppet
+          * 4.1 Ansible
 
      * 5 Our Setup
      * 6 Our Rules
@@ -79,7 +79,7 @@ Welcome to the team
    actually doing work without access is difficult. Some of the best things
    you can do are:
 
-     * Keep bugging people for work. It shows you're comitted.
+     * Keep bugging people for work. It shows you're committed.
      * Go through bugs, look at stale bugs and close bugs that have been
        fixed
      * Try to duplicate bugs on your workstation and fix them there
@@ -111,14 +111,16 @@ Doing Work
    won't be able to do. Ask for help when you need it and keep in contact
    with your sponsor so you know
 
-  Puppet
+  Ansible
 
-   Everything we do gets done in puppet. We have a separate SOP for puppet at
-   Infrastructure/SOP/Puppet It is important that you not make changes
-   directly on servers. This is for many reasons but just always make changes
-   in puppet. If you want to get more familiar with puppet, set it up
-   yourself and give it a try. The docs are available at
-   http://reductivelabs.com/trac/puppet/wiki/DocumentationStart
+   Most of things we do gets done in Ansible. Older configuration is still
+   managed by puppet, but it is slowly being migrated to Ansible. We have a
+   separate SOP for Ansible and puppet at, respectively, ansible.txt and
+   puppet.txt. It is important that you not make changes directly on
+   servers. This is for many reasons but just always make changes in
+   Ansible or puppet. If you want to get more familiar with Ansible, set it
+   up yourself and give it a try. The docs are available at
+   http://http://docs.ansible.com/
 
 Our Setup
 
@@ -127,7 +129,7 @@ Our Setup
    vpn solution setup so that knowing where the servers physically are is
    only important when troubleshooting things. When you first get granted
    access to one of the sysadmin-* groups, the first place you should turn is
-   bastion.fedoraproject.org then from there ssh to puppet1.
+   bastion.fedoraproject.org then from there ssh to lockbox01.
 
    We also have an architecture repo available in our git repo. To get a copy
    of this repo just:
