@@ -108,7 +108,7 @@ Development Instance
 Staging Instance
 
    The next step is to create a staging instance for the resource. In this
-   step the resource is fully added to puppet/configuration management. The
+   step the resource is fully added to Ansible/configuration management. The
    resource is added to caching/load balancing/databases and tested in this
    new env. Once initial deployment is done and tested, another email to the
    infrastructure list is done to note that the resource is available in
@@ -117,7 +117,7 @@ Staging Instance
    Requirements for continuing:
 
      * MUST have sign off of RFR sponsor that the resource is fully
-       configured in puppet and ready to be deployed.
+       configured in Ansible and ready to be deployed.
 
      * MUST have a deployment schedule for going to production. This will
        need to account for things like freezes and availability of
