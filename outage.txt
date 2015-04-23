@@ -48,7 +48,8 @@ Contact Information
 
    Emergency: https://admin.fedoraproject.org/pager
 
-Users (No Access)
+
+== Users (No Access) ==
 
    Don't have shell access? Doesn't matter. Stop by and stay in #fedora-admin
    if you have any expertise in what is going on, please assist. Random users
@@ -89,41 +90,40 @@ Unplanned Outage
 
    Don't be general.
 
-     * Stop "The wiki is acting slow"
-     * "Whenever I try to save http://fedoraproject.org/wiki/Infrastructure, I get a proxy error
-       after 60 seconds"
+     * BAD: "The wiki is acting slow"
+     * Good: "Whenever I try to save http://fedoraproject.org/wiki/Infrastructure,
+       I get a proxy error after 60 seconds"
 
    Don't report an outage that's already been reported.
 
-     * Stop "/join #fedora-admin; Is the build system broken?"
-     * "/join #fedora-admin; wait a minute or two; I                                                       noticed I can't submit builds, here's the error I get:"
+     * BAD: "/join #fedora-admin; Is the build system broken?"
+     * Good: "/join #fedora-admin; wait a minute or two; I noticed I
+       can't submit builds, here's the error I get:"
 
    Don't suggest drastic or needless changes during an outage (send it to the
    list)
 
      * "Why don't you just use lighttpd?"
-     * "You could try limiting MaxRequestsPerChild in
-       Apache"
+     * "You could try limiting MaxRequestsPerChild in Apache"
 
    Don't get off topic or be too chatty
 
-     * Stop "Transformers was awesome, but yeah, I
+     * "Transformers was awesome, but yeah, I
        think you guys know what to do next"
-    
 
    Do research the technologies we're using and answer questions that may
    come up.
 
-     * Stop "Can't you just fix it?"
-     * "Hey guys, I think this is what you're looking for:
+     * BAD: "Can't you just fix it?"
+     * Good: "Hey guys, I think this is what you're looking for:
        http://httpd.apache.org/docs/2.2/mod/mod_mime.html#addencoding"
 
-   Idea
    If no one can be contacted after 10 minutes or so please see the section
    below called Determine Severity to determine whether or not someone
    should get paged.
 
-                     Infrastructure Members (Admin Access)
+
+== Infrastructure Members (Admin Access) ==
 
    The Infrastructure Members section is specifically written for members
    with access to the servers. This could be admin access to a box or even a
@@ -138,12 +138,13 @@ Planned Outage
 
    All major planned outages should occur with at least 1 week notice. This
    is not always possible, use best judgment. Please use our standard outage
-   template at: Infrastructure/OutageTemplate Make sure to have another
-   person review your template/announcement to check times and services
-   affected. Make sure to send the announcement to the lists that are
-   affected by the outage: announce, devel-announce, etc.
+   template at: http://fedoraproject.org/wiki/Infrastructure/OutageTemplate.
+   Make sure to have another person review your template/announcement to
+   check times and services affected. Make sure to send the announcement to
+   the lists that are affected by the outage: announce, devel-announce, etc.
 
-   Always create a ticket in the ticketing system: Infrastructure/Tickets
+   Always create a ticket in the ticketing system:
+   http://fedoraproject.org/wiki/Infrastructure/Tickets
    Send an email to the fedora-infrastructure-list with more details if
    warranted.
 
@@ -198,22 +199,17 @@ Unplanned Outage
    use your best judgment. If it's bad enough to warrant an emergency page,
    page one of the admins at: https://admin.fedoraproject.org/pager
 
-   Use the following as loose guidelines, just use your best judgment. (
-   Stop Don't page someone. Do page
-   someone. )
+   Use the following as loose guidelines, just use your best judgment.
 
-     * Stop "I can't see the Recent Changes on the
-       wiki."
-     * "The entire wiki is not viewable"
-     * Stop  I cannot sign the CLA
-     * I can't change my password in the account system, I
-       have admin access and my laptop was just stolen
-     * Stop I can't access awstats for
-       fedoraproject.org
-     * The mirrors list is down.
-     * Stop I think someone misspelled some words on
-       the webpage
-     * The web page has been hacked and I think someone
+     * BAD: "I can't see the Recent Changes on the wiki."
+     * Good: "The entire wiki is not viewable"
+     * BAD: I cannot sign the CLA
+     * Good: I can't change my password in the account system,
+       I have admin access and my laptop was just stolen
+     * BAD: I can't access awstats for fedoraproject.org
+     * Good: The mirrors list is down.
+     * BAD: I think someone misspelled some words on the webpage
+     * Good: The web page has been hacked and I think someone
        notified slashdot.
 
   First Steps
