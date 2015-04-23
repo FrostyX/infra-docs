@@ -120,7 +120,7 @@ Doing Work
    servers. This is for many reasons but just always make changes in
    Ansible or puppet. If you want to get more familiar with Ansible, set it
    up yourself and give it a try. The docs are available at
-   http://http://docs.ansible.com/
+   http://docs.ansible.com/
 
 Our Setup
 
