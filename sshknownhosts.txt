@@ -28,7 +28,7 @@ git repos:
 Then run the script:
 
    cd ansible/scripts
-   sudo -i ./fetch-ssh-keys > ../../puppet/modules/ssh/files/ssh_known_hosts
+   sudo -i `pwd`/fetch-ssh-keys > ../../puppet/modules/ssh/files/ssh_known_hosts
    cd ../../puppet/modules/ssh/files
    git commit -va
    git push
