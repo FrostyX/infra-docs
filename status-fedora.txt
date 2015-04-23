@@ -24,6 +24,8 @@ How it works
 generated at the time of upload by OpenShift.
  As soon as you push to the OpenShift repo, a build hook
 will create the HTML page.
+ Only members of sysadmin-noc and sysadmin-main can update
+the status website.
 
 Updating the page
 -----------------
