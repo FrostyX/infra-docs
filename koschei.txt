@@ -1,0 +1,169 @@
+Koschei SOP
+===========
+
+Koschei is a continuous integration system for RPM packages.
+Koschei runs package scratch builds after dependency change or
+after time elapse and reports package buildability status to
+interested parties.
+
+Production instance: http://koschei.cloud.fedoraproject.org/
+Staging instance:    http://koschei01.stg.phx2.fedoraproject.org
+
+Contents
+--------
+1.  Contact information
+2.  Deployment
+3.  Description
+4.  Configuration
+5.  Database
+6.  Managing koschei services
+7.  Suspespending koschei operation
+8.  Limiting Koji usage
+9.  Fedmsg notifications
+10. Setting admin announcement
+11. Adding package groups
+12. Set package static priority
+
+Contact Information
+-------------------
+Owner: mizdebsk, msimacek
+Contact: #fedora-admin
+Location: Fedora Cloud
+Purpose: continuous integration system
+
+
+Deployment
+----------
+   If you have access to rbac-playbook:
+      sudo rbac-playbook hosts/koschei.cloud.fedoraproject.org.yml
+   Otherwise:
+      ansible-playbook -t koschei /srv/web/infra/ansible/playbooks/hosts/koschei.cloud.fedoraproject.org.yml
+
+Description
+-----------
+Koschei consists of multiple services:
+- koschei-watcher - listens to fedmsg events for complete builds and
+  changes build states in the database. Additionally listens to
+  repo-done events which are enqueued to be processed by
+  koschei-resolver
+- koschei-resolver - resolves package dependencies in given repo using
+  hawkey and compares them with previous iteration to get a dependency
+  diff. There are two types of resolutions:
+  - build resolution - resolves complete build in the repo in which it
+    was done on Koji. Produces the dependency differences visible in the
+    frontend.
+  - new repo resolution - resolves all packages in newest repo available
+    in Koji. The output is a base for scheduling new builds.
+- koschei-scheduler - schedules new builds based on multiple criteria:
+  - dependency priority - dependency changes since last build valued by
+    their distance in the dependency graph.
+  - manual and static priorities - set manually in the frontend. Manual
+    priority is reset after each build, static priority persists
+  - time priority - time since last build (logarithmical formula)
+- koschei-polling - polls the same types of events as koschei-watcher
+  without reliance on fedmsg
+- frontend - Flask WSGi application run with httpd. Displays information
+  to users and allows adding new packages and changing priorities.
+
+
+Configuration
+-------------
+Koschei configuration is in /etc/koschei/config.cfg and is merged with
+the default configuration in /usr/share/koschei/config.cfg (the one in
+etc overrides the defaults in usr). Note the merge is recursive. The
+configuration contains all configurable items for all koschei services
+and the frontend. The alterations to configuration that aren't temporary
+should be done through ansible playbook. Configuration changes have no
+effect on already running services -- they need to be restarted, which
+happens automatically when using the playbook.
+
+
+Database
+--------
+Koschei needs to connect to a PostgreSQL database, other database
+systems are not supported. Database connection is specified in the
+configuration under the "database_config" key that can contain the
+following keys: username, password, host, port, database.
+
+
+Managing koschei services
+-------------------------
+Koschei services are systemd units managed through systemctl. They can
+be started and stopped independently in any order. The frontend is run
+using httpd.
+
+
+Suspespending koschei operation
+-------------------------------
+For stopping builds from being scheduled, stopping the koschei-scheduler
+service is enough. For planned Koji outages, it's recommended to stop
+koschei-scheduler. It is not necessary, as koschei can recover
+from Koji errors and network errors automatically, but when Koji
+builders are stopped, it may cause unexpected build failures that would
+be reported to users. Other services can be left running as they
+automatically restart themselves on Koji and network errors.
+
+
+Limiting Koji usage
+-------------------
+Koschei is by default limited to 30 concurrently running builds. This
+limit can be changed in the configuration under
+"koji_config"/"max_builds" key. There's also Koji load monitoring, that
+prevents builds from being scheduled when Koji load is higher that
+certain threshold. That should prevent scheduling builds during mass
+rebuilds, so it's not necessary to stop scheduling during those.
+
+
+Fedmsg notifications
+--------------------
+Koschei optionally supports sending fedmsg notifications for package
+state changes. The fedmsg dispatch can be turned on and off in the
+configuration (key "fedmsg-publisher"/"enabled"). Koschei doesn't supply
+configuration for fedmsg, it lets the library to load it's own (in
+/etc/fedmsg.d/).
+
+
+Setting admin announcement
+--------------------------
+Koschei can display announcement in web UI. This is mostly useful to
+inform users about outages or other problems.
+
+To set announcement, run as koschei user:
+
+  koschei-admin notice "Koschei operation is currently suspended due to scheduled Koji outage"
+
+or:
+
+  koschei-admin notice "Sumbitting scratch builds by Koschei is currently disabled due to Fedora 23 mass rebuild"
+
+To clear announcement, run as koschei user:
+
+  koschei-admin notice ""
+
+
+Adding package groups
+---------------------
+Packages can be added to one or more group. Currently, only Koschei
+admins can add new groups.
+
+To add new group named "mynewgroup", run as koschei user:
+
+  koschei-admin addgrp mynewgroup
+
+To add new group named "mynewgroup" and populate it with some
+packages, run as koschei user:
+
+  koschei-admin addgrp mynewgroup pkg1 pkg2 pkg3
+
+
+Set package static priority
+---------------------------
+Some packages are more or less important and can have higher or lower
+priority. Any user can change manual priority, which is reset after
+package is rebuilt. Admins can additionally set static priority, which
+is not affected by package rebuilds.
+
+To set static priority of package "foo" to value "100", run as
+koschei user:
+
+  koschei-admin setprio --static foo 100
