@@ -26,6 +26,14 @@ After that wipe, you have to:
  * /usr/bin/systemctl restart neutron-ovs-cleanup
  * ifup eth1
 
+Additionally when reprovision OpenStack, all volumes on DellEqualogic are
+preserved and you have to manually remove them (or remove them from OS before
+it is reprovision). SSH to DellEqualogic (credentials are at the bottom of
+/etc/cinder/cinder.conf) and run:
+ * show  (to get list of volumes)
+ * volume select <volume_name> offline
+ * volume delete <volume_name>
+
 Before installing make sure:
  * make sure rdo repo is enabled
  * yum install openstack-packstack openstack-packstack-puppet openstack-puppet-modules-
