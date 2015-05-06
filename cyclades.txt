@@ -1,3 +1,8 @@
+.. title: cyclades
+.. slug: cyclades-infrastructure
+.. date: 2011-12-12
+.. taxonomy: Contributors/Infrastructure
+
 cyclades notes
 
 1. login as root - default password is tslinux

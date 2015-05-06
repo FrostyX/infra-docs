@@ -1,3 +1,8 @@
+.. title: Non-human Accounts Infrastructure SOP
+.. slug: infra-nonhuman-accounts
+.. date: 2015-03-23
+.. taxonomy: Contributors/Infrastructure
+
 Non-human Accounts Infrastructure SOP
 
    We have many non-human accounts for various services, used by our web

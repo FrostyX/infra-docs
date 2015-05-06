@@ -1,3 +1,8 @@
+.. title: Content Hosting Infrastructure SOP
+.. slug: content-hosting-sop
+.. date: 2012-07-17
+.. taxonomy: Contributors/Infrastructure
+
 Content Hosting Infrastructure SOP
 
   Contact Information

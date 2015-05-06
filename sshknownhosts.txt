@@ -1,3 +1,8 @@
+.. title: SSH Known Hosts Infrastructure SOP
+.. slug: infra-ssh-known-hosts
+.. date: 2015-04-23
+.. taxonomy: Contributors/Infrastructure
+
 SSH known hosts Infrastructure SOP
 
    Provides Known Hosts file that is globally deployed and publicly available

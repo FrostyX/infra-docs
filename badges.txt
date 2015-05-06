@@ -1,3 +1,8 @@
+.. title: Badges SOP
+.. slug: badges-sop
+.. date: 2014-10-03
+.. taxonomy: Contributors/Infrastructure
+
 badges SOP
 ==========
 

@@ -1,3 +1,8 @@
+.. title: Heartbeat SOP
+.. slug: hearbeat-sop
+.. date: 2012-03-11
+.. taxonomy: Contributors/Infrastructure
+
 Heartbeat is a cluster package (in epel) that allows you to easily have a 
 primary and secondary node and failover between them. 
 

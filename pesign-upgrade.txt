@@ -1,3 +1,8 @@
+.. title: Pesign Upgrades and Reboots
+.. slug: infra-pesign-mainenance 
+.. date: 2013-05-29
+.. taxonomy: Contributors/Infrastructure
+
 Pesign upgrades/reboots
 -----------------------
 Fedora has (currently) 2 special builders. These builders are used to 

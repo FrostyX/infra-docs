@@ -1,3 +1,8 @@
+.. title: TurboGears Infrastructure SOP
+.. slug: infra-turbogears
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 TurboGears Infrastructure SOP
 
    We have many TurboGears applications deployed in our infrastructure. This

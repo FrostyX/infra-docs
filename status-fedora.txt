@@ -1,3 +1,8 @@
+.. title: Fedora Status Service SOP
+.. slug: infra-fedora-status
+.. date: 2015-04-23
+.. taxonomy: Contributors/Infrastructure
+
 Fedora Status Service - SOP
 ===========================
 

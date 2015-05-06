@@ -1,3 +1,8 @@
+.. title: Infrastructure Unbound SOP 
+.. slug: infra-unbound
+.. date: 2013-11-22
+.. taxonomy: Contributors/Infrastructure
+
 Sometimes, especially after updates/reboots you will see alerts like this:
 
 18:46:55 < zodbot> PROBLEM - unbound-tummy01.fedoraproject.org/Unbound 443/tcp is WARNING: DNS WARNING - 0.037 seconds response time (dig returned an error status) (noc01)

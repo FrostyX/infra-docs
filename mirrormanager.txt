@@ -1,3 +1,8 @@
+.. title: MirrorManager Infrastucture SOP
+.. slug: infra-mirrormanager-sop
+.. date: 2012-04-24
+.. taxonomy: Contributors/Infrastructure
+
 MirrorManager Infrastructure SOP
 
    Mirrormanager manages mirrors for fedora distribution.

@@ -1,3 +1,8 @@
+.. title: fedmsg IRC SOP
+.. slug: fedmsg-irc-sop
+.. date: 2014-02-13
+.. taxonomy: Contributors/Infrastructure
+
 fedmsg-irc SOP
 ==============
 

@@ -1,3 +1,8 @@
+.. title: Fedora Infrastructure DRBD
+.. slug: infra-drbd
+.. date: 2012-08-23
+.. taxonomy: Contributors/Infrastructure
+
 DRBD (Distributed Replicated Block Device) is used on a few infrastructure machines
 to sync data between a pair of instances. The secondary node has a bit for bit copy 
 of all the data that the primary node had. In the event of failure of the primary

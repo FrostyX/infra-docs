@@ -1,3 +1,8 @@
+.. title: Outage Infrastructure SOP
+.. slug: infra-outage
+.. date: 2015-04-23
+.. taxonomy: Contributors/Infrastructure
+
 Outage Infrastructure SOP
 
    What to do when there's an outage or when you're planning to take an

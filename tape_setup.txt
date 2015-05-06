@@ -1,3 +1,8 @@
+.. title: Infrastucture Tape Setup SOP
+.. slug: infra-tape-setup
+.. date: 2012-07-12
+.. taxonomy: Contributors/Infrastructure
+
 These instructions are for setting up the tape player in case a total
 reset of the server occurs:
 

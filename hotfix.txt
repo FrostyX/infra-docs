@@ -1,3 +1,8 @@
+.. title: Hotfixes SOP
+.. slug: infra-hotfix-sop
+.. date: 2015-02-24
+.. taxonomy: Contributors/Infrastructure
+
 HOTFIXES SOP 
 
 From time to time we have to quickly patch a problem or issue 

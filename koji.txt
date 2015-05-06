@@ -1,3 +1,8 @@
+.. title: Koji Infrastructure SOP
+.. slug: infra-koji-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Koji Infrastructure SOP
 
    Note

@@ -1,3 +1,8 @@
+.. title: websocket SOP
+.. slug: websocket-sop
+.. date: 2012-10-31
+.. taxonomy: Contributors/Infrastructure/fedmsg
+
 websocket SOP
 =============
 

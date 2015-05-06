@@ -1,3 +1,8 @@
+.. title: Bacula Infrastructure SOP
+.. slug: bacula-sop
+.. date: 2013-03-18
+.. taxonomy: Contributors/Infrastructure/SOP
+
 Bacula Infrastructure SOP
 
    Bacula is our backup solution. Our backups run to backup01 and ultimately

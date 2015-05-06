@@ -1,3 +1,8 @@
+.. title: Fedorahosted Private Tickets SOP
+.. slug: infra-fedorahosted-private-tickets
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Private fedorahosted tickets Infrastructure SOP
 
    Provides for users only viewing tickets they are involved with.

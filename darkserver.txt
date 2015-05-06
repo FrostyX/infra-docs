@@ -1,3 +1,8 @@
+.. title: Darkserver SOP
+.. slug: darkserver-sop
+.. date: 2012-03-22
+.. taxonomy: Contributors/Infrastructure/SOP
+
 Darkserver SOP
 
     To setup a http://darkserver.fedoraproject.org based on Darkserver project

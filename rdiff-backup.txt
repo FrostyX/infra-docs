@@ -1,3 +1,8 @@
+.. title: rdiff-backup Infrastructure SOP
+.. slug: infra-rdiff-backup
+.. date: 2013-11-01
+.. taxonomy: Contributors/Infrastructure
+
 rdiff-backup SOP
 
 Contact Information

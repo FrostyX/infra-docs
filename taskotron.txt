@@ -1,3 +1,8 @@
+.. title: Taskotron SOP
+.. slug: infra-taskotron
+.. date: 2014-12-16
+.. taxonomy: Contributors/Infrastructure
+
 taskotron SOP
 ==============
 

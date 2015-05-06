@@ -1,3 +1,8 @@
+.. title: Bastion Hosts Info 
+.. slug: bastion-hosts-info
+.. date: 2011-09-13
+.. taxonomy: Contributors/Infrastructure
+
 Owner: sysadmin-main
 
 Contact: admin@fedoraproject.org

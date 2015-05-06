@@ -1,3 +1,8 @@
+.. title: Ask Fedora SOP 
+.. slug: ask-fedora-sop
+.. date: 2015-03-28
+.. taxonomy: Contributors/Infrastructure
+
 Ask Fedora SOP
 
    To set up http://ask.fedoraproject.org based on Askbot as a question and

@@ -1,4 +1,9 @@
-ites Release SOP
+.. title: Websites Release SOP
+.. slug: websites-release-sop
+.. date: 2015-02-20
+.. taxonomy: Contributors/Infrastructure
+
+Webites Release SOP
 
   * 1. Preparing the website for a release
 

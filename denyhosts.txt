@@ -1,3 +1,8 @@
+.. title: Denyhosts Infrastructure SOP
+.. slug: denyhosts-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Denyhosts Infrastructure SOP
 
    Denyhosts provides a protection against brute force attacks.

@@ -1,3 +1,8 @@
+.. title: Infrastructure RPM Repository SOP
+.. slug: infra-rpm-repo-sop
+.. date: 2013-01-29
+.. taxonomy: Contributors/Infrastructure
+
 Infrastructure Yum Repo SOP
 
    In some cases RPM's in Fedora need to be rebuilt for the Infrastructure

@@ -1,3 +1,8 @@
+.. title: haproxy Infrastructure SOP
+.. slug: haproxy-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Haproxy Infrastructure SOP
 
    haproxy is an application that does load balancing at the tcp layer or at

@@ -1,3 +1,8 @@
+.. title: Infrastucture Orientation SOP
+.. slug: infra-orientation
+.. date: 2015-04-23
+.. taxonomy: Contributors/Infrastructure
+
 Orientation Infrastructure SOP
 
    Basic orientation and introduction to the sysadmin group. Welcome aboard!

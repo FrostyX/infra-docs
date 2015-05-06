@@ -1,3 +1,8 @@
+.. title: Wiki Infrastructure SOP
+.. slug: infra-wiki
+.. date: 2012-09-13
+.. taxonomy: Contributors/Infrastructure
+
 Wiki Infrastructure SOP
 
    Managing our wiki.

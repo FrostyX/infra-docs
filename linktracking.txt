@@ -1,3 +1,8 @@
+.. title: Link Tracking SOP
+.. slug: infra-link-tracking-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Link tracking
 
    Using link tracking is [43]an easy way for us to find out how people are

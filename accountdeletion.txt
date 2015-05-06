@@ -1,3 +1,8 @@
+.. title: Account Deletion SOP 
+.. slug: fas-account-deletion
+.. date: 2013-05-08
+.. taxonomy: Contributors/Infrastructure/SOP
+
 Account Deletion SOP
 
    For the most part we do not delete accounts. In the case that a deletion

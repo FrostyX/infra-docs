@@ -1,3 +1,8 @@
+.. title: Infrastructure Standart Operating Procedures SOP
+.. slug: infra-sop-sop
+.. date: 2015-04-23
+.. taxonomy: Contributors/Infrastructure
+
 Infrastructure SOP SOP
 
    We use SOPs (standard operating procedures) to list how we run things in

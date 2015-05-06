@@ -1,3 +1,8 @@
+.. title: ReviewBoard Infrastucture SOP
+.. slug: infra-reviewboard
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 ReviewBoard Infrastructure SOP
 
    Review Board is a powerful web-based code review tool that offers

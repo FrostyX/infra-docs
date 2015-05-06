@@ -1,3 +1,8 @@
+.. title: Voting and Elections Infrastructure SOP
+.. slug: infra-voting
+.. date: 2014-07-10
+.. taxonomy: Contributors/Infrastructure
+
 Voting Infrastructure SOP
 
    The live voting instance can be found at

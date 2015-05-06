@@ -1,3 +1,8 @@
+.. title: Infrastructure Machine Retirement SOP
+.. slug: infra-machine-retirement-sop
+.. date: 2011-08-23
+.. taxonomy: Contributors/Infrastructure
+
 Infrastructure retire machine SOP
 
    Owner: Fedora Infrastructure Team

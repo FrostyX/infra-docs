@@ -1,3 +1,8 @@
+.. title: Infrastructure Host Rename SOP
+.. slug: infra-host-rename-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Infrastructure Host Rename SOP
 
    This page is intended to guide you through the process of renaming a

@@ -1,3 +1,8 @@
+.. title: Log Infrastructure SOP
+.. slug: infra-syslog
+.. date: 2014-09-01
+.. taxonomy: Contributors/Infrastructure
+
 Log Infrastructure SOP
 
 Logs are centrally referred to our loghost and managed from there by 

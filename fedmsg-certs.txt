@@ -1,3 +1,8 @@
+.. title: fedmsg SOP
+.. slug: fedmsg-sop
+.. date: 2013-04-08
+.. taxonomy: Contributors/Infrastructure
+
 fedmsg (Fedora Messaging) Certs, Keys, and CA - SOP
 ===================================================
 

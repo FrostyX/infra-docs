@@ -1,3 +1,8 @@
+.. title: DNS Infrastructure SOP 
+.. slug: dns-sop
+.. date: 2013-09-02
+.. taxonomy: Contributors/Infrastructure/SOP
+
 DNS repository for fedoraproject
 
 We've set this up so we can easily (and quickly) edit and deploy dns changes

@@ -1,3 +1,8 @@
+.. title: Fixing Time
+.. slug: fixing-time
+.. date: 2012-02-19
+.. taxonomy: Contributors/Infrastructure
+
 If time stalls on a VM, set the time with `date -s` then run `ntpdate` to let
 it sync up as normal.
 

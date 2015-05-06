@@ -1,3 +1,8 @@
+.. title: Infrastructure Koji Builder SOP
+.. slug: infra-koji-builder-sop
+.. date: 2012-11-29
+.. taxonomy: Contributors/Infrastructure
+
 Setup Koji Builder SOP
 
 Contents:

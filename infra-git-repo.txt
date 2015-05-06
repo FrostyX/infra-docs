@@ -1,3 +1,8 @@
+.. title: Fedora Infrastructure Git Repo SOP
+.. slug: infra-git-sop
+.. date: 2013-06-17
+.. taxonomy: Contributors/Infrastructure
+
 Setting up an infrastructure git repo - and the push mechanisms for the
 magicks
 

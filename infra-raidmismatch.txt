@@ -1,3 +1,8 @@
+.. title: Infrastructure Raid Mismatch Count SOP
+.. slug: infra-raid-mismatch-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Infrastructure/SOP/Raid Mismatch Count
 
    What to do when a raid device has a mismatch count

@@ -1,3 +1,8 @@
+.. title: Infrastructure virtio SIP
+.. slug: infra-virtio
+.. date: 2014-05-01
+.. taxonomy: Contributors/Infrastructure
+
 We have found that virtio is faster/more stable than emulating other cards
 on our VMs.
 

@@ -1,3 +1,8 @@
+.. title: Koschei SOP
+.. slug: infra-koschei-sop
+.. date: 2015-04-27
+.. taxonomy: Contributors/Infrastructure
+
 Koschei SOP
 ===========
 

@@ -1,3 +1,8 @@
+.. title: Fedora Planet Subgroup SOP
+.. slug: infra-planet-subgroup
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Planet Subgroup Infrastructure SOP
 
    Fedora's planet infrastructure produces planet configs out of users'

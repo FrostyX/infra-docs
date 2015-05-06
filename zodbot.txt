@@ -1,3 +1,8 @@
+.. title: Zodbot Infrastucture SOP
+.. slug: infra-zodbot
+.. date: 2014-12-18
+.. taxonomy: Contributors/Infrastructure
+
 Zodbot Infrastructure SOP
 
    zodbot is a supybot based irc bot that we use in our #fedora channels.

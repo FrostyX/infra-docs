@@ -1,3 +1,8 @@
+.. title: Bodhi Infrastructure SOP
+.. slug: bodhi-sop
+.. date: 2013-07-10
+.. taxonomy: Contributors/Infrastructure
+
 Bodhi Infrastructure SOP
 
     Bodhi is used by Fedora developers to submit potential package updates for

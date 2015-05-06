@@ -1,3 +1,8 @@
+.. title: Fedora Release Infrastructure SOP
+.. slug: releng-sop
+.. date: 2015-03-10
+.. taxonomy: Contributors/Infrastructure/releng
+
 Fedora Release Infrastructure SOP
 
    This SOP contains all of the steps required by the Fedora Infrastructure

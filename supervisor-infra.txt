@@ -1,3 +1,8 @@
+.. title: Supervisor Infrastructure SOP
+.. slug: infra-supervisor
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Supervisor Infrastructure SOP
 
    Important

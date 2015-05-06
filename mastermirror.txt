@@ -1,3 +1,8 @@
+.. title: Master Mirror Infrastructure SOP
+.. slug: infra-master-mirror-sop
+.. date: 2011-12-22
+.. taxonomy: Contributors/Infrastructure
+
 Master Mirror Infrastructure SOP
 
    Contents                           

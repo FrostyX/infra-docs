@@ -1,3 +1,8 @@
+.. title: Fedora Infrastructure Github SOP
+.. slug: infra-githup-sop
+.. date: 2014-09-26
+.. taxonomy: Contributors/Infrastructure
+
 ===============================
 Using github for Infra Projects
 ===============================

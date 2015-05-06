@@ -1,3 +1,8 @@
+.. title: fedmsg-relay SOP
+.. slug: fedmsg-relay-sop
+.. date: 2012-10-31
+.. taxonomy: Contributors/Infrastructure
+
 fedmsg-relay SOP
 ================
 

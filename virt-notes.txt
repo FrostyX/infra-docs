@@ -1,3 +1,8 @@
+.. title: Infrastucture libvirt tools SOP
+.. slug: infra-libvirt
+.. date: 2012-04-30
+.. taxonomy: Contributors/Infrastructure
+
 Notes/FAQ on using libvirt/virsh/virt-manager in our environment
 
 Q. how do I migrate a guest from one virthost to another:

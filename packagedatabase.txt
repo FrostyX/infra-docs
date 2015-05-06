@@ -1,3 +1,8 @@
+.. title: Package Database Infrastucture SOP
+.. slug: infra-packagedb
+.. date: 2013-04-30
+.. taxonomy: Contributors/Infrastructure
+
 Package Database Infrastructure SOP
 
    The PackageDB is used by Fedora developers to manage package ownership and

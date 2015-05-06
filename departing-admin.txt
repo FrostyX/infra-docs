@@ -1,3 +1,8 @@
+.. title: Departing Admin SOP
+.. slug: departing-admin-sop
+.. date: 2013-07-15
+.. taxonomy: Contributors/Infrastructure/SOP
+
 Departing admin sop
 
    From time to time admins depart the project, this SOP checks any access they may no longer need.

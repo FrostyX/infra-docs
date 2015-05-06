@@ -1,3 +1,8 @@
+.. title: Infrastructure Netapp SOP
+.. slug: infra-netapp-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Netapp Infrastructure SOP
 
    Provides primary mirrors and additional storage in PHX2

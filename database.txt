@@ -1,3 +1,8 @@
+.. title: Database Infrastructure SOP
+.. slug: database-sop
+.. date: 2015-01-13
+.. taxonomy: Contributors/Infrastructure
+
 Database Infrastructure SOP
 
    Our database servers provide database storage for many of our apps.

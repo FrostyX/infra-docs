@@ -1,3 +1,8 @@
+.. title: Fedora Account System SOP
+.. slug: fas-sop
+.. date: 2013-04-04
+.. taxonomy: Contributors/Infrastructure
+
 Notes about FAS and how to do things in it:
 
 - where are certs for fas accounts for koji, etc?

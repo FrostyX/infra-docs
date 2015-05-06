@@ -1,3 +1,8 @@
+.. title: SELinux Infrastructure SOP
+.. slug: infra-selinux
+.. date: 2012-03-19
+.. taxonomy: Contributors/Infrastructure
+
 SELinux Infrastructure SOP
 
    SELinux is a fundamental part of our Operating System but still has a

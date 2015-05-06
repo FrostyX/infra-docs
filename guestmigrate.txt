@@ -1,3 +1,8 @@
+.. title: Guest Migration SOP
+.. slug: guest-migration-sop
+.. date: 2011-10-07
+.. taxonomy: Contributors/Infrastructure
+
 Guest migration between hosts. 
 
    Move guests from one host to another. 

@@ -1,3 +1,8 @@
+.. title: Bugzilla Sync SOP
+.. slug: bugzilla-sync-sop
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
 Bugzilla Sync Infrastructure SOP
 
    We do not run bugzilla.redhat.com. If bugzilla itself is down we need to

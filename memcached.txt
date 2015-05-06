@@ -1,3 +1,8 @@
+.. title: Memcached Infrastructure SOP
+.. slug: infra-memcached-sop
+.. date: 2013-06-29
+.. taxonomy: Contributors/Infrastructure
+
 Memcached Infrastructure SOP
 
    Our memcached setup is currently only used for wiki sessions. With

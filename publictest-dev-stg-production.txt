@@ -1,3 +1,8 @@
+.. title: Infrastucture Machine Classifications
+.. slug: infra-machine-classes
+.. date: 2011-10-30
+.. taxonomy: Contributors/Infrastructure
+
 == Contact Information ==
 
 Owner: sysadmin-main, application developers

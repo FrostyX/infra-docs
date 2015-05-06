@@ -1,3 +1,8 @@
+.. title: Fedmsg Fedorahosted SOP
+.. slug: fedorahosted-fedmsg-sop
+.. date: 2013-08-21
+.. taxonomy: Contributors/Infrastructure/fedmsg
+
 Fedorahosted FedMsg Infrastructure SOP
 
    Publish fedmsg messages from Fedora Hosted trac instances.

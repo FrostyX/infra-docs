@@ -1,3 +1,8 @@
+.. title: Datanommer SOP 
+.. slug: datanommer-sop
+.. date: 2013-02-08
+.. taxonomy: Contributors/Infrastructure/SOP
+
 datanommer SOP
 ==============
 

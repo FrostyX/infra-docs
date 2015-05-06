@@ -1,3 +1,8 @@
+.. title: Fedorahosted Infrastructure SOP
+.. slug: fedorahosted-infra-sop
+.. date: 2014-09-22
+.. taxonomy: Contributors/Infrastructure/fedorahosted
+
 Fedorahosted Infrastructure SOP
 
    Provide hosting place for open source projects

@@ -1,3 +1,8 @@
+.. title: Fedora OpenStack Cloud 
+.. slug: fedora-openstack-infrastructure
+.. date: 2015-04-28
+.. taxonomy: Contributors/Infrastructure
+
 Fedora Cloud
 ============
 

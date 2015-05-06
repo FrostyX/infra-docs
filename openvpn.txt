@@ -1,3 +1,8 @@
+.. title: OpenVPN SOP
+.. slug: infra-openvpn
+.. date: 2011-12-16
+.. taxonomy: Contributors/Infrastructure
+
 OpenVPN SOP
    OpenVPN is our server->server VPN solution. It is deployed in a routeless
    manner and uses puppet managed keys for authentication. All hosts should

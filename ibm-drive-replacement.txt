@@ -1,3 +1,8 @@
+.. title: Drive Replacement SOP
+.. slug: infra-drive-replacement-sop
+.. date: 2012-07-13
+.. taxonomy: Contributors/Infrastructure
+
 Drive Replacement Infrastructure SOP
 
    At present this SOP only works for the X series IBM servers.

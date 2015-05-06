@@ -1,3 +1,8 @@
+.. title: Infrastructure Ansible Staging SOP
+.. slug: infra-staging-ansible
+.. date: 2015-04-23
+.. taxonomy: Contributors/Infrastructure
+
 = Owner: Fedora Infrastructure Team =
 
 = Contact: #fedora-admin, sysadmin-main =

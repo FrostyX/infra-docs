@@ -1,3 +1,8 @@
+.. title: Infrastructure SSL Certificate Creation SOP
+.. slug: infra-ssl-create-sop
+.. date: 2012-07-17
+.. taxonomy: Contributors/Infrastructure
+
 Every now and then you will need to create an SSL certificate for a
 Fedora Service.
 

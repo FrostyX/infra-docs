@@ -1,3 +1,8 @@
+.. title: Puppet Infrastructure SOP
+.. slug: infra-puppet
+.. date: 2012-09-14
+.. taxonomy: Contributors/Infrastructure
+
 Puppet Infrastructure SOP
 
    This page is intended for people who are already familiar with puppet. It

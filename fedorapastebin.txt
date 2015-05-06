@@ -1,3 +1,8 @@
+.. title: Fedora Pastebin SOP
+.. slug: fpaste-sop
+.. date: 2013-04-15
+.. taxonomy: Contributors/Infrastructure
+
 Fedora Pastebin SOP
 
 Contents                                 

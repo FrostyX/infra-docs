@@ -1,3 +1,8 @@
+.. title: Copr
+.. slug: copr-infrastructure
+.. date: 2015-01-13
+.. taxonomy: Contributors/Infrastructure
+
 Copr
 
    Copr is build system for 3rd party packages.

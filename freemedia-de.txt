@@ -1,3 +1,9 @@
+.. title: FreeMedia Infrastructure SOP 
+.. slug: freemedia-infrastructure-sop
+.. date: 2011-12-14
+.. taxonomy: Contributors/Infrastructure
+.. lang: de
+
 FreeMedia Infrastructure SOP/de
 
    Diese Seite beschreibt das Standard-Vorgehen für das Fedora FreeMedia

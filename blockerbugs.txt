@@ -1,3 +1,8 @@
+.. title: Blockerbugs Infrastructure SOP 
+.. slug: blockerbugs SOP
+.. date: 2013-11-19
+.. taxonomy: Contributors/Infrastructure
+
 Blockerbugs Infrastructure SOP
 
 Blockerbugs is an app developed by Fedora QA to aid in tracking items related

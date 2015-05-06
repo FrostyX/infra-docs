@@ -1,3 +1,8 @@
+.. title: Guest Disk Resize SOP
+.. slug: guest-disk-resize-sop
+.. date: 2012-06-13
+.. taxonomy: Contributors/Infrastructure/storage
+
 Guest Disk Resize SOP
 
    Resize disks in our Xen guests

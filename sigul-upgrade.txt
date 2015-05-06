@@ -1,3 +1,8 @@
+.. title: Sigul Servers Maintenance SOP
+.. slug: infra-sigul-mainenance
+.. date: 2015-02-04
+.. taxonomy: Contributors/Infrastructure
+
 Sigul servers upgrades/reboots
 -----------------------
 Fedora currently has 1 sign-bridge and 2 sign-vault machines for primary, there
