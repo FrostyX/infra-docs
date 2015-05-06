@@ -1,3 +1,8 @@
+.. title: Two Factor Auth
+.. slug: fas-two-factor
+.. date: 19 September 2013
+.. taxonomy: Contributors/Infrastructure
+
 ===============
 Two factor auth
 ===============
