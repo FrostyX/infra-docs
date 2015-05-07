@@ -1,5 +1,5 @@
 .. title: haproxy Infrastructure SOP
-.. slug: haproxy-sop
+.. slug: infra-haproxy
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

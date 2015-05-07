@@ -1,5 +1,5 @@
 .. title: apps.fedoraproject.org SOP
-.. slug: apps-fp-o SOP
+.. slug: infra-apps-fp-o 
 .. date: 2014-06-29
 .. taxonomy: Contributors/Infrastructure
 

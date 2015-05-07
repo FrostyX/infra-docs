@@ -1,5 +1,5 @@
 .. title: Infrastructure Yubikey SOP
-.. slug: infra-yubikey-sop
+.. slug: infra-yubikey
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

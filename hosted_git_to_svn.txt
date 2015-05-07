@@ -1,5 +1,5 @@
 .. title: Fedorahosted Repository Migration SOP
-.. slug: fedorahosted-repo-migration-sop
+.. slug: infra-fedorahosted-migration
 .. date: 2011-12-14
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
 .. title: IBM RSA II Remote Management SOP
-.. slug: ibm-rsa-ii-sop
+.. slug: infra-ibm-rsa-ii
 .. date: 2011-08-23
 .. taxonomy: Contributors/Infrastructure
 

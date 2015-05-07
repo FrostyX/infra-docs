@@ -1,5 +1,5 @@
 .. title: FAS-OpenID
-.. slug: fas-openid
+.. slug: infra-fas-openid
 .. date: 2013-12-14
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
 .. title: Fedora Pastebin SOP
-.. slug: fpaste-sop
+.. slug: infra-fpaste
 .. date: 2013-04-15
 .. taxonomy: Contributors/Infrastructure
 

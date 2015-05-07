@@ -1,5 +1,5 @@
 .. title: Infrastructure Netapp SOP
-.. slug: infra-netapp-sop
+.. slug: infra-netapp
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

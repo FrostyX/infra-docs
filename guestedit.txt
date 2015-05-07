@@ -1,5 +1,5 @@
 .. title: Guest Editing SOP
-.. slug: guest-editing-sop
+.. slug: infra-guest-editing
 .. date: 2012-04-23
 .. taxonomy: Contributors/Infrastructure
 

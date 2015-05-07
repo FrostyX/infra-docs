@@ -1,7 +1,7 @@
 .. title: Departing Admin SOP
-.. slug: departing-admin-sop
+.. slug: infra-departing-admin
 .. date: 2013-07-15
-.. taxonomy: Contributors/Infrastructure/SOP
+.. taxonomy: Contributors/Infrastructure
 
 Departing admin sop
 

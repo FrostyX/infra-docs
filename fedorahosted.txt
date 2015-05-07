@@ -1,7 +1,7 @@
 .. title: Fedorahosted Infrastructure SOP
-.. slug: fedorahosted-infra-sop
+.. slug: infra-fedorahosted
 .. date: 2014-09-22
-.. taxonomy: Contributors/Infrastructure/fedorahosted
+.. taxonomy: Contributors/Infrastructure
 
 Fedorahosted Infrastructure SOP
 

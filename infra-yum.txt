@@ -1,5 +1,5 @@
 .. title: Infrastructure RPM Repository SOP
-.. slug: infra-rpm-repo-sop
+.. slug: infra-rpm-repo
 .. date: 2013-01-29
 .. taxonomy: Contributors/Infrastructure
 

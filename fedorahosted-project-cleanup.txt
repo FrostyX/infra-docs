@@ -1,7 +1,7 @@
 .. title: Fedorahosted Cleanup SOP
-.. slug: fedorahosted-cleanup
+.. slug: infra-fedorahosted-cleanup
 .. date: 2011-10-10
-.. taxonomy: Contributors/Infrastructure/fedorahosted
+.. taxonomy: Contributors/Infrastructure
 
 FH-Projects-Cleanup Infrastructure SOP
 

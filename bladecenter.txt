@@ -1,7 +1,7 @@
 .. title: BladeCenter Access SOP
-.. slug: bladecenter-access-sop
+.. slug: infra-bladecenter
 .. date: 2011-10-03
-.. taxonomy: Contributors/Infrastructure/SOP
+.. taxonomy: Contributors/Infrastructure
 
 BladeCenter Access Infrastructure SOP
 

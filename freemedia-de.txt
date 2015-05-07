@@ -1,5 +1,5 @@
 .. title: FreeMedia Infrastructure SOP 
-.. slug: freemedia-infrastructure-sop
+.. slug: infra-freemedia
 .. date: 2011-12-14
 .. taxonomy: Contributors/Infrastructure
 .. lang: de

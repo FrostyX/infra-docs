@@ -1,5 +1,5 @@
 .. title: Mirror Hiding Infrastructure SOP
-.. slug: infra-mirror-hiding-sop
+.. slug: infra-mirror-hiding
 .. date: 2011-08-23
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
 .. title: Fedora Account System SOP
-.. slug: fas-sop
+.. slug: infra-fas
 .. date: 2013-04-04
 .. taxonomy: Contributors/Infrastructure
 

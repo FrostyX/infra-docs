@@ -1,5 +1,5 @@
 .. title: Websites Release SOP
-.. slug: websites-release-sop
+.. slug: infra-websites
 .. date: 2015-02-20
 .. taxonomy: Contributors/Infrastructure
 

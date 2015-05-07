@@ -1,5 +1,5 @@
 .. title: Infrastructure Nagios SOP 
-.. slug: infra-nagios-sop
+.. slug: infra-nagios
 .. date: 2012-07-09
 .. taxonomy: Contributors/Infrastructure
 

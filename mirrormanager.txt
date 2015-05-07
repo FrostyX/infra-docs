@@ -1,5 +1,5 @@
 .. title: MirrorManager Infrastucture SOP
-.. slug: infra-mirrormanager-sop
+.. slug: infra-mirrormanager
 .. date: 2012-04-24
 .. taxonomy: Contributors/Infrastructure
 

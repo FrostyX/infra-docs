@@ -1,5 +1,5 @@
 .. title: Infrastructure Host Rename SOP
-.. slug: infra-host-rename-sop
+.. slug: infra-host-rename
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

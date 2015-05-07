@@ -1,5 +1,5 @@
 .. title: Gitweb Infrastructure SOP
-.. slug: gitweb-sop
+.. slug: infra-gitweb
 .. date: 2011-08-23
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
-.. title: fedmsg SOP
-.. slug: fedmsg-sop
+.. title: fedmsg Certificates SOP
+.. slug: infra-fedmsg-certs
 .. date: 2013-04-08
 .. taxonomy: Contributors/Infrastructure
 

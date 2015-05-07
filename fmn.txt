@@ -1,7 +1,7 @@
 .. title: fedmsg Notifications SOP
-.. slug: fmn-sop
+.. slug: infra-fmn
 .. date: 2015-03-24
-.. taxonomy: Contributors/Infrastructure/fedmsg
+.. taxonomy: Contributors/Infrastructure
 
 fmn (fedmsg notifications) SOP
 ==============================

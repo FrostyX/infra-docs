@@ -1,5 +1,5 @@
 .. title: Fedorahosted Project Rename SOP
-.. slug: fedorahosted-project-rename-sop
+.. slug: infra-fedorahosted-rename
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

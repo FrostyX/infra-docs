@@ -1,5 +1,5 @@
 .. title: Denyhosts Infrastructure SOP
-.. slug: denyhosts-sop
+.. slug: infra-denyhosts
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
 .. title: Blockerbugs Infrastructure SOP 
-.. slug: blockerbugs SOP
+.. slug: infra-blockerbugs 
 .. date: 2013-11-19
 .. taxonomy: Contributors/Infrastructure
 

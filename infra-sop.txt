@@ -1,5 +1,5 @@
 .. title: Infrastructure Standart Operating Procedures SOP
-.. slug: infra-sop-sop
+.. slug: infra-sop
 .. date: 2015-04-23
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
 .. title: Hotfixes SOP
-.. slug: infra-hotfix-sop
+.. slug: infra-hotfix
 .. date: 2015-02-24
 .. taxonomy: Contributors/Infrastructure
 

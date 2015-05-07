@@ -1,5 +1,5 @@
 .. title: Infrastructure Raid Mismatch Count SOP
-.. slug: infra-raid-mismatch-sop
+.. slug: infra-raid-mismatch
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

@@ -1,5 +1,5 @@
 .. title: Mailman Infrastructure SOP
-.. slug: infra-mailmain-sop
+.. slug: infra-mailmain
 .. date: 2012-08-23
 .. taxonomy: Contributors/Infrastructure
 

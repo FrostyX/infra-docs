@@ -1,5 +1,5 @@
 .. title: Fedora ARM Infrastructure
-.. slug: fedora-arm-infra
+.. slug: infra-fedora-arm
 .. date: 2015-03-24
 .. taxonomy: Contributors/Infrastructure
 

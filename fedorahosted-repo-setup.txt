@@ -1,7 +1,7 @@
 .. title: Fedorahosted Repository Setup SOP
-.. slug: fedorahosted-repo-setup-sop
+.. slug: infra-fedorahosted-repo-setup
 .. date: 2014-09-24
-.. taxonomy: Contributors/Infrastructure/fedorahosted
+.. taxonomy: Contributors/Infrastructure
 
 Hosted repository setup
 

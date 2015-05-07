@@ -1,5 +1,5 @@
 .. title: Drive Replacement SOP
-.. slug: infra-drive-replacement-sop
+.. slug: infra-drive-replacement
 .. date: 2012-07-13
 .. taxonomy: Contributors/Infrastructure
 

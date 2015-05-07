@@ -1,5 +1,5 @@
 .. title: Heartbeat SOP
-.. slug: hearbeat-sop
+.. slug: infra-hearbeat
 .. date: 2012-03-11
 .. taxonomy: Contributors/Infrastructure
 

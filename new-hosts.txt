@@ -1,5 +1,5 @@
 .. title: Infrastucture DNS Host Addition SOP
-.. slug: infra-dns-add-sop
+.. slug: infra-dns-add
 .. date: 2014-05-22
 .. taxonomy: Contributors/Infrastructure
 

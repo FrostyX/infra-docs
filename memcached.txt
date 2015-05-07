@@ -1,5 +1,5 @@
 .. title: Memcached Infrastructure SOP
-.. slug: infra-memcached-sop
+.. slug: infra-memcached
 .. date: 2013-06-29
 .. taxonomy: Contributors/Infrastructure
 

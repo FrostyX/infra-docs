@@ -1,5 +1,5 @@
 .. title: Infrastructure Kickstart SOP
-.. slug: infra-kickstart-sop
+.. slug: infra-kickstart
 .. date: 2015-02-02
 .. taxonomy: Contributors/Infrastructure
 

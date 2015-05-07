@@ -1,5 +1,5 @@
 .. title: Bugzilla Sync SOP
-.. slug: bugzilla-sync-sop
+.. slug: infra-bugzilla-sync
 .. date: 2011-10-03
 .. taxonomy: Contributors/Infrastructure
 

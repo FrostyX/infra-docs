@@ -1,5 +1,5 @@
 .. title: Mass Upgrade Infrastructure SOP
-.. slug: infra-mass-upgrade-sop
+.. slug: infra-mass-upgrade
 .. date: 2013-07-29
 .. taxonomy: Contributors/Infrastructure
 

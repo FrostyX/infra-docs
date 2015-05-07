@@ -1,5 +1,5 @@
 .. title: Freenode IRC SOP
-.. slug: freenode-sop
+.. slug: infra-freenode
 .. date: 2013-11-08
 .. taxonomy: Contributors/Infrastructure
 

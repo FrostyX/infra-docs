@@ -1,5 +1,5 @@
 .. title: Ansible Infrastructure SOP 
-.. slug: fedora-infra-ansible
+.. slug: infra-ansible
 .. date: 2015-03-03
 .. taxonomy: Contributors/Infrastructure
 

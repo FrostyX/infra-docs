@@ -1,5 +1,5 @@
 .. title: Copr
-.. slug: copr-infrastructure
+.. slug: infra-copr
 .. date: 2015-01-13
 .. taxonomy: Contributors/Infrastructure
 

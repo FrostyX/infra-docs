@@ -1,5 +1,5 @@
 .. title: Guest Migration SOP
-.. slug: guest-migration-sop
+.. slug: infra-guest-migration
 .. date: 2011-10-07
 .. taxonomy: Contributors/Infrastructure
 

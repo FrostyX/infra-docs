@@ -1,5 +1,5 @@
 .. title: Infrastructure AWS Mirroring SOP
-.. slug: infra-aws-mirror-sop
+.. slug: infra-aws-mirror
 .. date: 2014-12-05
 .. taxonomy: Contributors/Infrastructure
 

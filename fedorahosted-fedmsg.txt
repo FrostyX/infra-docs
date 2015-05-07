@@ -1,7 +1,7 @@
 .. title: Fedmsg Fedorahosted SOP
-.. slug: fedorahosted-fedmsg-sop
+.. slug: infra-fedorahosted-fedmsg
 .. date: 2013-08-21
-.. taxonomy: Contributors/Infrastructure/fedmsg
+.. taxonomy: Contributors/Infrastructure
 
 Fedorahosted FedMsg Infrastructure SOP
 

@@ -1,7 +1,7 @@
 .. title: Datanommer SOP 
-.. slug: datanommer-sop
+.. slug: infra-datanommer
 .. date: 2013-02-08
-.. taxonomy: Contributors/Infrastructure/SOP
+.. taxonomy: Contributors/Infrastructure
 
 datanommer SOP
 ==============

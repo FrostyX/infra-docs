@@ -1,5 +1,5 @@
 .. title: Infrastructure iSCSI SOP
-.. slug: infra-iscsi-sop
+.. slug: infra-iscsi
 .. date: 2011-08-23
 .. taxonomy: Contributors/Infrastructure
 
