@@ -3,6 +3,7 @@
 .. date: 2014-10-03
 .. taxonomy: Contributors/Infrastructure
 
+==========
 badges SOP
 ==========
 
@@ -11,10 +12,14 @@ badges SOP
 Contact Information
 -------------------
 
-  Owner:        Badges SIG, Fedora Infrastructure Team, sysadmin-badges
-  Contact:      #fedora-apps, #fedora-admin, #fedora-noc
-  Servers:      badges-web0*, badges-backend0*
-  Purpose:      Award "badges" to Fedora Contributors
+Owner:
+  Badges SIG, Fedora Infrastructure Team, sysadmin-badges
+Contact: 
+  #fedora-apps, #fedora-admin, #fedora-noc
+Servers:
+  badges-web0*, badges-backend0*
+Purpose:
+  Award "badges" to Fedora Contributors
 
 Description
 -----------
@@ -38,7 +43,7 @@ Pushing out new badges
 ----------------------
 
 Badge artists and badge developers should be pushing stuff yaml rules and pngs
-and svg art to this repo:
+and svg art to this repo::
 
   https://git.fedorahosted.org/cgit/badges.git
 
@@ -57,7 +62,7 @@ There is a script installed on the badges-backend01 in
 /usr/local/bin/award-badge.  It has help options that you can pull up with
 "award-badge -h".  It takes a required --user FAS_USERNAME and a required
 --badge BADGE_ID option.  For example, the following invocation would award the
-"Associate Editor" badge to "ralph":
+"Associate Editor" badge to "ralph"::
 
     $ sudo /usr/local/bin/award-badge --user ralph --badge associate-editor
 
@@ -73,7 +78,7 @@ of the design team posting a ticket with a list of FAS usernames (i.e.,
 https://fedorahosted.org/fedora-badges/ticket/129).
 
 For cases, like that you can wget the file with the list of fas usernames on
-badges-backend01 and run something like:
+badges-backend01 and run something like::
 
     $ for i in $(cat keepingbeautiful-list ) ; do
         sudo /usr/local/bin/award-badge --user $i --badge keepin-fedora-beautiful-f20;
@@ -88,14 +93,14 @@ have this feature and must maintain the list of web ui admins separately.
 
 The configuration file for the badges frontend webapp is managed by ansible and
 can be found in the ansible git repo on lockbox in
-roles/badges-frontend/templates/tahrir.ini
+``roles/badges-frontend/templates/tahrir.ini``
 
 In that file, find the tahrir.admin option.  It is a comma-separated list of
 email addresses that, when logged in, should be granted rights to access the
 admin panels at https://badges.fedoraproject.org/
 
-To add a new admin, add their FAS_USERNAME@fedoraproject.org email to that
-line, commit and push.  Use ansible to run the groups/badges-web.yml playbook
+To add a new admin, add their ``FAS_USERNAME@fedoraproject.org`` email to that
+line, commit and push.  Use ansible to run the ``groups/badges-web.yml`` playbook
 to push the config change out to the web frontend nodes.
 
 Creating an Invitation and QRCode
@@ -131,7 +136,7 @@ To create an invitation:
   - "Person ID" - the "id" of a person in the badges database -- this is very
     cumbersome.  Usually you only know their fas username, but here you need their
     actual ID number.  There is a script to retrieve is installed on
-    badges-backend01.  Log in there and run:
+    badges-backend01.  Log in there and run::
 
         sudo /usr/local/bin/get-badges-person-id --user FASUSERNAME
 
