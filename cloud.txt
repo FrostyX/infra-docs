@@ -102,3 +102,6 @@ http://209.132.184.9:35357/v2.0/ endpoint-create --region 'RegionOne'
 --service 91358b81b1aa40d998b3a28d0cfc86e7 --region 'RegionOne'  --publicurl
 'http://209.132.184.9:5000/v2.0'  --adminurl 'http://172.24.0.9:35357/v2.0'
 --internalurl 'http://172.24.0.9:5000/v2.0'
+
+= Fedora Classroom about our instance =
+http://meetbot.fedoraproject.org/fedora-classroom/2015-05-11/fedora-classroom.2015-05-11-15.02.log.html
