@@ -1,31 +1,37 @@
 .. title: FreeMedia Infrastructure SOP 
-.. slug: infra-freemedia
+.. slug: infra-freemedia-de
 .. date: 2011-12-14
 .. taxonomy: Contributors/Infrastructure
 .. lang: de
 
-FreeMedia Infrastructure SOP/de
+============================
+FreeMedia Infrastructure SOP
+============================
 
-   Diese Seite beschreibt das Standard-Vorgehen für das Fedora FreeMedia
-   Programm. Das deckt sowohl die Aspekte der Infrastruktur als auch des
-   Vorgehens ab.
+Diese Seite beschreibt das Standard-Vorgehen für das Fedora FreeMedia
+Programm. Das deckt sowohl die Aspekte der Infrastruktur als auch des
+Vorgehens ab.
 
-   Contents
+.. warning:: 
+  Dieses Dokument ist nicht aktuell. Verwenden Sie die Englisch-Version.
 
-     * 1 Wo sind die wichtigen Seiten?
-     * 2 Ort auf Puppet
-     * 3 Öffnen des Anfrageformulars
-     * 4 Schließen des Anmeldeforumlars
-     * 5 Vorrübergehender Zeitplan
-     * 6 Howto
-     * 7 Tickets bearbeiten
+Contents
+========
 
-          * 7.1 Einloggen
-          * 7.2 Ungültige Tickets zurückweisen
-          * 7.3 Gültige Tickets akzeptieren
+1. Wo sind die wichtigen Seiten?
+2. Ort auf Puppet
+3. Öffnen des Anfrageformulars
+4. Schließen des Anmeldeforumlars
+5. Vorrübergehender Zeitplan
+6. Howto
+7. Tickets bearbeiten
 
-     * 8 Umgang mit nicht erfüllten Anfragen
-     * 9 Wie man mit Bewerbungen umgeht
+  1. Einloggen
+  2. Ungültige Tickets zurückweisen
+  3. Gültige Tickets akzeptieren
+
+8. Umgang mit nicht erfüllten Anfragen
+9. Wie man mit Bewerbungen umgeht
 
 Wo sind die wichtigen Seiten?
 
@@ -132,7 +138,8 @@ Wie man mit Bewerbungen umgeht
     1. Erstellen sie einen Account im Fedora Account System (FAS)
     2. Erstellen sie eine Benutzerseite im Fedora Wiki, nach dem Muster
        User:<nick-name>. Hier ist eine Vorlage
-    3. Bewerben sie sich im FAS für die FreeMedia-Gruppe
+    3. Bewerben sie sich im FAS für die     
+        FreeMedia-Gruppe
     4. Beantragen sie die Mitgliedschaft auf der freemedia Mailingliste
 
    Regeln um über einen Mitgliedschaftsantrag zu entscheiden
