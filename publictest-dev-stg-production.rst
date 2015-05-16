@@ -3,24 +3,32 @@
 .. date: 2011-10-30
 .. taxonomy: Contributors/Infrastructure
 
-== Contact Information ==
+=====================================
+Fedora Infrastructure Machine Classes
+=====================================
 
-Owner: sysadmin-main, application developers
+Contact Information
+===================
 
-Contact: sysadmin-main
+Owner
+	sysadmin-main, application developers
+Contact
+	sysadmin-main
+Location
+	Everywhere we have machines. 
+Servers
+	publictest, dev, staging, production
+Purpose
+	Explain our use of various types of machines. 
 
-Location: Everywhere we have machines. 
-
-Servers: publictest, dev, staging, production
-
-Purpose: Explain our use of various types of machines. 
-
-== Introduction ==
+Introduction
+============
 
 This document explains what are various types of machines are used for in 
 the life cycle of providing an application or resource. 
 
-== Public Test machines ==
+Public Test machines
+====================
 
 publictest instances are used for early investigation into a resource or application. 
 At this stage the application might not be packaged yet, and we want to see if it's 
@@ -38,7 +46,8 @@ fakefas.fedoraproject.org setup for these systems instead.
     assign timeframes to the machines before being rebuilt, decommissioned if
     no progress, etc.
 
-== Development ==
+Development
+===========
 
 These instances are for applications that are packaged and being investigated for 
 deployment. Typically packages and config files are modified locally to get the 
@@ -60,7 +69,8 @@ fakefas.fedoraproject.org setup for these systems instead.
 
 .. note:: fakefas will be renamed fas01.dev at some point in the future
 
-== Staging ==
+Staging
+=======
 
 These instances are used to integrate the application or resource into puppet 
 as well as proxy and caching setups. These instances should use puppet to deploy
@@ -70,7 +80,8 @@ access.  Permissions on stg mirror permissions on production (for instance,
 sysadmin-web would have access to the app servers in stg the same as
 production).
 
-== Production == 
+Production
+==========
 
 These instances are used to serve the ready for deployment application to the public. 
 All changes are done via puppet and access is restricted. Changes should be done
