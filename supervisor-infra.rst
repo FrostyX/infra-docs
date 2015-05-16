@@ -1,0 +1,55 @@
+.. title: Supervisor Infrastructure SOP
+.. slug: infra-supervisor
+.. date: 2011-10-03
+.. taxonomy: Contributors/Infrastructure
+
+=============================
+Supervisor Infrastructure SOP
+=============================
+
+.. important::
+  This SOP is slowly going by the wayside. Almost all new apps are being
+  deployed using mod_wsgi. See - [46]TurboGears Infrastructure SOP
+
+Supervisor is a service that supplements the normal !SystemVinit on a
+machine. It is configured via a config file /etc/supervisord.conf which is
+managed by puppet. The config file contains an entry for each service that
+it is in charge of starting. Supervisor handles starting the services at
+bootup and also respawning in case of errors. People can connect to the
+supervisor process via the supervisorctl command to manage services even
+if they don't have root on the box.
+
+We use supervisor to control all of our TurboGears apps. (Almost all of
+our in-house web applications)
+
+Contact Information
+===================
+
+Owner
+	 Fedora Infrastructure
+Contact
+	#fedora-admin, sysadmin-web group
+Persons
+	lmacken, abadger199, ricky, mmcgrath
+Location
+  Phoenix Colo
+Servers
+	app[1-4] , releng1, publictest1
+Purpose
+  We use supervisor to control all of our TurboGears apps. 
+  (Almost all of our in-house web applications)
+
+Supervisorctl Commands
+======================
+
+- ``supervisorctl status``
+
+- ``supervisorctl tail -f [SERVICE NAME]``
+
+- ``supervisorctl restart [SERVICE NAME]``
+
+Troubleshooting and Resolution
+==============================
+
+[COMMON ISSUES AND HOW TO FIX THEM]
+
