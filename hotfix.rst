@@ -3,7 +3,9 @@
 .. date: 2015-02-24
 .. taxonomy: Contributors/Infrastructure
 
+============
 HOTFIXES SOP 
+============
 
 From time to time we have to quickly patch a problem or issue 
 in applications in our infrastructure. This process allows 
@@ -22,9 +24,9 @@ The process is:
 - Check in the _original_ files and hotfix manifest (puppet)
 - Check in now your diffs of those same files. 
 - puppet will replace the files on the affected machines 
-completely with the fixed versions. 
+  completely with the fixed versions. 
 - If you need to back it out, you can revert the diff step, 
-wait and then remove the first checkin
+  wait and then remove the first checkin
 
 Ansible based items:
 ====================
@@ -41,27 +43,27 @@ The process is:
 - Check in the _original_ files and change to role/task
 - Check in now your diffs of those same files. 
 - ansible will replace the files on the affected machines 
-completely with the fixed versions. 
+  completely with the fixed versions. 
 - If you need to back it out, you can revert the diff step, 
-wait and then remove the first checkin
+  wait and then remove the first checkin
 
-Example: 
+Example::
 
-<task that installs the httpd package>
+  <task that installs the httpd package>
 
-#
-# install hash randomization hotfix
-# See bug https://bugzilla.redhat.com/show_bug.cgi?id=812398
-#
-- name: hotfix - copy over new httpd init script
-  copy: src="{{ files }}/hotfix/httpd/httpd.init" dest=/etc/init.d/httpd
-        owner=root group=root mode=0755
-  notify:
-  - restart apache
-  tags:
-  - config
-  - hotfix
-  - apache
+  #
+  # install hash randomization hotfix
+  # See bug https://bugzilla.redhat.com/show_bug.cgi?id=812398
+  #
+  - name: hotfix - copy over new httpd init script
+    copy: src="{{ files }}/hotfix/httpd/httpd.init" dest=/etc/init.d/httpd
+          owner=root group=root mode=0755
+    notify:
+    - restart apache
+    tags:
+    - config
+    - hotfix
+    - apache
 
 Upstream changes
 ================
