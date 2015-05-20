@@ -90,6 +90,13 @@ systems are not supported. Database connection is specified in the
 configuration under the "database_config" key that can contain the
 following keys: username, password, host, port, database.
 
+After an update of koschei, the database needs to be migrated to new
+schema. This is handled using alembic:
+
+  alembic -c /usr/share/koschei/alembic.ini upgrade head
+
+The backend services need to be stopped during the migration.
+
 
 Managing koschei services
 -------------------------
