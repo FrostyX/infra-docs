@@ -3,169 +3,183 @@
 .. date: 2012-07-13
 .. taxonomy: Contributors/Infrastructure
 
+====================================
 Drive Replacement Infrastructure SOP
+====================================
 
-   At present this SOP only works for the X series IBM servers.
+At present this SOP only works for the X series IBM servers.
 
-   We have multiple machines with lots of different drives in them. For the
-   most part now though, we are trying to standardise on IBM X series
-   servers. At present I've not figured out how to disable onboard raid, as a
-   result of this many of our servers have two raid 0 arrays then we do
-   software raid on this.
+We have multiple machines with lots of different drives in them. For the
+most part now though, we are trying to standardise on IBM X series
+servers. At present I've not figured out how to disable onboard raid, as a
+result of this many of our servers have two raid 0 arrays then we do
+software raid on this.
 
-   The system xen11 is currently an HP ProLiant DL180 G5 with its own
-   interesting RAID system (using Compaq Smart Array ccis). Like the IBM X
-   series each drive is considered a single RAID-0 instance which is then
-   accessed through a logical drive.
+The system xen11 is currently an HP ProLiant DL180 G5 with its own
+interesting RAID system (using Compaq Smart Array ccis). Like the IBM X
+series each drive is considered a single RAID-0 instance which is then
+accessed through a logical drive.
 
-   Contents
+Contents
+========
 
-     * 1 Database - DriveReplacement
+1. Contact Information
+2. Verify the drive is dead
 
-          * 1.1 Contact Information
-          * 1.2 Verify the drive is dead
+  1. Re-adding a drive (poor man's fix)
 
-               * 1.2.1 Re-adding a drive (poor man's fix)
+3. Actually replacing the drive (IBM)
 
-          * 1.3 Actually replacing the drive (IBM)
+  1. Collecting Data
+  2. Call IBM
+  3. Get the package, give access to the tech
+  4. Prepwork before the tech arrives
+  5. Tech on site
+  6. Rebuild the array
 
-               * 1.3.1 Collecting Data
-               * 1.3.2 Call IBM
-               * 1.3.3 Get the package, give access to the tech
-               * 1.3.4 Prepwork before the tech arrives
-               * 1.3.5 Tech on site
-               * 1.3.6 Rebuild the array
+4. Actually Replacing the Drive (HP)
 
-          * 1.4 Actually Replacing the Drive (HP)
+  1. Collecting data
+  2. Call HP
+  3. Get the package, give access to the tech
+  4. Prepwork before the tech arrives
+  5. Tech on site
+  6. Rebuild the array
 
-               * 1.4.1 Collecting data
-               * 1.4.2 Call HP
-               * 1.4.3 Get the package, give access to the tech
-               * 1.4.4 Prepwork before the tech arrives
-               * 1.4.5 Tech on site
-               * 1.4.6 Rebuild the array
+5. Installing RaidMan (IBM Only)
 
-          * 1.5 Installing RaidMan (IBM Only)
-
-                          Database - DriveReplacement
+Database - DriveReplacement
 
 Contact Information
+===================
 
-   Owner: Fedora Infrastructure Team
-
-   Contact: #fedora-admin, sysadmin-main
-
-   Location: All
-
-   Servers: All
-
-   Purpose: Steps for drive replacement.
+Owner
+	 Fedora Infrastructure Team
+Contact
+	 #fedora-admin, sysadmin-main
+Location
+	 All
+Servers
+	 All
+Purpose
+	 Steps for drive replacement.
 
 Verify the drive is dead
+========================
 
- $ cat /proc/mdadm
- Personalities : [raid1]
- md0 : active raid1 sdb1[1] sda1[0]
+::
+
+  $ cat /proc/mdadm
+  Personalities : [raid1]
+   md0 : active raid1 sdb1[1] sda1[0]
+   513984 blocks [2/2] [UU]
+
+   md1 : active raid1 sdb2[2](F) sda2[0]
+   487717248 blocks [2/1] [U_]
+
+This indicates that md1 is in a degraded state and that /dev/sdb2 is the
+failed drive. Notice that /dev/sdb1 (same physical drive as /dev/sdb2) is
+not failed. /dev/md0 (not yet degraded) is showing a good state. This is
+because /dev/md0 is /boot. If you run::
+
+  touch /boot/t
+  sync
+  rm /boot/t
+
+That should make /dev/md0 notice that its drive is also failed. If it does
+not fail, its possible the drive is fine and that some blip happened that
+caused it to get flagged as dead. It is also worthwhile to log in to
+xenX-mgmt to determine if the RSAII adapter has noticed the drive is dead.
+
+If you think the drive just had a blip and is fine, see "Re-adding" below
+
+Re-adding a drive (poor man's fix)
+-----------------------------------
+
+Basically what we're doing here is making sure the drive is, infact, dead.
+Obviously you don't want to do this more then once on a drive, if it
+continues to fail. Replace it.
+
+::
+
+  # cat /proc/mdadm
+  Personalities : [raid1]
+  md0 : active raid1 sdb1[1] sda1[0]
        513984 blocks [2/2] [UU]
 
- md1 : active raid1 sdb2[2](F) sda2[0]
+  md1 : active raid1 sdb2[2](F) sda2[0]
        487717248 blocks [2/1] [U_]
-
-   This indicates that md1 is in a degraded state and that /dev/sdb2 is the
-   failed drive. Notice that /dev/sdb1 (same physical drive as /dev/sdb2) is
-   not failed. /dev/md0 (not yet degraded) is showing a good state. This is
-   because /dev/md0 is /boot. If you run:
-
- touch /boot/t
- sync
- rm /boot/t
-
-   That should make /dev/md0 notice that its drive is also failed. If it does
-   not fail, its possible the drive is fine and that some blip happened that
-   caused it to get flagged as dead. It is also worthwhile to log in to
-   xenX-mgmt to determine if the RSAII adapter has noticed the drive is dead.
-
-   If you think the drive just had a blip and is fine, see "Re-adding" below
-
-  Re-adding a drive (poor man's fix)
-
-   Basically what we're doing here is making sure the drive is, infact, dead.
-   Obviously you don't want to do this more then once on a drive, if it
-   continues to fail. Replace it.
-
- # cat /proc/mdadm
- Personalities : [raid1]
- md0 : active raid1 sdb1[1] sda1[0]
-       513984 blocks [2/2] [UU]
-
- md1 : active raid1 sdb2[2](F) sda2[0]
-       487717248 blocks [2/1] [U_]
- # mdadm /dev/md1 --remove /dev/sdb2
- # mdadm /dev/md1 --add /dev/sdb2
- # cat /proc/mdstat
- md0 : active raid1 sdb1[1] sda1[0]
+  # mdadm /dev/md1 --remove /dev/sdb2
+  # mdadm /dev/md1 --add /dev/sdb2
+  # cat /proc/mdstat
+  md0 : active raid1 sdb1[1] sda1[0]
        513984 blocks [2/1] [U_]
          resync=DELAYED
 
- md1 : active raid1 sdb2[2] sda2[0]
-       487717248 blocks [2/1] [U_]
-       [=>...................]  recovery =  9.2% (45229120/487717248) finish=145.2min speed=50771K/sec
+   md1 : active raid1 sdb2[2] sda2[0]
+         487717248 blocks [2/1] [U_]
+         [=>...................]  recovery =  9.2% (45229120/487717248) finish=145.2min speed=50771K/sec
 
-   So we removed the bad drive, added it again and you can now see the
-   recovery status. Watch it carefully. If it fails again, time for a drive
-   replacement.
+So we removed the bad drive, added it again and you can now see the
+recovery status. Watch it carefully. If it fails again, time for a drive
+replacement.
 
 Actually replacing the drive (IBM)
+==================================
 
-   Actually replacing the drive is a bit of a todo. If the box is in a RH
-   owned location, we'll have to file a ticket and get someone access to the
-   colo. If it is at another location, we may be able to just ship the drive
-   there and have someone do it on site. Please follow the below steps for
-   drive replacement.
+Actually replacing the drive is a bit of a todo. If the box is in a RH
+owned location, we'll have to file a ticket and get someone access to the
+colo. If it is at another location, we may be able to just ship the drive
+there and have someone do it on site. Please follow the below steps for
+drive replacement.
 
-  Collecting Data
+Collecting Data
+----------------
 
-   There's a not insignificant amount of data you'll need to place the call.
-   Please have the following information handy:
+There's a not insignificant amount of data you'll need to place the call.
+Please have the following information handy:
 
-   1) The hosts machine type (this is not model number).
+1) The hosts machine type (this is not model number).::
 
- # lshal | grep system.product
-   system.product = 'IBM System x3550 -[7978AC1]-'  (string)
+    # lshal | grep system.product
+    system.product = 'IBM System x3550 -[7978AC1]-'  (string)
 
-   In the above case, the machine type is encoded into [7978AC1]. And is just
-   the first 4 numbers. So this machine type is 7978. M/T (machine type) is
-   always 4 digits for IBM boxes.
+  In the above case, the machine type is encoded into [7978AC1]. And is just
+  the first 4 numbers. So this machine type is 7978. M/T (machine type) is
+  always 4 digits for IBM boxes.
 
-   2) Machine's serial number
+2) Machine's serial number::
 
- # lshal | grep system.hardware.serial
-   system.hardware.serial = 'FAAKKEE'  (string)
+    # lshal | grep system.hardware.serial
+    system.hardware.serial = 'FAAKKEE'  (string)
 
-   The above's serial number is 'FAAKKEE'
+  The above's serial number is 'FAAKKEE'
 
-   3) Drive Stats
+3) Drive Stats
 
-   There are two ways to get the drive stats. You can get some of this
-   information via hal, but for the full complete information you need to
-   either have someone physically go look at the drive (some of which is in
-   inventory) or use RaidMan. See "Installing RaidMan" below for more
-   information on how to install RaidMan.
+  There are two ways to get the drive stats. You can get some of this
+  information via hal, but for the full complete information you need to
+  either have someone physically go look at the drive (some of which is in
+  inventory) or use RaidMan. See "Installing RaidMan" below for more
+  information on how to install RaidMan.
 
-   Specifically you need:
+  Specifically you need:
 
-   Drive Size (in G) Drive Type (SAS or SATA?) Drive Model Drive Vendor
+  - Drive Size (in G) 
+  - Drive Type (SAS or SATA?) 
+  - Drive Model 
+  - Drive Vendor
 
-   To get this information run:
+  To get this information run::
 
- # cd /usr/RaidMan/
- # ./arcconf GETCONFIG 1
+    # cd /usr/RaidMan/
+    # ./arcconf GETCONFIG 1
 
-   4) The phone number and address of the building where the drive is
-   currently located. This will go to the RH cage.
+4) The phone number and address of the building where the drive is
+    currently located. This will go to the RH cage.
 
-   This information is located in the contacts.txt of private git repo on
-   puppet1 (only available to sysadmin-main people)
+    This information is located in the contacts.txt of private git repo on
+    puppet1 (only available to sysadmin-main people)
 
   Call IBM
 
