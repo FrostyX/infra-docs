@@ -27,13 +27,14 @@ That will allow us to more easily track what projects we have.
   things.
 
   If using git-flow for your project:
+  
   - Set the default branch from 'master' to 'develop'.  Having the default
     branch be develop is nice:  new contributors will automatically start
     committing there if they're not paying attention to what branch they're
     on.  You almost never want to commit directly to the master branch.
 
     If there does not exist a develop branch, you should create one by
-    branching off of master.
+    branching off of master.::
 
         $ git clone GIT_URL
         $ git checkout -b develop
@@ -65,9 +66,9 @@ The EasyFix label is used to mark bugs that are potentially fixable by new
 contributors getting used to our source code or relatively new to python
 programming.  GitHub doesn't provide this label automatically so we have to
 add it.  You can add the label from the issues page of the repository or use
-this curl command to add it:
+this curl command to add it::
 
-curl -k -u '$GITHUB_USERNAME:$GITHUB_PASSWORD' https://api.github.com/repos/fedora-infra/python-fedora/labels -H "Content-Type: application/json" -d '{"name":"EasyFix","color":"3b6eb4"}'
+  curl -k -u '$GITHUB_USERNAME:$GITHUB_PASSWORD' https://api.github.com/repos/fedora-infra/python-fedora/labels -H "Content-Type: application/json" -d '{"name":"EasyFix","color":"3b6eb4"}'
 
 Please try to use the same color for consistency between Fedora Infrastructure
 Projects.  You can then add the github repo to the list that
