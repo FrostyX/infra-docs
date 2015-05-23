@@ -3,6 +3,10 @@
 .. date: 2014-12-05
 .. taxonomy: Contributors/Infrastructure
 
+===========
+AWS Mirrors
+===========
+
 Fedora Infrastructure mirrors EPEL content (/pub/epel) into Amazon
 Simple Storage Service (S3) in multiple regions, to make it fast for
 EC2 CentOS/RHEL users to get EPEL content from an effectively local
