@@ -3,24 +3,30 @@
 .. date: 2013-04-04
 .. taxonomy: Contributors/Infrastructure
 
+=====================
+Fedora Account System
+=====================
+
 Notes about FAS and how to do things in it:
 
 - where are certs for fas accounts for koji, etc?
   on fas01 /var/lib/fedora-ca - makefile targets allow you to do
   things with them.
  
-   look in index.txt for certs. One's marked with an 'R' in the left-most
-   column are 'REVOKED'
+look in index.txt for certs. One's marked with an 'R' in the left-most
+column are 'REVOKED'
 
-   to revoke a cert:
-    cd /var/lib/fedora-ca
-    find the cert number in index.txt - the number is the 3rd column in the
-    file - you can match it to the user by searching for their username. You
-    want the highest number cert for their account.
+to revoke a cert::
+
+  cd /var/lib/fedora-ca
+    
+find the cert number in index.txt - the number is the 3rd column in the
+file - you can match it to the user by searching for their username. You
+want the highest number cert for their account.
      
-    once you have the number you would run (as root or fas)
+once you have the number you would run (as root or fas)::
 
-    make revoke cert=newcerts/$that_number.pem
+  make revoke cert=newcerts/$that_number.pem
 
 How to gather information about a user
 ======================================
@@ -86,16 +92,16 @@ This will give you the following fields to pay attention to:
 Account Deletion and renaming
 =============================
 
-.. seealso:: accountdeletion.txt
+.. note:: see also accountdeletion.rst
     For information on how to disable, rename, and remove accounts.
 
 Pseudo Users
 ============
 
-.. seealso:: nonhumanaccounts.txt
+.. note:: see also nonhumanaccounts.rst
     For information on creating pseudo user accounts for use in pkgdb/bugzilla
 
-fas staging:
+fas staging
 ===========
 
 we have a staging fas db setup on db-fas01.stg.phx2.fedoraproject.org - it accessed
@@ -103,17 +109,22 @@ by fas01.stg.phx2.fedoraproject.org
 
 This system is not autopopulated by production fas - it must be done manually.
 To do this you must:
-dump the fas2 db on db-fas01.phx2.fedoraproject.org:
-sudo -u postgres pg_dump -C fas2 > fas2.dump
-scp fas2.dump db-fas01.stg.phx2.fedoraproject.org:/tmp
 
-then on fas01.stg.phx2.fedoraproject.org:
-  /etc/init.d/httpd stop
+- dump the fas2 db on db-fas01.phx2.fedoraproject.org::
 
-then on db02.stg.phx2.fedoraproject.org:
-echo "drop database fas2\;" | sudo -u postgres psql ; cat fas2.dump | sudo -u postgres psql
+    sudo -u postgres pg_dump -C fas2 > fas2.dump
+    scp fas2.dump db-fas01.stg.phx2.fedoraproject.org:/tmp
 
-then on fas01.stg.phx2.fedoraproject.org:
- /etc/init.d/httpd start
+- then on fas01.stg.phx2.fedoraproject.org::
+
+    /etc/init.d/httpd stop
+
+- then on db02.stg.phx2.fedoraproject.org::
+
+    echo "drop database fas2\;" | sudo -u postgres psql ; cat fas2.dump | sudo -u postgres psql
+
+- then on fas01.stg.phx2.fedoraproject.org::
+
+    /etc/init.d/httpd start
 
 that should do it.
