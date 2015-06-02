@@ -91,6 +91,22 @@ And when adding new compute node, please update ``files/fedora-cloud/hosts``
   (credentials are in /etc/cinder/cinder.conf on compute node) otherwise the
   space will be blocked!!!
 
+Updates
+=======
+Our openstack cloud should have updates applied and reboots when the rest of our servers
+are updated and rebooted. This will cause an outage, please make sure to schedule it. 
+
+1. Stop copr-backend process on copr-be.cloud.fedoraproject.org
+2. Kill all copr-builder instances.
+3. Kill all transient/scratch instances. 
+4. Update all instances we control. copr, persistent, infrastructure, qa etc. 
+5. Shutdown all instances
+6. Update and reboot fed-cloud09
+7. Update and reboot all compute nodes
+8. Start up all instances that are shutdown in step 5. 
+
+TODO: add commands for above as we know them.
+
 Troubleshooting 
 ===============
 
