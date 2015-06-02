@@ -46,7 +46,7 @@ Adding a new pending release
 ============================
 
 The following commands need to be run from a bodhi checkout at the moment.
-The easiest way to do this is to log into `releng02`, and do the
+The easiest way to do this is to log into `releng04`, and do the
 following::
 
   sudo su - masher
@@ -60,13 +60,13 @@ following::
 =====================
 
 Going from pending to a proper release in bodhi requires setting the
-Release.locked field to false::
+Release.locked field to false for that release::
 
-  ssh releng02
+  ssh releng04
   sudo su - masher
   cd bodhi
   make shell
-  >>> Release.byName('F15').locked = False
+  >>> Release.byName('F22').locked = False
   >>> exit()
 
 You may also need to disable any pre-release policy defined in the bodhi
@@ -124,12 +124,12 @@ We currently remove releases from bodhi when they reach their End of Life.
 
 First, we take a database snapshot::
 
-  [masher@releng02 bodhi]$ PYTHONPATH=$(pwd) python bodhi/tools/pickledb.py save
+  [masher@releng04 bodhi]$ PYTHONPATH=$(pwd) python bodhi/tools/pickledb.py save
 
 Then, we can remove all F13 related updates and comments from the
 database::
 
-  [masher@releng02 bodhi]$ PYTHONPATH=$(pwd) python bodhi/tools/rmrelease.py F13
+  [masher@releng04 bodhi]$ PYTHONPATH=$(pwd) python bodhi/tools/rmrelease.py F13
 
 Adding notices to the front page or new update form
 ===================================================
