@@ -1,15 +1,11 @@
 .. title: DNS Infrastructure SOP 
 .. slug: infra-dns
-.. date: 2013-09-02
+.. date: 2015-06-03
 .. taxonomy: Contributors/Infrastructure
 
 ================================
 DNS repository for fedoraproject
 ================================
-
-.. warning:: This is **out of date content**.  DNS is now managed in a
-    different repo, /git/dns.  Please see the README file in that repo
-    to manage DNS: http://infrastructure.fedoraproject.org/infra/dns/README
 
 We've set this up so we can easily (and quickly) edit and deploy dns changes
 with a record of who changed what and why. This system also lets us edit out
@@ -22,7 +18,7 @@ DNS Infrastructure SOP
 
 We have 5 DNS servers:
 	
-ns01.fedoraproject.org
+ns-sb01.fedoraproject.org
   hosted at Serverbeach
 ns02.fedoraproject.org 
   hosted at ibiblio (ipv6 enabled)
@@ -73,18 +69,22 @@ Troubleshooting, Resolution and Maintenance
 Editing the domain(s)
 =====================
 
-We have one domain which needs to be able to change on demand for proxy
-rotation/removal - that's fedoraproject.org.
+We have three domains which needs to be able to change on demand for proxy
+rotation/removal:  
+  fedoraproject.org.
+  getfedora.org.
+  cloud.fedoraproject.org.
 
 The other domains are edited only when we add/subtract a host or move it to
 a new ip. Not much else.
 
-If you need to edit a domain that is NOT fedoraproject.org:
+If you need to edit a domain that is NOT In the above list:
 
 - change to the 'master' subdir, edit the domain as usual
   (remember to  update the serial), save it.
 
-If you need to edit fedoraproject.org:
+If you need to edit one of the domains in the above list:
+(replace fedoraproject.org with the domain from above)
  
 - if you need to add/change a host in fedoraproject.org that is not '@' or
   'wildcard' then:
@@ -120,7 +120,7 @@ In all cases then run:
 - if that completes successfully then run::
 
     git add .
-    git commit -a
+    git commit -a -m 'description of your change here'
     git push
   
 and then run this on all of the nameservers (as root)::
@@ -141,22 +141,19 @@ name server.
 DNS update
 ==========
 
-DNS config files are puppet managed on puppet1. The update is standard to
-the puppet configs at http://fedoraproject.org/wiki/Infrastructure/Puppet/QuickStart
+DNS config files are ansible managed on lockbox01. 
 
-From puppet1::
+From lockbox01::
 
-  git clone /git/puppet
-  cd puppet/modules/bind/files/master
-  vi fedoraproject.org # Don't forget to increment the serial!
-  cd ../..
+  git clone /git/ansible
+  cd ansible/roles/dns/files/
+  ...make changes needed...
   git commit -m "What you did"
   git push
 
 It should update within a half hour. You can test the new configs with dig::
 
 	dig @ns01.fedoraproject.org fedoraproject.org
-	dig @ns02.fedorpaorject.org cvs.fedoraproject.org
 
 Adding a new zone
 =================
@@ -170,7 +167,7 @@ Note it could take SEVERAL minutes to run::
 Then copy the created .key and .private files to the private git repo (You
 need to be sysadmin-main to do this). The directory is ``private/private/dnssec``.
 
-- add the zone in zones.conf in ``puppet/modules/bind/files``
+- add the zone in zones.conf in ``ansible/roles/dns/files/zones.conf``
 - save and commit - but do not push
 - Add zone file to the master subdir in this repo
 - git add and commit the file
@@ -209,13 +206,6 @@ these are necessary to keep dnssec-signzone from whining with this error msg::
 
 Look for the: "vpn IN NS" records at the top of fedoraproject.org and copy them for the new child zone.
   
-
-Editing/disabling a proxy in dns
-================================
-
-for more information on disabling a proxy from see the README file in the git dns tree
-on lockbox or see http://infrastructure.fedoraproject.org/infra/dns/README
-
 
 fedorahosted.org template
 =========================
