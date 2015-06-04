@@ -108,7 +108,7 @@ Use the following guidelines:
 
 Don't be general.
   * BAD: "The wiki is acting slow"
-  * Good: "Whenever I try to save http://fedoraproject.org/wiki/Infrastructure,
+  * Good: "Whenever I try to save https://fedoraproject.org/wiki/Infrastructure,
     I get a proxy error after 60 seconds"
 
 Don't report an outage that's already been reported.
@@ -151,13 +151,13 @@ Planning
 
 All major planned outages should occur with at least 1 week notice. This
 is not always possible, use best judgment. Please use our standard outage
-template at: http://fedoraproject.org/wiki/Infrastructure/OutageTemplate.
+template at: https://fedoraproject.org/wiki/Infrastructure/OutageTemplate.
 Make sure to have another person review your template/announcement to
 check times and services affected. Make sure to send the announcement to
 the lists that are affected by the outage: announce, devel-announce, etc.
 
 Always create a ticket in the ticketing system:
-http://fedoraproject.org/wiki/Infrastructure/Tickets
+https://fedoraproject.org/wiki/Infrastructure/Tickets
 Send an email to the fedora-infrastructure-list with more details if
 warranted.
 
