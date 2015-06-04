@@ -19,7 +19,7 @@ Owner
 Contact
 	#fedora-admin, #fedora-noc
 Servers
-	sign-vault03, sign-vault04, sign-bridge02
+	sign-vault03, sign-vault04, sign-bridge02, secondary-bridge01.qa
 Purpose
 	Upgrade or restart sign servers
 
@@ -28,7 +28,7 @@ Description
 0. Coordinate with releng on timing. Make sure no signing is happening, and
 none is planned for a bit. 
 
-Sign-bridge02: 
+Sign-bridge02, secondary-bridge01.qa:
 
   1. Apply updates or changes
 
