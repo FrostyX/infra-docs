@@ -12,8 +12,8 @@ Koschei runs package scratch builds after dependency change or
 after time elapse and reports package buildability status to
 interested parties.
 
-Production instance: http://koschei.cloud.fedoraproject.org/
-Staging instance:    http://koschei01.stg.phx2.fedoraproject.org
+Production instance: https://apps.fedoraproject.org/koschei
+Staging instance:    https://apps.stg.fedoraproject.org/koschei
 
 Contents
 --------
@@ -46,11 +46,11 @@ Deployment
 ----------
 If you have access to rbac-playbook::
 
-      sudo rbac-playbook hosts/koschei.cloud.fedoraproject.org.yml
+      sudo rbac-playbook groups/koschei.yml
  
 Otherwise::
 
-      ansible-playbook -t koschei /srv/web/infra/ansible/playbooks/hosts/koschei.cloud.fedoraproject.org.yml
+      ansible-playbook -t koschei /srv/web/infra/ansible/playbooks/groups/koschei.yml
 
 Description
 -----------
