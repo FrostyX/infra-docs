@@ -69,8 +69,13 @@ people can read them the good old fashioned way that they like to.  To
 accomplish this, we create 'bot' FAS accounts with their own FMN profiles and
 we set their email addresses to the lists in question.
 
-If you need to change the way some set of messages are forwarded, you'll need
-to login as those accounts in the web interface (or do surgery on the DB
-yourself).  You can find the usernames and passwords of these bot accounts in
-the ansible private repo, in the vars file as things like
-``fmn_meetingminutes_user`` and ``fmn_meetingminutes_pass``.
+If you need to change the way some set of messages are forwarded, you can do
+it from the FMN web interface (if you are an FMN admin as defined in the config
+file in roles/notifs/frontend/).  You can navigate to
+https://apps.fedoraproject.org/notifications/USERNAME.id.fedoraproject.org to do
+this.
+
+If the account exists as a FAS user already (for instance, the ``virtmaint``
+user) but it does not yet exist in FMN, you can add it to the FMN database by
+logging in to notifs-backend01 and running ``fmn-create-user --email
+DESTINATION@EMAIL.COM FAS_USERNAME``.
