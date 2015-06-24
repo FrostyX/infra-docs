@@ -56,7 +56,7 @@ then, add the following::
 
   Host bastion.fedoraproject.org
     User FAS_USERNAME
-    roxyCommand none
+    ProxyCommand none
     ForwardAgent no
   Host *.phx2.fedoraproject.org *.qa.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org
     User FAS_USERNAME
