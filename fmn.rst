@@ -78,4 +78,4 @@ this.
 If the account exists as a FAS user already (for instance, the ``virtmaint``
 user) but it does not yet exist in FMN, you can add it to the FMN database by
 logging in to notifs-backend01 and running ``fmn-create-user --email
-DESTINATION@EMAIL.COM FAS_USERNAME``.
+DESTINATION@EMAIL.COM --create-defaults FAS_USERNAME``.
