@@ -51,6 +51,13 @@ in case it got stuck somehow::
 
       sudo rbac-playbook manual/rebuild/mote.yml
 
+Doing Upgrades
+--------------
+
+Put a new copy of the mote rpm in the infra repo and run::
+
+      sudo rbac-playbook manual/upgrade/mote.yml
+
 Description
 -----------
 mote is a Python webapp running on Flask with mod_wsgi.
