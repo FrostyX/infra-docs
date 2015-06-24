@@ -43,6 +43,14 @@ If you have access to rbac-playbook::
 
       sudo rbac-playbook groups/value.yml
 
+Forcing Reload
+--------------
+
+There is a playbook that can force mote to update its cache
+in case it got stuck somehow::
+
+      sudo rbac-playbook manual/rebuild/mote.yml
+
 Description
 -----------
 mote is a Python webapp running on Flask with mod_wsgi.
