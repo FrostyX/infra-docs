@@ -171,7 +171,7 @@ To see an example::
   find . -name badges-web'\'*'
 
 inventory
-=========
+---------
 
 The ansible inventory file lists all the hosts that ansible knows about
 and also allows you to create sets of hosts that you can refer to via a
@@ -198,6 +198,21 @@ are slightly different than for 2fa certs.  If the host is in PHX2, use
 the .phx2.fedoraproject.org domain name.  If they aren't in PHX2, then
 they usually just have .fedoraproject.org as their domain name.  (If in
 doubt about a not-in-PHX2 host, just ask).
+
+
+VPN config
+----------
+
+If the machine is in VPN, create a file in ansible at
+roles/openvpn/server/files/ccd/$FQDN with contents like:
+
+  ifconfig-push 192.168.1.X 192.168.0.X
+
+Where X is the last octet of the DNS IP address assigned to the host,
+so for example for elections01.phx2.fedoraproject.org that would be:
+
+  ifconfig-push 192.168.1.44 192.168.0.44
+
 
 Work in progress 
 ================
