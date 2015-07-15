@@ -113,9 +113,6 @@ you noticing it, and you cannot merge the keys repos manually. (seriously,
 don't: the index and serial files just wouldn't match up with the certificate,
 and you would revoke the wrong certificate upon revocation).
 
-WARNING: Do NOT use the version in ansible-private at this point, it's
-entirely out of sync with the puppet-private repo, and needs to be resynced
-to get serials etc to match up.
 
 
 When doing 2 factor auth for sudo, the hosts that we connect from need
