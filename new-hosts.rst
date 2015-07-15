@@ -29,9 +29,6 @@ Get a DNS repo checkout on lockbox01
   
   git clone /git/dns
   cd dns
-  # The following hook does checking that the zone files are syntactically valid
-  cp hooks/pre-commit .git/hooks/pre-commit
-  chmod 0755 .git/hooks/pre-commit
 
 An example always helps, so you can use git grep for something that has
 been recently added to the data center/network that you want::
@@ -110,11 +107,22 @@ then push them to the dns servers.::
 Make certs 
 ==========
 
+WARNING: If you already had a clone of private, make VERY sure to do a
+git pull first! It's quite likely somebody else added a new host without
+you noticing it, and you cannot merge the keys repos manually. (seriously,
+don't: the index and serial files just wouldn't match up with the certificate,
+and you would revoke the wrong certificate upon revocation).
+
+WARNING: Do NOT use the version in ansible-private at this point, it's
+entirely out of sync with the puppet-private repo, and needs to be resynced
+to get serials etc to match up.
+
+
 When doing 2 factor auth for sudo, the hosts that we connect from need
 to have valid SSL Certs.  These are currently stored in puppet::
 
   git clone /git/private && chmod 0700 private
-  cd private/2fa-certs
+  cd private/private/2fa-certs
   . ./vars
   ./build-and-sign-key $FQDN  # ex: elections01.stg.phx2.fedoraproject.org
 
@@ -125,6 +133,29 @@ vpn.::
   git add .
   git commit -a
   git push
+
+
+NOTE: Make sure to re-run vars from the vpn repo. If you forget to do that,
+You will just (try to) generate a second pair of 2fa certs, since the
+./vars script create an environment var to the root key directory, which
+is different.
+
+Servers that are on the VPN also need certs for that. These are also stored
+in puppet private::
+
+  cd private/private/vpn/openvpn
+  . ./vars
+  ./build-and-sign-key $FQDN  # ex: elections01.phx2.fedoraproject.org
+  ./build-and-sign-key $FQDN  # ex: elections02.phx2.fedoraproject.org
+
+The $FQDN should be the phx2 domain name if it's in phx2, and just
+fedoraproject.org if it's not in PHX2 (note that there is never .vpn
+in the FQDN in the openvpn keys). Now commit and push.::
+
+  git add .
+  git commit -a
+  git push
+
 
 ansible
 =======
@@ -202,7 +233,14 @@ The host will need vmhost declaration.  There is a script in
 free cpus each vmhost has.  You can use that to inform your decision.
 By convention, staging hosts go on virthost12.
 
-Each vmhost has a different volume group.  TODO -- how to figure that out?
+Each vmhost has a different volume group.  To figure out what volume group that is,
+execute the following command on the virthost.::
+
+  vgdisplay
+
+You mant want to run "lsblk" to check that the volume group you expect is the one
+actually used for virtual guests.
+
 
 .. note:: 
   | 19:16:01 <nirik> 3. add ./inventory/host_vars/FQDN host_vars for the new host.
