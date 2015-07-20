@@ -41,7 +41,7 @@ Purpose
 SOP naming
 ==========
 SOP text file names should use lowercase with dashes.
-Describe the service and end the page name with ".txt".
+Describe the service and end the page name with ".rst".
 
 Stuff every SOP should have
 ===========================
@@ -57,7 +57,7 @@ Here's the template::
   Owner
     <usually, Fedora Infrastructure Team>
   Contact
-    <stakeholder fas groups, infividuals, IRC channels to find the action>
+    <stakeholder fas groups, individuals, IRC channels to find the action>
   Location
     <Relevant URIs, etc>
   Servers
