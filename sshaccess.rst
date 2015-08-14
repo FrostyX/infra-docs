@@ -46,7 +46,7 @@ SSH configuration
 =================
 First of all: (on your local machine)::
 
-  nano ~/.ssh/config
+  vi ~/.ssh/config
 
 .. note::
   This file, and any keys, need to be chmod 600, or you will get a "Bad owner or
