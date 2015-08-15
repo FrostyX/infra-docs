@@ -54,7 +54,7 @@ Webites Release SOP
          find FXX-primary and FXX-secondary keys. Save them in ./tools to make the
          update easier.
 
-         https://git.fedorahosted.org/cgit/fedora-repos.git/tree/
+         https://pagure.io/fedora-repos
 
       b) Start by editing ./tools/update-gpg-keys and adding the key-ids of
          any obsolete keys to the obsolete_keys list.
