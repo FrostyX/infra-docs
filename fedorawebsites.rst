@@ -1,6 +1,6 @@
 .. title: Websites Release SOP
 .. slug: infra-websites
-.. date: 2015-06-09
+.. date: 2015-08-27
 .. taxonomy: Contributors/Infrastructure
 
 ===================
@@ -122,17 +122,21 @@ Webites Release SOP
          you can look at the downlaod page http://dl.fedoraproject.org/pub/alt/stage
 
       e) Add CHECKSUM files to static/checksums and verify that the paths are
-         correct. The files should be in bapp01 and you can query them with:
+         correct. The files should be in sundries01 and you can query them with:
          $ find /pub/fedora/linux/releases/test/17-Alpha/ -type f -name \
          *CHECKSUM* -exec cp '{}' . \;
          Remember to add the right checksums to the right websites (same path).
 
       f) Add EC2 AMI IDs for Alpha. All IDs now are in the globalvar.py file.
          We get all data from there, even the redirect path to trac the AMI IDs.
+         We now also have a script which is useful to get all the AMI IDs uploaded
+         with fedimg. Execute it to get the latest uploads, but don't run the script too
+         early, as new builds are added constantly.
+         fedora-web git:(fXX-alpha) python ~/fedora-web/tools/get_ami.py
 
       g) Add CHECKSUM files also to http://spins.fedoraproject.org in
          static/checksums. Verify the paths are correct in data/content/verify.html.
-         (see point e) to query them on bapp01). Same for labs.fpo and arm.fpo.
+         (see point e) to query them on sundries01). Same for labs.fpo and arm.fpo.
 
       h) Verify all paths and links on http://spins.fpo, labs.fpo and arm.fpo.
 
@@ -142,7 +146,7 @@ Webites Release SOP
       j) Update the new POT files and push them to Zanata (ask a maintainer to do
          so) every time you change text strings.
 
-      k) Add this build to stg.fedoraproject.org (puppet syncStatic.sh.stg) to
+      k) Add this build to stg.fedoraproject.org (ansible syncStatic.sh.stg) to
          test the pages online.
 
       l) Release Date:
@@ -178,17 +182,21 @@ Webites Release SOP
          you can look at the downlaod page http://dl.fedoraproject.org/pub/alt/stage
 
       e) Add CHECKSUM files to static/checksums and verify that the paths are
-         correct. The files should be in bapp01 and you can query them with:
+         correct. The files should be in sundries and you can query them with:
          $ find /pub/fedora/linux/releases/test/17-Beta/ -type f -name \
          *CHECKSUM* -exec cp '{}' . \;
          Remember to add the right checksums to the right websites (same path).
 
       f) Add EC2 AMI IDs for Beta. All IDs now are in the globalvar.py file.
          We get all data from there, even the redirect path to trac the AMI IDs.
+         We now also have a script which is useful to get all the AMI IDs uploaded
+         with fedimg. Execute it to get the latest uploads, but don't run the script too
+         early, as new builds are added constantly.
+         fedora-web git:(fXX-beta) python ~/fedora-web/tools/get_ami.py
 
       g) Add CHECKSUM files also to http://spins.fedoraproject.org in
          static/checksums. Verify the paths are correct in data/content/verify.html.
-         (see point e) to query them on bapp01). Same for labs.fpo and arm.fpo.
+         (see point e) to query them on sundries01). Same for labs.fpo and arm.fpo.
 
       h) Remove static/checksums/Fedora-XX-Alpha* in all websites.
 
@@ -200,7 +208,7 @@ Webites Release SOP
       k) Update the new POT files and push them to Zanata (ask a maintainer to do
          so) every time you change text strings.
 
-      l) Add this build to stg.fedoraproject.org (puppet syncStatic.sh.stg) to
+      l) Add this build to stg.fedoraproject.org (ansible syncStatic.sh.stg) to
          test the pages online.
 
       m) Release Date:
@@ -228,7 +236,7 @@ Webites Release SOP
          you can look at the downlaod page http://dl.fedoraproject.org/pub/alt/stage
 
       d) Add CHECKSUM files to static/checksums and verify that the paths are
-         correct. The files should be in bapp01 and you can query them with:
+         correct. The files should be in sundries01 and you can query them with:
          $ find /pub/fedora/linux/releases/17/ -type f -name \
          *CHECKSUM* -exec cp '{}' . \;
          Remember to add the right checksums to the right websites (same path).
@@ -238,10 +246,14 @@ Webites Release SOP
 
       f) Add EC2 AMI IDs for GA. All IDs now are in the globalvar.py file.
          We get all data from there, even the redirect path to trac the AMI IDs.
+         We now also have a script which is useful to get all the AMI IDs uploaded
+         with fedimg. Execute it to get the latest uploads, but don't run the script too
+         early, as new builds are added constantly.
+         fedora-web git:(fXX) python ~/fedora-web/tools/get_ami.py
 
       g) Add CHECKSUM files also to http://spins.fedoraproject.org in
          static/checksums. Verify the paths are correct in data/content/verify.html.
-         (see point e) to query them on bapp01). Same for labs.fpo and arm.fpo.
+         (see point e) to query them on sundries01). Same for labs.fpo and arm.fpo.
 
       h) Remove static/checksums/Fedora-XX-Beta* in all websites.
 
@@ -255,7 +267,7 @@ Webites Release SOP
       l) Update the new POT files and push them to Zanata (ask a maintainer to do
          so) every time you change text strings.
 
-      m) Add this build to stg.fedoraproject.org (puppet syncStatic.sh.stg) to
+      m) Add this build to stg.fedoraproject.org (ansible syncStatic.sh.stg) to
          test the pages online.
 
       n) Release Date:
@@ -275,24 +287,16 @@ Webites Release SOP
 
   3. Fire in the hole
 
-   After 9:15 AM EDT release day, push the puppet changes (e.g.: cd ~/puppet
-   && git push). This timing ensures that the cron jobs will not
-   automatically push the new website before 10:00 AM. 
+   We now use ansible for everything, and normally use a regular build to make
+   the websites live. If something is not happening as expected, you should get in
+   contact with a sysadmin-main to run the ansible playbook again.
 
-   All othe configurations are on ansible, ask a sysadmin-main if you need to run
-   the playbook manually.
+   All our puppet stuff, such as SyncStatic.sh and SyncTranslation.sh scripts are now
+   also in ansible!
 
-   # Once /usr/local/bin/syncStatic on bapp1 is updated with your changes, run
-   sudo -u apache /usr/local/bin/syncStatic
-   This takes about 15 minutes, so try to do this well before you need to
-   push the final site out.
-
-   If necessary, clear proxy caches using
-   $ rm -rf /srv/cache/mod_cache/*
-
-   We now use ansible for almost everything, and normally do a regular build to make
-   the websites live. If anything is not happening as expected, you should get in
-   contact with a sysadmin-main to run ansible again.
+   Staging server app02 and production server bapp01 do not exist anymore, now our staging
+   websites are on sundries01.stg and the production on sundries01. Change your scripts
+   accordingly and as sysadmin-web you should have access to those servers as before.   
 
 
   4. Tips
@@ -300,11 +304,11 @@ Webites Release SOP
     4.1 Merging branches
 
     Suggested by Ricky
-    This can be usefule if you're sure all new changes on devel branch should go into
+    This can be useful if you're *sure* all new changes on devel branch should go into
     the master branch. Conflicts will be solved directly accepting only the changes
     in the devel branch.
+    If you're not 100% sure do a normal merge and fix conflicts manually!
 
     $ git merge f22-beta
     $ git checkout --theirs f22-beta [list of conflicting po files]
     $ git commit 
-
