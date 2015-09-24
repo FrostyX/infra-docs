@@ -8,7 +8,7 @@ OpenVPN SOP
 ===========
 
 OpenVPN is our server->server VPN solution. It is deployed in a routeless
-manner and uses puppet managed keys for authentication. All hosts should
+manner and uses ansible managed keys for authentication. All hosts should
 be given static IP's and a hostname.vpn.fedoraproject.org DNS address.
 
 Contact Information
@@ -34,7 +34,7 @@ Add a new host
 
 Create/sign the keys
 --------------------
-From puppet01 check out the private repo::
+From batcave01 check out the private repo::
 
    # This is to ensure that the clone is not world-readable at any point.
    RESTORE_UMASK=$(umask -p)
@@ -56,11 +56,10 @@ Create Static IP
 ----------------
 
 Giving static IP's out in openvpn is mostly painless. Take a look at other
-examples but each host gets a file and 2 IP's. Also make sure to restart
-puppet on bastion *before* pushing changes out to hour new node.::
+examples but each host gets a file and 2 IP's.::
 
-  git clone /git/puppet
-  vi puppet/modules/openvpn/files/ccd/$FQDN
+  git clone /git/ansible
+  vi ansible/roles/openvpn/server/files/ccd/$FQDN
 
 The file format should look like this::
 
@@ -78,19 +77,21 @@ Commit and install::
 
 Create DNS entry
 ----------------
-   
-After you have your static IP ready, just add the entry to DNS:
 
-From your puppet checkout, run:::
+After you have your static IP ready, just add the entry to DNS::
 
-   vi modules/bind/files/master/168.192.in-addr.arpa
+   git clone /git/dns && cd dns
+   vi master/168.192.in-addr.arpa
    # pick out an ip that's unused
-   vi modules/bind/files/master/vpn.fedoraproject.org 
+   vi master/vpn.fedoraproject.org
    git commit -m "What have you done?"
+   ./do-domains
+   git commit -m "done build."
    git push
 
-Wait for bastion and ns01/02 to get updated, then restart /sbin/service
-openvpn on the new machine.
+And push that out to the name servers with::
+
+   sudo -i ansible ns\* -a "/usr/local/bin/update-dns"
 
 Update resolv.conf on the client
 --------------------------------
