@@ -75,6 +75,10 @@ Commit and install::
   git commit -m "What have you done?"
   git push
 
+And then push that out to bastion::
+
+  sudo -i ansible-playbook $(pwd)/playbooks/groups/bastion.yml -t openvpn
+
 Create DNS entry
 ----------------
 
