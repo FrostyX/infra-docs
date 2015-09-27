@@ -72,7 +72,7 @@ Setup Overview
       Common Name (eg, your name or your servers hostname) []:$fqdn_of_new_builder
       Email Address []:buildsys@fedoraproject.org
   
-  - scp the file in ``/tmp/${fqdn}_key_and_cert.pem`` over to lockbox01
+  - scp the file in ``/tmp/${fqdn}_key_and_cert.pem`` over to batcave01
   
   - put file in the private repo under ``private/builders/${fqdn}.pem``
   
@@ -84,7 +84,7 @@ Setup Overview
    
     /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
 
-- sign the puppet cert on lockbox::
+- sign the puppet cert on batcave::
    
     sudo puppetca -s $fqdn
 
@@ -140,7 +140,7 @@ Resetting/installing an old koji builder
   - change root password
   - disable selinux in /etc/sysconfig/selinux
   - reboot
-  - on lockbox remove old puppet cert::
+  - on batcave remove old puppet cert::
       
      puppetca --revoke --clean $builder_fqdn
 
@@ -148,7 +148,7 @@ Resetting/installing an old koji builder
       
      /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
 
-  - sign the puppet cert on lockbox::
+  - sign the puppet cert on batcave::
   
      puppetca -s $builder_fqdn
 

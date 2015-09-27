@@ -21,17 +21,17 @@ Contact
 Location
 	 Everywhere we have machines. 
 Servers
-	 lockbox01 (stores kickstarts and install media)
+	 batcave01 (stores kickstarts and install media)
 Purpose
 	 Provides our install infrastructure
 
 Introduction
 ============
 
-Our kickstart infrastructure lives on the proxy servers and lockbox01. All
-install media and kickstart scripts are located on lockbox01. Because the
+Our kickstart infrastructure lives on the proxy servers and batcave01. All
+install media and kickstart scripts are located on batcave01. Because the
 RHEL binaries are not public we have these bits blocked. You can add
-needed IPs to (from lockbox01)::
+needed IPs to (from batcave01)::
 
  puppet/modules/infra-repo/files/allows
  puppet/configs/httpd/websites/infrastructure.fedoraproject.org/allows
@@ -116,7 +116,7 @@ Once the box logs you out, start pinging the IP address. It will disappear
 and come back. Once you can ping it again, try to open up a VNC session.
 It can take a couple of minutes after the box is back up for it to
 actually allow vnc sessions. The VNC password is in the kickstart script
-on lockbox01::
+on batcave01::
 
   grep vnc /mnt/fedora/app/fi-repo/rhel/ks/hardware-rhel-7-nohd
 
@@ -136,7 +136,7 @@ Post Install
 
 If all goes well, the vnc session will close, the box will reboot and come
 back up as the new host. The default root password is also listed in the
-kickstart script, from lockbox01::
+kickstart script, from batcave01::
 
   grep rootpw /mnt/fedora/app/fi-repo/rhel/ks/hardware-rhel-7-nohd
 
@@ -282,7 +282,7 @@ that dhcp is set up for the host.
 
 You can also boot the machine from the network and start an install that
 way. To do this, you need to ensure that the machine has an entry in
-/etc/dhcpd.conf on lockbox like those for ppc1-4. Then, watch for the
+/etc/dhcpd.conf on batcave like those for ppc1-4. Then, watch for the
 machine to boot and enter the SMS menu by hitting 1 when prompted. From
 the SMS menu, you can choose boot options (5) and then navigate to network
 boot. This will load yaboot over the network. Due to spanning tree, this

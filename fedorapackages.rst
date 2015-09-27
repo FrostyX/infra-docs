@@ -41,7 +41,7 @@ Building a new release
 ======================
 There is a helper script that lives in the fedoracommunity git repository
 that automatically handles spinning up a new release, building it in mock, and
-scping it to lockbox. First, edit the version/release in the specfile and
+scping it to batcave. First, edit the version/release in the specfile and
 setup.py, then run:::
 
   ./release <version> <release>

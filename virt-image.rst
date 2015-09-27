@@ -28,7 +28,7 @@ Steps to Work With Virtual System
 =================================
 
 1. Find out what physical server the virtual machine image is on.
-   A. Log into lockbox01.phx2.fedoraproject.org
+   A. Log into batcave01.phx2.fedoraproject.org
 
    B. search for the hostname in the file /var/log/virthost-lists.out::
           

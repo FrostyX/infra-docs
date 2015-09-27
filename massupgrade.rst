@@ -226,7 +226,7 @@ These are the rest:
 * ns04.phx2.fedoraproject.org
 * proxy04.fedoraproject.org
 * smtp-mm03.fedoraproject.org
-* lockbox02.phx2.fedoraproject.org
+* batcave02.phx2.fedoraproject.org
 * mm3test.fedoraproject.org
 * packages02.phx2.fedoraproject.org
 
@@ -316,7 +316,7 @@ Group C hosts that have proxy servers on them:
 * autoqa01.qa.fedoraproject.org
 * autoqa-stg01.qa.fedoraproject.org
 * bastion-comm01.qa.fedoraproject.org
-* lockbox-comm01.qa.fedoraproject.org
+* batcave-comm01.qa.fedoraproject.org
 * virthost-comm01.qa.fedoraproject.org
 
 * compose-x86-01.phx2.fedoraproject.org
@@ -381,7 +381,7 @@ relevant testing of new packages on staging). To do the upgrades, make
 sure that the Infrastructure RHEL repo is updated as necessary to pull in
 the new packages ([63]Infrastructure Yum Repo SOP)
 
-On lockbox01, as root run::
+On batcave01, as root run::
 
   func-yum [--host=hostname] update
 
@@ -403,7 +403,7 @@ Doing the reboot
  
 In the order determined above, reboots will usually be grouped by the
 virtualization hosts that the servers are on. You can see the guests per
-virt host on lockbox01 in /var/log/virthost-lists.out
+virt host on batcave01 in /var/log/virthost-lists.out
 
 To reboot sets of boxes based on which virthost they are we've written a special
 script which facilitates it::

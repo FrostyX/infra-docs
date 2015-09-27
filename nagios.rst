@@ -17,7 +17,7 @@ Contact
 Location
 	 Anywhere
 Servers
-	 noc01, noc02, noc01.stg, lockbox01
+	 noc01, noc02, noc01.stg, batcave01
 Purpose
 	 This SOP is to describe nagios configurations
 

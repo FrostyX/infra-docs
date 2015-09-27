@@ -23,7 +23,7 @@ Walkthrough
   when the DNS SOP is updated, this should be added to it in an
   "Add a new host" section
 
-Get a DNS repo checkout on lockbox01
+Get a DNS repo checkout on batcave01
 ------------------------------------
 ::
   

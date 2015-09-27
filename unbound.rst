@@ -14,6 +14,6 @@ Sometimes, especially after updates/reboots you will see alerts like this::
 
 To correct this, restart unbound on the relevant node (in the example case
 above, unbound-tummy01), by running the restart_unbound Ansible playbook from
-lockbox01.::
+batcave01.::
 
   sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/restart_unbound.yml --extra-vars="target=unbound-tummy01.fedoraproject.org"

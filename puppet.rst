@@ -53,11 +53,11 @@ Public puppet repo checkout
 ---------------------------
 
 The following commands will check out all GIT configs from a local shell
-on ``lockbox01.phx2.fedoraproject.org``:
+on ``batcave01.phx2.fedoraproject.org``:
 
   git clone /git/puppet
 
-.. note:: You should not copy or manipulate this repo except on the lockbox01 machine.
+.. note:: You should not copy or manipulate this repo except on the batcave01 machine.
 
 Private public repo checkout
 ----------------------------
@@ -226,7 +226,7 @@ Renaming a node
 Sometimes you will need to rename a node due to ``Smooge`` deciding that a new
 naming convention is needed. The steps for doing so are the following :
 
-1. Log onto lockbox01 and oldhostname in seperate windows.
+1. Log onto batcave01 and oldhostname in seperate windows.
 2. On puppet:
 
   1. Edit associated DNS names in any places (.pp files etc) referring

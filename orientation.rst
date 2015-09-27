@@ -143,7 +143,7 @@ access to our other hosts, many of which are all over the globe. We have a
 vpn solution setup so that knowing where the servers physically are is
 only important when troubleshooting things. When you first get granted
 access to one of the sysadmin-* groups, the first place you should turn is
-bastion.fedoraproject.org then from there ssh to lockbox01.
+bastion.fedoraproject.org then from there ssh to batcave01.
 
 We also have an architecture repo available in our git repo. To get a copy
 of this repo just::

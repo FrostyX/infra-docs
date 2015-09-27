@@ -212,7 +212,7 @@ people don't like to wait that long so do the following on bapp02::
 
   sudo -u apache /usr/local/bin/lock-wrapper syncStatic 'sh -x /usr/local/bin/syncStatic'
 
-Once that completes, on lockbox01::
+Once that completes, on batcave01::
 
   sudo -i ansible proxy\* "/usr/bin/rsync --delete -a --no-owner --no-group bapp02::getfedora.org/ /srv/web/getfedora.org/"
 
@@ -256,18 +256,18 @@ should be fc19. Commit the changes::
   $ git commit -a -m 'Updated tester badge rule for f21 release.'
   $ git push origin master
 
-Then, on lockbox, perform the following::
+Then, on batcave, perform the following::
 
   $ git clone https://git.fedorahosted.org/git/badges.git
   $ cd badges
-  $ git remote add lockbox /git/badges
-  $ git push lockbox master
+  $ git remote add batcave /git/badges
+  $ git push batcave master
 
 We keep these two different repos so 1) external people can contribute to
 the fedorahosted one but 2) only sysadmins can actually push to the repo
-on lockbox used by our ansible playbooks.
+on batcave used by our ansible playbooks.
 
-Once you've pushed to the /git/badges repo on lockbox, run the
+Once you've pushed to the /git/badges repo on batcave, run the
 badges-backend playbook with::
 
   $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/groups/badges-backend.yml

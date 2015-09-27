@@ -57,7 +57,7 @@ Monitor performance::
   
   http://threebean.org/fedmsg-health-day.html#FMN
 
-Upgrade (from lockbox)::
+Upgrade (from batcave)::
 
   $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/manual/upgrade/fmn.yml
 

@@ -19,7 +19,7 @@ to ansible over time and eventually puppet will be removed as well.
 Overview
 ========
 
-Ansible runs from lockbox01 or backup02. These hosts run a ssh-agent that 
+Ansible runs from batcave01 or backup02. These hosts run a ssh-agent that 
 has unlocked the ansible root ssh private key. (This is unlocked manually 
 by a human with the passphrase each reboot, the passphrase itself is not 
 stored anywhere on the machines). Using 'sudo -i' sysadmin-main members 
@@ -39,19 +39,19 @@ git repo(s)
 
 There are 2 git repositories associated with ansible: 
 
-/git/ansible on lockbox01. 
+/git/ansible on batcave01. 
 	This is a public repository. Never commit private data to this repo. 
 	You can access it also via a cgit web interface at: 
 	http://infrastructure.fedoraproject.org/cgit/ansible.git/
-	You can check it out on lockbox01 with: 'git clone /git/ansible'
+	You can check it out on batcave01 with: 'git clone /git/ansible'
 	You can also use it remotely if you have your ssh set to proxy your access
-	via bastion01: ``git clone ssh://lockbox01/git/ansible``
+	via bastion01: ``git clone ssh://batcave01/git/ansible``
 
 	Users in the 'sysadmin' group have commit access to this repo. 
 	All commits are emailed to 'sysadmin-members' as well as announced
 	on IRC in #fedora-noc. 
 
-/git/ansible-private on lockbox01.
+/git/ansible-private on batcave01.
 	This is a private repository for passwords and other sensitive data. 
 	It is not available in cgit, nor should it be cloned or copied remotely. 
 	It's only available to members of 'sysadmin-main'. 
@@ -80,11 +80,11 @@ and what commands and playbooks were run.
 role based access control for playbooks
 ---------------------------------------
 
-There's a wrapper script on lockbox01 called 'rbac-playbook' that allows non sysadmin-main
+There's a wrapper script on batcave01 called 'rbac-playbook' that allows non sysadmin-main
 members to run specific playbooks against specific groups of hosts. To add a new group:
 
 1. add the playbook name and sysadmin group to the rbac-playbook (puppet private)
-2. add that sysadmin group to sudoers on lockbox01. 
+2. add that sysadmin group to sudoers on batcave01. 
 
 To use the wrapper::
 

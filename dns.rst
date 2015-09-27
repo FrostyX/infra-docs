@@ -128,7 +128,7 @@ and then run this on all of the nameservers (as root)::
   /usr/local/bin/update-dns
 
 
-To run this via ansible from lockbox do::
+To run this via ansible from batcave do::
 
   sudo -i ansible ns\* -a "/usr/local/bin/update-dns"
 
@@ -141,9 +141,9 @@ name server.
 DNS update
 ==========
 
-DNS config files are ansible managed on lockbox01. 
+DNS config files are ansible managed on batcave01. 
 
-From lockbox01::
+From batcave01::
 
   git clone /git/ansible
   cd ansible/roles/dns/files/
@@ -178,7 +178,7 @@ need to be sysadmin-main to do this). The directory is ``private/private/dnssec`
       /usr/sbin/dnssec-keygen -a RSASHA1 -b 1024 -n ZONE $domain.org
       /usr/sbin/dnssec-keygen -a RSASHA1 -b 2048 -n ZONE -f KSK $domain.org
 		
-    - put the files this generates into /srv/privatekeys/dnssec on lockbox01
+    - put the files this generates into /srv/privatekeys/dnssec on batcave01
 		- edit the do-domains file in this dir and your domain to the
 		  signed_domains entry at the top
 		- edit the zone you just created and add the contents of the .key files

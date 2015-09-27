@@ -10,7 +10,7 @@ Infrastructure Git Repos
 Setting up an infrastructure git repo - and the push mechanisms for the
 magicks
 
-We have a number of git repos (in /git on lockbox) that manage files
+We have a number of git repos (in /git on batcave) that manage files
 for puppet, our docs, our common host info database and our kickstarts
 This is a doc on how to setup a new one of these, if it is needed.
 
@@ -24,8 +24,8 @@ Contact
 Location
 	Phoenix
 Servers
-  lockbox01.phx2.fedoraproject.org,
-  lockbox-comm01.qa.fedoraproject.org
+  batcave01.phx2.fedoraproject.org,
+  batcave-comm01.qa.fedoraproject.org
 
 
 Steps
@@ -56,7 +56,7 @@ edit up description - make it something useful::
 
   cd hooks
   rm -f *.sample
-  cp hooks from /git/infra-docs/hooks/ on lockbox01 to this path
+  cp hooks from /git/infra-docs/hooks/ on batcave01 to this path
 
 modify sudoers to allow users in whatever groups can commit to 
 this repo can run /usr/local/bin/syncgittree.sh w/o inputting a password
