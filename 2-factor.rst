@@ -19,12 +19,12 @@ Using two factor
 http://fedoraproject.org/wiki/Infrastructure_Two_Factor_Auth
 
 To enroll a Yubikey, use the fedora-burn-yubikey script like normal.
-To enroll using Google Authenticator, go to
+To enroll using FreeOTP or Google Authenticator, go to
 https://admin.fedoraproject.org/totpcgiprovision
 
 What's enough authentication?
 =============================
-FAS Password+Google Authenticator or FAS Password+Yubikey
+FAS Password+FreeOTP or FAS Password+Yubikey
 
 ---------------------------------------------
 Administrating and troubleshooting two factor
@@ -37,17 +37,19 @@ pam_url submitting the authentication tokens.
 totp-cgi runs on the fas servers (currently fas01.stg and fas01/fas02/fas03 in
 production), listening on port 8443 for pam_url requests.
 
-Google authenticator and yubikeys are supported as tokens to use with your
-password. 
+FreeOTP, Google authenticator and yubikeys are supported as tokens to use with
+your password.
 
-Google authenticator: 
-=====================
+FreeOTP, Google authenticator:
+==============================
+
+FreeOTP application is preferred, however Google authenticator works as well.
 
 This is handled via totpcgi. There's a command line tool to manage users, 
 totpprov. See 'man totpprov' for more info. Admins can use this tool to revoke 
 lost tokens (google authenticator only) with 'totpprov delete-user username' 
 
-To enroll using Google Authenticator, go to
+To enroll using FreeOTP or Google Authenticator, go to
 https://admin.fedoraproject.org/totpcgiprovision
 
 Until it is pushed to production you can use:
