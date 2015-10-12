@@ -47,7 +47,7 @@ Forcing Reload
 --------------
 
 There is a playbook that can force mote to update its cache
-in case it got stuck somehow::
+in case it gets stuck somehow::
 
       sudo rbac-playbook manual/rebuild/mote.yml
 
@@ -72,7 +72,7 @@ Configuration
 -------------
 mote configuration is located in ``/etc/mote/config.py``. The
 configuration contains all configurable items for all mote services.
-Alterations to configuration that aren't temporary should be done through ansible playbook.
+Alterations to configuration that aren't temporary should be done through ansible playbooks.
 Configuration changes have no effect on running services -- they 
 need to be restarted, which can be done using the playbook.
 
