@@ -101,6 +101,36 @@ new machine or you are fine with blowing everything away, you can instead
 use http://infrastructure.fedoraproject.org/rhel/ks/hardware-rhel-6-minimal
 as your kickstart
 
+If you know the number of hard drives the system has there are other
+kickstarts which can be used. 
+
+2 disk system::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk
+or external::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk-ext
+
+4 disk system::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk
+or external::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk-ext
+
+6 disk system::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk
+or external::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk-ext
+
+8 disk system::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk
+or external::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk-ext
+  
+10 disk system::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk
+or external::
+  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk-ext
+
+
+
 Double and triple check your configuration settings 
 (``cat /boot/grub/menu.lst``), especially your IP information. In places like
 ServerBeach not all hosts have the same netmask or gateway. Once
