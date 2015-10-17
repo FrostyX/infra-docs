@@ -124,14 +124,21 @@ or external::
   ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk-ext
 
 
+Double and triple check your configuration settings (On RHEL-6 ``cat
+/boot/grub/menu.lst`` and on RHEL-7 ``cat /boot/grub2/grub.cfg``),
+especially your IP information. In places like ServerBeach not all hosts
+have the same netmask or gateway. Once everything you are ready to run
+the commands to get it set up to boot next boot.
 
-Double and triple check your configuration settings 
-(``cat /boot/grub/menu.lst``), especially your IP information. In places like
-ServerBeach not all hosts have the same netmask or gateway. Once
-everything is ready run:::
+RHEL-6::
 
  echo "savedefault --default=0 --once" | grub --batch
  shutdown -r now
+
+RHEL-7::
+
+  grub2-reboot 0
+  shutdown -r now
 
 Installation
 ------------
