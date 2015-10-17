@@ -7,9 +7,9 @@
 Kickstart Infrastructure SOP
 ============================
 
-Kickstart scripts provide our install infrastructure. We only have a
-handful of different kickstart scripts, for xen guests, xen hosts and kvm
-guests and hosts. 
+Kickstart scripts provide our install infrastructure. We have a
+plethora of different kickstarts to best match the system you are trying
+to install. 
 
 Contact Information
 ===================
@@ -33,16 +33,10 @@ install media and kickstart scripts are located on batcave01. Because the
 RHEL binaries are not public we have these bits blocked. You can add
 needed IPs to (from batcave01)::
 
- puppet/modules/infra-repo/files/allows
- puppet/configs/httpd/websites/infrastructure.fedoraproject.org/allows
- puppet/modules/puppet/files/fileserver.conf
+ ansible/roles/batcave/files/allows
 
-Physical Machine (dom0 / kvm virthost)
+Physical Machine (kvm virthost)
 ======================================
-
-Xen Dom0 installs are far riskier then the DomU installs below. This is
-because if an install goes bad, your options to rebuild it are somewhat
-limited.
 
 .. note:: PXE Booting
 
@@ -203,9 +197,6 @@ ip, route and netmask can be templated from the dom0. This is not the case
 at server beach (see below for clarification). Make sure to update the
 amount of memory (-r) and the architecture of the repo that you point to
 for the machine you're building.
-
-There are differences between kvm and xen, specifically with how consoles
-are handled.
 
 KVM inside PHX::
 
