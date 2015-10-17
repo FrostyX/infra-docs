@@ -99,29 +99,29 @@ If you know the number of hard drives the system has there are other
 kickstarts which can be used. 
 
 2 disk system::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk
 or external::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk-ext
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk-ext
 
 4 disk system::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk
 or external::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk-ext
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk-ext
 
 6 disk system::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk
 or external::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk-ext
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk-ext
 
 8 disk system::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk
 or external::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk-ext
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk-ext
   
 10 disk system::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk
 or external::
-  ks=ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk-ext
+  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk-ext
 
 
 
