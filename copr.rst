@@ -118,3 +118,21 @@ For keygen:
 httpd logs: 
   /var/log/httpd/{error,access}_log
 
+PPC64LE Builders
+================
+
+Builders for PPC64 are located at rh-power2.fit.vutbr.cz and anyone with access to buildsys ssh key can get there using keys as
+  msuchy@rh-power2.fit.vutbr.cz
+
+There are commands:
+$ ls bin/
+destroy-all.sh  reinit-vm26.sh  reinit-vm28.sh  virsh-destroy-vm26.sh  virsh-destroy-vm28.sh  virsh-start-vm26.sh  virsh-start-vm28.sh
+get-one-vm.sh   reinit-vm27.sh  reinit-vm29.sh  virsh-destroy-vm27.sh  virsh-destroy-vm29.sh  virsh-start-vm27.sh  virsh-start-vm29.sh
+
+bin/destroy-all.sh destroy all VM and reinit them
+reinit-vmXX.sh  copy VM image from template
+virsh-destroy-vmXX.sh  destroys VM
+virsh-start-vmXX.sh starts VM
+get-one-vm.sh  start one VM and return its IP - this is used in Copr playbooks.
+
+In case of big queue of PPC64 tasks simply call bin/destroy-all.sh and it will destroy stuck VM and copr backend will spawn new VM.
