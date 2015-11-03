@@ -199,7 +199,7 @@ Step 5 (Fedora-Packages yum-repo.conf)
 
 The Fedora Packages webapp needs to have its yum config updated to consume
 the latest release.  Add a new block of entries to
-``puppet/modules/fedoracommunity/files/yum-repo.conf``
+``roles/packages/web/files/packages-yum.conf``
 
 Step 6 (Website)
 ----------------
@@ -208,7 +208,7 @@ Once all of the distribution pieces are verified (mirrors and torrent),
 all that is left is to publish the website. At present this is done by
 making sure the master branch of fedora-web is pulled by the syncStatic.sh
 script in ansible. It will sync in an hour normally but on release day 
-people don't like to wait that long so do the following on bapp02::
+people don't like to wait that long so do the following on sundries01
 
   sudo -u apache /usr/local/bin/lock-wrapper syncStatic 'sh -x /usr/local/bin/syncStatic'
 
