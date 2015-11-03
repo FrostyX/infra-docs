@@ -258,19 +258,7 @@ should be fc19. Commit the changes::
 
 Then, on batcave, perform the following::
 
-  $ git clone https://git.fedorahosted.org/git/badges.git
-  $ cd badges
-  $ git remote add batcave /git/badges
-  $ git push batcave master
-
-We keep these two different repos so 1) external people can contribute to
-the fedorahosted one but 2) only sysadmins can actually push to the repo
-on batcave used by our ansible playbooks.
-
-Once you've pushed to the /git/badges repo on batcave, run the
-badges-backend playbook with::
-
-  $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/groups/badges-backend.yml
+  $ sudo -i ansible-playbook $(pwd)/playbooks/manual/push-badges.yml
 
 Step 10 (Done)
 --------------
