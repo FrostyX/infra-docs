@@ -118,8 +118,8 @@ and you would revoke the wrong certificate upon revocation).
 When doing 2 factor auth for sudo, the hosts that we connect from need
 to have valid SSL Certs.  These are currently stored in puppet::
 
-  git clone /git/private && chmod 0700 private
-  cd private/private/2fa-certs
+  git clone /git/ansible-private && chmod 0700 ansible-private
+  cd ansible-private/files/2fa-certs
   . ./vars
   ./build-and-sign-key $FQDN  # ex: elections01.stg.phx2.fedoraproject.org
 
@@ -140,7 +140,7 @@ is different.
 Servers that are on the VPN also need certs for that. These are also stored
 in puppet private::
 
-  cd private/private/vpn/openvpn
+  cd ansible-private/files/vpn/openvpn
   . ./vars
   ./build-and-sign-key $FQDN  # ex: elections01.phx2.fedoraproject.org
   ./build-and-sign-key $FQDN  # ex: elections02.phx2.fedoraproject.org
@@ -188,7 +188,7 @@ create things like this::
   [staging]
   db-fas01.stg.phx2.fedoraproject.org
   elections01.stg.phx2.fedoraproject.org
-  elections02.stg.phx2.fedoraproject.org
+  electionst02.stg.phx2.fedoraproject.org
 
 The hosts should use their fully qualified domain names here.  The rules
 are slightly different than for 2fa certs.  If the host is in PHX2, use
