@@ -130,8 +130,12 @@ git add, commit, and push all of those.
 
 Second, You need to edit
 ``puppet/modules/fedmsg/files/cert-tools/rebuild-all-fedmsg-certs``
-and add the command you just ran, so that next time certs need to be blown
-away and recreated, the new service-hosts will be included.
+and add the argument of the commands you just ran, so that next time certs need
+to be blown away and recreated, the new service-hosts will be included.
+For the examples above, you would need to add to the list:
+  shell-app10.phx2.fedoraproject.org
+  bodhi-app10.phx2.fedoraproject.org
+  mediawiki-app10.phx2.fedoraproject.org
 
 You need to ensure that the keys are distributed to the host with the proper
 permissions.  Only the bodhi user should be able to access bodhi's private
