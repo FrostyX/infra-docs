@@ -80,7 +80,7 @@ of the log. The logs are stored in /srv/web/meetbot. Append the remainder
 of the log uploaded to Trac (don't worry too much about formatting;
 meeting.py works well with irssi- and XChat-like logs), then run::
 
-  sudo python /usr/lib/python2.6/site-packages/supybot/plugins/MeetBot/meeting.py replay /path/to/fixed.log.txt
+  sudo python /usr/lib/python2.7/site-packages/supybot/plugins/MeetBot/meeting.py replay /path/to/fixed.log.txt
 
 Close the Trac ticket, letting the user know that the logs are processed
 in the same directory as the URL they gave you.
