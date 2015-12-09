@@ -39,17 +39,8 @@ Common Tasks
 Creating a new mailing list
 ---------------------------
 
-* Log into hosted-lists01 or collab03
-* ``sudo /usr/local/bin/fedora-mailing-list-setup``::
-
-     [you@hosted-lists01 ~] $ sudo /usr/local/bin/fedora-mailing-list-setup
-     Password:
-     Project name: project
-     List name: project-devel
-     Admin username: username # This is the admin user for the list.
-     FAS Username: yourfasusername # This is the admin adding the lists username
-     FAS Password:                                 # This is the fas password for the admin user adding the list.
-     [you@hosted-lists01 ~] $
+* Log into mailman01
+* ``sudo -u mailman mailman3 create <listname>@lists.fedora(project|hosted).org --owner <username>@fedoraproject.org --notify``
 
   .. note ::     
     Note that list names should make sense, and not contain the words 'fedora'
@@ -59,6 +50,15 @@ Creating a new mailing list
   .. important:: 
     Please make sure to add a valid description to the newly
     created list. (to avoid [no description available] on listinfo index)
+
+* Log into collab03 (@lists.fedoraproject.org) or hosted-lists01 (@lists.fedorahosted.org)
+* vim /etc/mailman/mailman3-migrated-lists.txt::
+
+  .. note ::
+    Add the name of the list. Note: just the list, not the fqdn
+
+* ``cd /etc/mailman``
+* ``sudo /etc/mailman/mailman3-migration.py``
 
 Removing content from archives
 ==============================
