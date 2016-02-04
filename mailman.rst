@@ -59,6 +59,11 @@ Creating a new mailing list
 
 * ``cd /etc/mailman``
 * ``sudo /etc/mailman/mailman3-migration.py``
+* ``sudo /usr/local/bin/fedora-mailing-list-setup``
+
+  .. note ::
+     This is needed because mailman2 generates the list index. Enter your own name as
+     admin so the new owner doesn't get two welcome emails.
 
 Removing content from archives
 ==============================
