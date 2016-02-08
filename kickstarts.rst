@@ -77,19 +77,18 @@ For phx2 hosts::
  grubby --add-kernel=/boot/vmlinuz-install \
         --args="ks=http://10.5.126.23/repo/rhel/ks/hardware-rhel-7-nohd \
         repo=http://10.5.126.23/repo/rhel/RHEL7-x86_64/ \
-        net.ifnames=0 biosdevname=0 bridge=br0:eth0 bridge=br1:eth1 \
-        ip={{ br0_ip }}::{{ gw }}:{{ nm }}:{{ hostname }}:br0:none \
-        ip={{ br1_ip }}:::{{ nm }}::br1:none" \
+        net.ifnames=0 biosdevname=0 bridge=br0:eth0 ksdevice=br0 \
+        ip={{ br0_ip }}::{{ gw }}:{{ nm }}:{{ hostname }}:br0:none" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
-(If there's no eth1/br1, leave that line out, make sure to move the " to the upper line)
+(You will need to setup the br1 device if any after install)
 
 For non phx2 hosts::
 
  grubby --add-kernel=/boot/vmlinuz-install \
         --args="ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-ext \
         repo=http://209.132.181.6/repo/rhel/RHEL7-x86_64/ \
-        net.ifnames=0 biosdevname=0 bridge=br0:eth0 bridge=br1:eth1 \
+        net.ifnames=0 biosdevname=0 bridge=br0:eth0 ksdevice=br0 \
         ip={{ br0_ip }}::{{ gw }}:{{ nm }}:{{ hostname }}:br0:none" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
