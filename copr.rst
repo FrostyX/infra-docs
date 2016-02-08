@@ -83,7 +83,7 @@ Using playbooks and rbac::
     $ sudo rbac-playbook groups/copr-backend.yml
     $ sudo rbac-playbook groups/copr-frontend.yml
     $ sudo rbac-playbook groups/copr-keygen.yml
-
+    $ sudo rbac-playbook groups/copr-dist-git.yml
 
 https://git.fedorahosted.org/cgit/copr.git/plain/copr-setup.txt
 
