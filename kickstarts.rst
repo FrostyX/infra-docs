@@ -1,6 +1,6 @@
 .. title: Infrastructure Kickstart SOP
 .. slug: infra-kickstart
-.. date: 2015-02-02
+.. date: 2016-02-08
 .. taxonomy: Contributors/Infrastructure
 
 ============================
@@ -28,7 +28,7 @@ Purpose
 Introduction
 ============
 
-Our kickstart infrastructure lives on the proxy servers and batcave01. All
+Our kickstart infrastructure lives on batcave01. All
 install media and kickstart scripts are located on batcave01. Because the
 RHEL binaries are not public we have these bits blocked. You can add
 needed IPs to (from batcave01)::
@@ -75,9 +75,10 @@ for a rhel7 install::
 For phx2 hosts::
 
  grubby --add-kernel=/boot/vmlinuz-install \
-        --args="ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-nohd \
-        repo=http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/ \
-        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS net.ifnames=0 biosdevname=0" \
+        --args="ks=http://10.5.126.23/repo/rhel/ks/hardware-rhel-7-nohd \
+        repo=http://10.5.126.23/repo/rhel/RHEL7-x86_64/ \
+        net.ifnames=0 biosdevname=0 bridge=br0:eth0 bridge=br1:eth1 \
+        ip={{ br0_ip }}::{{ gw }}:{{ nm }}:{{ hostname }}:br0:none" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
 For non phx2 hosts::
@@ -85,9 +86,11 @@ For non phx2 hosts::
  grubby --add-kernel=/boot/vmlinuz-install \
         --args="ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-ext \
         repo=http://209.132.181.6/repo/rhel/RHEL7-x86_64/ \
-        ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS net.ifnames=0 biosdevname=0" \
+        net.ifnames=0 biosdevname=0 bridge=br0:eth0 bridge=br1:eth1 \
+        ip={{ br0_ip }}::{{ gw }}:{{ nm }}:{{ hostname }}:br0:none" \
         --title="install el7" --initrd=/boot/initrd-install.img
 
+Fill in the br0 ip, gateway, etc
 
 The default here is to use the hardware-rhel-7-nohd config which requires
 you to connect via VNC to the box and configure its drives. If this is a
@@ -160,210 +163,5 @@ password is in the kickstart file in the kickstart repo.
 
 Post Install
 ------------
-
-.. note::
- 
-   Do not forget to change the root password away from the default!
-
-If all goes well, the vnc session will close, the box will reboot and come
-back up as the new host. The default root password is also listed in the
-kickstart script, from batcave01::
-
-  grep rootpw /mnt/fedora/app/fi-repo/rhel/ks/hardware-rhel-7-nohd
-
-Most physical machines are to be used as virtual hosts.
-If that is the case with this host, just install puppet, update the box and
-follow the normal puppet instructions
-
-Virtual Machine (domU)
-======================
-
-Prep
-----
-
-Before building a machine, make sure to know the standard specs for the
-type of machine you're building in advance (disk space, amount of memory,
-i386 vs. x86_64).
-
-Almost all of our virtual machines run off of LVM. Step 1 is to create the
-LVM partition you want. Note that the volume group name may vary from host
-to host, and in some cases may be a iscsi volume. ::
-
-  lvcreate -n $NEWHOST -L 15G VolGroup00
-
-Machines in PHX that are running on the netapp over iscsi are stored on
-volgroup xenGuests
-
-Installation
-------------
-
-Once the size of the new machine is set, we need to run the virt-install.
-As before ensure that the ip listed below has access to the
-infrastructure.fedoraproject.org site. This can be tricky, normally the
-ip, route and netmask can be templated from the dom0. This is not the case
-at server beach (see below for clarification). Make sure to update the
-amount of memory (-r) and the architecture of the repo that you point to
-for the machine you're building.
-
-KVM inside PHX::
-
- virt-install -n $NEWHOST -r 1024 -f /dev/VolGroup/$NEWHOST \
-  -l http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/ \
-  -x "ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/kvm-rhel-6 \
-  ip=$IP netmask=$NM gateway=10.5.126.254 dns=10.5.126.21,10.5.126.22 console=tty0 console=ttyS0" \
-  --vnc --noautoconsole
-
-These installs should not require any user intervention. If you would like
-to monitor its progress you will need to connect using vnc. If you cannot
-directly connect to the system's ip you can normally bounce through
-bastion. You can do that with::
-
-  vncviewer -via bastion.fedoraproject.org hostname_or_ip:1
-
-When prompted for the vnc password, type in the vnc password given in the
-kickstarts specified above.
-
-To install a different OS change the install source and in some cases the
-kickstart path
-
-Post Installation
-------------------
-.. note::
-   Do not forget to change the root password away from the default!
-
-The installation process is pretty simple, the post configuration may not
-be depending on if the box you've installed has a reverse DNS lookup.
-Here's the checklist:
-
-1. Ensure the hostname is set properly in /etc/sysconfig/network and
-    /etc/hosts
-
-2. Ensure the system is up to date and can contact its yum mirror yum -y
-    update .
-
-3. For an external box make sure /etc/resolv.conf contains search
-    vpn.fedoraproject.org fedoraproject.org while internal hosts (in PHX)
-    should contain search phx2.fedoraproject.org (this should be scripted by
-    the kickstart file! -matt)
-
-PPC Machine
-===========
-PPC boxes are just used for builders/composers and are all in PHX.
-
-Prep
-----
-
-These instructions only apply in PHX, and they presume that dhcp is
-already set up for the host. Also make sure the IP you are about to boot
-to install from is allowed to our IP restricted
-infrastructure.fedoraproject.org as noted above (in Introduction). Then,
-you'll need to grab the installer kernel and initrd::
-
-  wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL5-ppc/ppc/ppc64/vmlinuz \
-     -O /boot/vmlinuz-install
-
-  wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL5-ppc/ppc/ppc64/ramdisk.image.gz \
-     -O /boot/initrd-install.img
-
-  grubby --add-kernel=/boot/vmlinuz-install --initrd /boot/initrd-install.img \
-    --args="ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/ppc-builder-host ip=dhcp" --title "rekick"
-
-.. note:: These instructions rely on dhcp. And if you put in the full ip
-   information in yaboot.conf, yaboot gets very unhappy and is unable to
-   boot.
-
-Now, you'll need to reboot and watch the console carefully and select
-booting the 'rekick' option when the yaboot prompt comes up. That or
-change the default if you're brave.
-
-The following are an example of what one does to reinstall a Dell 8
-disk cloud system with RHEL-7::
- 
-
-  grubby --add-kernel=/boot/vmlinuz-reinstall --initrd=/boot/initrd-reinstall.img --args="ksdevice=link ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-dell-8disk-ext hostname=fed-cloud09.cloud.fedoraproject.org nameserver=8.8.8.8 ip=209.132.184.10::209.132.184.254:255.255.255.0:fed-cloud09.cloud.fedoraproject.org:eth0:none net.ifnames=0 biosdevname=0 repo=http://209.132.181.6/repo/rhel/RHEL7-x86_64" --title="RHEL-7-reinstall"
-
- 
-
-
-Installation
-------------
-
-Unfortunately, yaboot < 1.3.14 doesn't support a boot once, so you'll have
-to either watch the console and select the 'rekick' boot option or change
-the default if you're brave. This can take a couple of minutes as the ppc
-boxes spend a while in OF.
-
-Post Install
-------------
-
-To install a different OS change the install source 
-
-After the install, you'll want to change the network configuration to be
-static instead of dhcp. Just edit /etc/sysconfig/network and
-/etc/sysconfig/network-scripts/ifcfg-eth0
-
-Network Boot/Rescue
--------------------
-
-Note that these instructions will only work in PHX and depend on the fact
-that dhcp is set up for the host.
-
-You can also boot the machine from the network and start an install that
-way. To do this, you need to ensure that the machine has an entry in
-/etc/dhcpd.conf on batcave like those for ppc1-4. Then, watch for the
-machine to boot and enter the SMS menu by hitting 1 when prompted. From
-the SMS menu, you can choose boot options (5) and then navigate to network
-boot. This will load yaboot over the network. Due to spanning tree, this
-will take a while as it has to wait 60 seconds before even trying to get
-the address and then each file.
-
-Once you have a yaboot prompt, you can either choose the default which
-kicks off a builder install or select 'rescue' to boot into rescue mode on
-the machine
-
-Network
-=======
-
-Make sure the correct hostname is set (edit /etc/hosts and
-/etc/sysconfig/network if necessary). Edit /etc/resolv.conf to have the
-correct search path. This should contain phx.fedora.redhat.com for all PHX
-machines, vpn.fedoraproject.org for all VPN machines, and
-fedoraproject.org for all machines (in that order).
-
-Puppetization
-==============
-
-Once the box is booted (virtual or not) follow the steps in the Puppet SOP
-
-VPN
-===
-After puppet has done it's magic, set up the VPN if needed. OpenVPN
-
-Func
-====
-If the machine has a puppet certificate then it is setup for func,
-automatically.
-
-FAS accounts
-============
-Run fasClient -i to get all the home directories populated.
-
-SSH Key
-=======
-Get the SSH public key from /etc/ssh/ssh_host_rsa_key.pub and add it to
-the master known_hosts file in puppet (modules/ssh/files/ssh_known_hosts).
-
-Server Beach
-============
-Server beach has some interesting network infrastructure as it relates to
-our ability to do virtualization. Basically the dom0 is given an ip on one
-network as normal but the virtual hosts (when we request IP's) are given
-an address on a different network and one without a gateway. The best bet
-is to make sure that you request at least one IP for the host to be a
-gateway. This is a terrible waste of an IP but until a better method is
-found this will work. Once you have your IP addresses all that is required
-is to create an aliased interface on the host with that IP.
-/etc/sysconfig/network-scripts/ifcfg-eth0:1 A reboot later and you can
-treat this kvm host as a normal kvm host (with bridged networking and
-such)
-
+Run ansible on the box asap to set root passwords and other security features. 
+Don't leave a newly installed box sitting around.
