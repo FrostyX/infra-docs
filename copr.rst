@@ -37,13 +37,13 @@ TROUBLESHOOTING
 Almost every problem with Copr is due problem in OpenStack, in such case::
 
   $ ssh root@copr-be.cloud.fedoraproject.org
-  # systemctl stop copr-backend
+  # copr-backend-service stop
   # source /home/copr/cloud/ec2rc.sh
   # /home/copr/delete-forgotten-instances.pl
   # # wait a minute and check
   # euca-describe-instances
   # # sometimes you have to run delete-forgotten-instances.pl as openstack is sometimes stuborn.
-  #   systemctl start copr-backend
+  #   copr-backend-service start
 
 If this does not help you, then stop and kill all OpenStack VM builders and::
 
@@ -59,6 +59,8 @@ or even (USUALLY NOT NEEDED)::
   for i in /etc/init.d/openstack-*; do $i condrestart; done
  
 and then start copr backend service again.
+
+      # copr-backend-service stop
 
 Sometimes OpenStack can not handle spawning too much VM at the same time.
 So it is safer to edit on copr-be.cloud.fedoraproject.org::
