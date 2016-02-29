@@ -70,7 +70,7 @@ The BADGE_ID for a badge can be found by visiting its page on the web UI.  That
 badge can be found at https://badges.fedoraproject.org/badge/associate-editor.
 
 The award-badge script is managed by ansible and can be found in its git repo
-in roles/badges-backend/files/award-badge on batcave.
+in roles/badges/backend/files/award-badge on batcave.
 
 Often enough, there is need for a workflow to batch award a badge to a number of
 people.  For instance, the "Keepin Fedora Beautiful" badge comes from a member
@@ -93,7 +93,7 @@ have this feature and must maintain the list of web ui admins separately.
 
 The configuration file for the badges frontend webapp is managed by ansible and
 can be found in the ansible git repo on batcave in
-``roles/badges-frontend/templates/tahrir.ini``
+``roles/badges/frontend/templates/tahrir.ini``
 
 In that file, find the tahrir.admin option.  It is a comma-separated list of
 email addresses that, when logged in, should be granted rights to access the
