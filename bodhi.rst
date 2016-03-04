@@ -134,11 +134,10 @@ If a push fails for some reason, you can easily resume it by running::
 Performing a bodhi upgrade
 ===========================
 
-Run this command from the fedora-infra `ansible` directory.
-
-::
+Run this command from the fedora-infra `ansible` directory.::
 
         sudo -i ansible-playbook $(pwd)/playbooks/manual/upgrade/bodhi.yml -l staging
+
 
 Remove `-l staging` to upgrade production.
 
