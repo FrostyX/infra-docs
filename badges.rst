@@ -84,6 +84,21 @@ badges-backend01 and run something like::
         sudo /usr/local/bin/award-badge --user $i --badge keepin-fedora-beautiful-f20;
     done
 
+Manually revoking a badge or badge authorisation
+-------------------------------------------------
+
+You may revoke badge or badge authorisations in a similar fashion to the award-badges script. You may chain the invocation of the revoke-badge or revoke-authorisation script in the same manner as the award-badges script.
+
+Revoking a badge::
+
+    $ sudo /usr/local/bin/revoke-badge --user ralph --badge associate-editor
+
+Revoking an authorisation::
+    
+    $ sudo /usr/local/bin/revoke-authorization --user ralph --badge associate-editor
+
+
+
 Adding a new admin to the web interface
 ---------------------------------------
 
