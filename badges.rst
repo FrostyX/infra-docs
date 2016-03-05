@@ -87,7 +87,9 @@ badges-backend01 and run something like::
 Manually revoking a badge or badge authorisation
 -------------------------------------------------
 
-You may revoke badge or badge authorisations in a similar fashion to the award-badges script. You may chain the invocation of the revoke-badge or revoke-authorisation script in the same manner as the award-badges script.
+You may revoke badge or badge authorisations in a similar fashion to the award-badges 
+script. You may chain the invocation of the revoke-badge or revoke-authorisation script
+in the same manner as the award-badges script.
 
 Revoking a badge::
 
