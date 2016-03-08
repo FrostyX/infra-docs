@@ -42,7 +42,7 @@ The frontend runs under apache/mod_wsgi on badges-web0{1,2} nodes.
 Pushing out new badges
 ----------------------
 
-Badge artists and badge developers should be pushing stuff yaml rules and pngs
+Badge artists and badge developers should be pushing yaml rules and pngs
 and svg art to this repo::
 
   https://git.fedorahosted.org/cgit/badges.git
