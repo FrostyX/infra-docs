@@ -170,3 +170,24 @@ To create an invitation:
 Once you have filled out the fields above as so, the person you included in the
 Person ID field will have a link to the qrcode and invite link on their profile
 page at which point they can do whatever they want with it.
+
+Some more handy scripts for manual work
+---------------------------------------
+
+See ``ansible/roles/badges/backend/files/`` for the motherload.  These all get
+deployed to `/usr/local/bin/`` on `badges-backend01` where you can login to
+execute them.
+
+- ``edit-badge`` lets you update the description and the criteria link for a
+  badge (in the event that you created it incorrectly, or if feedback from other
+  stakeholders requires us to change something).
+- ``award-badge``, as mentioned in a detailed section above, lets you award a
+  badge to a specific user.
+- ``revoke-badge`` removes a badge from a user to whom it has been awarded
+  erroneously.  Remember!  If you revoke a badge award from a user, you should
+  also give them the "consolation-prize" badge as a token of apology.
+- ``grant-authorization`` lets you give authz rights on a badge to a privileged
+  user.  They can then create invitation links and QR codes for that badge as
+  well as award it directly to other users from the web interface.
+- ``revoke-authorization`` lets you revoke those same authz rights for a user on
+  a given badge.
