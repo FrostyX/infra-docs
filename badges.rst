@@ -39,6 +39,14 @@ The process is "fedmsg-hub" and the logs are in /var/log/fedmsg/fedmsg-hub.log
 
 The frontend runs under apache/mod_wsgi on badges-web0{1,2} nodes.
 
+More Detailed Documentation Upstream
+------------------------------------
+
+- For a detailed description of how the fedbadges daemon works, see the upstream
+  README:  https://github.com/fedora-infra/fedbadges/blob/develop/README.rst
+- For a diagram of the interacting pieces in the Fedora Badges system, see here
+  https://github.com/fedora-infra/fedbadges/blob/develop/diagrams/
+
 Pushing out new badges
 ----------------------
 
