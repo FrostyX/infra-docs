@@ -30,10 +30,10 @@ Each chassis has 2 physical network connections going out from it.
 The first one is used for the management interface on each SOC. 
 The second one is used for eth0 for each SOC.
 
-Current allocations (2015-03-24): 
+Current allocations (2016-03-11): 
 
 arm01
-  releng, retrace and former secondary arch, will be added to primary
+  one retrace instance, the rest primary builders attached to koji.fedoraproject.org
 arm02 
   primary arch builders attached to koji.fedoraproject.org
 arm03 
@@ -63,9 +63,9 @@ PXE installs
 ============
 Kickstarts for the machines are in the kickstarts repo. 
 
-PXE config is on noc01. 
+PXE config is on noc01.  (or cloud-noc01.cloud.fedoraproject.org for arm03)
 
-The kickstart installs Fedora 21 and sets them up with a base package set. 
+The kickstart installs the latests Fedora and sets them up with a base package set. 
 
 IPMI tool Management
 ====================
