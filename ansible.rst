@@ -10,16 +10,13 @@ Ansible infrastructure SOP/Information.
 Background
 ==========
 
-Fedora infrastructure was using func and puppet for system change management. 
-For various reasons, we have decided to migrate to ansible for these needs. 
-Func has since been removed and is no longer used at all. Puppet is still used
-for a number of systems that have not yet migrated to ansible. More will move 
-to ansible over time and eventually puppet will be removed as well. 
+Fedora infrastructure used to use func and puppet for system change management. 
+We are now using ansible for all system change mangement and ad-hoc tasks.
 
 Overview
 ========
 
-Ansible runs from batcave01 or backup02. These hosts run a ssh-agent that 
+Ansible runs from batcave01 or backup01. These hosts run a ssh-agent that 
 has unlocked the ansible root ssh private key. (This is unlocked manually 
 by a human with the passphrase each reboot, the passphrase itself is not 
 stored anywhere on the machines). Using 'sudo -i' sysadmin-main members 
@@ -56,9 +53,6 @@ There are 2 git repositories associated with ansible:
 	It is not available in cgit, nor should it be cloned or copied remotely. 
 	It's only available to members of 'sysadmin-main'. 
 
-Additionally, ansible can (and in some cases does) use the puppet-private repository for 
-some private information that has not yet been moved to ansible-private. 
-
 Cron job/scheduled runs
 -----------------------
 
@@ -81,14 +75,17 @@ role based access control for playbooks
 ---------------------------------------
 
 There's a wrapper script on batcave01 called 'rbac-playbook' that allows non sysadmin-main
-members to run specific playbooks against specific groups of hosts. To add a new group:
+members to run specific playbooks against specific groups of hosts. This is part of the
+ansible_utils package. The upstream for ansible_utils is: https://bitbucket.org/tflink/ansible_utils
 
-1. add the playbook name and sysadmin group to the rbac-playbook (puppet private)
-2. add that sysadmin group to sudoers on batcave01. 
+To add a new group:
+
+1. add the playbook name and sysadmin group to the rbac-playbook (ansible-private repo)
+2. add that sysadmin group to sudoers on batcave01 (also in ansible-private repo)
 
 To use the wrapper::
 
-  rbac-playbook playbook.yml
+sudo rbac-playbook playbook.yml
 
 Directory setup
 ================
@@ -145,11 +142,8 @@ are truely only used on one host/group could stay as isolated tasks.
 Syntax
 ------
 
-Ansible now warns about depreciated syntax. We have a number of cases to clean up 
-in our repo to match the new syntax. In particular: 
-$foo or "$foo" should not be used anywhere. The jinja2 template syntax should be used
-everywhere: '{{ foo }}' (note that in some places you need to " variables like: 
-"{{ foo }}" 
+Ansible now warns about depreciated syntax. Please fix any cases you see related to 
+depreciation warnings.
 
 Templates use the jinja2 syntax. 
 
@@ -179,4 +173,3 @@ Example repo with all kinds of examples:
 
 Jinja2 docs:
   http://jinja.pocoo.org/docs/
-
