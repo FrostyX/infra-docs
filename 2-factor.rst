@@ -1,6 +1,6 @@
 .. title: Two Factor Auth
 .. slug: fas-two-factor
-.. date: 19 September 2013
+.. date: 2013-09-19 updated: 2016-03-11
 .. taxonomy: Contributors/Infrastructure
 
 ===============
@@ -25,6 +25,8 @@ https://admin.fedoraproject.org/totpcgiprovision
 What's enough authentication?
 =============================
 FAS Password+FreeOTP or FAS Password+Yubikey
+Note: don't actually enter a +, simple enter your FAS Password and press your 
+yubikey or enter your FreeOTP code. 
 
 ---------------------------------------------
 Administrating and troubleshooting two factor
@@ -44,18 +46,21 @@ FreeOTP, Google authenticator:
 ==============================
 
 FreeOTP application is preferred, however Google authenticator works as well.
+(Note that Google authenticator is not open source)
 
 This is handled via totpcgi. There's a command line tool to manage users, 
 totpprov. See 'man totpprov' for more info. Admins can use this tool to revoke 
 lost tokens (google authenticator only) with 'totpprov delete-user username' 
 
-To enroll using FreeOTP or Google Authenticator, go to
+To enroll using FreeOTP or Google Authenticator for production machines, go to
 https://admin.fedoraproject.org/totpcgiprovision
 
-Until it is pushed to production you can use:
+To enroll using FreeOTP or Google Authenticator for staging machines, go to
 https://admin.stg.fedoraproject.org/totpcgiprovision/
 
 You'll be prompted to login with your fas username and password.
+
+Note that staging and production differ.
 
 YubiKeys:
 =========
@@ -65,7 +70,8 @@ fedora-burn-yubikey utility included in the fedora-packager package.
 
 What do I do if I lose my token?
 ================================
-Send an email to admin@fedoraproject.org
+Send an email to admin@fedoraproject.org that is encrypted/signed with your 
+gpg key from FAS, or otherwise identifies you are you.
 
 How to remove a token (so the user can re-enroll)?
 ==================================================
