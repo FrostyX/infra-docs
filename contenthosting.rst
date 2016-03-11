@@ -56,7 +56,7 @@ mirrors we're allowing people to use. They are located at:
 Who can host? What can be hosted?
 ---------------------------------
 Any official Fedora content can hosted and made available for mirroring.
-Official content is determined by the Board by virtue of allowing people
+Official content is determined by the Council by virtue of allowing people
 to use the Fedora trademark. People representing these teams will be
 allowed to host.
 
@@ -69,7 +69,7 @@ explaining what and why Fedora should host it. Such will be reviewed by
 the Fedora Infrastructure team.
 
 Requests for non-official hosting that may conflict with existing Fedora
-policies will be escalated to the Board for approval.
+policies will be escalated to the Council for approval.
 
 Licensing
 ---------
