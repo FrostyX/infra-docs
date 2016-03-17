@@ -162,15 +162,15 @@ inform users about outages or other problems.
 
 To set announcement, run as koschei user::
 
-  koschei-admin notice "Koschei operation is currently suspended due to scheduled Koji outage"
+  koschei-admin set-notice "Koschei operation is currently suspended due to scheduled Koji outage"
 
 or::
 
-  koschei-admin notice "Sumbitting scratch builds by Koschei is currently disabled due to Fedora 23 mass rebuild"
+  koschei-admin set-notice "Sumbitting scratch builds by Koschei is currently disabled due to Fedora 23 mass rebuild"
 
 To clear announcement, run as koschei user::
 
-  koschei-admin notice ""
+  koschei-admin clear-notice
 
 
 Adding package groups
@@ -180,12 +180,12 @@ admins can add new groups.
 
 To add new group named "mynewgroup", run as koschei user:
 
-  koschei-admin addgrp mynewgroup
+  koschei-admin add-group mynewgroup
 
 To add new group named "mynewgroup" and populate it with some
 packages, run as koschei user:
 
-  koschei-admin addgrp mynewgroup pkg1 pkg2 pkg3
+  koschei-admin add-group mynewgroup pkg1 pkg2 pkg3
 
 
 Set package static priority
@@ -198,4 +198,4 @@ is not affected by package rebuilds.
 To set static priority of package "foo" to value "100", run as
 koschei user::
 
-  koschei-admin setprio --static foo 100
+  koschei-admin set-priority --static foo 100
