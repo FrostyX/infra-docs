@@ -63,3 +63,15 @@ it will sponsor the user into the group.
 If it declined the FPCA request, it will remove the user from the group.
 To override this decision, a member of the accounts group can go to FAS and manually
 add the user to the cla_fpca group and sponsor them into it.
+
+
+Setup
+=====
+
+At this moment, Basset runs on a single server (basset01(.stg)), and runs the frontend,
+message broker and worker all on a single server.
+For all of it to work, the following services are used:
+- httpd (frontend)
+- rabbitmq-server (broker)
+- mongod (mongo database server for storage of internal info)
+- basset-worker (worker)
