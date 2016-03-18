@@ -75,3 +75,27 @@ For all of it to work, the following services are used:
 - rabbitmq-server (broker)
 - mongod (mongo database server for storage of internal info)
 - basset-worker (worker)
+
+
+Outage
+======
+
+The consequences of certain services not being up results in various conditions:
+
+If the httpd or frontend aren't up, no new messages will come in.
+FAS will set the user to spamcheck_awaiting, but not submit it to Basset.
+Work is in progress on a script to submit such entries to the queue after Basset frontend
+is back.
+However, since this part of the code is so small, this is not likely to be the part that's down.
+(You can know that it is because the FAS logs will log an error instead of "result: checking".)
+
+If the worker or the mongo server are down, no messages will be processed, but all messages
+queued up will be processed the moment both of the services start again: as long as a message
+makes it into the queue, it will be processed until completion.
+
+If the worker encounters an error during processing of a message, it will dump a tracedump
+into the journal log file, and stop processing any messages.
+Resolve the condition reported in the error and restart the basset-worker service, and all
+work will be continued, starting with the message it was processing when it errored out.
+
+This means that as long as the message is queued, the worker will pick it up and handle it.
