@@ -51,7 +51,7 @@ In the case of registration this is done by setting the user to a spamcheck_awai
 status. As soon as Basset made a decision, it will set the user to spamcheck_manual,
 spamcheck_denied or active.
 If it sets the user to active, it will also send the welcome email to the user.
-If if made a wrong decision, and the user is set as spamcheck_manual or spamcheck_denied,
+If it made a wrong decision, and the user is set as spamcheck_manual or spamcheck_denied,
 a member of the accounts team can go to that users' page and click the "Enable" button
 to override the decision.
 If this needed to be done, please notify puiterwijk so that the rules Basset uses
