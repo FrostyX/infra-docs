@@ -7,7 +7,7 @@
 Guest Disk Resize SOP
 =====================
 
-Resize disks in our Xen guests
+Resize disks in our kvm guests
 
 Contents
 ========
@@ -56,6 +56,11 @@ KVM/libvirt Guests
 
     lvresize -L [NEW TOTAL SIZE]G /dev/VolGroup00/[guest name]
 
+    or
+
+    lvresize -L +XG /dev/VolGroup00/[guest name]
+    (to add X GB to the disk)
+
 5. Enable the lv::
 
     lvchange -ay /dev/VolGroup00/[guest name]
@@ -67,6 +72,7 @@ KVM/libvirt Guests
 7. Login into the guest::
 
     sudo virsh console [guest name]
+    You may wish to boot single user mode to avoid services coming up and going down again
 
 8. On the guest, run::
 
@@ -94,10 +100,17 @@ KVM/libvirt Guests
 
       lvresize -L [new root partition size]G /dev/GuestVolGroup00/root
 
+      (pvs will tell you how much space is available)
+
 14. Finally, resize the root partition::
 
       resize2fs /dev/GuestVolGroup00/root
+      (If the root fs is ext4)
+
+      or
+
+      xfs_growfs /dev/GuestVolGroup00/root
+      (if the root fs is xfs)
 
     verify that everything worked out, and delete the snapshot you made
     if you made one.
-
