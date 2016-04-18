@@ -1,6 +1,6 @@
 .. title: Koschei SOP
 .. slug: infra-koschei
-.. date: 2015-04-27
+.. date: 2016-04-18
 .. taxonomy: Contributors/Infrastructure
 
 ===========
@@ -44,17 +44,18 @@ Purpose
 
 Deployment
 ----------
-If you have access to rbac-playbook::
-
-      sudo rbac-playbook groups/koschei.yml
- 
-Otherwise::
-
-      ansible-playbook -t koschei /srv/web/infra/ansible/playbooks/groups/koschei.yml
+      sudo rbac-playbook groups/koschei-backend.yml
+      sudo rbac-playbook groups/koschei-web.yml
 
 Description
 -----------
-Koschei consists of multiple services:
+Koschei is deployed on two separate machines - koschei-backend and koschei-web
+
+Frontend (koschei-web) is a Flask WSGi application running with httpd.
+It displays information to users and allows editing package groups and
+changing priorities.
+
+Backend (koschei-backend) consists of multiple services:
 
 - koschei-watcher - listens to fedmsg events for complete builds and
   changes build states in the database. Additionally listens to
@@ -87,20 +88,18 @@ Koschei consists of multiple services:
 - koschei-polling - polls the same types of events as koschei-watcher
   without reliance on fedmsg
 
-- frontend - Flask WSGi application run with httpd. Displays information
-  to users and allows adding new packages and changing priorities.
-
 
 Configuration
 -------------
-Koschei configuration is in ``/etc/koschei/config.cfg`` and is merged with
-the default configuration in ``/usr/share/koschei/config.cfg`` (the one in
-etc overrides the defaults in usr). Note the merge is recursive. The
-configuration contains all configurable items for all koschei services
-and the frontend. The alterations to configuration that aren't temporary
-should be done through ansible playbook. Configuration changes have no
-effect on already running services -- they need to be restarted, which
-happens automatically when using the playbook.
+Koschei configuration is in ``/etc/koschei/config-backend.cfg`` and
+``/etc/koschei/config-frontend.cfg``, and is merged with the default
+configuration in ``/usr/share/koschei/config.cfg`` (the ones in etc
+overrides the defaults in usr). Note the merge is recursive. The
+configuration contains all configurable items for all Koschei services
+and the frontend. The alterations to configuration that aren't
+temporary should be done through ansible playbook. Configuration
+changes have no effect on already running services -- they need to be
+restarted, which happens automatically when using the playbook.
 
 
 Database
