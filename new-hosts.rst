@@ -10,18 +10,8 @@ DNS Host Addition SOP
 You should be able to follow these steps in order to create a new set of
 hosts in infrastructure.
 
-.. note::
-  The DNS SOP at http://infrastructure.fedoraproject.org/infra/docs/dns.rst is outdated.
-
-  Until it is updated, see the documentation here:
-  http://infrastructure.fedoraproject.org/infra/dns/README
-
 Walkthrough
 ===========
-
-.. note::
-  when the DNS SOP is updated, this should be added to it in an
-  "Add a new host" section
 
 Get a DNS repo checkout on batcave01
 ------------------------------------
