@@ -50,7 +50,7 @@ First of all: (on your local machine)::
 
 .. note::
   This file, and any keys, need to be chmod 600, or you will get a "Bad owner or
-  permissions" error. The .ssh directorymust be mode 700. 
+  permissions" error. The .ssh directory must be mode 700.
 
 then, add the following::
 
@@ -109,7 +109,7 @@ Troubleshooting
     IP could be added to denyhosts.
  
 * If you are running an OpenSSH version less than 5.4, then the -W
-    option is not avaliable. In that case, use the following ProxyCommand
+    option is not available. In that case, use the following ProxyCommand
     line instead::
 
       ProxyCommand ssh -q bastion.fedoraproject.org exec nc %h %p
