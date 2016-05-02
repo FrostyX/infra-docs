@@ -27,7 +27,7 @@ ns03.phx2.fedoraproject.org
 ns04.fedoraproject.org  
   in phx2, external.
 ns05.fedoraproject.org 
-  hosted at internetx
+  hosted at internetx (ipv6 enabled)
 
 Contents
 ========
@@ -234,17 +234,16 @@ GeoDNS
 
 As part of our Content Distribution Network we use geodns for certain
 zones. At the moment just ``fedoraproject.org`` and ``*.fedoraproject.org`` zones.
-We've got proxy servers all over the US, in Europe and in the UK. We are
+We've got proxy servers all over the US and in Europe. We are
 now sending users to proxy servers that are near them. The current list of
 available 'zone areas' are:
 
 * DEFAULT
 * EU
-* GB
 * NA
 
 DEFAULT contains all the zones. So someone who does not seem to be in or
-near the EU, GB, or NA would get directed to any random set. (South Africa
+near the EU, or NA would get directed to any random set. (South Africa
 for example doesn't get directed to any particular server).
 
 .. important::
@@ -261,7 +260,7 @@ Adding and removing countries
 -----------------------------
 
 Our setup actually requires us to specify which countries go to which
-servers. To do this, simply edit the named.conf file in puppet. Below is
+servers. To do this, simply edit the named.conf file in ansible. Below is
 an example of what counts as "NA" (North America).::
 
   view "NA" {
@@ -283,7 +282,7 @@ dns servers themselves (it's not puppet controlled). The file, located at
 (that script is in puppet).
 
 .. warning:: 
-  This is known to be a less efficient means of doing geodns then the
+  This is known to be a less efficient means of doing geodns than the
   patched version from kernel.org. We're using this version at the moment
   because it's in Fedora and works. The level of DNS traffic we see is
   generally low enough that the inefficiencies aren't that noticed. For
@@ -293,14 +292,14 @@ dns servers themselves (it's not puppet controlled). The file, located at
 resolv.conf
 ===========
 
-In order to make the network more transparent to the admins we do a lot of
+In order to make the network more transparent to the admins, we do a lot of
 search based relative names. Below is a list of what a resolv.conf should
 look like.
 
 .. important:: 
   Any machine that is not on our vpn or has not yet joined the vpn should
   _NOT_ have the vpn.fedoraproject.org search until after it has been added
-  o the vpn (if it ever does)
+  to the vpn (if it ever does)
 
 Phoenix
   ::
