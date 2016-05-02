@@ -65,7 +65,12 @@ Purpose:
 
 Troubleshooting, Resolution and Maintenance
 
+Adding a new Host
+=================
 
+Adding a new host requires to add it to DNS and to ansible, see new-hosts.rst for
+the details.
+ 
 Editing the domain(s)
 =====================
 
