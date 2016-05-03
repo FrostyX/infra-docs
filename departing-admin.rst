@@ -25,8 +25,8 @@ Description
 ===========
 
 From time to time people with admin access to various parts of the project may 
-Leave the project or no longer wish to contribute. This SOP attempts to list 
-The process for removing access they no longer need. 
+leave the project or no longer wish to contribute. This SOP attempts to list 
+the process for removing access they no longer need. 
 
 0. First, make sure that this SOP is needed. Verify the person has left the project
    and what areas they might wish to still contibute to.
