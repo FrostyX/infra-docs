@@ -106,7 +106,7 @@ and you would revoke the wrong certificate upon revocation).
 
 
 When doing 2 factor auth for sudo, the hosts that we connect from need
-to have valid SSL Certs.  These are currently stored in puppet::
+to have valid SSL Certs.  These are currently stored in the private repo::
 
   git clone /git/ansible-private && chmod 0700 ansible-private
   cd ansible-private/files/2fa-certs
@@ -128,7 +128,7 @@ You will just (try to) generate a second pair of 2fa certs, since the
 is different.
 
 Servers that are on the VPN also need certs for that. These are also stored
-in puppet private::
+in the private repo::
 
   cd ansible-private/files/vpn/openvpn
   . ./vars
