@@ -19,7 +19,7 @@ Contact Information
 Owner: 
   Fedora Infrastructure Team, Fedora Release Engineering Team
 Contact: 
-  #fedora-admin, #fedora-devel, sysadmin-main, sysadmin-releng
+  #fedora-admin, #fedora-releng, sysadmin-main, sysadmin-releng
 Location: 
   N/A
 Servers: 
