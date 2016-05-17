@@ -51,6 +51,31 @@ Steps Involved
 8. Announce to the mirror list this has been done and that in 2 weeks
    you will move the old trees to archives.
 
-9. In two weeks, log into mirror manager
+9. In two weeks, log into mm-backend01 and run the archive script
+
+   sudo -u mirrormanager mm2_move-to-archive --originalCategory="Fedora Linux" 
+     \--archiveCategory="Fedora Archive" --directoryRe='/21/Everything'
+
+10. If there are problems, the postgres DB may have issues and so you need to
+    get a DBA to update the backend to fix items.
+
+11. Wait an hour or so then you can remove the files from the main tree. 
+
+    ssh bodhi-backend01
+    cd /pub/fedora/linux
+    cd releases/21
+    ls # make sure you have stuff here 
+    rm -rf *
+    ln ../20/README .
+    cd ../../updates/21
+    ls # make sure you have stuff here 
+    rm -rf *
+    ln ../20/README .
+    cd ../testing/21
+    ls # make sure you have stuff here 
+    rm -rf *
+    ln ../20/README .
+
+
 
    
