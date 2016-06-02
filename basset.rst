@@ -18,6 +18,11 @@ Contents
   
 1. Contact Information
 2. Overview
+3. FAS
+4. Trac
+5. Wiki
+6. Setup
+7. Outage
 
 
 Contact Information
@@ -40,7 +45,10 @@ Basset is a central anti-spam service: it received messages from services that
 certain actions happened, and will then decide to accept or deny the request, or
 pass it on to an administrator.
 
-At the moment, only the FAS module is live for Fedora.
+At the moment, we have the following modules live: FAS, trac, wiki.
+
+FAS
+===
 This module receives notifications from FAS about new users registrations and new
 users signing the FPCA.
 With Basset enabled, FAS will not automatically accept a new user registration or
@@ -63,6 +71,26 @@ it will sponsor the user into the group.
 If it declined the FPCA request, it will remove the user from the group.
 To override this decision, a member of the accounts group can go to FAS and manually
 add the user to the cla_fpca group and sponsor them into it.
+
+
+Trac
+====
+
+For Trac, if a post gets denied, the content item gets deleted, the Trac account gets
+blocked cross-instance and the FAS account gets blocked.
+
+To unblock the user, log in to hosted03, and remove /srv/web/trac/blocks/$username.
+For info on how to unblock the FAS user, see the notes under FAS.
+
+
+Wiki
+====
+
+For Wiki, if an edit gets denied, the page gets deleted, the wiki account blocked and the
+FAS account gets blocked.
+
+For the wiki parts of undoing this, follow the regulary mediawiki unblock procedures.
+Don't forget to unblock the account as in FAS.
 
 
 Setup
