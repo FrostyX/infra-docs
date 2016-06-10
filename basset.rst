@@ -89,7 +89,7 @@ Wiki
 For Wiki, if an edit gets denied, the page gets deleted, the wiki account blocked and the
 FAS account gets blocked.
 
-For the wiki parts of undoing this, follow the regulary mediawiki unblock procedures.
+For the wiki parts of undoing this, follow the regular mediawiki unblock procedures.
 Don't forget to unblock the account as in FAS.
 
 
