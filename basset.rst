@@ -89,7 +89,10 @@ Wiki
 For Wiki, if an edit gets denied, the page gets deleted, the wiki account blocked and the
 FAS account gets blocked.
 
-For the wiki parts of undoing this, follow the regular mediawiki unblock procedures.
+For the wiki parts of undoing this, follow the regular mediawiki unblock procedures using:
+ - https://fedoraproject.org/wiki/Special:BlockList to check if an user is blocked or not
+ - https://fedoraproject.org/wiki/Special:Unblock to unblock that user
+
 Don't forget to unblock the account as in FAS.
 
 
