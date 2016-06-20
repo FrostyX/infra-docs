@@ -46,13 +46,9 @@ Before a release ships, the following items need to be completed.
 
 6. Modify Template:FedoraVersion to reference new version. (Final release only)
 
-7. Add the new release to stats gathering scripts on log1
-    (``modules/scripts/files/fedoraUsage.sh``, also the maps should be
-    updated) (Final release only)
+7. Move old releases to archive (post final release only)
 
-8. Move old releases to archive (post final release only)
-
-9. Switch release from development/N to normal releases/N/ tree in mirror
+8. Switch release from development/N to normal releases/N/ tree in mirror
     manager (post final release only)
 
 Change Freeze
@@ -192,16 +188,9 @@ Step 4 (Taskotron) (final release only)
 
 Please file a Taskotron ticket and ask for the new release support to be
 added (log in to Phabricator using your FAS_account@fedoraproject.org email
-address) https://phab.qadevel.cloud.fedoraproject.org/maniphest/task/create/?projects=PHID-PROJ-prgpoumlmfdczdr4dyv3
+address) https://phab.qadevel.cloud.fedoraproject.org/maniphest/task/edit/form/default/
 
-Step 5 (Fedora-Packages yum-repo.conf)
---------------------------------------
-
-The Fedora Packages webapp needs to have its yum config updated to consume
-the latest release.  Add a new block of entries to
-``roles/packages/web/files/packages-yum.conf``
-
-Step 6 (Website)
+Step 5 (Website)
 ----------------
 
 Once all of the distribution pieces are verified (mirrors and torrent),
@@ -218,7 +207,7 @@ Once that completes, on batcave01::
 
 Verify http://getfedora.org/ is working.
 
-Step 7 (Docs)
+Step 6 (Docs)
 -------------
 
 Just as with the website, the docs site needs to be published. Just as
@@ -226,7 +215,7 @@ above follow the following steps::
 
   /root/bin/docs-sync
 
-Step 8 (Monitor)
+Step 7 (Monitor)
 ----------------
 
 Once the website is live, keep an eye on various news sites for the
@@ -234,7 +223,7 @@ release announcement. Closely watch the load on all of the boxes, proxy,
 application and otherwise. If something is getting overloaded, see
 suggestions on this page in the "Juggling Resources" section.
 
-Step 9 (Badges) (final release only)
+Step 8 (Badges) (final release only)
 ------------------------------------
 
 We have some badge rules that are dependent on which release of Fedora
@@ -260,7 +249,7 @@ Then, on batcave, perform the following::
 
   $ sudo -i ansible-playbook $(pwd)/playbooks/manual/push-badges.yml
 
-Step 10 (Done)
+Step 9 (Done)
 --------------
 
 Just chill, keep an eye on everything and make changes as needed. If you
@@ -396,8 +385,6 @@ After release is a "go":
 * fedora-web needs a branch for fN-alpha. In it: 
 * get-prerelease does direct to release
 * verify is updated with Final info
-* releases.txt gets a final entry for preupgrade,
-  branched entry removed. 
 * bfo gets updated to have a Final entry. 
 * update wiki version numbers and names. 
 
