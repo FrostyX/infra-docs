@@ -45,7 +45,7 @@ Location
 
 Servers
   admin.fedoraproject.org Click on one of the [55]current haproxy
-  servers to see the physical servers 
+  servers to see the physical servers
 
 Purpose
 	Manage package ownership
@@ -65,7 +65,7 @@ pseudo user to the account system and assigning that person as the package
 maintainer.
 
 .. warning:: pseudo users often have a dash in their name.  We create email
-        aliases via puppet that have dashes in their name in order to not
+        aliases via ansible that have dashes in their name in order to not
         collide with fas usernames (users cannot create usernames with dashes
         via the webui).  Make sure that any pseudo-users you create do not
         clash with existing email aliases.
@@ -254,7 +254,7 @@ Add a new release
 To add a new Fedora Release, ssh to db02 and do this::
 
   sudo -u postgres psql pkgdb
-  
+
 - This adds the release for Package ACLs::
 
     insert into collection (name, version, statuscode, owner, koji_name) values('Fedora', '13', 1, 'jkeating', 'dist-f13');
@@ -316,9 +316,8 @@ This can be done in the database if you don't want to send email::
    pkgdb> -- If the right number of rows were changed
    pkgdb> COMMIT;
 
-.. note::   
+.. note::
    Note that if you do it via pkgdb-client or the python-fedora API instead,
    you'll want to only orphan the packages on non-EOL branches that exist to
    cut down on the amount of email that's sent. That entails figuring out
    what branches you need to do this on.
-

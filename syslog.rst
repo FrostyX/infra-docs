@@ -7,7 +7,7 @@
 Log Infrastructure SOP
 ======================
 
-Logs are centrally referred to our loghost and managed from there by 
+Logs are centrally referred to our loghost and managed from there by
 rsyslog to create several log outputs.
 
 Epylog provides twice-daily log reports of activities on our systems.
@@ -17,15 +17,15 @@ centrally logging.
 Contact Information
 ===================
 
-Owner: 
+Owner:
   Fedora Infrastructure Team
-Contact: 
+Contact:
   #fedora-admin, sysadmin-main
-Location: 
+Location:
   Phoenix
-Servers: 
+Servers:
   log01.phx2.fedoraproject.org
-Purpose: 
+Purpose:
   Provides our central logs and reporting
 
 
@@ -38,7 +38,7 @@ Essential data/locations:
     /var/log/merged/
 
   These logs are rotated every day and kept for only 2 days. This set of logs
-  is only used for immediate analysis and more trivial 'tailing' of 
+  is only used for immediate analysis and more trivial 'tailing' of
   the log file to watch for events.
 
 * Logs for each system separately in ``/var/log/hosts``
@@ -70,8 +70,8 @@ Essential data/locations:
 Configs:
 ========
 
-Epylog configs are controlled by puppet - please see the puppet epylog
-module for more details. Specifically the files in ``modules/epylog/files/merged/``
+Epylog configs are controlled by ansible - please see the ansible epylog
+module for more details. Specifically the files in ``roles/epylog/files/merged/``
 
 
 Generating a one-off epylog report:
@@ -114,9 +114,9 @@ Here's how we did that:
 
   END selinux policy module
 
-2. add config to rsyslog on the clients to repeatedly send all changes 
+2. add config to rsyslog on the clients to repeatedly send all changes
    to their audit.log file to the central syslog server as local6::
-     
+
     # monitor auditd log and send out over local6 to central loghost
     $ModLoad imfile.so
 
@@ -131,25 +131,25 @@ Here's how we did that:
   then modify your emitter to the syslog server to send local6.* there
 
 3. on the syslog server - setup log destinations for:
- 
+
    - merged audit logs of all hosts
      explicitly drop any non-AVC audit message here)
      magic exclude line is::
 
        :msg, !contains, "type=AVC" ~
-       
+
 
      that line must be directly above the log entry you want to filter
-     and it has a cascade effect on everything below it unless you 
-     disable the filter  
+     and it has a cascade effect on everything below it unless you
+     disable the filter
 
     - per-host audit logs - this is everything from audit.log
 
 4. On the syslog server - we can run audit2allow/audit2why on the audit logs
    sent there by doing this::
-   
-    grep 'hostname' /var/log/merged/audit.log | sed 's/^.*tag_audit_log: //' | audit2allow 
-   
+
+    grep 'hostname' /var/log/merged/audit.log | sed 's/^.*tag_audit_log: //' | audit2allow
+
    the sed is to remove the log prefix garbage from syslog transferring the msg
 
 
@@ -157,9 +157,7 @@ Future:
 =======
 
 - additional log reports for errors from http processes or servers
-- SEC 
-  Simple Event Coordinator to report, immediately, on events from a 
+- SEC
+  Simple Event Coordinator to report, immediately, on events from a
   log stream - available in fedora/epel.
 - New report modules within epylog
-
-

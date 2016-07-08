@@ -179,7 +179,7 @@ Please have the following information handy:
     currently located. This will go to the RH cage.
 
     This information is located in the contacts.txt of private git repo on
-    puppet1 (only available to sysadmin-main people)
+    batcave01 (only available to sysadmin-main people)
 
   Call IBM
 
@@ -203,7 +203,7 @@ Please have the following information handy:
    NOTE: this can often take hours. We have 4 hour on site response time from
    IBM. This time goes very quickly, sometimes you may need to page out
    someone in IS to ensure it gets created quickly. To get this pager
-   information see contacts.txt in puppet1's private repo (if puppet1 is down
+   information see contacts.txt in batcave01's private repo (if batcave01 is down
    for some reason see the dr copy on backup2.fedoraproject.org:/srv/
 
   Prepwork before the tech arrives

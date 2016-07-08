@@ -45,7 +45,7 @@ Step One: Realizing you have a problem
 =======================================
 
 If you are trying to find a specific problem on a host go look in the
-audit.log per-host on our cental log server. See the syslog SOP for 
+audit.log per-host on our cental log server. See the syslog SOP for
 more information.
 
 Step Two: Tracking down the violation
@@ -54,7 +54,7 @@ Step Two: Tracking down the violation
 Generate SELinux policy allow rules from logs of denied operations. This
 is useful for getting a quick overview of what has been getting denied on
 the local machine::
-
+      
   audit2allow -la
 
 You can obtain more detailed audit messages by using ausearch to get the
@@ -67,31 +67,25 @@ Again -see the syslog SOP for more information here.
 Step Three: Fixing the violation
 ================================
 
-Below are examples of using our current puppet configuration to make
+Below are examples of using our current ansible configuration to make
 SELinux deployment changes. These constructs are currently home-brewed,
-and do not exist in upstream Puppet. For these functions to work, you must
+and do not exist in upstream Ansible. For these functions to work, you must
 ensure that the host or servergroup is configured with 'include selinux',
 which will enable SELinux in permissive mode. Once a host is properly
 configured, this can be changed to 'include selinux-enforcing' to enable
 SELinux Enforcing mode.
 
-.. note:: 
+.. note::
   Most services have $service_selinux manpages that are automatically generated from policy.
-  
-Allowing ports
-----------------
-::
-
-  semanage_port { '8081-8089': type => 'http_port_t', proto => 'tcp' }
 
 Toggling an SELinux boolean
 ---------------------------
 
 SELinux booleans, which can be viewed by running `semanage boolean -l`,
-can easily be configured using the following syntax within your puppet
+can easily be configured using the following syntax within your ansible
 configuration.::
 
-  selinux_bool { 'httpd_can_network_connect_db': bool => 'on' }
+  seboolean: name=httpd_can_network_connect_db state=yes persistent=yes
 
 Setting custom context
 ----------------------
@@ -100,17 +94,7 @@ Our infrastructure contains many custom applications, which may utilize
 non-standard file locations. These issues can lead to trouble with
 SELinux, but they can easily be resolved by setting custom file context.::
 
-  semanage_fcontext { '/var/tmp/l10n-data(/.*)?':
-    type => 'httpd_sys_content_t'
-    }
-
-Deploying custom policy modules
--------------------------------
-
-* Put your te file in modules/selinux-policy/files in puppet.
-* add a section to whatever node or service manifest like::
-    
-    selinux-policy::custom { 'fedorapeople-git': }
+  "file: path=/var/tmp/l10n-data recurse=yes setype=httpd_sys_content_t"
 
 
 Fixing odd errors from the logs
@@ -120,8 +104,7 @@ If you see messages like this in the log reports::
   restorecon:/etc/selinux/targeted/contexts/files/file_contexts: Multiple same / specifications for /home/fedora.
   matchpathcon: / /etc/selinux/targeted/contexts/files/file_contexts: Multiple same / / specifications for /home/fedora.
 
-Then it is likely you have an overlapping filecontext in your local selinux context configuration - in this case likely
-one added by puppet accidentally.
+Then it is likely you have an overlapping filecontext in your local selinux context configuration - in this case likely one added by ansible accidentally.
 
 To find it run this::
 
@@ -132,15 +115,10 @@ other times it is just an overlap, period.
 
 look at the context and delete the one you do not want or reorder.
 
-To delete run::
+To delete run::     
 
   semanage fcontext -d '/entry/you/wish/to/delete'
 
 This just removes that filecontext - no need to worry about files being deleted.
 
 Then rerun the triggering command and see if the problem is solved.
-
-
-
-
-

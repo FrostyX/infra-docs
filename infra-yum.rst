@@ -36,7 +36,7 @@ Contact
 Location: PHX [53]http
 	//infrastructure.fedoraproject.org/
 Servers
-	 puppet1 / Proxy Servers
+	 batcave01 / Proxy Servers
 Purpose
 	 Provides infrastructure repo for custom Fedora Infrastructure rebuilds
 
@@ -82,7 +82,7 @@ file with the following contents::
 Re-creating the repo
 ====================
 
-All of the repositories are located at ``puppet1:/mnt/fedora/app/fi-repo/el/%{dist}/%{arch}/``
+All of the repositories are located at ``batcave01:/mnt/fedora/app/fi-repo/el/%{dist}/%{arch}/``
 
 Simply copy your rpm to the proper dist/arch/ then run create repo from
 that directory.
@@ -100,7 +100,7 @@ myPack-1.0.noarch.rpm::
 Easy as that.
 
 Perform the same process above with the source rpm (SRPM) and add it to
-puppet1:/mnt/fedora/app/fi-repo/el/%{dist}/SRPMS/ ; we need to be able to
+batcave01:/mnt/fedora/app/fi-repo/el/%{dist}/SRPMS/ ; we need to be able to
 unpack rpms and find what changed if things go wrong down the road.
 
 Add information about why the package is in the repo
@@ -122,7 +122,7 @@ RHEL repo
 In addition to the Infrastructure repo, there is a RHEL5 repo that all
 machines update from, accessible only to our machine's IPs. This repo
 syncs again RHN daily at 1:30 UTC. To manually resync the RHEL repo
-against RHN, run the following on as root on puppet1::
+against RHN, run the following on as root on batcave::
 
   rm -rf /var/tmp/rhnsync-cache # Clear cached metadata
   /mnt/fedora/app/fi-repo/rhel/do-rhel-sync

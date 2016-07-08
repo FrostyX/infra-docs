@@ -12,7 +12,7 @@ Contents
 ========
 
 1. Location of Resources
-2. Location on Puppet
+2. Location on Ansible
 3. Opening of the form
 4. Closing of the Form
 5. Tentative timeline
@@ -49,7 +49,7 @@ Closed form
 	 FreeMedia-close.html
 Backend processing script
 	 process.php
-Error Document 
+Error Document
 	 FreeMedia-error.html
 
 Opening of the form
@@ -81,20 +81,20 @@ Open
 
 * Goto roles/freemedia/tasks
 * Open ``main.yml``
-* Goto line 33.
+* Goto line 32.
 * To Open: Change the line to read::
-    source => "puppet:///freemedia/FreeMedia-form.html"
+    src="FreeMedia-form.html"
 * After opening the form, go to trac and grant "Ticket Create and
   Ticket View" privilege to "Anonymous".
 
 Close
 -----
- 
+
 * Goto roles/freemedia/tasks
 * Open main.yml
-* Goto line 33.
+* Goto line 32.
 * To Close: Change the line to read::
-    source => "puppet:///freemedia/FreeMedia-close.html", 
+    src="FreeMedia-close.html",
 * After closing the form, go to trac and remove "Ticket Create and
     Ticket View" privilege from "Anonymous".
 
@@ -170,7 +170,7 @@ Rules for deciding over membership applications
 ======= ================ ========== =============== =========================
 Case    Applied to       User Page  Applied to             Action
         Free-Media Group Created    Free-Media List
-======= ================ ========== =============== =========================        
+======= ================ ========== =============== =========================
 1       Yes               Yes       Yes             Approve Group and mailing
                                                     list applications
 ------- ---------------- ---------- --------------- -------------------------
@@ -181,10 +181,10 @@ Case    Applied to       User Page  Applied to             Action
                                                     Put on hold + Write to
 3       Yes               No        whatever        make User Page Within a
                                                     Week
-------- ---------------- ---------- --------------- -------------------------                                                    
+------- ---------------- ---------- --------------- -------------------------
 4       No                No        Yes             Reject
 ======= ================ ========== =============== =========================
-   
+
 .. note::
     1. As you need to have an FAS account for steps 2 and 3, this is not
        included in the decision rules above
@@ -192,4 +192,3 @@ Case    Applied to       User Page  Applied to             Action
        week, the application has to be rejected.
     3. When writing asking to fulfil steps, send CC to other Free-media
        sponsors to let them know the application has been reviewed.
-

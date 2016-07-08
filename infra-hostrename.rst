@@ -18,7 +18,7 @@ Contents
 3. Preparation
 4. Renaming the Logical Volume
 5. Doing the actual rename
-6. Telling Puppet about the new host
+6. Telling ansible about the new host
 7. VPN Stuff
 
 Introduction
@@ -38,7 +38,7 @@ Finding out where the host is
 
 In order to rename the host, you must have access to the Dom0 (host) on
 which the virtual server resides. To find out which host that is, log in
-to puppet01, and run::
+to batcave01, and run::
 
   grep $oldhostname /var/log/virthost-lists.out
 
@@ -51,11 +51,6 @@ SSH to $oldhostname. If the new name is replacing a production box, change
 the IP Address that it binds to, in ``/etc/sysconfig/network-scripts/ifcfg-eth0``.
 
 Also change the hostname in ``/etc/sysconfig/network``.
-
-We can also remove old puppet SSL certs, because they will need to be
-re-generated. On $oldhostname::
-
-  find /var/lib/puppet/ssl -type f -print | xargs rm -v
 
 At this point, you can ``sudo poweroff`` $oldhostname.
 
@@ -108,35 +103,8 @@ And remember to set it to autostart::
 
   virsh autostart $newhostname
 
-Telling Puppet about the new host
-=================================
-We cleared out the old puppet certifications on $oldhostname before we
-shut it down, but we need generate new certifications on it, and tell
-puppetmaster about them.
-
-First off, rename any node files in puppet/manifests/nodes/$oldhostname*,
-and change the `node $oldhostname {` to `node $newhostname {` in this
-file.
-
-Then, on puppet01::
-
-  /usr/sbin/puppetca --revoke --clean $oldhostname
-
-On $newhostname::
-
-  /usr/sbin/puppetd -t
-
-On puppet01::
-
-  /usr/sbin/puppetca --list # to get the full hostname
-  /usr/sbin/puppetca --sign # the hostname found on the previous command.
-
-Re-run puppet on $newhostname, and fix errors as they arise.::
-
-  /usr/sbin/puppetd -t
 
 VPN Stuff
 =========
 
 TODO
-

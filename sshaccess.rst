@@ -69,7 +69,7 @@ the connection to be tunneled through bastion.
 To avoid this You can add aliases for each of the Fedora machines you login to by
 modifying the second Host line::
 
-  Host *.phx2.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org puppet01 noc01 # list all hosts here
+  Host *.phx2.fedoraproject.org 10.5.125.* 10.5.126.* 10.5.127.* *.vpn.fedoraproject.org batcave01 noc01 # list all hosts here
 
 SSH Agent forwarding
 ====================

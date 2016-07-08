@@ -16,11 +16,11 @@ Contact Information
 
 Owner:
   Messaging SIG, Fedora Infrastructure Team
-Contact: 
+Contact:
   #fedora-apps, #fedora-admin, #fedora-noc
 Servers:
   busgateway01, proxy0*
-Purpose:   
+Purpose:
   Expose raw ZeroMQ messages outside the FI environment.
 
 Description
@@ -30,7 +30,7 @@ Users outside of Fedora Infrastructure can listen to the production message
 bus by connecting to specific addresses.  This is required for local users to
 run their own hubs and message processors ("Consumers").  It is also
 required for user-facing tools like fedmsg-notify to work.
-  
+
 The specific public endpoints are:
 
 production
@@ -64,7 +64,7 @@ haproxy is listening on a public port.
 
 At the time of this writing, haproxy does not actually load balance zeromq
 session requests across multiple busgateway0* machines, but there is nothing
-stopping us from adding them.  New hosts can be added in puppet and pressed
+stopping us from adding them.  New hosts can be added in ansible and pressed
 from busgateway01's template.  Add them to the fedmsg-raw-zmq listen in
 haproxy's config and it should Just Work.
 
@@ -77,10 +77,10 @@ of our services is quite low (1024 is overkill).  ZeroMQ tcp connections,
 on the other hand, are expected to live for quite a long time.
 Consequently we needed to scale up the number of possible concurrent tcp
 connections.
-  
-All of this is in puppet and should be handled for us automatically if we
+
+All of this is in ansible and should be handled for us automatically if we
 bring up new nodes.
-  
+
 - The pam_limits user limit for the fedmsg user was increased from
   1024 to 160000 on busgateway01.
 - The pam_limits user limit for the haproxy user was increased from

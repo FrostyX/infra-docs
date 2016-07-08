@@ -50,7 +50,7 @@ Deploying to the development server:
 =====================================
 
 There is a script in the fedoracommunity git repository called
-'fcomm-dev-update' that you must first copy to the puppet server. Then you run
+'fcomm-dev-update' that you must first copy to the ansible server. Then you run
 it with the same arguments as the release script. This tool will sign the
 RPMs, copy them into the infrastructure testing repo, update the repodata,
 and then run a bunch of func commands to update the package on the dev server.
@@ -66,7 +66,7 @@ make your change in your local git repository, and then perform the building &
 deployment steps above. This will still work even if you do not wish to commit
 & push your change back upstream.
 
-In order to ensure AGPL compliance, we DO NOT do puppet based hotfixing for
+In order to ensure AGPL compliance, we DO NOT do ansible based hotfixing for
 Fedora Packages.
 
 Checking for AGPL violations

@@ -20,7 +20,7 @@ Owner
 Contact
   #fedora-admin
 Servers
-  puppet1 / planet.fedoraproject.org
+  batcave01/ planet.fedoraproject.org
 Purpose
   provide easy setup of new planet groups on
   planet.fedoraproject.org
@@ -29,7 +29,7 @@ following:
 
 The Setup
 
-1. on puppet1::
+1. on batcave01::
    
     cp -a configs/system/planet/grouptmpl configs/system/planet/newgroupname
 
@@ -53,7 +53,7 @@ The Setup
 
 9. check everything in
 
-10. run puppet on planet and check if it works
+10. run ansible on planet and check if it works
 
 Use
 ===

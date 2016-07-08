@@ -24,9 +24,9 @@ Servers
 Description
 ===========
 
-From time to time people with admin access to various parts of the project may 
-leave the project or no longer wish to contribute. This SOP attempts to list 
-the process for removing access they no longer need. 
+From time to time people with admin access to various parts of the project may
+leave the project or no longer wish to contribute. This SOP attempts to list
+the process for removing access they no longer need.
 
 0. First, make sure that this SOP is needed. Verify the person has left the project
    and what areas they might wish to still contibute to.
@@ -35,7 +35,7 @@ the process for removing access they no longer need.
 
 2. Check the following areas with the following commands:
 
-    email address in puppet/ansible
+    email address in ansible
       - Check: ``git grep email@address``
       - Remove: ``git commit``
 
@@ -45,21 +45,20 @@ the process for removing access they no longer need.
 
     wiki pages
       - Check: look for https://fedoraproject.org/wiki/User:Username
-      - Remove: delete page, or modify with info they are no longer contributing. 
+      - Remove: delete page, or modify with info they are no longer contributing.
 
     packages
       - Check: Download https://admin.fedoraproject.org/pkgdb/lists/bugzilla?tg_format=plain and grep
-      - Remove: remove from cc, orphan packages or reassign. 
+      - Remove: remove from cc, orphan packages or reassign.
 
     fas account
       - Check: check username in fas
       - Remove: set user inactive
 
-      .. note:: If there are scripts or files needed, save homedir of user. 
+      .. note:: If there are scripts or files needed, save homedir of user.
 
     passwords
-      - Check: if departing admin knew sensitive passwords. 
-      - Remove: Change passwords. 
-      
-      .. note:: root pw, management interfaces, etc
+      - Check: if departing admin knew sensitive passwords.
+      - Remove: Change passwords.
 
+      .. note:: root pw, management interfaces, etc

@@ -1,4 +1,4 @@
-.. title: DNS Infrastructure SOP 
+.. title: DNS Infrastructure SOP
 .. slug: infra-dns
 .. date: 2015-06-03
 .. taxonomy: Contributors/Infrastructure
@@ -17,21 +17,21 @@ DNS Infrastructure SOP
 ======================
 
 We have 5 DNS servers:
-	
+
 ns-sb01.fedoraproject.org
   hosted at Serverbeach
-ns02.fedoraproject.org 
+ns02.fedoraproject.org
   hosted at ibiblio (ipv6 enabled)
-ns03.phx2.fedoraproject.org 
-  in phx2, internal to phx2. 
-ns04.fedoraproject.org  
+ns03.phx2.fedoraproject.org
+  in phx2, internal to phx2.
+ns04.fedoraproject.org
   in phx2, external.
-ns05.fedoraproject.org 
+ns05.fedoraproject.org
   hosted at internetx (ipv6 enabled)
 
 Contents
 ========
-  
+
 1. Contact Information
 2. Troubleshooting, Resolution and Maintenance
 
@@ -52,15 +52,15 @@ Contents
 Contact Information
 ===================
 
-Owner: 
+Owner:
   Fedora Infrastructure Team
-Contact: 
+Contact:
   #fedora-admin, sysadmin-main, sysadmin-dns
-Location: 
-  ServerBeach and ibiblio and internetx and phx2. 
-Servers: 
+Location:
+  ServerBeach and ibiblio and internetx and phx2.
+Servers:
   ns01, ns02, ns03.phx2, ns04, ns05
-Purpose: 
+Purpose:
   Provides DNS to our users
 
 Troubleshooting, Resolution and Maintenance
@@ -70,12 +70,12 @@ Adding a new Host
 
 Adding a new host requires to add it to DNS and to ansible, see new-hosts.rst for
 the details.
- 
+
 Editing the domain(s)
 =====================
 
 We have three domains which needs to be able to change on demand for proxy
-rotation/removal:  
+rotation/removal:
   fedoraproject.org.
   getfedora.org.
   cloud.fedoraproject.org.
@@ -90,10 +90,10 @@ If you need to edit a domain that is NOT In the above list:
 
 If you need to edit one of the domains in the above list:
 (replace fedoraproject.org with the domain from above)
- 
+
 - if you need to add/change a host in fedoraproject.org that is not '@' or
   'wildcard' then:
- 
+
   - edit fedoraproject.org.template
   - make your changes
   - do not edit the serial or anything surrounded by {{  }} unless you
@@ -118,7 +118,7 @@ If you need to edit one of the domains in the above list:
   - check the file for validity by running: ``python fedoraproject.org.cfg``
     looking for errors or tracebacks.
 
-In all cases then run:     
+In all cases then run:
 
 - ``./do-domains``
 
@@ -127,7 +127,7 @@ In all cases then run:
     git add .
     git commit -a -m 'description of your change here'
     git push
-  
+
 and then run this on all of the nameservers (as root)::
 
   /usr/local/bin/update-dns
@@ -146,7 +146,7 @@ name server.
 DNS update
 ==========
 
-DNS config files are ansible managed on batcave01. 
+DNS config files are ansible managed on batcave01.
 
 From batcave01::
 
@@ -166,7 +166,7 @@ Adding a new zone
 First name the zone and generate new set of keys for it. Run this on ns01.
 Note it could take SEVERAL minutes to run::
 
-  /usr/sbin/dnssec-keygen -a RSASHA1 -b 1024 -n ZONE c.fedoraproject.org 
+  /usr/sbin/dnssec-keygen -a RSASHA1 -b 1024 -n ZONE c.fedoraproject.org
   /usr/sbin/dnssec-keygen -a RSASHA1 -b 2048 -n ZONE -f KSK c.fedoraproject.org
 
 Then copy the created .key and .private files to the private git repo (You
@@ -179,10 +179,10 @@ need to be sysadmin-main to do this). The directory is ``private/private/dnssec`
 - check the zone by running check-domains
 - if you intend to have this be a dnssec signed zone then you must
   - create a new key::
-      
+
       /usr/sbin/dnssec-keygen -a RSASHA1 -b 1024 -n ZONE $domain.org
       /usr/sbin/dnssec-keygen -a RSASHA1 -b 2048 -n ZONE -f KSK $domain.org
-		
+
     - put the files this generates into /srv/privatekeys/dnssec on batcave01
 		- edit the do-domains file in this dir and your domain to the
 		  signed_domains entry at the top
@@ -195,7 +195,7 @@ If this is a subdomain of fedoraproject.org:
 - paste that output into the bottom of fedoraproject.org.template
 - commit everything to the dns tree
 - push your changes
-- push your changes to the puppet repo
+- push your changes to the ansible repo
 - test
 
 If you add a new child zone, such as c.fedoraproject.org or
@@ -203,14 +203,14 @@ vpn.fedoraproject.org you will also need to add the contents of
 dsset-childzone.fedoraproject.org (for example), to the main
 fedoraproject.org zonefile, so that DNSSEC has a valid trust path to that
 zone.
- 
+
 You also must set the NS delegation entries near the top of fedoraproject.org zone file
 these are necessary to keep dnssec-signzone from whining with this error msg::
-    
+
      dnssec-signzone: fatal: 'xxxxx.example.com': found DS RRset without NS RRset
 
 Look for the: "vpn IN NS" records at the top of fedoraproject.org and copy them for the new child zone.
-  
+
 
 fedorahosted.org template
 =========================
@@ -282,11 +282,11 @@ IP Country Mapping
 ------------------
 
 The IP -> Location mapping is done via a config file that exists on the
-dns servers themselves (it's not puppet controlled). The file, located at
+dns servers themselves (it's not ansible controlled). The file, located at
 ``/var/named/chroot/etc/GeoIP.acl`` is generated by the ``GeoIP.sh`` script
-(that script is in puppet).
+(that script is in ansible).
 
-.. warning:: 
+.. warning::
   This is known to be a less efficient means of doing geodns than the
   patched version from kernel.org. We're using this version at the moment
   because it's in Fedora and works. The level of DNS traffic we see is
@@ -301,24 +301,24 @@ In order to make the network more transparent to the admins, we do a lot of
 search based relative names. Below is a list of what a resolv.conf should
 look like.
 
-.. important:: 
+.. important::
   Any machine that is not on our vpn or has not yet joined the vpn should
   _NOT_ have the vpn.fedoraproject.org search until after it has been added
   to the vpn (if it ever does)
 
 Phoenix
   ::
- 
+
     search phx2.fedoraproject.org vpn.fedoraproject.org fedoraproject.org
 
-Phoenix in the QA network: 
+Phoenix in the QA network:
   ::
 
     search qa.fedoraproject.org vpn.fedoraproject.org phx2.fedoraproject.org fedoraproject.org
 
 Non-Phoenix
   ::
- 
+
     search vpn.fedoraproject.org fedoraproject.org
 
 The idea here is that we can, when need be, setup local domains to contact
@@ -326,4 +326,3 @@ instead of having to go over the VPN directly but still have sane configs.
 For example if we tell the proxy server to hit "app1" and that box is in
 PHX, it will go directly to app1, if its not, it will go over the vpn to
 app1.
-
