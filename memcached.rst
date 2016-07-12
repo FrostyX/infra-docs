@@ -71,10 +71,9 @@ To restart memcached::
 
 Configuring Memcached
 =====================
-Memcached is currently setup as a module in the puppet git repo. The main
+Memcached is currently setup as a role in the ansible git repo. The main
 two tunables are the MAXCONN (the maximum number of concurrent
 connections) and CACHESIZE (the amount memory to use for storage). These
 variables can be set through $memcached_maxconn and $memcached_cachesize
-in puppet. Additionally, other options (as described in the memcached
+in ansible. Additionally, other options (as described in the memcached
 manpage) can be set via $memcached_options.
-

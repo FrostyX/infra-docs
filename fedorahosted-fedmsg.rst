@@ -28,10 +28,10 @@ Description
 
 fedmsg activity is usually an all-or-nothing proposition.  We emit messages
 for all koji jobs and all bodhi updates, or none.
-      
+
 fedmsg activity for Fedora Hosted is another story.  We provide the option
 for project owners to opt-in to fedmsg and have their activity broadcast,
-but it is off by default. 
+but it is off by default.
 
 This document describes how to:
 
@@ -72,13 +72,13 @@ should be empty when you encounter it, but just to be safe::
 
   $ mv /srv/git/$PROJECT.git/hooks/post-receive \
     /srv/git/$PROJECT.git/hooks/post-receive.orig
-       
+
 Then, symlink in the new post-receive hook with::
 
   $ ln -s /usr/local/share/git/hooks/post-receive-fedorahosted-fedmsg \
     /srv/git/$PROJECT.git/hooks/post-receive
 
-That hooks is managed by puppet -- if you want to modify it you can do
+That hooks is managed by ansible -- if you want to modify it you can do
 so there.
 
 .. note:: IF there was an old post-receive hook in place, you should
@@ -101,6 +101,6 @@ How to setup the fedmsg plugin on a new fedorahosted node.
 
 4) Use our configuration management tool to distribute that new global
     fedmsg config to the new node and all other nodes.
- 
+
 5) Install the trac-fedmsg-plugin package on the new node and follow the
     steps above.

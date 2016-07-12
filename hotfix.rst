@@ -4,47 +4,32 @@
 .. taxonomy: Contributors/Infrastructure
 
 ============
-HOTFIXES SOP 
+HOTFIXES SOP
 ============
 
-From time to time we have to quickly patch a problem or issue 
-in applications in our infrastructure. This process allows 
+From time to time we have to quickly patch a problem or issue
+in applications in our infrastructure. This process allows
 us to do that and track what changed and be ready to remove
 it when the issue is fixed upstream.
 
-Puppet based items: 
-===================
-
-When we apply these to puppet using hosts,
-they are in the modules/hotfix area of puppet. 
-
-The process is: 
-
-- Create a diff of any files changed in the fix. 
-- Check in the _original_ files and hotfix manifest (puppet)
-- Check in now your diffs of those same files. 
-- puppet will replace the files on the affected machines 
-  completely with the fixed versions. 
-- If you need to back it out, you can revert the diff step, 
-  wait and then remove the first checkin
 
 Ansible based items:
 ====================
 For ansible, they should be placed after the task that installs
-the package to be changed or modified. Either in roles or tasks. 
+the package to be changed or modified. Either in roles or tasks.
 
-hotfix tasks should be called "HOTFIX description" 
+hotfix tasks should be called "HOTFIX description"
 They should also link in comments to any upstream bug or ticket.
-They should also have tags of 'hotfix' 
+They should also have tags of 'hotfix'
 
-The process is: 
+The process is:
 
-- Create a diff of any files changed in the fix. 
+- Create a diff of any files changed in the fix.
 - Check in the _original_ files and change to role/task
-- Check in now your diffs of those same files. 
-- ansible will replace the files on the affected machines 
-  completely with the fixed versions. 
-- If you need to back it out, you can revert the diff step, 
+- Check in now your diffs of those same files.
+- ansible will replace the files on the affected machines
+  completely with the fixed versions.
+- If you need to back it out, you can revert the diff step,
   wait and then remove the first checkin
 
 Example::
@@ -70,5 +55,4 @@ Upstream changes
 
 Also, if at all possible a bug should be filed with the upstream
 application to get the fix in the next version. Hotfixes are something
-we should strive to only carry a short time. 
-
+we should strive to only carry a short time.

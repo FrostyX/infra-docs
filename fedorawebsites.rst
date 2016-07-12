@@ -291,12 +291,12 @@ Webites Release SOP
    the websites live. If something is not happening as expected, you should get in
    contact with a sysadmin-main to run the ansible playbook again.
 
-   All our puppet stuff, such as SyncStatic.sh and SyncTranslation.sh scripts are now
+   All our stuff, such as SyncStatic.sh and SyncTranslation.sh scripts are now
    also in ansible!
 
    Staging server app02 and production server bapp01 do not exist anymore, now our staging
    websites are on sundries01.stg and the production on sundries01. Change your scripts
-   accordingly and as sysadmin-web you should have access to those servers as before.   
+   accordingly and as sysadmin-web you should have access to those servers as before.
 
 
   4. Tips
@@ -311,4 +311,4 @@ Webites Release SOP
 
     $ git merge f22-beta
     $ git checkout --theirs f22-beta [list of conflicting po files]
-    $ git commit 
+    $ git commit

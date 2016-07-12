@@ -126,12 +126,9 @@ with your sponsor so you know
 Ansible
 =======
 
-Most of things we do gets done in Ansible. Older configuration is still
-managed by puppet, but it is slowly being migrated to Ansible. We have a
-separate SOP for Ansible and puppet at, respectively, ansible.txt and
-puppet.txt. It is important that you not make changes directly on
+Things we do gets done in Ansible. It is important that you not make changes directly on
 servers. This is for many reasons but just always make changes in
-Ansible or puppet. If you want to get more familiar with Ansible, set it
+Ansible. If you want to get more familiar with Ansible, set it
 up yourself and give it a try. The docs are available at
 http://docs.ansible.com/
 
@@ -171,4 +168,3 @@ Additionally note that any of the software we deploy must be available in
 Fedora. There are some rare exceptions to this (particularly as it relates
 to specific applications to Fedora). But each exception is taken on a case
 by case basis.
-

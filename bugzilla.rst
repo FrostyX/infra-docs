@@ -54,9 +54,9 @@ Fedora Accounts into bugzilla. It adds Fedora packages and bug triagers
 into a bugzilla group that gives the users extra permissions within
 bugzilla. This script is run off of a cron job on FAS1. The source code
 resides in the FAS git repo in ``fas/scripts/export-bugzilla.*`` however the
-code we run on the servers presently lives in puppet::
+code we run on the servers presently lives in ansible::
 
-  puppet/configs/system/export-bugzilla.*
+  roles/fas_server/files/export-bugzilla
 
 pkgdb-sync-bugzilla
 -------------------
@@ -65,7 +65,7 @@ The other script is pkgdb-sync-bugzilla. It is responsible for syncing the
 package owners and cclists to bugzilla from the pkgdb. The script runs off
 a cron job on app5. The source code is in the packagedb bzr repo is
 ``packagedb/fedora-packagedb-stable/server-scripts/pkgdb-sync-bugzilla.*``.
-Just like FAS, a separate copy is presently installed from puppet to
+Just like FAS, a separate copy is presently installed from ansbile to
 ``/usr/local/bin/pkgdb-sync-bugzilla`` but that should change ASAP as the
 present fedora-packagedb package installs ``/usr/bin/pkgdb-sync-bugzilla``.
 
@@ -122,4 +122,3 @@ mail address and get them to change it. Here's a boilerplate message::
 
 If the user does not reply someone in the cvsadmin group needs to go into
 the pkgdb and remove the user from the cclist for the package.
-

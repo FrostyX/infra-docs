@@ -75,7 +75,7 @@ iscsi's basic login / logout procedure is
 
 Logging in
 ```````````
-Most mounts are covered by puppet so this should be automatic. In the
+Most mounts are covered by ansible so this should be automatic. In the
 event that something goes wrong though, the best way to fix this is:
 
 - Notify the client of the target::

@@ -41,7 +41,7 @@ Location
 	Phoenix, Tampa Bay, Raleigh
 
 Servers
-	puppet01, virt servers, application servers, builders, releng boxes
+	batcave01, virt servers, application servers, builders, releng boxes
 
 Purpose
 	Provides primary mirrors and additional storage in PHX2
@@ -81,7 +81,7 @@ attachments and other storage needs we have in PHX.
 
 You can access all of the nfs share shares at::
 
-  puppet01:/mnt/fedora
+  batcave01:/mnt/fedora
 
 or::
 
@@ -91,7 +91,7 @@ Access
 --------
    The netapp is provided by RHIS and as a result they also control access.
    Access is controlled by IP mostly and some machines have root squashed.
-   Worst case scenario if puppet01 is not accessible, just bring another box
+   Worst case scenario if batcave01 is not accessible, just bring another box
    up under its IP address and use that for an emergency.
 
 Snapshots
@@ -99,7 +99,7 @@ Snapshots
    
 There are hourly and nightly snapshots on the netapp. They are available in::
 
-  puppet01:/mnt/fedora/.snapshot
+  batcave01:/mnt/fedora/.snapshot
 
 iscsi
 =====

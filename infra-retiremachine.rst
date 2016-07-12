@@ -7,15 +7,15 @@
 Infrastructure retire machine SOP
 =================================
 
-Owner: 
+Owner:
   Fedora Infrastructure Team
-Contact: 
+Contact:
   #fedora-admin
-Location: 
+Location:
   anywhere
-Servers: 
+Servers:
   any
-Purpose: 
+Purpose:
   Makes sure decommisioning machines is correctly done
 
 Introduction
@@ -32,7 +32,7 @@ Retire process
 1. Ensure that the machine is no longer used for anything. Use git-grep,
     stop services, etc.
 
-2. Remove the machine from puppet. Make sure you not only remove the main
+2. Remove the machine from ansible. Make sure you not only remove the main
     machine name, but also any aliases it might have (or move them to an
     active server if they are active services. Make sure to search for the IP
     address(s) of the machine as well. Ensure dns is updated to remove the
@@ -41,7 +41,7 @@ Retire process
 3. Remove the machine from any labels in hardware devices like consoles or
     the like.
 
-4. Revoke the puppet cert for the machine.
+4. Revoke the ansible cert for the machine.
 
 5. Move the machine xml defintion to ensure it does NOT start on boot. You
     can move it to 'name-retired-YYYY-MM-DD'.
@@ -52,4 +52,3 @@ Retire process
 TODO
 ======
 fill in commands
-

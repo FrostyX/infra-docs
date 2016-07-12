@@ -34,7 +34,7 @@ In our case, webapps served from app0* and packages0* will include
 javascript code instructing client browsers to establish a second connection
 to our WebSocket server.  They point browsers to the following addresses:
 
-production 
+production
   wss://hub.fedoraproject.org:9939
 staging
   wss://stg.fedoraproject.org:9939
@@ -66,7 +66,7 @@ the fedmsg-hub websocket server listening on busgateway01.
 
 At the time of this writing, haproxy does not actually load balance zeromq
 session requests across multiple busgateway0* machines, but there is nothing
-stopping us from adding them.  New hosts can be added in puppet and pressed
+stopping us from adding them.  New hosts can be added in ansible and pressed
 from busgateway01's template.  Add them to the fedmsg-websockets listen in
 haproxy's config and it should Just Work.
 

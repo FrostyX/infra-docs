@@ -1,5 +1,5 @@
-.. title: Blockerbugs Infrastructure SOP 
-.. slug: infra-blockerbugs 
+.. title: Blockerbugs Infrastructure SOP
+.. slug: infra-blockerbugs
 .. date: 2013-11-19
 .. taxonomy: Contributors/Infrastructure
 
@@ -50,14 +50,14 @@ File Locations
 Node Roles
 ----------
 
-blockerbugs01.stg 
+blockerbugs01.stg
   the staging instance, it is not load balanced
 
 blockerbugs01.phx2
   one of the load balanced production nodes, it is
   responsible for running bugzilla/bodhi/koji sync
 
-blockerbugs02.phx2 
+blockerbugs02.phx2
   the other load balanced production node. It does
   not do any sync operations
 
@@ -65,8 +65,8 @@ blockerbugs02.phx2
 Upgrading
 =========
 
-blockerbugs is currently configured through puppet and all configuration
-changes need to be done through puppet.
+blockerbugs is currently configured through ansible and all configuration
+changes need to be done through ansible.
 
 
 Upgrade Preparation (all upgrades)
@@ -86,9 +86,9 @@ Minor Upgrades (no database changes)
 Run the following on _both_ blockerbugs01.phx2 and blockerbugs02.phx2 if
 updating in production.
 
-1. Update puppet with config changes, push changes to the puppet repo::
- 
-    modules/blockerbugs/templates/blockerbugs-settings.py.erb
+1. Update ansible with config changes, push changes to the ansible repo::
+
+    roles/blockerbugs/templates/blockerbugs-settings.py.j2
 
 2. clear yum cache and update the blockerbugs RPM::
 
@@ -104,12 +104,12 @@ Major Upgrades (with database changes)
 Run the following on _both_ blockerbugs01.phx2 and blockerbugs02.phx2 if
 updating in production.
 
-1. Change database users in puppet to one which has access to change the
+1. Change database users in ansible to one which has access to change the
     database schema.
 
-2. Update puppet with config changes, push changes to the puppet repo::
+2. Update ansible with config changes, push changes to the ansible repo::
 
-      modules/blockerbugs/templates/blockerbugs-settings.py.erb
+      roles/blockerbugs/templates/blockerbugs-settings.py.j2
 
 3. clear yum cache and update the blockerbugs RPM on all relevant instances::
 
@@ -129,5 +129,3 @@ updating in production.
 7. start httpd back up::
 
       service httpd restart
-
-

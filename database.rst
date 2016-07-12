@@ -49,7 +49,7 @@ Location
 	Phoenix
 
 Servers
-	db2, db4, db5
+	sb01, db03, db-fas01
 
 Purpose
 	Provides database connection to many of our apps.
@@ -57,16 +57,9 @@ Purpose
 Description
 ===========
 
-db5 and db2 are our primary database servers. db5 contains the MySQL
-instance, db2 contains postgresql. Each database server replicates to
-itself and the other through a dump style backup. In a normal situation,
-db5 runs only MySQL, not postgresql. While db2 runs only postgresql not
-MySQL. Which is running on which is defined in the puppet configs,
-specifically the node manifest for each server
-(``nodes/db1.fedora.phx.redhat.com.pp`` and
-``nodes/db2.fedora.phx.redhat.com.pp``)
+db01, db03 and db-fas01 are our primary database servers. db01 and db-fas01
+run PostgreSQL and db03 contains MySQL instance.
 
-db4 is a postgresql server dedicated to koji.
 
 Creating a New Postgresql Database
 ==================================
@@ -117,8 +110,8 @@ Say we have an app called "raffle".  We'd have three users:
 
 
 If your application needs to have the NEWDBapp and password to connect to
-the database, you probably want to add these to puppet as well. Put the
-password in the private repo in puppet1. Then use a templatefile to
+the database, you probably want to add these to ansible as well. Put the
+password in the private repo in batcave01. Then use a templatefile to
 incorporate it into the config file. See fas.pp for an example.
 
 Troubleshooting and Resolution
@@ -247,20 +240,18 @@ Look in /usr/local/bin for the backup script.
 To restore partially or completely you need to:
 
 1. setup postgres on a system
- 
+
 2. start postgres/run initdb
-    - if this new system running postgres has already run puppet then it will
+    - if this new system running postgres has already run ansible then it will
        have wrong config files in /var/lib/pgsql/data - clear them out before
        you start postgres so initdb can work.
 3. grab the backups you need from /backups  - also grab global.sql
     edit up global.sql to only create/alter the dbs you care about
- 
+
 4. as postgres run: ``psql -U postgres -f global.sql``
- 
+
 5. when this completes you can restore each db with (as postgres user)::
       createdb $dbname
       pg_restore -d dbname dbname_backup_file.db
 
 6. restart postgres and check your data.
-
-       

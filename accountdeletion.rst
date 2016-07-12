@@ -1,4 +1,4 @@
-.. title: Account Deletion SOP 
+.. title: Account Deletion SOP
 .. slug: infra-fas-account-deletion
 .. date: 2013-05-08
 .. taxonomy: Contributors/Infrastructure
@@ -23,19 +23,19 @@ Contents
 --------
 
 * Disabling
-  
+
   - Disable Accounts
   - 1.2 Disable Groups
 
 * User Requested disables
 
 * Renames
- 
+
   - Rename Accounts
   - Rename Groups
 
 * Deletion
-  
+
   - Delete Accounts
   - Delete Groups
 
@@ -50,7 +50,7 @@ collisions.
 
 Disable Accounts
 ----------------
- 
+
 To begin with, accounts should not be disabled until there is a ticket in
 the Infrastructure ticketing system. After that the contents inside the
 ticket need to be verified (to make sure people aren't playing pranks or
@@ -78,9 +78,9 @@ Disable Groups
 There is no explicit way to disable groups in FAS2. Instead, we close the
 group for adding new members and optionally remove existing members from
 it. This can be done from the web UI if you are an administrator of the
-group or you are in the accounts group. First, go to the group info page. 
-Then click the (edit) link next to Group Details. Make sure that the 
-Invite Only box is checked. This will prevent other users from requesting 
+group or you are in the accounts group. First, go to the group info page.
+Then click the (edit) link next to Group Details. Make sure that the
+Invite Only box is checked. This will prevent other users from requesting
 the group on their own.
 
 If you want to remove the existing users, View the Group info, then click
@@ -147,7 +147,7 @@ one match, or other issues. If there are multiple matches you need to
 contact one of the main sysadmin-db's on how to proceed.::
 
   fas2=# update people set human_name = '', gpg_keyid = null, ssh_key = null, unverified_email = null, comments = null, postal_address = null, telephone = null, facsimile = null, affiliation = null, ircnick = null, status = 'inactive', locale = 'C', timezone = null, latitude = null, longitude = null, country_code = null, email = 'disabled1@fedoraproject.org'  where username = 'USERNAME';
-  
+
 Make sure only one record was updated::
 
   fas2=# select * from people where username = 'USERNAME';
@@ -187,7 +187,7 @@ Rename Accounts
   bastion and other infrastructure boxes that are owned byt them and
   need to be renamed (Could also just tell the user to backup any files
   there themselves b/c they're getting a new home directory).
-* grep through puppet for occurrences of the username
+* grep through ansible for occurrences of the username
 * Check for entries in trac on fedorahosted.org for the username as an
   "Assigned to" or "CC" entry.
 * Add other places to check here
@@ -198,7 +198,7 @@ Rename Groups
 .. warning:: Needs more eyes
    This list may not be complete.
 
-* grep through puppet for occurrences of the group name.
+* grep through ansible for occurrences of the group name.
 * Check for group-members,group-admins,group-sponsors@fedoraproject.org
   email alias presence in any fedorahosted.org or
   lists.fedoraproject.org mailing list
@@ -276,4 +276,3 @@ Delete Groups
    removed. Need to decide how to handle this
 
 * Add other places to check here
-

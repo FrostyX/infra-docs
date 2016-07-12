@@ -188,7 +188,8 @@ Step 4 (Taskotron) (final release only)
 
 Please file a Taskotron ticket and ask for the new release support to be
 added (log in to Phabricator using your FAS_account@fedoraproject.org email
-address) https://phab.qadevel.cloud.fedoraproject.org/maniphest/task/edit/form/default/
+address)
+https://phab.qadevel.cloud.fedoraproject.org/maniphest/task/edit/form/default/?title=new%20Fedora%20release&priority=80&tags=libtaskotron
 
 Step 5 (Website)
 ----------------

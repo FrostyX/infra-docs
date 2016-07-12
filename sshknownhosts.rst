@@ -12,38 +12,17 @@ https://admin.fedoraproject.org/ssh_known_hosts
 
 Contact Information
 ===================
-Owner: 
+Owner:
   Fedora Infrastructure Team
-Contact: 
+Contact:
   #fedora-admin, sysadmin group
-Location: 
+Location:
   all
-Servers: 
+Servers:
   all
-Purpose: 
+Purpose:
   Provides Known Hosts file that is globally deployed.
 
-Replacing Key
-=============
-
-There is a script in ansible to fetch the ssh rsa host keys for all hosts. The
-ssh_known_hosts files is stored in puppet, therefore you need to check out both
-git repos::
-
-   git clone /git/ansible
-   git clone /git/puppet
-
-Then run the script::
-
-   cd ansible/scripts
-   sudo -i `pwd`/fetch-ssh-keys > ../../puppet/modules/ssh/files/ssh_known_hosts
-   cd ../../puppet/modules/ssh/files
-   git commit -va
-   git push
-
-That should do it.
-
-``Just like magic, or something.``
 
 Adding  a host alias to the ssh_known_hosts
 ===========================================

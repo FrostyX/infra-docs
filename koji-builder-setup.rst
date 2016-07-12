@@ -80,13 +80,6 @@ Setup Overview
   
   - ``git push``
 
-- run puppet on the buildhost::
-   
-    /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
-
-- sign the puppet cert on batcave::
-   
-    sudo puppetca -s $fqdn
 
 - run ``./sync-hosts`` in infra-hosts repo; ``git commit; git push``
 
@@ -95,8 +88,6 @@ Setup Overview
     koji add-host $fqdnr i386 x86_64
   
     (note: those are yum basearchs on the end - season to taste)
-
-- run puppet again (and again and again) on the new builder
 
 
 Resetting/installing an old koji builder
@@ -140,22 +131,6 @@ Resetting/installing an old koji builder
   - change root password
   - disable selinux in /etc/sysconfig/selinux
   - reboot
-  - on batcave remove old puppet cert::
-      
-     puppetca --revoke --clean $builder_fqdn
-
-  - on the builder run::
-      
-     /usr/sbin/puppetd --onetime --no-daemonize --verbose --color=false
-
-  - sign the puppet cert on batcave::
-  
-     puppetca -s $builder_fqdn
-
-  - run puppet over and over until it stops changing things (1-4 times)
-
-  - reboot one last time
-
   - ask a koji admin to re-enable the host
 
 
