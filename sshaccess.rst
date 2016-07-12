@@ -80,9 +80,9 @@ A connection is established to the bastion host
 +-------+            +--------------+
 Bastion host establish a connction to the target server
 
-+--------------+                +--------+
++--------------+          +--------+
 | bastion host | -------> | server |
-+--------------+                +--------+
++--------------+          +--------+
 Your client then connects through the Bastion and reaches the target server
 
 +-----+                  +--------------+                +--------+
