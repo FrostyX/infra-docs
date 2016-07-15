@@ -17,6 +17,17 @@ Owner
 Contact
 	#fedora-apps
 
+Reinstalling when it disappears
+-------------------------------
+
+For an as-of-yet unknown reason, the plugin sometimes seems to disappear,
+though it still shows as "installed" on Jenkins.
+
+To re-install it, grab `fedmsg.hpi` from `/srv/web/infra/bigfiles/jenkins`.
+Go to the Jenkins web interface and log in. Click `Manage Jenkins` ->
+`Manage Plugins` -> `Advanced`. Upload the plugin and on the page that comes
+up, check the box to have Jenkins restart when running jobs are finished.
+
 Configuration Values
 --------------------
 
