@@ -330,7 +330,7 @@ Installing RaidMan (IBM Only)
    completely.
 
  yum -y install compat-libstdc++-33.i686
- rpm -ihv http://infrastructure.fedoraproject.org/rhel/RaidMan/RaidMan-9.00.i386.rpm
+ rpm -ihv https://infrastructure.fedoraproject.org/rhel/RaidMan/RaidMan-9.00.i386.rpm
 
    To verify installation has completed successfully:
 

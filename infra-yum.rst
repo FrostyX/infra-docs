@@ -57,7 +57,7 @@ Requesting Access
 -----------------
 
 Infrastructure RPM's are signed by the Infrastructure key:
-[55]http://infrastructure.fedoraproject.org/RPM-GPG-KEY-INFRASTRUCTURE
+[55]https://infrastructure.fedoraproject.org/RPM-GPG-KEY-INFRASTRUCTURE
 Access to this key is restricted. If you feel you need it email KevinFenzi
 with a request for access (if Kevin isn't around some of the other
 Infrastructure people also have access like ToshioKuratomi, MikeMcgrath.

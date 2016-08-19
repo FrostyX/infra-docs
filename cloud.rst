@@ -128,9 +128,9 @@ Troubleshooting
 *  ``WARNING:keystoneclient.httpclient:Failed to retrieve management_url from token``::
 
     keystone --os-token $ADMIN_TOKEN --os-endpoint \
-    http://209.132.184.9:35357/v2.0/ endpoint-create --region 'RegionOne' \
+    https://fedorainfracloud.org:35357/v2.0/ endpoint-create --region 'RegionOne' \
     --service 91358b81b1aa40d998b3a28d0cfc86e7 --region 'RegionOne'  --publicurl \
-    'http://209.132.184.9:5000/v2.0'  --adminurl 'http://172.24.0.9:35357/v2.0' \
+    'https://fedorainfracloud.org:5000/v2.0'  --adminurl 'http://172.24.0.9:35357/v2.0' \
     --internalurl 'http://172.24.0.9:5000/v2.0' 
 
 Fedora Classroom about our instance

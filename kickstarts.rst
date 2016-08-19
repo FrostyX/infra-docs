@@ -56,21 +56,21 @@ Download the vmlinuz and initrd images.
 
 for a rhel6 install::
 
- wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/images/pxeboot/vmlinuz \
+ wget https://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/images/pxeboot/vmlinuz \
      -O /boot/vmlinuz-install
- wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/images/pxeboot/initrd.img \
+ wget https://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/images/pxeboot/initrd.img \
      -O /boot/initrd-install.img
 
  grubby --add-kernel=/boot/vmlinuz-install \
-        --args="ks=http://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-6-nohd \
-        repo=http://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/ \
+        --args="ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-6-nohd \
+        repo=https://infrastructure.fedoraproject.org/repo/rhel/RHEL6-x86_64/ \
         ksdevice=link ip=$IP gateway=$GATEWAY netmask=$NETMASK dns=$DNS" \
         --title="install el6" --initrd=/boot/initrd-install.img
 
 for a rhel7 install::
 
- wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/images/pxeboot/vmlinuz -O /boot/vmlinuz-install
- wget http://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/images/pxeboot/initrd.img -O /boot/initrd-install.img
+ wget https://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/images/pxeboot/vmlinuz -O /boot/vmlinuz-install
+ wget https://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/images/pxeboot/initrd.img -O /boot/initrd-install.img
 
 For phx2 hosts::
 
@@ -86,8 +86,8 @@ For phx2 hosts::
 For non phx2 hosts::
 
  grubby --add-kernel=/boot/vmlinuz-install \
-        --args="ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-ext \
-        repo=http://209.132.181.6/repo/rhel/RHEL7-x86_64/ \
+        --args="ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-ext \
+        repo=https://infrastructure.fedoraproject.org/repo/rhel/RHEL7-x86_64/ \
         net.ifnames=0 biosdevname=0 bridge=br0:eth0 ksdevice=br0 \
         ip={{ br0_ip }}::{{ gw }}:{{ nm }}:{{ hostname }}:br0:none" \
         --title="install el7" --initrd=/boot/initrd-install.img
@@ -97,36 +97,36 @@ Fill in the br0 ip, gateway, etc
 The default here is to use the hardware-rhel-7-nohd config which requires
 you to connect via VNC to the box and configure its drives. If this is a
 new machine or you are fine with blowing everything away, you can instead
-use http://infrastructure.fedoraproject.org/rhel/ks/hardware-rhel-6-minimal
+use https://infrastructure.fedoraproject.org/rhel/ks/hardware-rhel-6-minimal
 as your kickstart
 
 If you know the number of hard drives the system has there are other
 kickstarts which can be used. 
 
 2 disk system::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-02disk
 or external::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-02disk-ext
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-02disk-ext
 
 4 disk system::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-04disk
 or external::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-04disk-ext
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-04disk-ext
 
 6 disk system::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-06disk
 or external::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-06disk-ext
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-06disk-ext
 
 8 disk system::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-08disk
 or external::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-08disk-ext
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-08disk-ext
   
 10 disk system::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-10disk
 or external::
-  ks=http://209.132.181.6/repo/rhel/ks/hardware-rhel-7-10disk-ext
+  ks=https://infrastructure.fedoraproject.org/repo/rhel/ks/hardware-rhel-7-10disk-ext
 
 
 Double and triple check your configuration settings (On RHEL-6 ``cat
