@@ -26,7 +26,8 @@ Contents
 9. Syncing the production database to staging
 10. Release EOL
 11. Adding notices to the front page or new update form
-12. Troubleshooting and Resolution
+12. Using the Bodhi Shell to modify updates by hand
+13. Troubleshooting and Resolution
 
 Contact Information
 ===================
@@ -161,6 +162,48 @@ Adding notices to the front page or new update form
 ===================================================
 
 You can easily add notification messages to the front page of bodhi using the `frontpage_notice` option in `ansible/roles/bodhi2/base/templates/production.ini.j2`. If you want to flash a message on the New Update Form, you can use the `newupdate_notice` variable instead. This can be useful for announcing things like service outages, etc.
+
+
+Using the Bodhi Shell to modify updates by hand
+===============================================
+
+The "bodhi shell" is a Python shell with the SQLAlchemy session and transaction manager initialized.
+It can be run from any production/staging backend instance and allows you to modify any models by hand.
+
+::
+        sudo pshell /etc/bodhi/production.ini
+
+        # Execute a script that sets up the `db` and provides a `delete_update` function.
+        # This will eventually be shipped in the bodhi package, but can also be found here.
+        # https://github.com/fedora-infra/bodhi/blob/develop/tools/shelldb.py
+        >>> execfile('shelldb.py')
+
+At this point you have access to a `db` SQLAlchemy Session instance, a `t`
+`transaction` module, and `m` for the `bodhi.models`.
+
+
+::
+        # Fetch an update, and tweak it as necessary.
+        >>> up = m.Update.get(u'u'FEDORA-2016-4d226a5f7e', db)
+
+        # Commit the transaction
+        >>> t.commit()
+
+
+Here is an example of merging two updates together and deleting the original.
+
+::
+        >>> up = m.Update.get(u'FEDORA-2016-4d226a5f7e', db)
+        >>> up.builds
+        [<Build {'epoch': 0, 'nvr': u'resteasy-3.0.17-2.fc24'}>, <Build {'epoch': 0, 'nvr': u'pki-core-10.3.5-1.fc24'}>]
+        >>> b = up.builds[0]
+        >>> up2 = m.Update.get(u'FEDORA-2016-5f63a874ca', db)
+        >>> up2.builds
+        [<Build {'epoch': 0, 'nvr': u'resteasy-3.0.17-3.fc24'}>]
+        >>> up.builds.remove(b)
+        >>> up.builds.append(up2.builds[0])
+        >>> delete_update(up2)
+        >>> t.commit()
 
 
 Troubleshooting and Resolution
