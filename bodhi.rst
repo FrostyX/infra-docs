@@ -137,7 +137,7 @@ Performing a bodhi upgrade
 
 Run this command from the fedora-infra `ansible` directory.::
 
-        sudo -i ansible-playbook $(pwd)/playbooks/manual/upgrade/bodhi.yml -l staging
+        sudo rbac-playbook manual/upgrade/bodhi.yml -l staging
 
 
 Remove `-l staging` to upgrade production.
