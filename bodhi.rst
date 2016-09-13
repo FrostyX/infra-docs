@@ -135,12 +135,33 @@ If a push fails for some reason, you can easily resume it by running::
 Performing a bodhi upgrade
 ===========================
 
-Run this command from the fedora-infra `ansible` directory.::
+Staging
+-------
 
+Ensure that no changes are needed to the Bodhi configuration files. If they
+are, make the needed changes and re-run the deployment playbooks::
+
+        sudo rbac-playbook -l staging groups/bodhi-backend.yml
+        sudo rbac-playbook -l staging groups/bodhi2.yml
+
+Run these commands::
+
+        sudo rbac-playbook manual/staging-sync/bodhi.yml -l staging
         sudo rbac-playbook manual/upgrade/bodhi.yml -l staging
 
 
-Remove `-l staging` to upgrade production.
+Production
+----------
+
+Ensure that no changes are needed to the Bodhi configuration files. If they
+are, make the needed changes and re-run the deployment playbooks::
+
+        sudo rbac-playbook groups/bodhi-backend.yml
+        sudo rbac-playbook groups/bodhi2.yml
+
+To update the bodhi RPMs in production::
+
+        sudo rbac-playbook manual/upgrade/bodhi.yml
 
 
 Syncing the production database to staging
