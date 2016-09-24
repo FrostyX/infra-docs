@@ -1,6 +1,6 @@
 .. title: Database Infrastructure SOP
 .. slug: infra-database
-.. date: 2015-01-13
+.. date: 2015-09-07
 .. taxonomy: Contributors/Infrastructure
 
 ===========================
@@ -26,11 +26,8 @@ Contents
 	3. Restart Procedure
 
 		1. Koji
-		2. Mirror Manager
 
-		  1. Vacuuming Mirror Manager
-
-		3. Bodhi
+		2. Bodhi
 
 5. Note about TurboGears and MySQL
 6. Restoring from backups or specific dbs
@@ -49,7 +46,7 @@ Location
 	Phoenix
 
 Servers
-	sb01, db03, db-fas01
+	sb01, db03, db-fas01, db-datanommer02, db-koji01, db-s390-koji01, db-arm-koji01, db-ppc-koji01, db-qa01, dbqastg01
 
 Purpose
 	Provides database connection to many of our apps.
@@ -57,8 +54,12 @@ Purpose
 Description
 ===========
 
-db01, db03 and db-fas01 are our primary database servers. db01 and db-fas01
-run PostgreSQL and db03 contains MySQL instance.
+db01, db03 and db-fas01 are our primmary servers.
+db01 and db-fas01 run PostgreSQL.
+db03 contain mariadb.
+db-koji01, db-s390-koji01, db-arm-koji01, db-ppc-koji01 contain secondary kojis.
+db-qa01 and db-qastg01 contain taskotron and resultsdb.
+db-datanommer02 contains all storage messages from postgresql database.
 
 
 Creating a New Postgresql Database
@@ -193,27 +194,6 @@ Koji
 
 Any time postgreql is restarted, koji needs to be restarted. Please also
 see [62]Restarting Koji
-
-Mirror Manager
---------------
-
-Anytime postgresql is restarted Mirror Manager will need to be restarted,
-no SOP currently exists for this
-
-Vacuuming Mirror Manager
-````````````````````````
-
-Occasionally our vacuum cron jobs may not keep up with the writes to the
-mirrormanager database. If this happens, we need to do a vacuum full of
-mirrormanager's db. (See the [63]dirty table section for a query to tell
-if this is necessary). The trick with this is making sure the mirrorlist
-cache isn't updated while we're doing the vacuum. To disable that we can
-turn off the mirrormanager management interface::
-
-  $  for i in 2 3 4 5; do ssh app$i supervisorctl stop mirrormanager ; done
-  $ ssh db2
-  $ sudo -u postgres vacuumdb -fzv --dbname mirrormanager
-  $  for i in 2 3 4 5; do ssh app$i supervisorctl start mirrormanager ; done
 
 Bodhi
 -----
