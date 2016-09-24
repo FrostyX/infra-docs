@@ -1,6 +1,6 @@
 .. title: Database Infrastructure SOP
 .. slug: infra-database
-.. date: 2015-09-07
+.. date: 2016-09-24
 .. taxonomy: Contributors/Infrastructure
 
 ===========================
