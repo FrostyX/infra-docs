@@ -1,6 +1,6 @@
 .. title: Koschei SOP
 .. slug: infra-koschei
-.. date: 2016-04-18
+.. date: 2016-09-29
 .. taxonomy: Contributors/Infrastructure
 
 ===========
@@ -21,14 +21,15 @@ Contents
 2.  Deployment
 3.  Description
 4.  Configuration
-5.  Database
-6.  Managing koschei services
-7.  Suspespending koschei operation
-8.  Limiting Koji usage
-9.  Fedmsg notifications
-10. Setting admin announcement
-11. Adding package groups
-12. Set package static priority
+5.  Disk usage
+6.  Database
+7.  Managing koschei services
+8.  Suspespending koschei operation
+9.  Limiting Koji usage
+10. Fedmsg notifications
+11. Setting admin announcement
+12. Adding package groups
+13. Set package static priority
 
 Contact Information
 -------------------
