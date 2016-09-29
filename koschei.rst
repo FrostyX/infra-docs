@@ -102,6 +102,24 @@ changes have no effect on already running services -- they need to be
 restarted, which happens automatically when using the playbook.
 
 
+Disk usage
+----------
+Koschei doesn't keep on disk anything that couldn't be recreated
+easily - all important data is stored in PostgreSQL database,
+configuration is managed by Ansible, code installed by RPM and so on.
+
+To speed up operation and reduce load on external servers, Koschei
+caches some data obtained from services it integrates with.  Most
+notably, YUM repositories downloaded from Koji are kept in
+``/var/cache/koschei/repodata``.  Each repository takes about 100 MB
+of disk space.  Maximal number of repositories kept at time is
+controlled by ``cache_l2_capacity`` parameter in
+``config-backend.cfg`` (``config-backend.cfg.j2`` in Ansible).  If
+repodata cache starts to consume too much disk space, that value can
+be decreased - after restart, koschei-resolver will remove least
+recently used cache entries to respect configured cache capacity.
+
+
 Database
 --------
 Koschei needs to connect to a PostgreSQL database, other database
