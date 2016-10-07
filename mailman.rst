@@ -1,6 +1,6 @@
 .. title: Mailman Infrastructure SOP
 .. slug: infra-mailmain
-.. date: 2012-08-23
+.. date: 2016-10-07
 .. taxonomy: Contributors/Infrastructure
 
 ==========================
@@ -17,10 +17,10 @@ Contact
 	#fedora-admin, sysadmin-main, sysadmin-tools, sysadmin-hosted
 
 Location
-	serverbeach
+	phx2
 
 Servers
-	hosted-lists01, collab03
+	mailman01, mailman02, mailman01.stg
 
 Purpose
 	Provides mailing list services.
@@ -28,10 +28,8 @@ Purpose
 Description
 ===========
 
-Mailing list services for Fedora Hosted projects are located on the
-hosted-lists01.fedoraproject.org server.
-
-Fedora Project mailing lists are on collab03.
+Mailing list services for Fedora projects are located on the
+mailman01.phx2.fedoraproject.org server.
 
 Common Tasks
 ============
@@ -50,20 +48,6 @@ Creating a new mailing list
   .. important:: 
     Please make sure to add a valid description to the newly
     created list. (to avoid [no description available] on listinfo index)
-
-* Log into collab03 (@lists.fedoraproject.org) or hosted-lists01 (@lists.fedorahosted.org)
-* vim /etc/mailman/mailman3-migrated-lists.txt::
-
-  .. note ::
-    Add the name of the list. Note: just the list, not the fqdn
-
-* ``cd /etc/mailman``
-* ``sudo /etc/mailman/mailman3-migration.py``
-* ``sudo /usr/local/bin/fedora-mailing-list-setup``
-
-  .. note ::
-     This is needed because mailman2 generates the list index. Enter your own name as
-     admin so the new owner doesn't get two welcome emails.
 
 Removing content from archives
 ==============================
@@ -113,25 +97,9 @@ Troubleshooting and Resolution
 List Administration
 -------------------
 
-The mailman site password for hosted-lists01 or collab03 can be found it
-``/root/mm_sitepass``::
+Specific users are marked as 'site admins' in the database. 
 
-  sudo cat /root/mm_sitepass
-
-The site password can be used to reset lists admin passwords if required.
- 
-.. note:: If you change the site password, please update this file.
-
-ML password reset
------------------
-
-When a user has requested their mailman password be reset perform the
-reset using::
-
-   sudo /usr/lib/mailman/bin/change_pw -l <listname>
-
-The new mailman admin password will be e-mailed to all administrators set
-to the list.
+Please file a issue if you feel you need to have this access.
 
 Restart Procedure
 -----------------
@@ -139,100 +107,13 @@ Restart Procedure
 If the server needs to be restarted mailman should come back on it's own.
 Otherwise each service on it can be restarted::
 
-  sudo service mailman restart
+  sudo service mailman3 restart
   sudo service postfix restart
-
-Other tracebacks
-----------------
-When in doubt run the mailman commands with the -l option to figure out
-which one is the problem
-
 
 How to delete a mailing list
 ============================
 
 Delete a list, but keep the archives::
 
-  sudo /usr/lib/mailman/bin/rmlist <listname>
-
-Delete a list and its archives::
-
-  sudo /usr/lib/mailman/bin/rmlist -a <listname>
-
-Errors from mailman cron jobs showing things like::
-
-  Subject: Cron <mailman@collab03> /usr/lib/mailman/cron/senddigests
-  return unicode(s, self.input_codec).encode(self.output_codec)
-  UnicodeError: ISO-2022-JP encoding error: invalid character \xfa
-
-- login to the machine hosting the list (collab03 or hosted-lists01).
-- as root, modify ``/etc/passwd`` to make the shell for the mailman user be ``/bin/bash``
-- as root su to the mailman user::
-
-    cd /var/lib/mailman/lists/  
-    for list in *; do echo $list; /usr/lib/mailman/cron/senddigests -l $list; done
-
-- see which list is the culprit
-- go to ``/var/lib/mailman/lists/$thatlist/`` and remove the digest.mbox file
-
-
-Mailman migration
-=================
-
-.. important:: This page is a draft only
-  It is still under construction and content may change. Do not rely on the
-  information on this page.
-
-This is a place where instructions for migrating lists from redhat.com to
-lists.fp.o will be kept.
-
-Things required from Red Hat:
-
-* The list config (whatever the equivalent of
-  ``/var/lib/mailman/lists/<listname>`` is
-* The list archives, in mbox form
-  (``/var/lib/mailman/archives/private/<listname>.mbox``)
-
-Put these items into their respective places on collab03.
-
-If required at this point, change the list name as follows:
-
-* Rename the archive and list directories to the new names
-* Create a file called <newlist-name>.config and put the following in it::
-
-    real_name = '<new list name>'
-
-* Don't do anything with that file until the next step :)
-
-For all lists, do the following:
-
-* In the <newlist-name>.config file created earlier, add the following
-  line (create the file if you didn't need to rename the list)::
-
-    acceptable_aliases = [ 'old-list-name@redhat.com' ]
-
-* Verify the sanity of your new configuration via
-  ``/usr/lib/mailman/bin/config_list -i <new-list-name>.config -c <new-list-name>``
-
-* If that checks out, eliminate the -c from the previous command in
-  order to make your changes.
-* generate aliases for the new list /usr/lib/mailman/bin/genaliases
-* change the url for the list /usr/lib/mailman/bin/withlist -l -r
-  fix_url <new-list-name> -u admin.fedoraproject.org
-* Rebuild the archives using '/usr/lib/mailman/bin/arch --wipe
-  <new-list-name>'
-* restore selinux contexts restorecon -rv /var/lib/mailman/lists
-  /var/lib/mailman/archives/private
-
-Additional steps
-================
-
-* rebuilding the archives means all links to the historical mailing
-  lists posts will be broken. Can we get Red Hat to add http redirects
-  from www.redhat.com/archives/<old-list-name> to the
-  lists.fedoraproject.org/archives/<new-list-name> ?
-* we'll need Red Hat to set up forwarding aliases for <old-list-name> to
-  <new-list-name>
-* fix the names of list that do not make any sense (e.g.
-  feodra-extras-steering) in the current environment. relevant
+  sudo -u mailman mailman3 remove <listname>
 
