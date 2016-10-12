@@ -18,6 +18,7 @@ Contents
 1. Contact Information
 2. Building an RPM
 3. Tagging an existing build
+4. Koji package list
 
 Contact Information
 ===================
@@ -70,3 +71,15 @@ it has landed in stable, you can tag it into the respective infra-candidate tag.
 For example, if you have an epel7 build of test2-1.0-1.el7, run:
 koji tag epel7-infra-candidate test2-1.0-1.el7
 And then the same autosigning and cronjob from the previous section applies.
+
+
+Koji package list
+=================
+
+If you try to build a package into the infra tags, and koji says something like:
+BuildError: package test not in list for tag epel7-infra-candidate
+That means that the package has not been added to the list for building in that
+particular tag. Either add the package to the respective Fedora/EPEL branches
+(this is the preferred method, since we should always aim to get everything
+packaged for Fedora/EPEL), or ask a koji admin to add the package to the listing
+for the respective tag.
