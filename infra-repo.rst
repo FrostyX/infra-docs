@@ -53,7 +53,7 @@ system will pick it up and sign the package for you without any further
 intervention. You can track when this is done by checking the build info:
 when it is moved from $repo-infra-candidate to $repo-infra, it has been
 signed. You can check this on the web interface (look under "Tags"), or 
-koji build-info test-1.0-1.el7.
+koji buildinfo test-1.0-1.el7.
 
 For importing it into the live repositories, you can just wait a few minutes.
 There's a cronjob that runs every :00, :15, :30 and :45 that refreshes the
