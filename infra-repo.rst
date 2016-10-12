@@ -1,0 +1,59 @@
+.. title: Infrastructure RPM Repository SOP
+.. slug: infra-repo
+.. date: 2016-10-12
+.. taxonomy: Contributors/Infrastructure
+
+===========================
+Infrastructure Yum Repo SOP
+===========================
+
+In some cases RPM's in Fedora need to be rebuilt for the Infrastructure
+team to suit our needs. This repo is provided to the public (except for
+the RHEL RPMs). Rebuilds go into this repo which are stored on the netapp
+and shared via the proxy servers after being built on koji.
+
+Contents
+========
+
+1. Contact Information
+2. Building an RPM
+3. Repo
+6. RHEL repo
+
+Contact Information
+===================
+
+Owner
+	 Fedora Infrastructure Team
+Contact
+	 #fedora-admin
+Location: PHX [53]http
+	//infrastructure.fedoraproject.org/
+Servers
+         koji
+	 batcave01 / Proxy Servers
+Purpose
+	 Provides infrastructure repo for custom Fedora Infrastructure rebuilds
+
+Building an RPM
+===============
+
+Building an RPM for Infrastructure is significantly easier then building
+an RPM for Fedora. Basically get your SRPM ready, then submit it to koji
+for building to the $repo-infra target. (e.g. epel7-infra).
+
+.. note::
+  Remember to build it for every dist / arch you need to deploy it on.
+
+After it has been built, you will see it's tagged as $repo-infra-candidate,
+this means that it is a candidate for being signed. The automatic signing
+system will pick it up and sign the package for you without any further
+intervention. You can track when this is done by checking the build info:
+when it is moved from $repo-infra-candidate to $repo-infra, it has been
+signed.
+
+For importing it into the live repositories, you can just wait a few minutes.
+There's a cronjob that runs every :00, :15, :30 and :45 that refreshes the
+infrastructure repository with all packages that have been tagged.
+After this time, you can yum clean all and then install the packages via yum
+install or yum update.
