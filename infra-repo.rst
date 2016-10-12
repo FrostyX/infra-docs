@@ -83,3 +83,6 @@ particular tag. Either add the package to the respective Fedora/EPEL branches
 (this is the preferred method, since we should always aim to get everything
 packaged for Fedora/EPEL), or ask a koji admin to add the package to the listing
 for the respective tag.
+
+To list koji admins:
+koji list-history --permission=admin --active | grep grant
