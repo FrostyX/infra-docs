@@ -12,6 +12,13 @@ team to suit our needs. This repo is provided to the public (except for
 the RHEL RPMs). Rebuilds go into this repo which are stored on the netapp
 and shared via the proxy servers after being built on koji.
 
+For basic instructions, read the standard documentation on Fedora wiki:
+- https://fedoraproject.org/wiki/Using_the_Koji_build_system
+
+This document will only outline the differences between the "normal" repos
+and the infra repos.
+
+
 Contents
 ========
 
