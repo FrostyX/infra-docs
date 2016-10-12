@@ -86,3 +86,6 @@ for the respective tag.
 
 To list koji admins:
 koji list-history --permission=admin --active | grep grant
+
+For koji admins, they can run:
+koji add-pkg $tag $package --owner=$user
