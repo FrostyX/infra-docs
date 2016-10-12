@@ -17,8 +17,7 @@ Contents
 
 1. Contact Information
 2. Building an RPM
-3. Repo
-6. RHEL repo
+3. Tagging an existing build
 
 Contact Information
 ===================
@@ -42,6 +41,9 @@ Building an RPM for Infrastructure is significantly easier then building
 an RPM for Fedora. Basically get your SRPM ready, then submit it to koji
 for building to the $repo-infra target. (e.g. epel7-infra).
 
+Example:
+koji build epel7-infra test-1.0-1.src.rpm
+
 .. note::
   Remember to build it for every dist / arch you need to deploy it on.
 
@@ -57,3 +59,13 @@ There's a cronjob that runs every :00, :15, :30 and :45 that refreshes the
 infrastructure repository with all packages that have been tagged.
 After this time, you can yum clean all and then install the packages via yum
 install or yum update.
+
+
+Tagging existing builds
+=======================
+
+If you already have a real build and want to use it inthe infrastructure before
+it has landed in stable, you can tag it into the respective infra-candidate tag.
+For example, if you have an epel7 build of test2-1.0-1.el7, run:
+koji tag epel7-infra-candidate test2-1.0-1.el7
+And then the same autosigning and cronjob from the previous section applies.
