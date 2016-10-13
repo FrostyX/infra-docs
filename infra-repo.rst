@@ -49,8 +49,9 @@ Building an RPM for Infrastructure is significantly easier then building
 an RPM for Fedora. Basically get your SRPM ready, then submit it to koji
 for building to the $repo-infra target. (e.g. epel7-infra).
 
-Example:
-koji build epel7-infra test-1.0-1.src.rpm
+Example::
+
+  koji build epel7-infra test-1.0-1.src.rpm
 
 .. note::
   Remember to build it for every dist / arch you need to deploy it on.
@@ -60,8 +61,9 @@ this means that it is a candidate for being signed. The automatic signing
 system will pick it up and sign the package for you without any further
 intervention. You can track when this is done by checking the build info:
 when it is moved from $repo-infra-candidate to $repo-infra, it has been
-signed. You can check this on the web interface (look under "Tags"), or 
-koji buildinfo test-1.0-1.el7.
+signed. You can check this on the web interface (look under "Tags"), or via::
+
+  koji buildinfo test-1.0-1.el7.
 
 For importing it into the live repositories, you can just wait a few minutes.
 There's a cronjob that runs every :00, :15, :30 and :45 that refreshes the
@@ -69,14 +71,20 @@ infrastructure repository with all packages that have been tagged.
 After this time, you can yum clean all and then install the packages via yum
 install or yum update.
 
+Admins can also manually trigger that script via::
+
+  /mnt/fedora/app/fi-repo/infra/update.sh
+
 
 Tagging existing builds
 =======================
 
 If you already have a real build and want to use it inthe infrastructure before
 it has landed in stable, you can tag it into the respective infra-candidate tag.
-For example, if you have an epel7 build of test2-1.0-1.el7, run:
-koji tag epel7-infra-candidate test2-1.0-1.el7
+For example, if you have an epel7 build of test2-1.0-1.el7, run::
+
+  koji tag epel7-infra-candidate test2-1.0-1.el7
+
 And then the same autosigning and cronjob from the previous section applies.
 
 
@@ -91,8 +99,10 @@ particular tag. Either add the package to the respective Fedora/EPEL branches
 packaged for Fedora/EPEL), or ask a koji admin to add the package to the listing
 for the respective tag.
 
-To list koji admins:
-koji list-history --permission=admin --active | grep grant
+To list koji admins::
 
-For koji admins, they can run:
-koji add-pkg $tag $package --owner=$user
+  koji list-history --permission=admin --active | grep grant
+
+For koji admins, they can run::
+
+  koji add-pkg $tag $package --owner=$user
