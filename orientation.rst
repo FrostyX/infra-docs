@@ -1,6 +1,6 @@
 .. title: Infrastucture Orientation SOP
 .. slug: infra-orientation
-.. date: 2015-04-23
+.. date: 2016-10-20
 .. taxonomy: Contributors/Infrastructure
 
 ==============================
@@ -105,7 +105,7 @@ Once you've been sponsored for a team its generally your job to find what
 work needs to be done in the ticketing system. Be proactive about this.
 The tickets can be found at:
 
-https://fedorahosted.org/fedora-infrastructure/report/1
+https://pagure.io/fedora-infrastructure/issues
 
 When you find a ticket that interests you contact your sponsor or the
 ticket owner and offer help. While you're getting used to the way things
@@ -130,7 +130,7 @@ Things we do gets done in Ansible. It is important that you not make changes dir
 servers. This is for many reasons but just always make changes in
 Ansible. If you want to get more familiar with Ansible, set it
 up yourself and give it a try. The docs are available at
-http://docs.ansible.com/
+https://docs.ansible.com/
 
 Our Setup
 =========
@@ -145,8 +145,8 @@ bastion.fedoraproject.org then from there ssh to batcave01.
 We also have an architecture repo available in our git repo. To get a copy
 of this repo just::
 
-  yum install git
-  git clone git://git.fedorahosted.org/fedora-infrastructure.git/
+  dnf install git
+  git clone https://pagure.io/fedora-infrastructure.git
 
 This will allow you to look through (and help fix) some of our scripts as
 well as have access to our architectural documentation. Become familiar
@@ -159,7 +159,7 @@ Our Rules
 The Fedora Infrastructure Team does have some rules. First is the security
 policy. Please ensure you are compliant with:
 
-http://infrastructure.fedoraproject.org/csi/security-policy/
+https://infrastructure.fedoraproject.org/csi/security-policy/
 
 before logging in to any of our servers. Many of those items rely on the
 honor system.

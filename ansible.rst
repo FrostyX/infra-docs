@@ -39,7 +39,7 @@ There are 2 git repositories associated with ansible:
 /git/ansible on batcave01. 
 	This is a public repository. Never commit private data to this repo. 
 	You can access it also via a cgit web interface at: 
-	http://infrastructure.fedoraproject.org/cgit/ansible.git/
+	https://infrastructure.fedoraproject.org/cgit/ansible.git/
 	You can check it out on batcave01 with: 'git clone /git/ansible'
 	You can also use it remotely if you have your ssh set to proxy your access
 	via bastion01: ``git clone ssh://batcave01/git/ansible``
@@ -159,13 +159,13 @@ Cloud Instances
 
 rdiff-backups
 =============
-see: http://infrastructure.fedoraproject.org/infra/docs/rdiff-backup.txt
+see: https://infrastructure.fedoraproject.org/infra/docs/rdiff-backup.txt
 
 Additional Reading/Resources
 ============================
 
 Upstream docs: 
-  http://www.ansibleworks.com/docs/
+  https://docs.ansible.com/
 
 Example repo with all kinds of examples:
   * https://github.com/ansible/ansible-examples

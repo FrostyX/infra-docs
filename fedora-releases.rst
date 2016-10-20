@@ -77,7 +77,7 @@ the freeze just extends until the day after a release ships.
 
 You can get a list of frozen/non-frozen hosts by::
 
-  git clone http://infrastructure.fedoraproject.org/infra/ansible.git
+  git clone https://infrastructure.fedoraproject.org/infra/ansible.git
   scripts/freezelist -i inventory/inventory
 
 Notes about release day
