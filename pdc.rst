@@ -49,8 +49,8 @@ fedora atomic host.
 For long-winded history and explanation, see the original Change document:
 https://fedoraproject.org/wiki/Changes/ProductDefinitionCenter
 
-Upgrading
----------
+Upgrading the Software
+----------------------
 
 There is an upgrade playbook in ``playbooks/manual/upgrade/pdc.yml`` which will
 upgrade both the frontend and the backend if new packages are available.
@@ -100,3 +100,34 @@ If doomsday occurs and the whole thing is totally hosed, you can delete the db
 and re-ingest all information available from releng with the
 ``pdc-updater-initialize`` tool.  (Creating the initial schema needs to happen
 on pdc-web01 with the standard django settings.py commands.)
+
+Manually Updating Information
+-----------------------------
+
+In general, you shouldn't have to do these things.  pdc-updater will
+automatically create new releases and update information, but if you ever need
+to manipulate PDC data, you can do it with the pdc-client tool.  A copy is
+installed on pdc-backend01 and there are some credentials there you'll need, so
+ssh there first.
+
+Make sure that you are root so that you can read `/etc/pdc.d/fedora.json`.
+
+Try listing all of the releases::
+
+    $ pdc -s fedora release list
+
+Deactivating an EOL release::
+
+    $ pdc -s fedora release update fedora-21-updates --deactivate
+
+.. note:: There are lots more attribute you can manipulate on a release (you can change
+   the type, and rename them, etc..)  See `pdc --help` and `pdc release --help` for
+   more information.
+
+Listing all composes::
+
+    $ pdc -s fedora compose list
+
+We're not sure yet how to flag a compose as the Gold compose, but when we do,
+the answer should appear here:
+https://github.com/product-definition-center/product-definition-center/issues/428
