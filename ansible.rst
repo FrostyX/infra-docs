@@ -159,7 +159,7 @@ Cloud Instances
 
 rdiff-backups
 =============
-see: https://infrastructure.fedoraproject.org/infra/docs/rdiff-backup.txt
+see: https://infrastructure.fedoraproject.org/infra/docs/rdiff-backup.rst
 
 Additional Reading/Resources
 ============================
