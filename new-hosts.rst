@@ -275,6 +275,21 @@ The host playbook is rather basic
 
   ansible-playbook /srv/web/infra/ansible/infra/ansible/playbooks/grous/mailman.yml
 
+Adding a new proxy or webserver
+===============================
+
+When adding a new web server other files must be edited by hand
+currently until templates replace them. These files cover getting httpd
+logs from the server onto log01 so that log analysis can be done.
+
+             roles/base/files/syncHttpLogs.sh 
+             roles/epylog/files/merged/modules.d/rsyncd.conf
+             roles/hosts/files/staging-hosts
+             roles/mediawiki123/templates/LocalSettings.php.fp.j2
+
+There are also nagios files which will need to be edited but that should
+be done following the nagios document.
+
 References
 ==========
 
