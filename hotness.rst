@@ -53,3 +53,15 @@ repository), you will need to build it into the :ref:`infra-repo`.
 
 All done!
 
+
+Monitoring Activity
+-------------------
+It can be nice to check up on the-new-hotness to make sure its behaving correctly.
+You can see all the Bugzilla activity using the
+`user activity query <https://bugzilla.redhat.com/page.cgi?id=user_activity.html>`_ (staging uses
+`partner-bugzilla.redhat.com <https://partner-bugzilla.redhat.com/page.cgi?id=user_activity.html>`_)
+and querying for the ``upstream-release-monitoring@fedoraproject.org`` user.
+
+You can also view all the Koji tasks dispatched by the-new-hotness. For example, you can see the
+`failed tasks <https://koji.fedoraproject.org/koji/tasks?state=failed&owner=hotness>`_
+it has created.
