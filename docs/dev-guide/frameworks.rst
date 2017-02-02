@@ -1,6 +1,0 @@
-
-Framework Best Practices
-========================
-
-Flask
------
