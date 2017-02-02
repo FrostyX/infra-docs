@@ -14,7 +14,7 @@ practices for Fedora Infrastructure applications.
    :maxdepth: 1
    :caption: Contents:
 
-   best-practices/index
+   dev-guide/index
    sops/index
 
 
