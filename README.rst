@@ -12,16 +12,12 @@ This is designed to be consumed as a Sphinx documentation project. Documentation
 is available online on `pagure <https://docs.pagure.org/infra-docs/>`_ and on
 `Read the Docs <https://fedora-infra-docs.readthedocs.io/>`_
 
-To build the documentation locally, create a virtualenv and install the requirements:
+To build the documentation locally, create a virtualenv and install the requirements::
 
-```
-$ pip install -r requirements.txt
-```
+    $ pip install -r requirements.txt
 
-then build the documentation and open it in a browser of your choice:
+then build the documentation and open it in a browser of your choice::
 
-```
-$ cd docs
-$ make html
-$ firefox _build/html/index.html
-```
+    $ cd docs
+    $ make html
+    $ firefox _build/html/index.html
