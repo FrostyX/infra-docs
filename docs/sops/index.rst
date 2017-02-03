@@ -10,7 +10,7 @@ Standard Operating Procedures
 
 Below is a table of contents containing all the standard operating procedures
 for Fedora Infrastructure applications. For information on how to write a new
-standard operating procedure, consult the :ref:`writing-an-sop` guide.
+standard operating procedure, consult the guide on :ref:`develop-sops`.
 
 .. toctree::
    :maxdepth: 2
