@@ -51,7 +51,8 @@ for building to the $repo-infra target. (e.g. epel7-infra).
 
 Example::
 
-  koji build epel7-infra test-1.0-1.src.rpm
+  rpmbuild --define "dist .el7" -bs test.spec
+  koji build epel7-infra test-1.0-1.el7.src.rpm
 
 .. note::
   Remember to build it for every dist / arch you need to deploy it on.
