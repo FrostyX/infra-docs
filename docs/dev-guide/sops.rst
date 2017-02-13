@@ -20,7 +20,7 @@ Adding a Standard Operating Procedure
 =====================================
 To add a standard operating procedure, create a new `reStructedText
 <http://www.sphinx-doc.org/en/stable/rest.html>`_ file in the `sop
-directory <https://pagure.io/infra-docs/blob/master/f/docs/sops>`_
+directory <https://pagure.io/infra-docs/blob/master/f/docs/sysadmin-guide/sops>`_
 and then add it to the `index file
 <https://pagure.io/infra-docs/blob/master/f/docs/sops/index.rst>`_.
 
