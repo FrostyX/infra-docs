@@ -12,14 +12,7 @@ to downstream distribution packages, including (but not limited to) Fedora.
 
 Anitya production instance: https://release-monitoring.org
 
-Anitya project page: https://github.com/fedora-infra/anitya
-
-Contents
-========
-
-1. Contact Information
-2. Building and Deploying a Release
-3. Administrating release-monitoring.org
+Anitya project page: https://github.com/release-monitoring/anitya
 
 
 Contact Information
@@ -60,6 +53,7 @@ This host relies on:
   pypi, rubygems.org, sourceforge and many others on command.
 
 Things that rely on this host:
+
 - The Fedora Infrastructure bus subscribes to the anitya bus published
   here by the local fedmsg-relay daemon at tcp://release-monitoring.org:9940
 
@@ -77,6 +71,7 @@ This is responsible for running the anitya backend cronjobs. It also is
 the host for the Anitya PostgreSQL database server.
 
 The services and jobs on this host are:
+
 - A cronjob that retrieves all projects from the PostgreSQL database and
   checks the upstream project to see if there's a new version. This is run
   every 12 hours.
@@ -95,6 +90,7 @@ This host relies on:
   requests out to the Internet that can fail in various ways.
 
 Things that rely on this host:
+
 - The webapps running on anitya-frontend01 relies on the postgres db
   server running on this node.
 
@@ -126,19 +122,22 @@ All the following commands should be run from batcave01.
 Configuration
 ^^^^^^^^^^^^^
 First, ensure there are no configuration changes required for the new update. If there are,
-update the Ansible anitya role(s) and run the deployment playboook::
+update the Ansible anitya role(s) and optionally run the deployment playbook::
 
     $ sudo rbac-playbook groups/anitya.yml
 
-Packages
-^^^^^^^^
-Both anitya-backend01 and anitya-frontend01 need the new package. To upgrade, run
-the upgrade playbook::
+The anitya roles are applied during the upgrade playbook so this is merely an opportunity to
+test your configuration changes prior to a package upgrade.
+
+Upgrading
+^^^^^^^^^
+Both anitya-backend and anitya-frontend need the new version of the ``anitya`` package.
+To upgrade, run the upgrade playbook::
 
     $ sudo rbac-playbook manual/upgrade/anitya.yml
 
-This will upgrade the anitya package, perform any database migrations with Alembic,
-and restart the Apache web server.
+This will upgrade the anitya package on both the frontend and the backend, perform any
+database migrations with Alembic, and restart the Apache web server.
 
 Congratulations! The new version should now be deployed.
 
@@ -150,6 +149,6 @@ for when users accidentally create duplicate projects, versions found get messed
 etc.
 
 Flags
-^^^^^
+-----
 Anitya lets users flag projects for administrator attention. This is accessible to
 administrators in the `flags tab <https://release-monitoring.org/flags>`_.
