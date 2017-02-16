@@ -90,9 +90,9 @@ manage the ``httpd`` service to change mote's status.
 
 Suspespending mote operation
 -------------------------------
-mote can be stopped by stopping the ``httpd`` service.
-::
-      service httpd stop
+mote can be stopped by stopping the ``httpd`` service::
+
+    service httpd stop
 
 Changing mote's name and category definitions
 ------------------------------------------------

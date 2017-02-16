@@ -2,6 +2,7 @@
 .. slug: infra-copr
 .. date: 2015-01-13
 .. taxonomy: Contributors/Infrastructure
+
 ====
 Copr
 ====
@@ -156,12 +157,12 @@ httpd logs:
 Services
 ========
 
-For backend use script
-  copr-backend-service {start|stop|restart}
-     - this handle all copr* services (job grabber, vmm, workers, ...)
-  logstash
-  redis
-  lighttpd
+For backend use script:
+ - copr-backend-service {start|stop|restart}
+   -  this handle all copr* services (job grabber, vmm, workers, ...)
+ - logstash
+ - redis
+ - lighttpd
 
 For frontend:
   httpd

@@ -2,6 +2,7 @@
 .. slug: infra-cyclades
 .. date: 2011-12-12
 .. taxonomy: Contributors/Infrastructure
+
 ========
 Cyclades
 ========

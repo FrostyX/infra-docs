@@ -2,6 +2,7 @@
 .. slug: infra-libvirt
 .. date: 2012-04-30
 .. taxonomy: Contributors/Infrastructure
+
 ===================================
 Fedora Infrastructure Libvirt Notes
 ===================================

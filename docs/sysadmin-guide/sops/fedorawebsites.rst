@@ -43,6 +43,7 @@ Webites Release SOP
     the fedora-release package for a new key to be added. Use the update-gpg-keys
     script in the fedora-web git repository to add it to static/. Manually add it
     to /keys and /verify in all websites where we use these keys:
+
       * arm.fpo
       * getfedora.org
       * labs.fpo
@@ -150,6 +151,7 @@ Webites Release SOP
          test the pages online.
 
       l) Release Date:
+
         * Merge the fXX-alpha branch to master and correct conflicts manually
         * Remove the redirect of prerelease pages in ansible, edit:
         * ansible/playbooks/include/proxies-redirects.yml
@@ -212,6 +214,7 @@ Webites Release SOP
          test the pages online.
 
       m) Release Date:
+
         * Merge the fXX-beta branch to master and correct conflicts manually
         * When ready and about 90 minutes before Release Time push to master
         * Tag the commit as new release and push it too:
@@ -271,6 +274,7 @@ Webites Release SOP
          test the pages online.
 
       n) Release Date:
+
         * Merge the fXX-beta branch to master and correct conflicts manually
         * Add the redirect of prerelease pages in ansible, edit:
         * ansible/playbooks/include/proxies-redirects.yml

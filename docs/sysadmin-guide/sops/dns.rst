@@ -76,9 +76,10 @@ Editing the domain(s)
 
 We have three domains which needs to be able to change on demand for proxy
 rotation/removal:
-  fedoraproject.org.
-  getfedora.org.
-  cloud.fedoraproject.org.
+
+- fedoraproject.org.
+- getfedora.org.
+- cloud.fedoraproject.org.
 
 The other domains are edited only when we add/subtract a host or move it to
 a new ip. Not much else.

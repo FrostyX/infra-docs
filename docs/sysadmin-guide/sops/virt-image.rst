@@ -2,6 +2,7 @@
 .. slug: no-idea
 .. date: 2015-07-09
 .. taxonomy: Contributors/Infrastructure
+
 ==================================
 Fedora Infrastructure Kpartx Notes
 ==================================
@@ -28,21 +29,22 @@ Steps to Work With Virtual System
 =================================
 
 1. Find out what physical server the virtual machine image is on.
-   A. Log into batcave01.phx2.fedoraproject.org
 
-   B. search for the hostname in the file /var/log/virthost-lists.out::
-          
-	  $ grep proxy01.phx2.fedoraproject.org /var/log/virthost-lists.out
-          virthost05.phx2.fedoraproject.org:proxy01.phx2.fedoraproject.org:running:1
+    A. Log into batcave01.phx2.fedoraproject.org
 
-   C. If the image does not show up in the list then most likely it is
-      an image which has been decommissioned. You will need to search
-      the virtual hosts more directly.
-          
-	  # for i in `awk -F: '{print $1}' /var/log/virthost-lists.out |
-                 sort -u`; do
-                 ansible $i -m shell -a 'lvs | grep proxy01.phx2'
-            done
+    B. search for the hostname in the file /var/log/virthost-lists.out::
+
+        $ grep proxy01.phx2.fedoraproject.org /var/log/virthost-lists.out
+        virthost05.phx2.fedoraproject.org:proxy01.phx2.fedoraproject.org:running:1
+
+    C. If the image does not show up in the list then most likely it is
+       an image which has been decommissioned. You will need to search
+       the virtual hosts more directly::
+
+	    # for i in `awk -F: '{print $1}' /var/log/virthost-lists.out |
+                sort -u`; do
+                    ansible $i -m shell -a 'lvs | grep proxy01.phx2'
+                done
 
 2. Log into the virtual server and make sure the image is shutdown. Even
    in cases where the system is not working correctly it may have still

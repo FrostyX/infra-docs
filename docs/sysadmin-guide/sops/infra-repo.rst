@@ -3,6 +3,8 @@
 .. date: 2016-10-12
 .. taxonomy: Contributors/Infrastructure
 
+.. _infra-repo:
+
 ===========================
 Infrastructure Yum Repo SOP
 ===========================

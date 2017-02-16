@@ -121,7 +121,7 @@ available in the `RelEng Architecture Document`_):
 
 Deployment
 ----------
-The osbs-control01 host is where the `ansible-ansbile-openshift-ansible`_ role
+The osbs-control01 host is where the `ansible-ansible-openshift-ansible`_ role
 is called from the `osbs-cluster.yml`_ playbook in order to configure the
 OpenShift Cluster where OSBS is deployed on top of.
 
@@ -259,6 +259,10 @@ to normal.
 
 
 .. CITATIONS/LINKS
+.. _Fedora Layered Image Build System:
+    https://docs.pagure.org/releng/layered_image_build_service.html
+.. _OSBS:
+    https://github.com/projectatomic/osbs-client
 .. _fedmsg: http://www.fedmsg.com/en/latest/
 .. _Koji: https://fedoraproject.org/wiki/Koji
 .. _Docker: https://github.com/docker/docker/
@@ -277,7 +281,7 @@ to normal.
     https://fedoraproject.org/wiki/Koji/ContentGenerators
 .. _RelEng Architecture Document:
     https://docs.pagure.org/releng/layered_image_build_service.html
-.. _osbs-cluster:
+.. _osbs-cluster.yml:
     https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/playbooks/groups/osbs-cluster.yml
 .. _ansible-ansible-openshift-ansible:
     https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/ansible-ansible-openshift-ansible

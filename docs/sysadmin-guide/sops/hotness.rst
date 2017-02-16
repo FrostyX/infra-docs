@@ -22,9 +22,12 @@ Contact
 	 #fedora-admin
 Location
     phx2.fedoraproject.org
+
 Servers
-	 hotness01.phx2.fedoraproject.org
-     hotness01.stg.phx2.fedoraproject.org
+
+- hotness01.phx2.fedoraproject.org
+- hotness01.stg.phx2.fedoraproject.org
+
 Purpose
 	 File issues when upstream projects release new versions of a package
 

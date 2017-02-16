@@ -66,6 +66,7 @@ standard operating procedure, consult the guide on :ref:`develop-sops`.
    freemedia
    freenode-irc-channel
    gather-easyfix
+   geoip-city-wsgi
    github2fedmsg
    github
    gitweb
@@ -75,6 +76,7 @@ standard operating procedure, consult the guide on :ref:`develop-sops`.
    haproxy
    hosted_git_to_svn
    hotfix
+   hotness
    ibm-drive-replacement
    ibm_rsa_ii
    infra-git-repo

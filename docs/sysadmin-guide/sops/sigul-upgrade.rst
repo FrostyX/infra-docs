@@ -2,6 +2,7 @@
 .. slug: infra-sigul-mainenance
 .. date: 2015-02-04
 .. taxonomy: Contributors/Infrastructure
+
 ==============================
 Sigul servers upgrades/reboots
 ==============================

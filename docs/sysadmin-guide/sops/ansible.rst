@@ -85,7 +85,7 @@ To add a new group:
 
 To use the wrapper::
 
-sudo rbac-playbook playbook.yml
+  sudo rbac-playbook playbook.yml
 
 Directory setup
 ================

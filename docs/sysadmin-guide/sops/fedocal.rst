@@ -19,13 +19,16 @@ Contact Information
 ===================
 
 Owner
-	 Fedora Infrastructure Team
+    Fedora Infrastructure Team
+
 Contact
-	 #fedora-admin
+	#fedora-admin
+
 Location
-	https://apps.fedoraproject.org/calendar 
+    https://apps.fedoraproject.org/calendar
+
 Servers
-	 
+
 Purpose
    	To provide links to the documentation for fedocal, as it exists elsewhere on the internet and it was decided that a link document would be a better use of resources than to rewrite the book.
 
