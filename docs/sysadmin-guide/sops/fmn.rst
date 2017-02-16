@@ -178,7 +178,7 @@ Upgrade (from batcave)::
   $ sudo -i ansible-playbook /srv/web/infra/ansible/playbooks/manual/upgrade/fmn.yml
 
 Mailing Lists
--------------
+=============
 
 We use FMN as a way to forward certain kinds of messages to mailing lists so
 people can read them the good old fashioned way that they like to.  To

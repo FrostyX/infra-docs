@@ -13,7 +13,7 @@ these machines, some special steps must be taken to ensure everything is
 working as expected.
 
 Contact Information
--------------------
+===================
 
 Owner
 	Fedora Release Engineering
@@ -25,7 +25,7 @@ Purpose
 	Upgrade or restart sign servers
 
 Description
------------
+===========
 0. Coordinate with releng on timing. Make sure no signing is happening, and
 none is planned for a bit. 
 

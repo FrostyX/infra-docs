@@ -10,7 +10,7 @@ fedmsg-relay SOP
 Bridge ephemeral scripts into the fedmsg bus.
 
 Contact Information
--------------------
+===================
 
 Owner
 	Messaging SIG, Fedora Infrastructure Team
@@ -22,7 +22,7 @@ Purpose
 	Bridge ephemeral bash and python scripts into the fedmsg bus.
 
 Description
------------
+===========
 
 fedmsg-relay is running on app01, which is a bad choice.  We should look to
 move it to a more isolated place in the future.  busgateway01 would be a
@@ -41,7 +41,7 @@ Ephemeral scripts know where the fedmsg-relay is by looking for the
 relay_inbound and relay_outbound values in the global fedmsg config.
 
 But What is it Doing?  And Why?
--------------------------------
+===============================
 
 The fedmsg bus is designed to be "passive" in its normal operation.  A
 mod_wsgi process under httpd sets up its fedmsg publisher socket to

@@ -16,7 +16,7 @@ This page is hosted at an OpenShift instance.
 The upstream repository is fedora-status on FedoraHosted.org.
 
 Contact Information
--------------------
+===================
 
 Owner:
   Fedora Infrastructure Team
@@ -31,7 +31,7 @@ Upstream:
   http://git.fedorahosted.org/git/fedora-status.git
 
 How it works
-------------
+============
 To keep this website as stable as can be, the page is
 generated at the time of upload by OpenShift.
  
@@ -42,7 +42,7 @@ Only members of sysadmin-noc and sysadmin-main can update
 the status website.
 
 Updating the page
------------------
+=================
 1. Check out the repo at::
       
     ssh://bab5ba6eb9b94f2083fdeefc5e87309b@status-fedora2.rhcloud.com/~/git/status.git/

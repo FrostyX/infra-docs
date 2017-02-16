@@ -3,13 +3,14 @@
 .. date: 2014-06-29
 .. taxonomy: Contributors/Infrastructure
 
+=============
 apps-fp-o SOP
 =============
 
 Updating and maintaining the landing page at https://apps.fedoraproject.org/
 
 Contact Information
--------------------
+===================
 
 Owner:
   Fedora Infrastructure Team
@@ -21,7 +22,7 @@ Purpose:
   Have a nice landing page for all our webapps.
 
 Description
------------
+===========
 
 We have a number of webapps, many of which our users don't know about.  This
 page was created so there was a central place where users could stumble

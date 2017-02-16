@@ -10,7 +10,7 @@ fedmsg-irc SOP
   Echo fedmsg bus activity to IRC.
 
 Contact Information
--------------------
+===================
 
 Owner
 	Messaging SIG, Fedora Infrastructure Team
@@ -22,7 +22,7 @@ Purpose
 	Echo fedmsg bus activity to IRC
 
 Description
------------
+===========
 
 fedmsg-irc is a daemon running on value03 and value01.stg.  It is listening
 to the fedmsg bus and echoing that activity to the #fedora-fedmsg channel in

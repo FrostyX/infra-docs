@@ -17,7 +17,7 @@ individual port for each farm. All haproxy farms are listed in
 /etc/haproxy/haproxy.cfg.
 
 Contents
---------
+========
 
 1. Contact Information
 2. How it works
@@ -26,7 +26,7 @@ Contents
 5. Advanced Usage
 
 Contact Information
--------------------
+===================
 
 Owner: 
   Fedora Infrastructure Team
@@ -41,7 +41,7 @@ Purpose:
   layer.
 
 How it works
-------------
+============
 
 haproxy is a load balancer. If you're familiar, this section won't be that
 interesting. haproxy in its normal usage acts just like a web server. It
@@ -61,7 +61,7 @@ goes to app1, and the whole process repeats.
   settings, monitor them closely for the hour or two after you make changes.
 
 Configuration example
----------------------
+=====================
 
 The below example is how our fedoraproject wiki could be configured. Each
 application should have its own farm. Even though it may have an identical
@@ -125,7 +125,7 @@ that are global. Please see the haproxy documentation for more info::
   /usr/share/doc/haproxy-1.3.14.6/haproxy-en.txt
 
 Stats
------
+=====
 
 In order to view the stats for a farm please see the stats page. Each
 proxy server has its own stats page since each one is running its own
@@ -141,7 +141,7 @@ important.
 * https://admin.fedoraproject.org/haproxy/proxy5/
 
 Advanced Usage
---------------
+==============
 
 haproxy has some more advanced usage that we've not needed to worry about
 yet but is worth mentioning. For example, one could send users to just one

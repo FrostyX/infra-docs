@@ -10,7 +10,7 @@ badges SOP
   Fedora Badges - a recognition system for contributors
 
 Contact Information
--------------------
+===================
 
 Owner:
   Badges SIG, Fedora Infrastructure Team, sysadmin-badges
@@ -22,7 +22,7 @@ Purpose:
   Award "badges" to Fedora Contributors
 
 Description
------------
+===========
 
 The badge awarding backend daemon, fedbadges, wakes up when it receives a
 fedmsg event. It compares that message and the history in datanommer against a
@@ -40,7 +40,7 @@ The process is "fedmsg-hub" and the logs are in /var/log/fedmsg/fedmsg-hub.log
 The frontend runs under apache/mod_wsgi on badges-web0{1,2} nodes.
 
 More Detailed Documentation Upstream
-------------------------------------
+====================================
 
 - For a detailed description of how the fedbadges daemon works, see the upstream
   README:  https://github.com/fedora-infra/fedbadges/blob/develop/README.rst
@@ -48,7 +48,7 @@ More Detailed Documentation Upstream
   https://github.com/fedora-infra/fedbadges/blob/develop/diagrams/
 
 Pushing out new badges
-----------------------
+======================
 
 Badge artists and badge developers should be pushing yaml rules and pngs
 and svg art to this repo::
@@ -62,7 +62,7 @@ onto our servers.
 
 
 Manually awarding a badge
--------------------------
+=========================
 
 To perform this, you must be in the sysadmin-badges FAS group.
 
@@ -93,7 +93,7 @@ badges-backend01 and run something like::
     done
 
 Manually revoking a badge or badge authorisation
--------------------------------------------------
+=================================================
 
 You may revoke badge or badge authorisations in a similar fashion to the award-badges 
 script. You may chain the invocation of the revoke-badge or revoke-authorisation script
@@ -110,7 +110,7 @@ Revoking an authorisation::
 
 
 Adding a new admin to the web interface
----------------------------------------
+=======================================
 
 It would be nice if we could automatically grant admin access in the web
 interface to members of the sysadmin-badges fas group.  We currently do not
@@ -129,7 +129,7 @@ line, commit and push.  Use ansible to run the ``groups/badges-web.yml`` playboo
 to push the config change out to the web frontend nodes.
 
 Creating an Invitation and QRCode
----------------------------------
+=================================
 
 This is done through the admin panel of the web interface (although we can
 probably write a script for it to be used on the backend node).
@@ -172,7 +172,7 @@ Person ID field will have a link to the qrcode and invite link on their profile
 page at which point they can do whatever they want with it.
 
 Some more handy scripts for manual work
----------------------------------------
+=======================================
 
 See ``ansible/roles/badges/backend/files/`` for the motherload.  These all get
 deployed to `/usr/local/bin/`` on `badges-backend01` where you can login to

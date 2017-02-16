@@ -13,7 +13,7 @@ App:     https://apps.fedoraproject.org/github2fedmsg/
 Source:  https://github.com/fedora-infra/github2fedmsg/
 
 Contact Information
--------------------
+===================
 
 Owner
 	Fedora Infrastructure Team
@@ -25,7 +25,7 @@ Purpose
     Bridge github events onto our fedmsg bus.
 
 Description
------------
+===========
 
 github2fedmsg is a small Python Pyramid app that bridges github events onto our
 fedmsg bus by way of github's "webhooks" feature.  It is what allows us to have
@@ -47,7 +47,7 @@ operation:
   content to our fedmsg bus.
 
 What could go wrong?
---------------------
+====================
 
 - Restarting the app or rebooting the host shouldn't cause a problem.  It should
   come right back up.

@@ -11,9 +11,8 @@ We're presently using github to host git repositories and issue tracking for
 some infrastructure projects.  Anything we need to know should be recorded
 here.
 
----------------------
 Setting up a new repo
----------------------
+=====================
 
 Create projects inside of the fedora-infra group:
 

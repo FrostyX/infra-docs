@@ -12,7 +12,7 @@ websocket communication with Fedora apps.
 see-also:  ``fedmsg-gateway.txt``
 
 Contact Information
--------------------
+===================
 
 Owner
   Messaging SIG, Fedora Infrastructure Team
@@ -24,7 +24,7 @@ Purpose
   Expose a websocket server for FI apps to use
 
 Description
------------
+===========
 
 WebSocket is a protocol (an extension of HTTP/1.1) by which client web
 browsers can establish full-duplex socket communications with a server --
@@ -47,7 +47,7 @@ haproxy mediates connections to the fedmsg-hub websocket server daemon.
 An stunnel daemon provides SSL support.
 
 Connection Flow
----------------
+===============
 
 The connection flow is much the same as in the fedmsg-gateway.txt SOP, but
 is somewhat more complicated.
@@ -71,6 +71,6 @@ from busgateway01's template.  Add them to the fedmsg-websockets listen in
 haproxy's config and it should Just Work.
 
 RHIT
-----
+====
 
 We had RHIT open up port 9939 special to proxy01.phx2 for this.

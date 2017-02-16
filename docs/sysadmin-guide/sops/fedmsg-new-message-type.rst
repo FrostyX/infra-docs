@@ -8,7 +8,7 @@ Adding a new fedmsg message type
 
 
 Instrumenting the program
--------------------------
+=========================
 First, figure out how you're going to publish the message?  Is it from a shell
 script or from a long running process?
 
@@ -29,7 +29,7 @@ if possible.  Your process will require that some "endpoints" are created for it
 in ``/etc/fedmsg.d/``.  More on that below.
 
 Supporting infrastructure
--------------------------
+=========================
 
 
 You need to make sure that the machine this is running on has a cert and key
@@ -51,7 +51,7 @@ and fedmsg endpoints should be automatically created for you on the next
 playbook run.
 
 Supporting code
----------------
+===============
 
 At this point, you can push the change out to production and be publishing
 messages "okay".  Everything should be fine.
@@ -70,7 +70,7 @@ Lastly, you should cut a release of fedmsg_meta and deploy it using the
 relevant hosts.
 
 Corner cases
-------------
+============
 
 If the process publishing the new message lives *outside* our main network, you
 have to jump through more hoops.  Look at abrt, koschei, and copr for examples

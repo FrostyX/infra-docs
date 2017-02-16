@@ -14,7 +14,7 @@ Source for frontend:  https://github.com/product-definition-center/product-defin
 Source for backend:   https://github.com/fedora-infra/pdc-updater
 
 Contact Information
--------------------
+===================
 
 Owner
 	Release Engineering, Fedora Infrastructure Team
@@ -26,7 +26,7 @@ Purpose
 	Store metadata about composes and "component groups"
 
 Description
------------
+===========
 
 The Product Definition Center (PDC) is a webapp and API designed for storing and
 querying product metadata.  We automatically populate our instance with data
@@ -50,7 +50,7 @@ For long-winded history and explanation, see the original Change document:
 https://fedoraproject.org/wiki/Changes/ProductDefinitionCenter
 
 Upgrading the Software
-----------------------
+======================
 
 There is an upgrade playbook in ``playbooks/manual/upgrade/pdc.yml`` which will
 upgrade both the frontend and the backend if new packages are available.
@@ -58,7 +58,7 @@ Database schema upgrades should be handled automatically with a run of that
 playbook.
 
 Logs
-----
+====
 
 Logs for the frontend are in `/var/log/httpd/error_log` on pdc-web0{1,2}.
 
@@ -66,7 +66,7 @@ Logs for the backend can be accessed with `journalctl -u fedmsg-hub -f` on
 pdc-backend01.
 
 Restarting Services
--------------------
+===================
 
 The frontend runs under apache.  So either `apachectl graceful` or `systemctl
 restart httpd` should do it.
@@ -75,7 +75,7 @@ The backend runs as a fedmsg-hub, so `systemctl restart fedmsg-hub` should
 restart it.
 
 Scripts
--------
+=======
 
 The pdc-updater package (installed on pdc-backend01) provides three scripts:
 
@@ -102,7 +102,7 @@ and re-ingest all information available from releng with the
 on pdc-web01 with the standard django settings.py commands.)
 
 Manually Updating Information
------------------------------
+=============================
 
 In general, you shouldn't have to do these things.  pdc-updater will
 automatically create new releases and update information, but if you ever need

@@ -5,6 +5,7 @@
 
 .. _hotness-sop:
 
+===============
 The New Hotness
 ===============
 `the-new-hotness <https://github.com/fedora-infra/the-new-hotness/>`_ is a
@@ -15,7 +16,7 @@ on the-new-hotness, consult the `project documentation <http://the-new-hotness.r
 
 
 Contact Information
--------------------
+===================
 Owner
 	 Fedora Infrastructure Team
 Contact
@@ -33,7 +34,7 @@ Purpose
 
 
 Deploying a New Version
------------------------
+=======================
 As of January 31, 2017, the-new-hotness is not packaged for Fedora or EPEL. When upstream
 tags a new version in Git and you are building a new version (from the specfile in the upstream
 repository), you will need to build it into the :ref:`infra-repo`.
@@ -58,7 +59,7 @@ All done!
 
 
 Monitoring Activity
--------------------
+===================
 It can be nice to check up on the-new-hotness to make sure its behaving correctly.
 You can see all the Bugzilla activity using the
 `user activity query <https://bugzilla.redhat.com/page.cgi?id=user_activity.html>`_ (staging uses

@@ -15,7 +15,7 @@ notification of changes to packages.
 PackageDB project Trac: [45]https://fedorahosted.org/packagedb/
 
 Contents
-i=======
+========
 
 1. Contact Information
 2. Troubleshooting and Resolution

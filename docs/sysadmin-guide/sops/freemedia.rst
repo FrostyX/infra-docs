@@ -3,7 +3,9 @@
 .. date: 2014-12-18
 .. taxonomy: Contributors/Infrastructure
 
+============================
 FreeMedia Infrastructure SOP
+============================
 
 This page is for defining the SOP for Fedora FreeMedia Program. This will
 cover the infrastructural things as well as procedural things.

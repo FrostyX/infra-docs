@@ -11,7 +11,7 @@ X509 certs, private RSA keys, Certificate Authority, and Certificate
 Revocation List.
 
 Contact Information
--------------------
+===================
 
 Owner
   Messaging SIG, Fedora Infrastructure Team
@@ -30,7 +30,7 @@ Purpose
 	      Certify fedmsg messages come from authentic sources.
 
 Description
------------
+===========
 
 fedmsg sends JSON-encoded messages from many services to a zeromq messaging
 bus.  We're not concerned with encrypting the messages, only with signing them
@@ -77,7 +77,7 @@ http://fedmsg.readthedocs.org/en/latest/crypto.html
 
 
 Configuring the Scripts
------------------------
+=======================
 
 Usage of the main scripts is described in more detail below.  They are
 located in ``ansible/rolesfedmsg/files/cert-tools``.
@@ -91,7 +91,7 @@ There are other configuration values defined in that script.  Most will not
 need to be changed.
 
 Wiping and Rebuilding Everything
---------------------------------
+================================
 
 There is a script in ``ansible/roles/fedmsg/files/cert-tools/`` named
 ``rebuild-all-fedmsg-certs``.  You can run it with no arguments to wipe out
@@ -101,7 +101,7 @@ all key/cert pairs for all service-hosts.
 .. note:: Warning -- Obviously, this will wipe everything.  Do you want that?
 
 Adding a new key for a new service-host
----------------------------------------
+=======================================
 
 First, checkout the ansible private repo as that's where the keys are going
 to be stored.  The scripts will assume this is checked out to ~/private.
@@ -152,7 +152,7 @@ http://fedmsg.readthedocs.org/en/latest/config.html for more information on
 the layout and meaning of those files.
 
 Revoking a key
---------------
+==============
 
 In ``ansible/roles/fedmsg/files/cert-tools`` run::
 

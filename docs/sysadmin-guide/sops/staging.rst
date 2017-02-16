@@ -23,7 +23,7 @@ Purpose
 	Staging environment to test changes to apps and create initial Ansible configs.  =
 
 Introduction
-=======================
+============
 
 Fedora uses a set of staging servers for several purposes: 
 

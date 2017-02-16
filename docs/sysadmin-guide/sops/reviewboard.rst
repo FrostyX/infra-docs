@@ -13,7 +13,7 @@ projects to large companies and offers a variety of tools to take much of
 the stress and time out of the code review process.
 
 Contents
---------
+========
 
 1.  Contact Information
 2. File Locations
@@ -28,7 +28,7 @@ Contents
   * Create a default reviewer for a repository
 
 Contact Information
--------------------
+===================
 
 Owner: 
   Fedora Infrastructure Team

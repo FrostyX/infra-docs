@@ -3,13 +3,14 @@
 .. date: 2013-02-08
 .. taxonomy: Contributors/Infrastructure
 
+==============
 datanommer SOP
 ==============
 
 Consume fedmsg bus activity and stuff it in a postgresql db.
 
 Contact Information
--------------------
+===================
 
 Owner
   Messaging SIG, Fedora Infrastructure Team
@@ -21,7 +22,7 @@ Purpose
   Save fedmsg bus activity
 
 Description
------------
+===========
 
 datanommer is a set of three modules:
 
@@ -43,7 +44,7 @@ Source: https://github.com/fedora-infra/datanommer/
 Plan: https://fedoraproject.org/wiki/User:Ianweller/statistics_plus_plus
 
 CLI tools
----------
+=========
 
 Dump the db into a file as json::
 
@@ -100,7 +101,7 @@ Show me stats on datanommer messages by topic::
     org.fedoraproject.stg.__main__.testing has 1 entries
 
 Upgrading the DB Schema
------------------------
+=======================
 
 datanommer uses "python-alembic" to manage its schema.  When developers want
 to add new columns or features, these should/must be tracked in alembic and

@@ -16,7 +16,7 @@ Production instance: https://apps.fedoraproject.org/koschei
 Staging instance:    https://apps.stg.fedoraproject.org/koschei
 
 Contents
---------
+========
 1.  Contact information
 2.  Deployment
 3.  Description
@@ -32,7 +32,7 @@ Contents
 13. Set package static priority
 
 Contact Information
--------------------
+===================
 Owner
 	mizdebsk, msimacek
 Contact
@@ -44,12 +44,12 @@ Purpose
 
 
 Deployment
-----------
+==========
       sudo rbac-playbook groups/koschei-backend.yml
       sudo rbac-playbook groups/koschei-web.yml
 
 Description
------------
+===========
 Koschei is deployed on two separate machines - koschei-backend and koschei-web
 
 Frontend (koschei-web) is a Flask WSGi application running with httpd.
@@ -91,7 +91,7 @@ Backend (koschei-backend) consists of multiple services:
 
 
 Configuration
--------------
+=============
 Koschei configuration is in ``/etc/koschei/config-backend.cfg`` and
 ``/etc/koschei/config-frontend.cfg``, and is merged with the default
 configuration in ``/usr/share/koschei/config.cfg`` (the ones in etc
@@ -104,7 +104,7 @@ restarted, which happens automatically when using the playbook.
 
 
 Disk usage
-----------
+==========
 Koschei doesn't keep on disk anything that couldn't be recreated
 easily - all important data is stored in PostgreSQL database,
 configuration is managed by Ansible, code installed by RPM and so on.
@@ -122,7 +122,7 @@ recently used cache entries to respect configured cache capacity.
 
 
 Database
---------
+========
 Koschei needs to connect to a PostgreSQL database, other database
 systems are not supported. Database connection is specified in the
 configuration under the "database_config" key that can contain the
@@ -137,14 +137,14 @@ The backend services need to be stopped during the migration.
 
 
 Managing koschei services
--------------------------
+=========================
 Koschei services are systemd units managed through systemctl. They can
 be started and stopped independently in any order. The frontend is run
 using httpd.
 
 
 Suspespending koschei operation
--------------------------------
+===============================
 For stopping builds from being scheduled, stopping the koschei-scheduler
 service is enough. For planned Koji outages, it's recommended to stop
 koschei-scheduler. It is not necessary, as koschei can recover
@@ -155,7 +155,7 @@ automatically restart themselves on Koji and network errors.
 
 
 Limiting Koji usage
--------------------
+===================
 Koschei is by default limited to 30 concurrently running builds. This
 limit can be changed in the configuration under
 "koji_config"/"max_builds" key. There's also Koji load monitoring, that
@@ -165,7 +165,7 @@ rebuilds, so it's not necessary to stop scheduling during those.
 
 
 Fedmsg notifications
---------------------
+====================
 Koschei optionally supports sending fedmsg notifications for package
 state changes. The fedmsg dispatch can be turned on and off in the
 configuration (key "fedmsg-publisher"/"enabled"). Koschei doesn't supply
@@ -174,7 +174,7 @@ configuration for fedmsg, it lets the library to load it's own (in
 
 
 Setting admin announcement
---------------------------
+==========================
 Koschei can display announcement in web UI. This is mostly useful to
 inform users about outages or other problems.
 
@@ -192,7 +192,7 @@ To clear announcement, run as koschei user::
 
 
 Adding package groups
----------------------
+=====================
 Packages can be added to one or more group. Currently, only Koschei
 admins can add new groups.
 
@@ -207,7 +207,7 @@ packages, run as koschei user:
 
 
 Set package static priority
----------------------------
+===========================
 Some packages are more or less important and can have higher or lower
 priority. Any user can change manual priority, which is reset after
 package is rebuilt. Admins can additionally set static priority, which

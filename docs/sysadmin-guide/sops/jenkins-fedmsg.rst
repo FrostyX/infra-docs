@@ -10,7 +10,7 @@ Jenkins Fedmsg SOP
 Send information about Jenkins builds to fedmsg.
 
 Contact Information
--------------------
+===================
 
 Owner
 	Ricky Elrod, Fedora Infrastructure Team
@@ -18,7 +18,7 @@ Contact
 	#fedora-apps
 
 Reinstalling when it disappears
--------------------------------
+===============================
 
 For an as-of-yet unknown reason, the plugin sometimes seems to disappear,
 though it still shows as "installed" on Jenkins.
@@ -29,7 +29,7 @@ Go to the Jenkins web interface and log in. Click `Manage Jenkins` ->
 up, check the box to have Jenkins restart when running jobs are finished.
 
 Configuration Values
---------------------
+====================
 
 These are written here in case the Jenkins configuration ever gets lost.
 This is how to configure the jenkins-fedmsg-emit plugin.

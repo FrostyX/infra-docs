@@ -11,7 +11,7 @@ Every once in a while, we need to apply mass upgrades to our servers for
 various security and other upgrades.
 
 Contents
---------
+========
 
 1. Contact Information
 2. Preparation
@@ -33,7 +33,7 @@ Contents
 11. Aftermath
 
 Contact Information
--------------------
+===================
 
 Owner: 
   Fedora Infrastructure Team
