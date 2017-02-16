@@ -3,7 +3,9 @@
 .. date: 2016-03-03
 .. taxonomy: Contributors/Infrastructure
 
+========================
 Bodhi Infrastructure SOP
+========================
 
 Bodhi is used by Fedora developers to submit potential package updates for
 releases. From here, bodhi handles all of the dirty work, from sending
