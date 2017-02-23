@@ -198,7 +198,7 @@ It can be run from any production/staging backend instance and allows you to mod
 
         # Execute a script that sets up the `db` and provides a `delete_update` function.
         # This will eventually be shipped in the bodhi package, but can also be found here.
-        # https://github.com/fedora-infra/bodhi/blob/develop/tools/shelldb.py
+        # https://raw.githubusercontent.com/fedora-infra/bodhi/develop/tools/shelldb.py
         >>> execfile('shelldb.py')
 
 At this point you have access to a `db` SQLAlchemy Session instance, a `t`
