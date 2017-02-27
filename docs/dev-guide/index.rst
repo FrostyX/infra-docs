@@ -20,5 +20,6 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
 
    dev-environment
    documentation
+   writing-tests
    sops
    source_control
