@@ -201,3 +201,23 @@ To set static priority of package "foo" to value "100", run as
 koschei user::
 
   koschei-admin set-priority --static foo 100
+
+
+Adding new collection
+=====================
+After branching occurs and Koji build targets have been created,
+Koschei should be updated to reflect the new state.  This is done by
+renaming existing rawhide collection to branched and creating new
+rawhide collection.
+
+To rename "f26" collection to "Fedora 26", run as koschei user::
+
+  koschei-admin edit-collection f26 --display-name 'Fedora 26' --branch f26 --bugzilla-version 26
+
+Then create new "f27" collection by running:
+
+  koschei-admin create-collection f27 --display-name 'Fedora rawhide' --target f27 --build-group build --branch master --bugzilla-product Fedora --bugzilla-version rawhide
+
+Finally, add the new collection to "fedora" group:
+
+  koschei-admin edit-collection-group fedora --contents f26 f27
