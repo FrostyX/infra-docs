@@ -20,3 +20,4 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
 
    documentation
    sops
+   source_control
