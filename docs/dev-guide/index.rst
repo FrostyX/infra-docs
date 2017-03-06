@@ -18,6 +18,7 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
    :maxdepth: 2
    :caption: Contents:
 
+   dev-environment
    documentation
    sops
    source_control
