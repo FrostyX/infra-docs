@@ -3,6 +3,8 @@
 .. date: 2012-09-24
 .. taxonomy: Contributors/Infrastructure
 
+.. _ssh-sop:
+
 =============================
 SSH Access Infrastructure SOP
 =============================
