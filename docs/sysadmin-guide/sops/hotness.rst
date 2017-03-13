@@ -46,16 +46,15 @@ repository), you will need to build it into the :ref:`infra-repo`.
 2. Consult the upstream changelog. If necessary, adjust the Ansible configuration for
    the-new-hotness.
 
-3. Update the host. At the moment this is done with shell access to the host and running::
+3. Update the host. This is done with the manual upgrade playbook and can be used for both staging
+   and production deployments::
 
-   $ sudo -i yum clean all
-   $ sudo -i yum update the-new-hotness
+   $ sudo rbac-playbook -l staging manual/upgrade/hotness.yml  # remove the "-l staging" to update prod
 
-4. Ensure the configuration is up-to-date by running this on batcave01::
+This will upgrade to the latest hotness package, apply the hotness role so the configuration is
+up-to-date, and restart the necessary services.
 
-   $ sudo rbac-playbook -l staging groups/hotness.yml  # remove the "-l staging" to update prod
-
-All done!
+Congratulations, all done!
 
 
 Monitoring Activity
