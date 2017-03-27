@@ -73,23 +73,29 @@ removal of archived content::
 
     Mailing lists and their owners
 
-Checking Ownership
-==================
+Checking Membership
+===================
 
 Are you in need of checking who owns a certain mailing list without having
 to search around on list's frontpages?
 
-If yes, mailman have a nice tool that will help us gaining our result in a
-few seconds:
+Mailman has a nice tool that will help us list members by type.
 
-Get a full list of all the mailing lists hosted on the server: (either
-fedoraproject.org or fedorahosted.org)::
+Get a full list of all the mailing lists hosted on the server::
 
-  sudo /usr/lib/mailman/bin/list_admins -a
+  sudo -u mailman mailman3 lists
 
-See which lists are owned by example@example.com::
+Get the list of regular members for example@example.com::
 
-  sudo /usr/lib/mailman/bin/list_admins -a | grep example@example.com
+  sudo -u mailman mailman3 members example@example.com
+
+Get the list of owners for example@example.com::
+
+  sudo -u mailman mailman3 members -R owner example@example.com
+
+Get the list of moderators for example@example.com::
+
+  sudo -u mailman mailman3 members -R moderator example@example.com
 
 Troubleshooting and Resolution
 ==============================
