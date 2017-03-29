@@ -128,17 +128,34 @@ Coverage
 integration for the `nose`_ test runner.
 
 It's possible (and recommended) to have the test suite fail if the coverage
-percentage goes down. For example, placing the following in ``setup.cfg``::
+percentage goes down. This example ``.coveragerc``::
 
-  [nosetests]
-  with-coverage=TRUE
-  cover-min-percentage=100
-  cover-package=mypackage
+    [run]
+    # Track what conditional branches are covered.
+    branch = True
+    include =
+        my_python_package/*
 
-causes `nose`_ to fail the test suite if the coverage level is not 100%. New
-projects should enforce 100% test coverage. Exist projects should ensure test
-coverage does not drop to accept a pull request and should increase the minimum
-test coverage until it is 100%.
+    [report]
+    # Fail if the coverage is not 100%
+    fail_under = 100
+    # Display results with up 1/100th of a percent accuracy.
+    precision = 2
+    exclude_lines =
+        pragma: no cover
+
+        # Don't complain if tests don't hit defensive assertion code
+        raise AssertionError
+        raise NotImplementedError
+
+        if __name__ == .__main__.:
+    omit =
+        my_python_package/tests/*
+
+causes coverage (and any test running plugins using coverage) to fail if the
+coverage level is not 100%. New projects should enforce 100% test coverage.
+Existing projects should ensure test coverage does not drop to accept a pull
+request and should increase the minimum test coverage until it is 100%.
 
 .. note::
     `coverage`_ has great `exclusion`_ support, so you can exclude individual
