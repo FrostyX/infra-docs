@@ -29,8 +29,11 @@ Purpose
 
 Deployment
 ==========
-      sudo rbac-playbook groups/koschei-backend.yml
-      sudo rbac-playbook groups/koschei-web.yml
+
+Koschei deployment is managed by two Ansible playbooks::
+
+  sudo rbac-playbook groups/koschei-backend.yml
+  sudo rbac-playbook groups/koschei-web.yml
 
 Description
 ===========
@@ -180,12 +183,12 @@ Adding package groups
 Packages can be added to one or more group. Currently, only Koschei
 admins can add new groups.
 
-To add new group named "mynewgroup", run as koschei user:
+To add new group named "mynewgroup", run as koschei user::
 
   koschei-admin add-group mynewgroup
 
 To add new group named "mynewgroup" and populate it with some
-packages, run as koschei user:
+packages, run as koschei user::
 
   koschei-admin add-group mynewgroup pkg1 pkg2 pkg3
 
@@ -214,10 +217,10 @@ To rename "f26" collection to "Fedora 26", run as koschei user::
 
   koschei-admin edit-collection f26 --display-name 'Fedora 26' --branch f26 --bugzilla-version 26
 
-Then create new "f27" collection by running:
+Then create new "f27" collection by running::
 
   koschei-admin create-collection f27 --display-name 'Fedora rawhide' --target f27 --build-group build --branch master --bugzilla-product Fedora --bugzilla-version rawhide
 
-Finally, add the new collection to "fedora" group:
+Finally, add the new collection to "fedora" group::
 
   koschei-admin edit-collection-group fedora --contents f26 f27
