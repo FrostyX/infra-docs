@@ -15,22 +15,6 @@ interested parties.
 Production instance: https://apps.fedoraproject.org/koschei
 Staging instance:    https://apps.stg.fedoraproject.org/koschei
 
-Contents
-========
-1.  Contact information
-2.  Deployment
-3.  Description
-4.  Configuration
-5.  Disk usage
-6.  Database
-7.  Managing koschei services
-8.  Suspespending koschei operation
-9.  Limiting Koji usage
-10. Fedmsg notifications
-11. Setting admin announcement
-12. Adding package groups
-13. Set package static priority
-
 Contact Information
 ===================
 Owner
