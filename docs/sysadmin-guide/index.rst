@@ -101,6 +101,7 @@ standard operating procedure, consult the guide on :ref:`develop-sops`.
    sops/denyhosts
    sops/departing-admin
    sops/dns
+   sops/docs.fedoraproject.org
    sops/fas-notes
    sops/fas-openid
    sops/fedmsg-certs
