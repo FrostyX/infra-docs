@@ -33,11 +33,11 @@ help you get ready to contribute to the Fedora Infrastructure.
 Create a Fedora Account
 -----------------------
 
-The first thing you should do is create a `Fedora account`_. Your `Fedora
-account`_ will be used for nearly everything you do as a member of the Fedora
+The first thing you should do is create a `Fedora account`_. Your Fedora
+account will be used for nearly everything you do as a member of the Fedora
 community.
 
-Once you've created your `Fedora account`_, you need to read and sign the
+Once you've created your Fedora account, you need to read and sign the
 `Fedora Project Contributor Agreement`_ (FPCA).
 
 
@@ -45,7 +45,7 @@ Subscribe to the Mailing List
 -----------------------------
 
 Next, you should join the `Fedora Infrastructure mailing list`_. You will need
-to log into your new `Fedora account`_ to subscribe. The mailing list is the
+to log into your new Fedora account to subscribe. The mailing list is the
 best way to have a discussion with the entire Fedora Infrastructure community.
 
 
