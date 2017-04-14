@@ -75,36 +75,40 @@ modifying the second Host line::
 
 How ProxyCommand works?
 
-A connection is established to the bastion host
+A connection is established to the bastion host::
 
-+-------+            +--------------+
-|  you  | ---ssh---> | bastion host |
-+-------+            +--------------+
-Bastion host establish a connction to the target server
+  +-------+            +--------------+
+  |  you  | ---ssh---> | bastion host |
+  +-------+            +--------------+
 
-+--------------+          +--------+
-| bastion host | -------> | server |
-+--------------+          +--------+
-Your client then connects through the Bastion and reaches the target server
+Bastion host establish a connction to the target server::
 
-+-----+                  +--------------+                +--------+
-| you |                  | bastion host |                | server |
-|     | ===ssh=over=bastion============================> |        |
-+-----+                  +--------------+                +--------+
+  +--------------+          +--------+
+  | bastion host | -------> | server |
+  +--------------+          +--------+
+
+Your client then connects through the Bastion and reaches the target server::
+
+  +-----+                  +--------------+                +--------+
+  | you |                  | bastion host |                | server |
+  |     | ===ssh=over=bastion============================> |        |
+  +-----+                  +--------------+                +--------+
 
 PuTTY SSH configuration
 =======================
 
 You can configure Putty the same way by doing this:
 
-0.In the session section type batcave01.phx2.fedoraproject.org port 22
-1.In Connection:Data enter your FAS_USERNAME
-2.In Connection:Proxy add the proxy settings
-.ProxyHostname is bastion.fedoraproject.org
-.Port 22
-.Username FAS_USERNAME
-.Proxy Command plink %user@%proxyhost %host:%port
-3.In Connection:SSH:Auth remember to insert the same key file for authentication you have used on FAS profile 
+0. In the session section type batcave01.phx2.fedoraproject.org port 22
+1. In Connection:Data enter your FAS_USERNAME
+2. In Connection:Proxy add the proxy settings
+
+  * ProxyHostname is bastion.fedoraproject.org
+  * Port 22
+  * Username FAS_USERNAME
+  * Proxy Command plink %user@%proxyhost %host:%port
+
+3. In Connection:SSH:Auth remember to insert the same key file for authentication you have used on FAS profile
 
 SSH Agent forwarding
 ====================
