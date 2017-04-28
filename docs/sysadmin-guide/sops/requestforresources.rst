@@ -106,6 +106,8 @@ expiring old data, log files, acceptable content, packaging issues,
 configuration, general bugs, security profile, and others should be
 investigated. At the end of this step a email should be sent to the
 infrastucture list explaining the testing done and inviting comment.
+Also, the security officer should be informed that a new service will
+need a review in the near future.
 
 Requirements for continuing:
 ----------------------------
@@ -121,6 +123,8 @@ Requirements for continuing:
   SOP? A troubleshooting SOP? Any other tasks that might need to be done
   to the instance when those who know it well are not available?
 
+* MUST tag in the security officer in the ticket so an audit can be scheduled.
+
 Staging Instance
 ================
 
@@ -131,6 +135,9 @@ new env. Once initial deployment is done and tested, another email to the
 infrastructure list is done to note that the resource is available in
 staging.
 
+The security officer should be informed as soon as the code is reasonably
+stable, so that they can start the audit or delegate the audit to someone.
+
 Requirements for continuing:
 ----------------------------
 
@@ -140,6 +147,8 @@ Requirements for continuing:
 * MUST have a deployment schedule for going to production. This will
   need to account for things like freezes and availability of
   infrastructure folks.
+
+* MUST have an approved audit by the security officer or appointed delegate.
 
 Production deployment
 =====================
