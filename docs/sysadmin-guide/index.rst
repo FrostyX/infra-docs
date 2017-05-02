@@ -173,6 +173,7 @@ standard operating procedure, consult the guide on :ref:`develop-sops`.
    sops/orientation
    sops/outage
    sops/packagedatabase
+   sops/packagereview
    sops/pdc
    sops/pesign-upgrade
    sops/planetsubgroup
