@@ -200,6 +200,7 @@ standard operating procedure, consult the guide on :ref:`develop-sops`.
    sops/virtio
    sops/virt-notes
    sops/voting
+   sops/wcidff
    sops/wiki
    sops/zodbot
 
