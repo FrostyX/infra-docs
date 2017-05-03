@@ -53,7 +53,7 @@ Pushing out new badges
 Badge artists and badge developers should be pushing yaml rules and pngs
 and svg art to this repo::
 
-  https://git.fedorahosted.org/cgit/badges.git
+  https://pagure.io/Fedora-Badges.git
 
 There is a playbook that will take any new content from there and push it out
 onto our servers.
@@ -83,7 +83,7 @@ in roles/badges/backend/files/award-badge on batcave.
 Often enough, there is need for a workflow to batch award a badge to a number of
 people.  For instance, the "Keepin Fedora Beautiful" badge comes from a member
 of the design team posting a ticket with a list of FAS usernames (i.e.,
-https://fedorahosted.org/fedora-badges/ticket/129).
+https://pagure.io/Fedora-Badges/issue/129).
 
 For cases, like that you can wget the file with the list of fas usernames on
 badges-backend01 and run something like::
