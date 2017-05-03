@@ -212,29 +212,6 @@ these are necessary to keep dnssec-signzone from whining with this error msg::
 
 Look for the: "vpn IN NS" records at the top of fedoraproject.org and copy them for the new child zone.
 
-
-fedorahosted.org template
-=========================
-we want to create a separate entry for each fedorahosted project - but we
-do not want to have to maintain it later. So we have a simple map that
-let's us put the ones which are different in there and know where they
-should go. The map's format is::
-
-  projectname short_hostname-in-fedorahosted where it lives
-
-examples::
-
-	someproject git
-	someproject svn
-	someproject bzr
-	someproject hosted-super-crazy
-
-this will create cnames for each of them.
-
-running ``./do-domains`` will take care of all that and update the serial
-automatically.
-
-
 GeoDNS
 ======
 
