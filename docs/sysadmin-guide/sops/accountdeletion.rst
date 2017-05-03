@@ -184,7 +184,7 @@ Rename Accounts
   account in python-fedora and update that. Also ask the user to update
   that in bugzilla.
 * If the user is in a sysadmin-* group, check for home directories on
-  bastion and other infrastructure boxes that are owned byt them and
+  bastion and other infrastructure boxes that are owned by them and
   need to be renamed (Could also just tell the user to backup any files
   there themselves b/c they're getting a new home directory).
 * grep through ansible for occurrences of the username
