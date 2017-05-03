@@ -44,18 +44,18 @@ arm04
 Hardware Configuration
 =======================
 
-Each SOC:
+Each SOC has:
 
-* Has eth0 and eth1 (unused) and a management interface. 
-* has 4 cores
-* Has 4GB ram
-* Has a 300GB disk
+* eth0 and eth1 (unused) and a management interface. 
+* 4 cores
+* 4GB ram
+* a 300GB disk
 
 SOCs are addressed by::
 
-  arm{Chassisnumber}-builder{number}.arm.fedoraproject.org
+  arm{chassisnumber}-builder{number}.arm.fedoraproject.org
 
-Where Chassisnumber is 01 to 04 
+Where chassisnumber is 01 to 04 
 and 
 number is 00-23 
 
