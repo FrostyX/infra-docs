@@ -43,7 +43,7 @@ removed. Also out of date or expired content will be removed.
 What hosting options are available
 ----------------------------------
 
-Aside from the hosting at http://fedorahosted.org/ we have a series of
+Aside from the hosting at https://pagure.io/ we have a series of
 mirrors we're allowing people to use. They are located at:
 
 * http://archive.fedoraproject.org/pub/archive/ - For archives of historical Fedora releases
@@ -64,7 +64,7 @@ Non Official Hosting
 --------------------
 
 People wanting to host unofficial bits may request approval for hosting.
-Create a ticket at https://fedorahosted.org/fedora-infrastructure/
+Create a ticket at https://pagure.io/fedora-infrastructure/
 explaining what and why Fedora should host it. Such will be reviewed by
 the Fedora Infrastructure team.
 
@@ -84,7 +84,7 @@ Requesting Space
   https://admin.fedoraproject.org/accounts/
 * Ensure you have signed the Fedora Project Contributor Agreement (FPCA)
 * Submit a hosting request -
-  https://fedorahosted.org/fedora-infrastructure/
+  https://pagure.io/fedora-infrastructure/
 
   * Include who you are, and any group you are working with (e.g. a SIG)
   * Include Space requirements
