@@ -28,7 +28,7 @@ Purpose:
   Give status information to users about the current
   status of our public services.
 Upstream:  
-  http://git.fedorahosted.org/git/fedora-status.git
+  https://pagure.io/fedora-status
 
 How it works
 ============
