@@ -66,5 +66,5 @@ Publican wiki:
 --------------
 
 More details about Publican can be found at the publican wiki here:
-https://fedorahosted.org/publican/ 
+https://sourceware.org/publican/en-US/index.html 
  
