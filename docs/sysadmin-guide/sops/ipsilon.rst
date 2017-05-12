@@ -27,6 +27,12 @@ Owner
 	 Fedora Infrastructure Team
 Contact
 	 #fedora-admin
+Primary upstream contact
+    Patrick Uiterwijk - FAS: puiterwijk
+Backup upstream contact
+    Simo Sorce - FAS: simo (irc: simo)
+    Howard Johnson - FAS: merlinthp (irc: MerlinTHP)
+    Rob Crittenden - FAS: rcritten (irc: rcrit)
 Location
 	 Phoenix
 Servers
