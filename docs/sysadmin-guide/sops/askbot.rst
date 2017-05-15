@@ -1,15 +1,15 @@
 .. title: Ask Fedora SOP 
 .. slug: infra-ask-fedora
-.. date: 2015-03-28
+.. date: 2017-05-15
 .. taxonomy: Contributors/Infrastructure
 
 ==============
 Ask Fedora SOP
 ==============
 
-To set up http://ask.fedoraproject.org based on Askbot as a question and
-answer support forum for the Fedora community. A devel instance could be
-seen at http://ask01.dev.fedoraproject.org and the staging instance is at
+To set up https://ask.fedoraproject.org based on Askbot as a question and
+answer support forum for the Fedora community. A prodcution instance could be
+seen at https://ask.fedoraproject.org and the staging instance is at
 http://ask.stg.fedoraproject.org/
 
 This page describes how to set up and customize it from scratch.
@@ -34,13 +34,13 @@ Owner
 Contact
 	#fedora-admin
 Persons
-	mether pjp
+	anyone from the sysadmin team
 Sponsor
 	nirik
 Location
 	phx2
 Servers
-	ask01 , ask01.stg, ask01.dev
+	ask01 , ask01.stg
 Purpose
 	To host Ask Fedora
 
@@ -313,3 +313,26 @@ Debugging
 =========
 
 Set DEBUG to True in settings.py file and restart Apache.
+
+
+Auth issues
+===========
+
+Users can login to ask with a variety of social media accounts.
+Once they login with one they can attach other ones as well. 
+
+If a user forgets what social media they used, you can look in the
+database: 
+
+Login to database host (db01.phx2.fedoraproject.org)
+# sudo -u postgres psql askfedora
+psql> select * from django_authopenid_userassociation where user_id like '%username%';
+
+If they can login again with the same auth, ask them to do so. 
+If not, you can add the fedora account system openid auth to allow
+them to login with that: 
+
+psql> insert into django_authopenid_userassociation (user_id, openid_url,provider_name) VALUES
+(2595, 'http://name.id.fedoraproject.org', 'fedoraproject');
+
+Use the ID from the previous query and replace name with the users fas name
