@@ -180,6 +180,7 @@ standard operating procedure, consult the guide on :ref:`develop-sops`.
    sops/privatefedorahosted
    sops/publictest-dev-stg-production
    sops/rdiff-backup
+   sops/registry
    sops/requestforresources
    sops/resultsdb
    sops/reviewboard
