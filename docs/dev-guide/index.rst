@@ -24,5 +24,6 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
    code-style
    db
    writing-tests
+   auth
    sops
    source_control
