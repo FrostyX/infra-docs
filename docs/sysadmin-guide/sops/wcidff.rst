@@ -46,61 +46,66 @@ Requirements
 The site-generator is written in Python, so you will need that installed and working. You will also need
 mako and PyYAML.
 
-You can cover all of these via:
-$ sudo yum install python-mako PyYAML python-virtualenv
+You can cover all of these via::
+
+  $ sudo yum install python-mako PyYAML python-virtualenv
 
 The script can optionally generate an 'svg' visualizing your question tree. This requires the pygraphviz
-package which can be installed like:
-$ sudo yum install python-pygraphviz
+package which can be installed like::
+
+  $ sudo yum install python-pygraphviz
 
 Beginning
 =========
 
-Once you've met the requirements above, Clone the repo:
-$ git clone https://github.com/fedora-infra/asknot-ng.git
-$ cd asknot-ng
+Once you've met the requirements above, Clone the repo::
 
-Create a virtualenv into which you can install the module.
+  $ git clone https://github.com/fedora-infra/asknot-ng.git
+  $ cd asknot-ng
 
-$ virtualenv --system-site-packages venv
-$ source venv/bin/activate
-$ python setup.py develop
+Create a virtualenv into which you can install the module::
+
+  $ virtualenv --system-site-packages venv
+  $ source venv/bin/activate
+  $ python setup.py develop
 
 Run the script with the Fedora configuration::
-$ ./asknot-ng.py templates/index.html questions/fedora.yml l10n/fedora/locale --theme fedora
+
+  $ ./asknot-ng.py templates/index.html questions/fedora.yml l10n/fedora/locale --theme fedora
 
 Wrote build/en/index.html and open up build/en/index.html in your favorite browser.
 
 Translations
 ============
 
-First, setup a virtualenv, install Babel, and build the egg info.
+First, setup a virtualenv, install Babel, and build the egg info::
 
-$ virtualenv venv
-$ source venv/bin/activate
-$ pip install Babel
-$ python setup.py develop
+ $ virtualenv venv
+ $ source venv/bin/activate
+ $ pip install Babel
+ $ python setup.py develop
 
-Then, extract the translatable strings:
-$ python setup.py extract_messages --output-file l10n/fedora/locale/asknot-ng.pot
+Then, extract the translatable strings::
+
+  $ python setup.py extract_messages --output-file l10n/fedora/locale/asknot-ng.pot
 
 Deploying to OpenShift
 ======================
 
 This is a very easy way to bring asknot-ng to a production server using OpenShift. (Provided you have an OS account)
 
-Just create a new application using RHC and set the environment variables to your demands:
+Just create a new application using RHC and set the environment variables to your demands::
 
-rhc app create askorg diy --from-code https://github.com/fedora-infra/asknot-ng#develop
-rhc set-env ASKNOT_THEME=org -a askorg
-rhc set-env ASKNOT_QUESTION_FILE=questions/org.yml -a askorg
-rhc app restart askorg
+  rhc app create askorg diy --from-code https://github.com/fedora-infra/asknot-ng#develop
+  rhc set-env ASKNOT_THEME=org -a askorg
+  rhc set-env ASKNOT_QUESTION_FILE=questions/org.yml -a askorg
+  rhc app restart askorg
 
 Further Details
 ===============
 
 Wcidff has many facets, offers a multitude of interest areas for the public to contribute.  Each 'area' links the user to a
-'sub-area' where the user can provide a more granular choice.  See below for a detailed explanation:
+'sub-area' where the user can provide a more granular choice.  See below for a detailed explanation::
 
     Design----------------Design Team
            ---------------Websites Team
