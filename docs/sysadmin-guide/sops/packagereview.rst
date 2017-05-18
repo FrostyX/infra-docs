@@ -36,12 +36,13 @@ Introduction
 The Cached Package Review Tracker is used to collect, organize and allow
 searching through tickets.
 Organization includes the following ‘categories’:
-	Trivial
-	New
-	New EPEL
-	Needsponser
-	Hidden
-	Under Review
+
+- Trivial
+- New
+- New EPEL
+- Needsponser
+- Hidden
+- Under Review
 
 Each ticket references a source RH Bugzilla Bug entry and generates the
 categories of tickets as stated above, based off multiple fields values,
