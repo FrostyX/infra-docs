@@ -8,7 +8,7 @@ Ask Fedora SOP
 ==============
 
 To set up https://ask.fedoraproject.org based on Askbot as a question and
-answer support forum for the Fedora community. A prodcution instance could be
+answer support forum for the Fedora community. A production instance could be
 seen at https://ask.fedoraproject.org and the staging instance is at
 http://ask.stg.fedoraproject.org/
 
@@ -335,4 +335,4 @@ them to login with that:
 psql> insert into django_authopenid_userassociation (user_id, openid_url,provider_name) VALUES
 (2595, 'http://name.id.fedoraproject.org', 'fedoraproject');
 
-Use the ID from the previous query and replace name with the users fas name
+Use the ID from the previous query and replace name with the users fas name.
