@@ -25,7 +25,9 @@ Contents
   1. The mbs-build command
   2. The releng repo
 
-4. Troubleshooting and Resolution
+4. Logs
+5. Upgrading
+6. Things that could go wrong
 
   1. Overloading Koji
 
@@ -155,6 +157,20 @@ The releng repo
 
 There are more tools located in the `scripts/mbs/` directory of the releng
 repo:  https://pagure.io/releng/blob/master/f/scripts/mbs
+
+Logs
+====
+
+The frontend logs are on mbs-frontend0[1-2] in ``/var/log/httpd/error_log``.
+
+The backend logs are on mbs-backend01.  Look in the journal for the
+`fedmsg-hub` service.
+
+Upgrading
+=========
+
+The package in question is `module-build-service`.  Please use the
+`playbooks/manual/upgrade/mbs.yml` playbook.
 
 Things that could go wrong
 ==========================
