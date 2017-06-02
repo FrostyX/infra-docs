@@ -27,7 +27,8 @@ Contents
 
 4. Logs
 5. Upgrading
-6. Things that could go wrong
+6. Managing bootstrap modules
+7. Things that could go wrong
 
   1. Overloading Koji
 
@@ -171,6 +172,42 @@ Upgrading
 
 The package in question is `module-build-service`.  Please use the
 `playbooks/manual/upgrade/mbs.yml` playbook.
+
+Managing Bootstrap Modules
+==========================
+
+In general, modules use other modules to define their buildroots, but what
+defines the buildroot of the very first module? For this, we use "bootstrap"
+modules which are manually selected.  For some history on this, see these
+tickets:
+
+- https://pagure.io/releng/issue/6791
+- https://pagure.io/fedora-infrastructure/issue/6097
+
+The tag for a bootstrap module needs to be manually created and populated by
+Release Engineering.  Builds for that tag are curated and selected from other
+Fedora tags, with care to ensure that only as many builds are added as needed,
+not more.
+
+The existence of the tag is not enough for the bootstrap module to be useable
+by MBS. MBS discovers the bootstrap module as a possible dependency for other
+yet-to-be-built modules by querying PDC.  During normal operation, these
+entries in PDC are automatically created by pdc-updater on pdc-backend02, but
+for the bootstrap tag they need to be manually created and linked to the new
+bootstrap tag.
+
+The fm-orchestrator repo has a `bootstrap/
+<https://pagure.io/fm-orchestrator/blob/master/f/bootstrap>`_ directory with
+tools that we used to create the first bootstrap entries.  If you need to
+create a new bootsrap entry or modify an existing one, use these tools for
+inspiration.  They are not general purpose and will likely have to be modified
+to do what is needed.  In particular, see `import-to-pdc.py` as an example of
+creating a new entry and `activate-in-pdc.py` for an example of editing an
+existing entry.
+
+To be usable, you'll need a token with rights to speak to staging/prod PDC.
+See the PDC SOP for information on client configuration in `/etc/pdc.d/` and on
+where to find those tokens.
 
 Things that could go wrong
 ==========================
