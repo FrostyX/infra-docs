@@ -15,23 +15,6 @@ The MBS is a build orchestrator on top of Koji for "modules".
 
 https://fedoraproject.org/wiki/Changes/ModuleBuildService
 
-Contents
-========
-
-1. Contact Information
-2. Description
-3. Observing MBS Behavior
-
-  1. The mbs-build command
-  2. The releng repo
-
-4. Logs
-5. Upgrading
-6. Managing bootstrap modules
-7. Things that could go wrong
-
-  1. Overloading Koji
-
 Contact Information
 ===================
 
