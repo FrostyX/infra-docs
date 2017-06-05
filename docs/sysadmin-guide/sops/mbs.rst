@@ -81,10 +81,10 @@ and then marks it again as "ready".  (There is currently no meaning to the
 interactions.)
 
 Observing MBS Behavior
-----------------------
+======================
 
 The mbs-build command
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 The `fm-orchestrator repo <https://pagure.io/fm-orchestrator>`_ and the
 `module-build-service` package provide an `mbs-build` command with a few
@@ -139,7 +139,7 @@ To actively watch a module build in flight, given its ID::
     psabata's build #570 of shared-userspace-f26 is in the "build" state
 
 The releng repo
-~~~~~~~~~~~~~~~
+---------------
 
 There are more tools located in the `scripts/mbs/` directory of the releng
 repo:  https://pagure.io/releng/blob/master/f/scripts/mbs
