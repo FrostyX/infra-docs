@@ -64,7 +64,7 @@ submitted.
 
 These are grouped and limited in two ways:
 
-- First, there is a global NUM_CONSECUTIVE_BUILDS config option that controls
+- First, there is a global NUM_CONCURRENT_BUILDS config option that controls
   how many koji builds the MBS is allowed to have open at any time.  It serves
   as a throttle.
 - Second, a given module specify that it's components should have a certain
@@ -208,5 +208,5 @@ on mbs-backend01 at any time.
    resume functioning.
 
 If koji continues to be overloaded after startup, try decreasing the
-`NUM_CONSECUTIVE_BUILDS` option in the config file in
+`NUM_CONCURRENT_BUILDS` option in the config file in
 `roles/mbs/common/templates/`.
