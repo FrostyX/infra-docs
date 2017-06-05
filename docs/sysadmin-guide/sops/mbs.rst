@@ -144,6 +144,19 @@ The releng repo
 There are more tools located in the `scripts/mbs/` directory of the releng
 repo:  https://pagure.io/releng/blob/master/f/scripts/mbs
 
+Cancelling a module build
+=========================
+
+Users can cancel their own module builds with::
+
+    $ mbs-build cancel $BUILD_ID
+
+MBS admins can also cancel builds of any user.
+
+.. note:: MBS admins are defined as members of the groups listed in the
+   `ADMIN_GROUPS` configuration options in
+   `roles/mbs/common/templates/config.py`.
+
 Logs
 ====
 
