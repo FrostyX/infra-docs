@@ -46,7 +46,8 @@ Description
 Users submit builds to mbs.fedoraproject.org referencing their modulemd file in
 dist-git.  (In the future, users will not submit their own module builds.  The
 `freshmaker` daemon (running in infrastructure) will watch for .spec file
-changes and submit the relevant module builds to the MBS on behalf of users.)
+changes and modulemd.yaml file changes -- it will submit the relevant module
+builds to the MBS on behalf of users.)
 
 The request to build a module is received by the MBS flask app running on the
 mbs-frontend nodes.
@@ -67,16 +68,17 @@ These are grouped and limited in two ways:
 - First, there is a global NUM_CONCURRENT_BUILDS config option that controls
   how many koji builds the MBS is allowed to have open at any time.  It serves
   as a throttle.
-- Second, a given module specify that it's components should have a certain
-  "build order".  If there are 50 components, it may say that a first 25 of them
-  are in one buildorder batch, and the second 25 are in another buildorder
-  batch.  The first batch will be submitted and, when complete, tagged back into
-  the buildroot.  Only after they are available will the second batch of 25
-  begin.
+- Second, a given module may specify that it's components should have a certain
+  "build order".  If there are 50 components, it may say that the first 25 of
+  them are in one buildorder batch, and the second 25 are in another buildorder
+  batch.  The first batch will be submitted and, when complete, tagged back
+  into the buildroot.  Only after they are available will the second batch of
+  25 begin.
 
 When the last component is complete, the MBS backend marks the build as "done",
 and then marks it again as "ready".  (There is currently no meaning to the
-"ready" state beyond "done".. we reserved it for future CI interactions.)
+"ready" state beyond "done".  We reserved that state for future CI
+interactions.)
 
 Observing MBS Behavior
 ----------------------
@@ -169,8 +171,7 @@ tickets:
 
 The tag for a bootstrap module needs to be manually created and populated by
 Release Engineering.  Builds for that tag are curated and selected from other
-Fedora tags, with care to ensure that only as many builds are added as needed,
-not more.
+Fedora tags, with care to ensure that only as many builds are added as needed.
 
 The existence of the tag is not enough for the bootstrap module to be useable
 by MBS. MBS discovers the bootstrap module as a possible dependency for other
