@@ -50,7 +50,14 @@ Add cpu
 
 5. Start the virtual system
 
+.. note:: Note that using `virsh reboot` is insufficient.  You have to
+   actually stop the domain and start it with ``virsh destroy <guest>`` and
+   ``virsh start <guest>`` for the change to take effect.
+
 6. Login and check that cpu count matches
+
+7. **Remember to update the group_vars in ansible** to match the new value you
+   set, if appropriate.
 
 Resize memory
 -------------
@@ -67,4 +74,11 @@ Resize memory
 
 5. Start the virtual system
 
+.. note:: Note that using `virsh reboot` is insufficient.  You have to
+   actually stop the domain and start it with ``virsh destroy <guest>`` and
+   ``virsh start <guest>`` for the change to take effect.
+
 6. Login and check that memory matches
+
+7. **Remember to update the group_vars in ansible** to match the new value you
+   set, if appropriate.
