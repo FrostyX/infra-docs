@@ -21,29 +21,29 @@ Contents
 Contact Information
 ===================
 
-Owner: 
+Owner:
   Fedora Infrastructure Team
-Contact: 
+Contact:
   #fedora-admin, sysadmin-main
-Location: 
+Location:
   PHX, Tummy, ibiblio, Telia, OSUOSL
-Servers: 
+Servers:
   All xen servers, kvm/libvirt servers.
-Purpose: 
+Purpose:
   Resize guest disks
 
 How to do it
-=============      
+============
 
 Add cpu
 -------
- 
-1. SSH to the virthost server 
 
-2. Calculate the number of CPUs the system needs 
+1. SSH to the virthost server
+
+2. Calculate the number of CPUs the system needs
 
 3. ``sudo virsh setvcpus  <guest> <num_of_cpus> --config`` - ie::
- 
+
        sudo virsh setvcpus bapp01 16 --config
 
 4. Shutdown the virtual system
@@ -52,11 +52,10 @@ Add cpu
 
 6. Login and check that cpu count matches
 
-
 Resize memory
 -------------
 
-1. SSH to the virthost server 
+1. SSH to the virthost server
 
 2. Calculate the amount of memory the system needs in kb
 
@@ -69,4 +68,3 @@ Resize memory
 5. Start the virtual system
 
 6. Login and check that memory matches
-
