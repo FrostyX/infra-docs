@@ -12,7 +12,7 @@ combined into roles and groups.  Ipsilon is used to translate between
 IAM policy groupings and groups in the Fedora Account System (FAS).
 
 To access the AWS Console via Ipsilon authentication, use this URL:
-FIXME
+https://id.fedoraproject.org/saml2/SSO/Redirect?SPIdentifier=urn:amazon:webservices&RelayState=https://console.aws.amazon.com
 
 ------------------------
 Adding a role to AWS IAM
