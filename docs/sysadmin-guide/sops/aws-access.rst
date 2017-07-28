@@ -58,8 +58,8 @@ Note or copy the Role ARN (Amazon Resource Name) for the new role.
 You'll need this in the mapping below.
 
 
-Add a group to FAS
-------------------
+Adding a group to FAS
+---------------------
 
 When finished, login to FAS and create a group to correspond to the
 new role.  Use the prefix *aws-* to denote new AWS roles in FAS.  This
@@ -75,7 +75,7 @@ Adding an IAM role mapping in Ipsilon
 -------------------------------------
 
 Add the new role mapping for FAS group to Role ARN in the ansible git
-repo, under *roles/ipsilon/files/infofas.py*.  Current mappings looks
+repo, under *roles/ipsilon/files/infofas.py*.  Current mappings look
 like this::
 
   aws_groups = {
