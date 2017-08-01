@@ -66,3 +66,16 @@ Services and what they do
 * pagure_milter processes email actions. 
 * pagure_webhook service processes webhooks to notify about changes. 
 * pagure worker service updates git repos with changes. 
+
+Useful commands
+===============
+
+This section lists commands that can be useful to fix issues encountered every
+once in a while.
+
+* Recompile the gitolite configuration file
+
+  ::
+
+  # sudo -u git HOME=/srv/git/ gitolite compile && sudo -u git HOME=/srv/git/ gitolite trigger POST_COMPILE
+
