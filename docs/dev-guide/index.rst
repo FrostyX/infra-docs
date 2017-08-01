@@ -22,6 +22,7 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
    dev-environment
    documentation
    code-style
+   frameworks
    db
    writing-tests
    auth
