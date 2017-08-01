@@ -25,5 +25,6 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
    db
    writing-tests
    auth
+   fedmsg
    sops
    source_control
