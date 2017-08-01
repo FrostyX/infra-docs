@@ -49,10 +49,21 @@ Management (IAM) <https://console.aws.amazon.com/iam/home>`_ in the
 Security, Identity and Compliance tools.
 
 Choose Roles to view current roles.  Confirm there is not already a
-role matching the one you need.  If not, create a new role and assign
-the appropriate policies from the pre-existing IAM policies.  (It's
-unlikely you'll have to create your own, which is outside the scope of
-this SOP.)
+role matching the one you need.  If not, create a new role as follows:
+
+1. Select *Role for identity provider access*.
+2. Select *Grant Web Single Sign-On (WebSSO) access to SAML
+   providers*.  The provider and other values are provided for you.
+   Select *Next Step*.
+3. At the *Verify Role Trust* screen, you should not need to edit the
+   trust relationship.  Select *Next Step*.
+4. At the *Attach Policy* screen, assign the appropriate policies from
+   the pre-existing IAM policies.  It's unlikely you'll have to
+   create your own, which is outside the scope of this SOP.  Then
+   select *Next Step*.
+5. Set the role name and description.  It is recommended you use the
+   *same* role name as the FAS group for clarity.  Then choose *Create
+   role*.
 
 Note or copy the Role ARN (Amazon Resource Name) for the new role.
 You'll need this in the mapping below.
