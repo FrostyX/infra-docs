@@ -62,6 +62,35 @@ blockerbugs02.phx2
   not do any sync operations
 
 
+Building for Infra
+==================
+
+Do not use mock
+---------------
+
+For whatever reason, the ``epel7-infra`` koji tag rejects SRPMs with the
+``el7.centos`` dist tag. Make sure that you build SRPMs with::
+
+  rpmbuild -bs --define='dist .el7' blockerbugs.spec
+
+Also note that this expects the release tarball to be in
+``~/rpmbuild/SOURCES/``.
+
+Building with Koji
+------------------
+
+Unless you have ACLs to tag stuff into the ``epel7-infra`` tag, you'll need to
+do a scratch build and then ask someone in infra to move it into the actual
+tag::
+
+  koji build --scratch epel7-infra blockerbugs-0.4.4.11-1.el7.src.rpm
+
+The fun bit of this is that ``python-flask`` is only available on ``x86_64``
+builders. If your build is routed to one of the non-x86_64, it will fail. The
+only solution available to us is to keep submitting the build until it's routed
+to one of the x86_64 builders and doesn't fail.
+
+
 Upgrading
 =========
 
