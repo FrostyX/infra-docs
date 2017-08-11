@@ -27,7 +27,8 @@ Contents
 1. Contact Information
 2. Building an RPM
 3. Tagging an existing build
-4. Koji package list
+4. Promoting a staging build
+5. Koji package list
 
 Contact Information
 ===================
@@ -89,6 +90,19 @@ For example, if you have an epel7 build of test2-1.0-1.el7, run::
   koji tag epel7-infra-candidate test2-1.0-1.el7
 
 And then the same autosigning and cronjob from the previous section applies.
+
+
+Promoting a staging build
+=========================
+
+After getting autosigned, builds will land in the respective infra-stg tag, for
+example epel7-infra-stg.
+These tags go into repos that are enabled on staging machines, but not on
+production.
+If you decide, after testing, that the build is good enough for production, you
+can promote it by running::
+
+  koji move epel7-infra-stg epel7-infra test2-1.0-1.el7
 
 
 Koji package list
