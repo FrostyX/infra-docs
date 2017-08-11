@@ -3,9 +3,9 @@
 .. date: 2014-12-16
 .. taxonomy: Contributors/Infrastructure
 
-==============
-taskotron SOP
-==============
+=============
+Taskotron SOP
+=============
 
 Run automated tasks to check items in Fedora
 
@@ -69,7 +69,6 @@ taskmaster node as the buildmaster user, run::
 After running the ``upgrade-master`` command, continue the playbook and it
 should run to completion.
 
-
 Deploying the Taskotron Clients
 ===============================
 
@@ -119,7 +118,6 @@ missed during the downtime:
 
 If the jobs are submitted without error, the update process is done.
 
-
 Backup
 ======
 
@@ -137,3 +135,31 @@ Restore from Backup
 
 To restore from backup, load the database dump and restore backed up files to
 the provisioned master before starting the buildmaster service.
+
+Current workarounds
+===================
+
+A list of things that are known to be currently broken and how to work around
+them.
+
+Buildmaster doesn't start on first attempt
+------------------------------------------
+
+When you reboot the server, and have ``buildmaster.service`` configured to
+start automatically, it often fails. Running::
+
+  systemctl start buildmaster.service
+
+again fixes the problem and buildmaster starts (you might try several times).
+
+Note: Increasing ``TimeoutStartSec=`` in the unit file doesn't fix this.
+
+nfs/client role fails to execute - nfs-lock service fails to start
+------------------------------------------------------------------
+
+Due to `RH bug 1403527 <https://bugzilla.redhat.com/show_bug.cgi?id=1403527>`_
+the ``nfs-lock.service`` fails to start, which breaks the ``nfs/client``
+ansible role. The workaround is to fix SELinux labels on ``rpcbind``::
+
+  $ restorecon -v /usr/bin/rpcbind
+  restorecon reset /usr/bin/rpcbind context system_u:object_r:bin_t:s0->system_u:object_r:rpcbind_exec_t:s0
