@@ -90,8 +90,9 @@ services. The buildslave and fedmsg-hub processes will need to be restarted to
 un-idle the system but buildbot will restart anything that was running once the
 buildslaves come back up.
 
-Note: It would be wise to update resultsdb while the taskotron system is not
-processing jobs - that is covered in a separate SOP.
+..note::
+  It would be wise to update resultsdb while the taskotron system is not
+  processing jobs - that is covered in a separate SOP.
 
 There are multiple parts to updating Taskotron: clients, master and git mirrors.
 
