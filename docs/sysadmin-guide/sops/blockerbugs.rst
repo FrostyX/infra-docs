@@ -7,8 +7,9 @@
 Blockerbugs Infrastructure SOP
 ==============================
 
-Blockerbugs is an app developed by Fedora QA to aid in tracking items related
-to release blocking and freeze exception bugs in branched Fedora releases.
+`Blockerbugs <https://pagure.io/fedora-qa/blockerbugs>`_ is an app developed by
+Fedora QA to aid in tracking items related to release blocking and freeze
+exception bugs in branched Fedora releases.
 
 Contents
 ========
@@ -16,10 +17,9 @@ Contents
 1. Contact Information
 2. File Locations
 3. Upgrade Process
-    * Upgrade Preparation (for all upgrades)
-    * Minor Upgrade (no db change)
-    * Major Upgrade (with db changes)
-
+   * Upgrade Preparation (for all upgrades)
+   * Minor Upgrade (no db change)
+   * Major Upgrade (with db changes)
 
 
 Contact Information
@@ -35,11 +35,11 @@ Location
 	Phoenix
 
 Servers
-	blockerbugs01.phx2, blockerbugs02.phx2, blockerbugs01.stg
+	blockerbugs01.phx2, blockerbugs02.phx2, blockerbugs01.stg.phx2
 
 Purpose
-	Hosting the blocker bug tracking application for QA
-
+	Hosting the `blocker bug tracking application
+    <https://pagure.io/fedora-qa/blockerbugs>`_ for QA
 
 File Locations
 ==============
@@ -50,7 +50,7 @@ File Locations
 Node Roles
 ----------
 
-blockerbugs01.stg
+blockerbugs01.stg.phx2
   the staging instance, it is not load balanced
 
 blockerbugs01.phx2
@@ -79,31 +79,36 @@ Also note that this expects the release tarball to be in
 Building with Koji
 ------------------
 
-Unless you have ACLs to tag stuff into the ``epel7-infra`` tag, you'll need to
-do a scratch build and then ask someone in infra to move it into the actual
-tag::
+You'll need to ask someone who has rights to build into ``epel7-infra`` tag to
+make the build for you::
 
-  koji build --scratch epel7-infra blockerbugs-0.4.4.11-1.el7.src.rpm
+  koji build epel7-infra blockerbugs-0.4.4.11-1.el7.src.rpm
 
-The fun bit of this is that ``python-flask`` is only available on ``x86_64``
-builders. If your build is routed to one of the non-x86_64, it will fail. The
-only solution available to us is to keep submitting the build until it's routed
-to one of the x86_64 builders and doesn't fail.
+.. note:: The fun bit of this is that ``python-flask`` is only available on
+  ``x86_64`` builders. If your build is routed to one of the non-x86_64, it
+  will fail. The only solution available to us is to keep submitting the build
+  until it's routed to one of the x86_64 builders and doesn't fail.
+
+Once the build is complete, it should be automatically tagged into
+``epel7-infra-stg`` (after a ~15 min delay), so that you can test it on
+blockerbugs staging instance. Once you've verified it's working well, ask
+someone with infra rights to move it to ``epel7-infra`` tag so that you can
+update it in production.
 
 
 Upgrading
 =========
 
-blockerbugs is currently configured through ansible and all configuration
+Blockerbugs is currently configured through ansible and all configuration
 changes need to be done through ansible.
 
 
 Upgrade Preparation (all upgrades)
 ----------------------------------
 
-blockerbugs is not packaged in epel, so the new build needs to exist in
-the infrastructure-testing repo for deployment to stg or the infrastructure
-for deployments to production.
+Blockerbugs is not packaged in epel, so the new build needs to exist in
+the infrastructure stg repo for deployment to stg or the infrastructure
+repo for deployments to production.
 
 See the blockerbugs documentation for instructions on building a
 blockerbugs RPM.
@@ -112,49 +117,48 @@ blockerbugs RPM.
 Minor Upgrades (no database changes)
 ------------------------------------
 
-Run the following on _both_ blockerbugs01.phx2 and blockerbugs02.phx2 if
-updating in production.
+Run the following on **both** ``blockerbugs01.phx2`` and ``blockerbugs02.phx2``
+if updating in production.
 
 1. Update ansible with config changes, push changes to the ansible repo::
 
     roles/blockerbugs/templates/blockerbugs-settings.py.j2
 
-2. clear yum cache and update the blockerbugs RPM::
+2. Clear yum cache and update the blockerbugs RPM::
 
-      yum clean expire-cache && yum update blockerbugs
+    yum clean expire-cache && yum update blockerbugs
 
-3. restart httpd to reload the application::
+3. Restart httpd to reload the application::
 
-      service httpd restart
+    service httpd restart
 
 
 Major Upgrades (with database changes)
 --------------------------------------
-Run the following on _both_ blockerbugs01.phx2 and blockerbugs02.phx2 if
-updating in production.
+Run the following on **both** ``blockerbugs01.phx2`` and ``blockerbugs02.phx2``
+if updating in production.
 
-1. Change database users in ansible to one which has access to change the
-    database schema.
+1. Update ansible with config changes, push changes to the ansible repo::
 
-2. Update ansible with config changes, push changes to the ansible repo::
+    roles/blockerbugs/templates/blockerbugs-settings.py.j2
 
-      roles/blockerbugs/templates/blockerbugs-settings.py.j2
+2. Stop httpd on **all** relevant instances (if load balanced)::
 
-3. clear yum cache and update the blockerbugs RPM on all relevant instances::
+    service httpd stop
 
-      yum clean expire-cache && yum update blockerbugs
+3. Clear yum cache and update the blockerbugs RPM on all relevant instances::
 
-4. stop httpd on _all_ relevant instances (if load balanced)
+    yum clean expire-cache && yum update blockerbugs
 
 5. Upgrade the database schema::
 
-      blockerbugs upgrade_db
+    blockerbugs upgrade_db
 
 6. Check the upgrade by running a manual sync to make sure that nothing
-    unexpected went wrong.::
+   unexpected went wrong::
 
-      blockerbugs sync
+    blockerbugs sync
 
-7. start httpd back up::
+7. Start httpd back up::
 
-      service httpd restart
+    service httpd start
