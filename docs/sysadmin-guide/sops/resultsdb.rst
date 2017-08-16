@@ -36,8 +36,9 @@ Deployment
 The only part of resultsdb deployment that isn't currently in the ansible
 playbooks is database initialization (disabled due to bug).
 
-Once the resultsdb app has been installed, initialize the database, run:
-resultsdb init_db
+Once the resultsdb app has been installed, initialize the database, run::
+
+  resultsdb init_db
 
 Updating
 ========
