@@ -9,6 +9,7 @@ Taskotron SOP
 
 Run automated tasks to check items in Fedora
 
+
 Contact Information
 ===================
 
@@ -31,6 +32,7 @@ Purpose
   run automated tasks on fedora components and report results
   of those task runs
 
+
 Architecture
 ============
 
@@ -44,6 +46,7 @@ The system is made up of several components:
   buildbot)
 * results storage (covered in the resultsdb SOP)
 * mirror task git repos
+
 
 Deploying the Taskotron Master
 ==============================
@@ -64,10 +67,11 @@ buildmaster initialization is not part of the playbook (it fails if re-run and
 no upgrade is needed). Once you hit that failure, run the following on the
 taskmaster node as the buildmaster user, run::
 
-  buildbot upgrade-master /home/buildmaster/master
+  buildbot upgrade-master /srv/buildmaster/master
 
 After running the ``upgrade-master`` command, continue the playbook and it
 should run to completion.
+
 
 Deploying the Taskotron Clients
 ===============================
@@ -81,61 +85,91 @@ Deploying the Taskotron clients is a matter of running the proper group
 playbook once the variable files are properly filled in. No additional
 configuration is needed.
 
+
 Updating
 ========
 
-This part of the SOP can also be used to idle taskotron - just skip the update
-and reboot steps but turn off fedmsg-hub and shut down the buildslave
-services. The buildslave and fedmsg-hub processes will need to be restarted to
-un-idle the system but buildbot will restart anything that was running once the
-buildslaves come back up.
-
 ..note::
-  It would be wise to update resultsdb while the taskotron system is not
-  processing jobs - that is covered in a separate SOP.
+  It would be wise to update ResultsDB while the Taskotron system is not
+  processing jobs - that is covered in the ResultsDB SOP.
 
 There are multiple parts to updating Taskotron: clients, master and git mirrors.
 
-1. on a non-affected machine, run taskotron-trigger such that it records the
-   jobs that have been triggered
-2. stop fedmsg-hub on the taskotron master so that no new jobs come in
-3. wait for buildbot to become idle
-4. run ``systemctl stop buildslave`` on all affected clients
-5. run the ``update_grokmirror_repos.yml`` playbook on the system to update
-6. update and reboot the master node
-7. update and reboot the client nodes
-8. start the buildslave process on all client nodes (they aren't set to start
-   at boot)
+#. Write down the timestamp when you're switching task processing off. After
+   the update, you'll search for all fedmsgs since this timestamp. You can see
+   the current timestamp like this::
 
-Once all affected machines are back up, verify that all services have come
-back up cleanly and start the process of running any jobs which may have been
-missed during the downtime:
+     date -u +%s
 
-1. there will be a ``/var/log/taskotron-trigger/jobs.csv`` file containing jobs
-   which need to be run on the non-affected machine running taskotron-trigger
-   mentioned above. Copy the relevant contents of that file to the taskotron
-   master node as ``newjobs.csv`` (filename isn't important).
-2. on the master node, run ``jobrunner newjobs.csv``
+#. Stop ``fedmsg-hub`` on the Taskotron master so that no new jobs come in::
 
-If the jobs are submitted without error, the update process is done.
+     systemctl stop fedmsg-hub
+
+#. Wait for Buildbot to become idle (see its web UI).
+#. Stop all buildslaves on all affected clients::
+
+     systemctl stop buildslave@qa*
+
+#. Run the ``update_grokmirror_repos.yml`` playbook on the system to update.
+#. Update and reboot the master node.
+
+   * If you're completely reinstalling the master node machine, you'll need
+     to back up the Buildbot data first. See `Backup`_ section.
+
+#. Stop ``fedmsg-hub`` on master node once again, because it's set to start at
+   boot::
+
+     systemctl stop fedmsg-hub
+
+7. Update and reboot the client nodes.
+8. Start the buildslave processes on all client nodes (they aren't set to start
+   at boot)::
+
+     cd /home; for BS in qa*; do systemctl start buildslave@$BS; done
+
+#. Process all the fedmsgs that you missed during this update. Run::
+
+     jobrunner --start $TIMESTAMP
+
+   where $TIMESTAMP is the timestamp saved at the beginning of starting the
+   update process.
+
+#. Start ``fedmsg-hub`` on Taskotron master::
+
+     systemctl start fedmsg-hub
+
+
+Making Taskotron idle
+=====================
+
+You can use the instructions in the `Updating`_ section also to make Taskotron
+idle - skip the update and reboot steps, but turn off ``fedmsg-hub`` and shut
+down the ``buildslave@qa*`` services. The buildslave and ``fedmsg-hub``
+processes will need to be restarted to un-idle the system but buildbot will
+restart anything that was running once the buildslaves come back up.
+
 
 Backup
 ======
 
 There are two major things which need to be backed up for Taskotron: job data
-and the buildmaster database.
+and the buildmaster database. Make sure to stop ``buildmaster.service`` before
+backing up any of those.
 
 The buildmaster database is a normal postgres dump from the database server.
+
 The job data is stored on the taskotron master node in
-``/home/buildmaster/master/`` directory. The files in ``master/`` are not
+``/srv/buildmaster/master/`` directory. The files in ``master/`` are not
 important but all subdirectories outside of ``templates/`` and ``public_html/``
 are.
+
 
 Restore from Backup
 ===================
 
 To restore from backup, load the database dump and restore backed up files to
-the provisioned master before starting the buildmaster service.
+the provisioned master before starting the ``buildmaster.service``.
+
 
 Current workarounds
 ===================
