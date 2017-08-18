@@ -129,7 +129,7 @@ There are multiple parts to updating Taskotron: clients, master and git mirrors.
 
 #. Process all the fedmsgs that you missed during this update. Run::
 
-     jobrunner --start $TIMESTAMP
+     sudo -u fedmsg jobrunner --start $TIMESTAMP
 
    where $TIMESTAMP is the timestamp saved at the beginning of starting the
    update process.
