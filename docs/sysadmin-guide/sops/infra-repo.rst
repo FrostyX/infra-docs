@@ -118,7 +118,7 @@ for the respective tag.
 
 To list koji admins::
 
-  koji list-history --permission=admin --active | grep grant
+  koji list-history -s user_perms --permission=admin --active
 
 For koji admins, they can run::
 
