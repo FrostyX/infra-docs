@@ -83,7 +83,7 @@ Admins can also manually trigger that script via::
 Tagging existing builds
 =======================
 
-If you already have a real build and want to use it inthe infrastructure before
+If you already have a real build and want to use it in the infrastructure before
 it has landed in stable, you can tag it into the respective infra-candidate tag.
 For example, if you have an epel7 build of test2-1.0-1.el7, run::
 
