@@ -37,8 +37,8 @@ link
 <https://id.fedoraproject.org/saml2/SSO/Redirect?SPIdentifier=urn:amazon:webservices&RelayState=https://console.aws.amazon.com>`_.
 
 You must be in the `aws-iam FAS group
-<https://admin.fedoraproject.org/accounts/group/view/aws-iam>`_ to
-perform this action.
+<https://admin.fedoraproject.org/accounts/group/view/aws-iam>`_ (or
+another group with IAM access) to perform this action.
 
 
 Adding a role to AWS IAM
@@ -51,18 +51,19 @@ Security, Identity and Compliance tools.
 Choose Roles to view current roles.  Confirm there is not already a
 role matching the one you need.  If not, create a new role as follows:
 
-1. Select *Role for identity provider access*.
-2. Select *Grant Web Single Sign-On (WebSSO) access to SAML
-   providers*.  The provider and other values are provided for you.
-   Select *Next Step*.
-3. At the *Verify Role Trust* screen, you should not need to edit the
-   trust relationship.  Select *Next Step*.
-4. At the *Attach Policy* screen, assign the appropriate policies from
-   the pre-existing IAM policies.  It's unlikely you'll have to
-   create your own, which is outside the scope of this SOP.  Then
-   select *Next Step*.
-5. Set the role name and description.  It is recommended you use the
-   *same* role name as the FAS group for clarity.  Then choose *Create
+1. Select *Create role*.
+2. Select *SAML 2.0 federation*.
+3. Choose the SAML provider *id.fedoraproject.org*, which should
+   already be populated as a choice from previous use.
+4. Select the attribute *SAML:aud*. For value, enter
+   *https://signin.aws.amazon.com/saml*. Do not add a
+   condition. Proceed to the next step.
+5. Assign the appropriate policies from the pre-existing IAM policies.
+   It's unlikely you'll have to create your own, which is outside the
+   scope of this SOP.  Then proceed to the next step.
+6. Set the role name and description.  It is recommended you use the
+   *same* role name as the FAS group for clarity.  Fill in a longer
+   description to clarify the purpose of the role. Then choose *Create
    role*.
 
 Note or copy the Role ARN (Amazon Resource Name) for the new role.
