@@ -12,8 +12,8 @@ http://status.fedoraproject.org/. This page should be kept
 up to date with the current status of the services ran by
 Fedora Infrastructure.
 
-This page is hosted at an OpenShift instance.
-The upstream repository is fedora-status on FedoraHosted.org.
+This page is hosted at AWS.
+The upstream repository is fedora-status on Pagure.io.
 
 Contact Information
 ===================
@@ -33,22 +33,32 @@ Upstream:
 How it works
 ============
 To keep this website as stable as can be, the page is
-generated at the time of upload by OpenShift.
- 
-As soon as you push to the OpenShift repo, a build hook
-will create the HTML page.
- 
-Only members of sysadmin-noc and sysadmin-main can update
-the status website.
+hosted external to our main infrastructure, in AWS.
+
+It is based on an S3 bucket with the files, fronted by
+a CloudFront distribution for TLS termination and CNAMEs.
+
+The files are statically generated on update, and then pushed
+out to S3.
+
+Only members of sysadmin-main and people given the AWS credentials
+can update the status website.
+
+Setting up
+==========
+1. Check out the repo at::
+      
+    git@github.com:fedora-infra/statusfpo.git
+
+2. Install locally the following packages: python2-jinja2 awscli
+
+3. Grab ansible-private/files/aws-status-credentials and store in ~/.aws/credentials.
 
 Updating the page
 =================
-1. Check out the repo at::
-      
-    ssh://bab5ba6eb9b94f2083fdeefc5e87309b@status-fedora2.rhcloud.com/~/git/status.git/
  
-2. cd status
-3. Run ./manage.py
+1. cd status
+2. Run ./manage.py
 
 manage.py takes 3+ arguments::
 
