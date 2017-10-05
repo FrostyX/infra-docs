@@ -65,6 +65,14 @@ Requirements for continuing:
 * MUST have the ticket assigned and accepted by someone in
   infrastructure sysadmin-main group.
 
+Ticket comment template:
+------------------------
+
+Software: <mynewservice>
+Advantage for Fedora: <It will give us unicorns>
+Sponsor: <someone>
+
+
 Planning
 ========
 
@@ -91,6 +99,16 @@ Requirements for continuing:
 
 * MUST determine who is involved in the deployment/maintaining the
   resource.
+
+Ticket comment template:
+------------------------
+
+Email list thread: <https://lists.fedoraproject.org/....>
+Upstream source: <https://github.com/...>
+Development contacts: <person1, person2>
+Maintainership contacts: <person2, person3>
+Load balanceable: <yes/no>
+Caching: <yes/no, which paths, ...>
 
 Development Instance
 ====================
@@ -125,6 +143,13 @@ Requirements for continuing:
 
 * MUST tag in the security officer in the ticket so an audit can be scheduled.
 
+Ticket comment template:
+------------------------
+
+SOP link: <https://docs.pagure.io/infra-docs/.....>
+Audit request: <https://pagure.io/fedora-infrastructure/issue/....> (can be same)
+Audit timeline: <04-11-2025 - 06-11-2025>
+
 Staging Instance
 ================
 
@@ -149,6 +174,14 @@ Requirements for continuing:
   infrastructure folks.
 
 * MUST have an approved audit by the security officer or appointed delegate.
+
+Ticket comment template:
+------------------------
+
+Ansible playbooks: <ansible/playbooks/groups/myservice.yml>
+Fully rebuilt from ansible: <yes>
+Production goal: <08-11-2025>
+Approved audit: <https://pagure.io/fedora-infrastructure/issue/....>
 
 Production deployment
 =====================
