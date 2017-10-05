@@ -54,6 +54,10 @@ Setting up
 
 3. Grab ansible-private/files/aws-status-credentials and store in ~/.aws/credentials.
 
+4. Run::
+
+    aws configure set preview.cloudfront true
+
 Updating the page
 =================
  
