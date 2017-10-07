@@ -101,7 +101,7 @@ Observing ODCS Behavior
 
 There is currently no command line tool to query ODCS, but ODCS provides REST
 API which can be used to observe the ODCS behavior. This is available on
-https://odcs.fedoraproject.org/odcs/1/composes.
+https://odcs.fedoraproject.org/api/1/composes.
 
 The API can be filtered by following keys entered as HTTP GET variables:
 
@@ -121,7 +121,7 @@ Removing compose before its expiration time
 Members of FAS group defined in the `admins` section of ODCS configuration
 can remove any compose by sending DELETE request to following URL:
 
-https://odcs.fedoraproject.org/odcs/1/composes/$compose_id
+https://odcs.fedoraproject.org/api/1/composes/$compose_id
 
 Logs
 ====
