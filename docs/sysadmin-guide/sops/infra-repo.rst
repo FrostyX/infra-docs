@@ -64,20 +64,16 @@ After it has been built, you will see it's tagged as $repo-infra-candidate,
 this means that it is a candidate for being signed. The automatic signing
 system will pick it up and sign the package for you without any further
 intervention. You can track when this is done by checking the build info:
-when it is moved from $repo-infra-candidate to $repo-infra, it has been
+when it is moved from $repo-infra-candidate to $repo-infra-stg, it has been
 signed. You can check this on the web interface (look under "Tags"), or via::
 
   koji buildinfo test-1.0-1.el7.
 
-For importing it into the live repositories, you can just wait a few minutes.
-There's a cronjob that runs every :00, :15, :30 and :45 that refreshes the
-infrastructure repository with all packages that have been tagged.
+After the build has been tagged into the $repo-infra-stg tag, tag2distrepo will
+automatically create a distrepo task, which will update the repository so that
+the package is available on staging hosts.
 After this time, you can yum clean all and then install the packages via yum
 install or yum update.
-
-Admins can also manually trigger that script via::
-
-  /mnt/fedora/app/fi-repo/infra/update.sh
 
 
 Tagging existing builds
@@ -89,7 +85,7 @@ For example, if you have an epel7 build of test2-1.0-1.el7, run::
 
   koji tag epel7-infra-candidate test2-1.0-1.el7
 
-And then the same autosigning and cronjob from the previous section applies.
+And then the same autosigning and repogen from the previous section applies.
 
 
 Promoting a staging build
