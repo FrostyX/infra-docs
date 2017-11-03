@@ -79,8 +79,8 @@ on that branch, and requests rebuilds of them in the MBS.
 
 Container Slow Flow
 -------------------
-When a traditional rpm or modular rpm is *shipped stable*, trigger rebuilds of
-all containers that ever included previous versions of this rpm.
+When a traditional rpm or modular rpm is *shipped stable*, this trigger rebuilds
+of all containers that ever included previous versions of this rpm.
 
 This applies to both modular and non-modular contexts.  Today, you build an rpm
 that fixes a CVE, but *some other person* maintains a container that includes
