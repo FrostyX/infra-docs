@@ -109,6 +109,25 @@ there is also a script to adapt those paths in MirrorManager's database::
 
   sudo -u mirrormanager mm2_move-to-archive --originalCategory='Fedora EPEL' --directoryRe='/4/'
 
+mirrorlist containers and mirrorlist servers
+============================================
+Every hour at :55 after the hour, mm-backend01 generates a pkl file with all the 
+current mirrormanager information in it and syncs it to proxies and mirrorlist-servers. 
+Each proxy accepts requests to mirrors.fedoraproject.org on apache, then uses haproxy
+to determine what backend will reply. There are 2 containers defined on each proxy: 
+mirrorlist1 and mirrorlist2. haproxy will look for those first, then fall back to any
+of the mirrorlist servers defined over the vpn. 
+
+At :15 after the hour, a script runs on all proxies:
+/usr/local/bin/restart-mirrorlist-containers
+This script starts up mirrorlist2 container, makes sure it can process requests and then
+if so, restarts mirrorlist1 container with the new pkl data. If not, mirrorlist1 keeps 
+running with the old data. During this process at least one (with mirrorlists servers 
+as backup) server is processing requests so users see no issues. 
+
+mirrorlist-containers log to /var/log/mirrormanager/mirrorlist{1|2}/ on the host 
+proxy server. 
+
 Troubleshooting and Resolution
 ==============================
 
@@ -130,10 +149,33 @@ is required the mirrorlist pickle from the previous run is available at::
 
   /var/lib/mirrormanager/old/mirrorlist_cache.pkl
 
-Restarting mirrorlist_server *TODO*
------------------------------------
+Updating the mirrorlist containers
+----------------------------------
 
-mirrorlist_server on the app* machines is managed via supervisord. If you want
-to restart it, use::
+The container used for mirrorlists is the mirrormanager2-mirrorlist container
+in Fedora dist git: https://src.fedoraproject.org/cgit/container/mirrormanager2-mirrorlist.git/
+The one being used is defined in a ansible variable in:
+roles/mirrormanager/mirrorlist_proxy/defaults/main.yml
+and in turn used in systemd unit files for mirrorlist1 and mirrorlist2. 
+To update the container used, update this variable, run the playbook 
+and then restart the mirrorlist1 and mirrorlist2 containers on each proxy. 
+Note that this may take a while the first time as the image has to be 
+downloaded from our registiry. 
 
-  supervisorctl restart
+Debugging problems with mirrorlist container startup
+----------------------------------------------------
+Sometimes on boot some hosts won't be properly serving mirrorlists. 
+This is due to a container startup issue. 
+run: 'docker ps -a' as root to see the active containers. It will 
+usually say something like 'exited(1)' or the like. Record the 
+container id and then run: 'docker rm --force <containerid>'
+then run 'docker ps -a' and confirm nothing shows. Then run
+'systemctl start mirrorlist1' and it should correctly start 
+mirrorlist1. 
+
+General debugging for mirrorlist containers
+-------------------------------------------
+docker commands like 'docker ps -a' show a fair bit of information. 
+Also, systemctl status mirrorlist1/2 or the journal should have information
+when a container is failing. 
+
