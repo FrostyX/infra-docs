@@ -158,12 +158,12 @@ Production
 Ensure that no changes are needed to the Bodhi configuration files. If they
 are, make the needed changes and re-run the deployment playbooks::
 
-        sudo rbac-playbook groups/bodhi-backend.yml
-        sudo rbac-playbook groups/bodhi2.yml
+        sudo rbac-playbook groups/bodhi-backend.yml -l bodhi2,bodhi-backend
+        sudo rbac-playbook groups/bodhi2.yml -l bodhi2,bodhi-backend
 
 To update the bodhi RPMs in production::
 
-        sudo rbac-playbook manual/upgrade/bodhi.yml
+        sudo rbac-playbook manual/upgrade/bodhi.yml -l bodhi2,bodhi-backend
 
 
 Syncing the production database to staging
