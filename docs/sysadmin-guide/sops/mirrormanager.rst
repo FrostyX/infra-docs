@@ -112,7 +112,7 @@ there is also a script to adapt those paths in MirrorManager's database::
 mirrorlist containers and mirrorlist servers
 ============================================
 Every hour at :55 after the hour, mm-backend01 generates a pkl file with all the 
-current mirrormanager infomration in it and syncs it to proxies and mirrorlist-servers. 
+current mirrormanager information in it and syncs it to proxies and mirrorlist-servers. 
 Each proxy accepts requests to mirrors.fedoraproject.org on apache, then uses haproxy
 to determine what backend will reply. There are 2 containers defined on each proxy: 
 mirrorlist1 and mirrorlist2. haproxy will look for those first, then fall back to any
