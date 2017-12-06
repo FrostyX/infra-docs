@@ -46,35 +46,27 @@ changing priorities.
 Backend (koschei-backend) consists of multiple services:
 
 - koschei-watcher - listens to fedmsg events for complete builds and
-  changes build states in the database. Additionally listens to
-  repo-done events which are enqueued to be processed by
-  koschei-resolver
+  changes build states in the database
 
-- koschei-resolver - resolves package dependencies in given repo using
-  hawkey and compares them with previous iteration to get a dependency
-  diff. There are two types of resolutions:
-  
-  build resolution 
-    resolves complete build in the repo in which it
-    was done on Koji. Produces the dependency differences visible in the
-    frontend.
-  new repo resolution 
-    resolves all packages in newest repo available
-    in Koji. The output is a base for scheduling new builds.
+- koschei-repo-resolver - resolves package dependencies in given repo using
+  hawkey and compares them with previous iteration to get a dependency diff. It
+  resolves all packages in newest repo available in Koji. The output is a base
+  for scheduling new builds
+
+- koschei-build-resolver - resolves complete builds in the repo in which they
+  were done in Koji. Produces the dependency differences visible in the
+  frontend
 
 - koschei-scheduler - schedules new builds based on multiple criteria:
-  
-  dependency priority 
-    dependency changes since last build valued by
-    their distance in the dependency graph.
-  manual and static priorities 
-    set manually in the frontend. Manual
+  - dependency priority - dependency changes since last build valued by their
+    distance in the dependency graph
+  - manual and static priorities - set manually in the frontend. Manual
     priority is reset after each build, static priority persists
-  time priority 
-    time since last build (logarithmical formula)
+  - time priority - time elapsed since the last build
 
 - koschei-polling - polls the same types of events as koschei-watcher
-  without reliance on fedmsg
+  without reliance on fedmsg. Additionaly takes care of package list
+  synchronization and other regularly executed tasks
 
 
 Configuration
