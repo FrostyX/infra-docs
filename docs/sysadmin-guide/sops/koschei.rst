@@ -206,21 +206,17 @@ koschei user::
   koschei-admin set-priority --static foo 100
 
 
-Adding new collection
+Branching a new Fedora release
 =====================
 After branching occurs and Koji build targets have been created,
-Koschei should be updated to reflect the new state.  This is done by
-renaming existing rawhide collection to branched and creating new
-rawhide collection.
+Koschei should be updated to reflect the new state. There is a special
+admin command for this purpose, which takes care of copying the
+configuration and also last builds from the history.
 
-To rename "f26" collection to "Fedora 26", run as koschei user::
+To branch the collection from Fedora 27 to Fedora 28, use the following::
 
-  koschei-admin edit-collection f26 --display-name 'Fedora 26' --branch f26 --bugzilla-version 26
+  koschei-admin branch-collection f27 f28 -d 'Fedora 27' -t f28 --bugzilla-version 27
 
-Then create new "f27" collection by running::
-
-  koschei-admin create-collection f27 --display-name 'Fedora rawhide' --target f27 --build-group build --branch master --bugzilla-product Fedora --bugzilla-version rawhide
-
-Finally, add the new collection to "fedora" group::
-
-  koschei-admin edit-collection-group fedora --contents f26 f27
+Then you can optionally verify that the collection configuration
+is correct by visiting https://apps.fedoraproject.org/koschei/collections
+and examining the configuration of newly branched collection.
