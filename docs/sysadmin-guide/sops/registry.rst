@@ -23,11 +23,14 @@ Contact
  #fedora-admin
 Persons
  bowlofeggs
- maxamillion
+ cverna
+ puiterwijk
 Location
  Phoenix
 Servers
- docker-registry01
+ docker-registry02.phx2.fedoraproject.org
+ docker-registry03.phx2.fedoraproject.org
+ docker-candidate-registry01.phx2.fedoraproject.org
 Purpose
  Serve Fedora's container images
 
