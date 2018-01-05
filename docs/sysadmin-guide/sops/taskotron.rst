@@ -198,17 +198,3 @@ ansible role. The workaround is to fix SELinux labels on ``rpcbind``::
 
   $ restorecon -v /usr/bin/rpcbind
   restorecon reset /usr/bin/rpcbind context system_u:object_r:bin_t:s0->system_u:object_r:rpcbind_exec_t:s0
-
-Buildmaster/buildslaves don't find their PID file
--------------------------------------------------
-
-If you see a similar error from buildmaster::
-
-  buildmaster.service: PID file /srv/buildmaster/master/twistd.pid not readable (yet?) after start: Permission denied
-
-or from buildslave::
-
-  The buildslave took more than 10 seconds to confirm that it started correctly
-
-it seems to be related to ``PIDFile`` key in the service file. See
-https://pagure.io/taskotron/issue/236 to learn how to resolve this.
