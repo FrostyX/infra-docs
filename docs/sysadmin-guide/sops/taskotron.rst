@@ -123,9 +123,11 @@ There are multiple parts to updating Taskotron: clients, master and git mirrors.
 
 7. Update and reboot the client nodes.
 8. Start the buildslave processes on all client nodes (they aren't set to start
-   at boot)::
+   at boot). Use one of these commands (depending on which deployment you
+   currently work on)::
 
      cd /home; for BS in qa*; do systemctl start buildslave@$BS; done
+     cd /srv/buildslaves; for BS in qa*; do systemctl start buildslave@$BS; done
 
 #. Process all the fedmsgs that you missed during this update. Run::
 
