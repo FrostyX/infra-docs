@@ -61,7 +61,7 @@ through an Apache server.
 
 It hosts an NFS share that contains the tests, the 'needles' (screenshots with metadata as JSON
 files that are used for screen matching), and test 'assets' like ISO files and disk images. The
-path is `/var/lib/openqa/share/factory`.
+path is ``/var/lib/openqa/share/factory``.
 
 In our deployment, the PostgreSQL database for each instance is hosted by the QA database server.
 Also, some paths on the server are themselves mounted as NFS shares from the infra storage server.
@@ -76,7 +76,7 @@ so the appropriate fedmsg configuration must be in place for this to emit events
 
 The server systems run a fedmsg consumer for the purpose of automatically scheduling jobs in
 response to the appearance of new composes and critical path updates, and one for the purpose
-of reporting the results of completed jobs to ResultsDB and Wikitcms. These use the `fedmsg-hub`
+of reporting the results of completed jobs to ResultsDB and Wikitcms. These use the ``fedmsg-hub``
 system.
 
 
@@ -92,7 +92,7 @@ interacts with it via VNC and the serial console, following a set of steps dicta
 should do and what response it should expect in terms of screen contents or serial console
 output. The server 'pushes' jobs to the worker instances over a websocket connection.
 
-Each worker host must mount the `/var/lib/openqa/share/factory` NFS share provided by the server.
+Each worker host must mount the ``/var/lib/openqa/share/factory`` NFS share provided by the server.
 If this share is not mounted, any jobs run will fail immediately due to expected asset and test
 files not being found.
 
@@ -119,7 +119,7 @@ below): no manual intervention should be required when a new Fedora release appe
 this does not happen, something is wrong, and manual inspection is needed.
 
 Our usual practice is to upgrade the openQA systems to new Fedora releases promptly as they
-appear, using `dnf system-upgrade`. This is done manually. We usually upgrade the staging instance
+appear, using ``dnf system-upgrade``. This is done manually. We usually upgrade the staging instance
 first and watch for problems for a week or two before upgrading production.
 
 
@@ -129,10 +129,10 @@ Rebooting / restarting
 The optimal approach to rebooting an entire openQA deployment is as follows:
 
 1. Wait until no jobs are running
-2. Stop all `openqa-*` services on the server, so no more will be queued
-3. Stop all `openqa-worker@` services on the worker hosts
+2. Stop all ``openqa-*`` services on the server, so no more will be queued
+3. Stop all ``openqa-worker@`` services on the worker hosts
 4. Reboot the server
-5. Check for failed services (`systemctl --failed`) and restart any that failed
+5. Check for failed services (``systemctl --failed``) and restart any that failed
 6. Once the server is fully functional, reboot the worker hosts
 7. Check for failed services and restart any that failed, particularly the NFS mount service
 
@@ -144,7 +144,7 @@ or the server and worker getting confused about running jobs due to the websocke
 being restarted.
 
 If only a worker host needs restarting, there is no need to restart the server too, but it is best
-to wait until no jobs are running on that host, and stop all `open-worker@` services on the host
+to wait until no jobs are running on that host, and stop all ``open-worker@`` services on the host
 before rebooting it.
 
 There are two ways to check if jobs are running and if so where. You can go to the web UI for
@@ -173,7 +173,7 @@ new job with a new job ID, and the previous job still exists. openQA attempts to
 cases of inter-dependent jobs correctly when restarting, but doesn't always manage to do it right;
 when it goes wrong, the best thing to do is usually to re-run all jobs for that medium.
 
-To run or re-run the full set of tests for a compose or update, you can use the `fedora-openqa`
+To run or re-run the full set of tests for a compose or update, you can use the ``fedora-openqa``
 CLI. To run or re-run tests for a compose, use:
 
     fedora-openqa compose -f (COMPOSE LOCATION)
@@ -182,14 +182,14 @@ where (COMPOSE LOCATION) is the full URL of the /compose subdirectory of the com
 only work for Pungi-produced composes with the expected productmd-format metadata, and a couple
 of other quite special cases.
 
-The `-f` argument means 'force', and is necessary to re-run tests: usually, the scheduler will
-refuse to re-schedule tests that have already run, and `-f` overrides this.
+The ``-f`` argument means 'force', and is necessary to re-run tests: usually, the scheduler will
+refuse to re-schedule tests that have already run, and ``-f`` overrides this.
 
 To run or re-run tests for an update, use:
 
     fedora-openqa update -f (UPDATEID) (RELEASE)
 
-where (UPDATEID) is the update's ID - something like `FEDORA-2018-blahblah` - and (RELEASE) is the
+where (UPDATEID) is the update's ID - something like ``FEDORA-2018-blahblah`` - and (RELEASE) is the
 release for which the update is intended (27, 28, etc).
 
 To run or re-run only the tests for a specific medium (usually a single image file), you must use
@@ -197,17 +197,17 @@ the lower-level web API client, with a more complex syntax. The command looks so
 
     /usr/share/openqa/script/client isos post ISO=Fedora-Server-dvd-x86_64-Rawhide-20180108.n.0.iso DISTRI=fedora VERSION=Rawhide FLAVOR=Server-dvd-iso ARCH=x86_64 BUILD=Fedora-Rawhide-20180108.n.0 CURRREL=27 PREVREL=26 RAWREL=28 IMAGETYPE=dvd LOCATION=http://kojipkgs.fedoraproject.org/compose/rawhide/Fedora-Rawhide-20180108.n.0/compose SUBVARIANT=Server
 
-The `ISO` value is the filename of the image to test (it may not actually be an ISO), the `DISTRI`
-value is always 'fedora', the `VERSION` value should be the release number or 'Rawhide', the
-`FLAVOR` value depends on the image being tested (you can check the value from an existing test
-for the same or a similar ISO), the `ARCH` value is the arch of the image being tested, the `BUILD`
-value is the compose ID, `CURREL` should be the release number of the current Fedora release at
-the time the test is run, `PREVREL` should be one lower than `CURREL`, `RAWREL` should be the
-release number associated with Rawhide at the time the test is run, `IMAGETYPE` depends on the
-image being tested (again, check a similar test for the correct value), `LOCATION` is the URL to
-the /compose subdirectory of the compose location, and `SUBVARIANT` again depends on the image
+The ``ISO`` value is the filename of the image to test (it may not actually be an ISO), the ``DISTRI``
+value is always 'fedora', the ``VERSION`` value should be the release number or 'Rawhide', the
+``FLAVOR`` value depends on the image being tested (you can check the value from an existing test
+for the same or a similar ISO), the ``ARCH`` value is the arch of the image being tested, the ``BUILD``
+value is the compose ID, ``CURREL`` should be the release number of the current Fedora release at
+the time the test is run, ``PREVREL`` should be one lower than ``CURREL``, ``RAWREL`` should be the
+release number associated with Rawhide at the time the test is run, ``IMAGETYPE`` depends on the
+image being tested (again, check a similar test for the correct value), ``LOCATION`` is the URL to
+the /compose subdirectory of the compose location, and ``SUBVARIANT`` again depends on the image
 being tested. Please ask for help if this seems too daunting. To re-run the 'universal' tests on a
-given image, set the `FLAVOR` value to 'universal', then set all other values as appropriate to the 
+given image, set the ``FLAVOR`` value to 'universal', then set all other values as appropriate to the 
 chosen image. The 'universal' tests are only likely to work at all correctly with DVD or netinst
 images.
 
@@ -217,7 +217,7 @@ variable values, which can be useful in some situations. Using it looks like thi
     /usr/share/openqa/script/clone_job.pl --skip-download --from localhost 123 RAWREL=28
 
 to clone job 123 with the RAWREL variable set to '28', for instance. For interdependent jobs, you
-may or may not want to use the `--skip-deps` argument to avoid re-running the cloned job's parent
+may or may not want to use the ``--skip-deps`` argument to avoid re-running the cloned job's parent
 job(s), depending on circumstances.
 
 
@@ -234,7 +234,7 @@ all installed subpackages on the server. The server services should be automatic
 part of the package update. Then, update all installed subpackages on the worker hosts, and restart
 all worker services. A 'for' loop can help with that, for instance:
 
-    for i in 1 2 3 4 5 6 7 8 9 10; do systemctl restart openqa-worker@$i.service; done
+    for i in {1..10}; do systemctl restart openqa-worker@$i.service; done
 
 on a host with ten worker instances.
 
@@ -268,7 +268,7 @@ Logging
 Just about all useful logging information for all aspects of openQA and the scheduling and
 report tools is logged to the journal, except that the Apache server logs may be of interest
 in debugging issues related to accessing the web UI or websockets server. To get more detailed
-logging from openQA components, change the logging level in `/etc/openqa/openqa.ini` from
+logging from openQA components, change the logging level in ``/etc/openqa/openqa.ini`` from
 'info' to 'debug' and restart the relevant services. Any run of the Ansible plays will reset
 this back to 'info'.
 
@@ -282,15 +282,15 @@ Dynamic asset generation (createhdds)
 =====================================
 
 Some of the hard disk image file 'assets' used by the openQA tests are created by a tool called
-`createhdds`, which is checked out of a git repo to `/root/createhdds` on the servers and also
-on some guests. This tool uses `virt-install` and the Python bindings for `libguestfs` to create
+``createhdds``, which is checked out of a git repo to ``/root/createhdds`` on the servers and also
+on some guests. This tool uses ``virt-install`` and the Python bindings for ``libguestfs`` to create
 various hard disk images the tests need to run. It is usually run in two different ways. The
 ansible plays run it in a mode where it will only create expected images that are entirely
 missing: this is mainly meant to facilitate initial deployment. The plays also install a file
-to `/etc/cron.daily` causing it to be run daily in a mode where it will also recreate images that
+to ``/etc/cron.daily`` causing it to be run daily in a mode where it will also recreate images that
 are 'too old' (the age-out conditions for images are part of the tool itself).
 
-This process isn't 100% reliable; `virt-install` can sometimes fail, either just quasi-randomly
+This process isn't 100% reliable; ``virt-install`` can sometimes fail, either just quasi-randomly
 or every time, in which case the cause of the failure needs to be figured out and fixed so the
 affected image can be (re-)built.
 
@@ -303,20 +303,20 @@ access to the NFS share for this purpose.
 Compose check reports (check-compose)
 =====================================
 
-An additional ansible role runs on each openQA server, called `check-compose`. This role installs
-a tool (also called `check-compose`) and an associated fedmsg consumer. The consumer kicks in
-when all openQA tests for any compose finish, and uses the `check-compose` tool to send out an
+An additional ansible role runs on each openQA server, called ``check-compose``. This role installs
+a tool (also called ``check-compose``) and an associated fedmsg consumer. The consumer kicks in
+when all openQA tests for any compose finish, and uses the ``check-compose`` tool to send out an
 email report summarizing the results of the tests (well, the production server sends out emails,
 the staging server just logs the contents of the report). This role isn't really a part of openQA
 proper, but is run on the openQA servers as it seems like as good a place as any to do it. As
 with all other fedmsg consumers, if making manual changes or updates to the components, remember
-to restart `fedmsg-hub` service afterwards.
+to restart ``fedmsg-hub`` service afterwards.
 
 
 Autocloud ResultsDB forwarder (autocloudreporter)
 =================================================
 
-An ansible role called `autocloudreporter` also runs on the openQA production server. This has
+An ansible role called ``autocloudreporter`` also runs on the openQA production server. This has
 nothing to do with openQA at all, but is run there for convenience. This role deploys a fedmsg
 consumer that listens for fedmsgs indicating that Autocloud (a separate automated test system
 which tests cloud images) has completed a test run, then forwards those results to ResultsDB.
