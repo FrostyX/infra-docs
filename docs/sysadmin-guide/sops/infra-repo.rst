@@ -37,8 +37,7 @@ Owner
 	 Fedora Infrastructure Team
 Contact
 	 #fedora-admin
-Location: PHX [53]http
-	//infrastructure.fedoraproject.org/
+Location: PHX [53] https://kojipkgs.fedoraproject.org/repos-dist/
 Servers
          koji
 	 batcave01 / Proxy Servers
