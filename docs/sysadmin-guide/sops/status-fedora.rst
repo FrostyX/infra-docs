@@ -23,7 +23,7 @@ Owner:
 Contact:
   #fedora-admin, #fedora-noc
 Servers:
-  An OpenShift instance
+  AWS S3/CloudFront
 Purpose: 
   Give status information to users about the current
   status of our public services.
@@ -42,7 +42,9 @@ The files are statically generated on update, and then pushed
 out to S3.
 
 Only members of sysadmin-main and people given the AWS credentials
-can update the status website.
+can update the status website.  Additionally, you also need to have
+commit access to "statusfpo" git repository on GitHub - one way to get
+it is becoming member of "noc" team at "fedora-infra" organization.
 
 Setting up
 ==========
@@ -61,7 +63,7 @@ Setting up
 Updating the page
 =================
  
-1. cd status
+1. cd statusfpo
 2. Run ./manage.py
 
 manage.py takes 3+ arguments::
@@ -69,7 +71,7 @@ manage.py takes 3+ arguments::
 [status] "[short summary message]" [service] ([service] .....)
 
 [service] values can be found on http://status.fedoraproject.org/ on the RIGHT
-SIDE of the header of each box. Examples are: 'wiki', 'pkgdb', and 'fedmsg'.
+SIDE of the header of each box. Examples are: 'wiki', 'pkgs', and 'fedmsg'.
 
 You can use "-" (dash) to imply "All services"
 
@@ -77,7 +79,7 @@ It accepts any number of additional services
 
 [status] should be::
 
-'major'     - A major service ourage.
+'major'     - A major service outage.
 'minor'     - A minor service outage (e.g. limited/geographical outage)
 'scheduled' - The current downtime to this service is related to a scheduled outage
 'good'      - Everything is fine and the service is functioning 100%.
