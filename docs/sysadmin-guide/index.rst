@@ -43,7 +43,7 @@ and from there to each machine. See the :ref:`ssh-sop` for instructions on how
 to set up SSH. You can see a list of hosts that allow apprentice access by
 using::
 
-   $  ansible/scripts/hosts_with_var_set -o fas_client_groups=fi-apprentice'
+   $  ./scripts/hosts_with_var_set -i inventory/ -o fas_client_groups=fi-apprentice
 
 from a checkout of the `Ansible repository`_. The Ansible repository is hosted
 on batcave01.phx2.fedoraproject.org in ``/git/ansible``.
