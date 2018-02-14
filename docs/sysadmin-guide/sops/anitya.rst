@@ -105,7 +105,7 @@ Building
 After `upstream <https://github.com/fedora-infra/anitya>`_ tags a new release in Git, a new
 release can be built. The specfile is stored in the `Anitya repository
 <https://github.com/fedora-infra/anitya/blob/master/files/anitya.spec>`_. Refer to the
-`Infrastructure repo SOP <https://infrastructure.fedoraproject.org/infra/docs/infra-repo.rst>`_
+`Infrastructure repo SOP <https://docs.pagure.org/infra-docs/sysadmin-guide/sops/infra-repo.html>`_
 to learn how to build the RPM.
 
 Deploying

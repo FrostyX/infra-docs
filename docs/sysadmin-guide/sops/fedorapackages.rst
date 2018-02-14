@@ -14,10 +14,9 @@ Contents
 ========
 
 1. Contact Information
-2. Building a new release
-3. Deploying to the development server
-4. Maintenance
-5. Checking for AGPL violations
+2. Deploying to the servers
+3. Maintenance
+4. Checking for AGPL violations
 
 Contact Information
 ===================
@@ -42,17 +41,8 @@ Servers
 Purpose
 	Web interface for searching packages information
 
-Releasing
-=========
-To create a new release simply create a new Git tag for the release.
-
-Building
---------
-After `upstream <https://github.com/fedora-infra/fedora-packages>`_ tags a new release in Git, a new
-release can be built. The specfile is stored in the `fedora-packages repository
-<https://github.com/fedora-infra/fedora-packages/blob/develop/fedora-packages.spec>`_. Refer to the
-`Infrastructure repo SOP <https://docs.pagure.org/infra-docs/sysadmin-guide/sops/infra-repo.html>`_
-to learn how to build the RPM.
+Deploying to the servers
+========================
 
 Deploying
 ---------
@@ -63,6 +53,12 @@ batcave01.phx2.fedoraproject.org and `permissions to run the Ansible playbook
 <https://infrastructure.fedoraproject.org/infra/docs/ansible.rst>`_.
 
 All the following commands should be run from batcave01.
+
+You can check the upstream documentation, on how to build a new release. This process
+results in a fedora-packages rpm available in the infra-tag rpm repo.
+
+You should make use of the staging instance in order to test the new version of the
+application.
 
 Upgrading
 ---------
