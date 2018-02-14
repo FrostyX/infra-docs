@@ -1,6 +1,6 @@
 .. title: Fedora Packages SOP
 .. slug: infra-fedora-packages
-.. date: 2012-02-23
+.. date: 2018-02-14
 .. taxonomy: Contributors/Infrastructure
 
 ===================
@@ -8,7 +8,7 @@ Fedora Packages SOP
 ===================
 
 This SOP is for the Fedora Packages web application.
-https://community.dev.fedoraproject.org/packages
+https://apps.fedoraproject.org/packages
 
 Contents
 ========
@@ -16,58 +16,91 @@ Contents
 1. Contact Information
 2. Building a new release
 3. Deploying to the development server
-4. Hotfixing
+4. Maintenance
 5. Checking for AGPL violations
 
 Contact Information
 ===================
 
 Owner
-	Luke Macken
+	Fedora Infrastructure Team
 
 Contact
-	lmacken@redhat.com
+	#fedora-admin, #fedora-apps
+
+Persons
+	cverna
 
 Location
 	PHX2
 
 Servers
-	community01.dev
+	packages03.phx2.fedoraproject.org
+	packages04.phx2.fedoraproject.org
+	packages03.stg.phx2.fedoraproject.org
 
 Purpose
-	Web interface for package information
+	Web interface for searching packages information
 
-Building a new release
-======================
-There is a helper script that lives in the fedoracommunity git repository
-that automatically handles spinning up a new release, building it in mock, and
-scping it to batcave. First, edit the version/release in the specfile and
-setup.py, then run:::
-
-  ./release <version> <release>
-
-Deploying to the development server:
-=====================================
-
-There is a script in the fedoracommunity git repository called
-'fcomm-dev-update' that you must first copy to the ansible server. Then you run
-it with the same arguments as the release script. This tool will sign the
-RPMs, copy them into the infrastructure testing repo, update the repodata,
-and then run a bunch of func commands to update the package on the dev server.
-
-::
-
-  ./fcomm-dev-release <version> <release>
-
-Hotfixing
+Releasing
 =========
-If you wish to make a hotfix to the Fedora Packages application, simply
-make your change in your local git repository, and then perform the building &
-deployment steps above. This will still work even if you do not wish to commit
-& push your change back upstream.
+To create a new release simply create a new Git tag for the release.
 
-In order to ensure AGPL compliance, we DO NOT do ansible based hotfixing for
-Fedora Packages.
+Building
+--------
+After `upstream <https://github.com/fedora-infra/fedora-packages>`_ tags a new release in Git, a new
+release can be built. The specfile is stored in the `fedora-packages repository
+<https://github.com/fedora-infra/fedora-packages/blob/develop/fedora-packages.spec>`_. Refer to the
+`Infrastructure repo SOP <https://docs.pagure.org/infra-docs/sysadmin-guide/sops/infra-repo.html>`_
+to learn how to build the RPM.
+
+Deploying
+---------
+
+Once the new version is built, it needs to be deployed. To deploy the new version, you need
+`ssh access <https://infrastructure.fedoraproject.org/infra/docs/sshaccess.rst>`_ to
+batcave01.phx2.fedoraproject.org and `permissions to run the Ansible playbook
+<https://infrastructure.fedoraproject.org/infra/docs/ansible.rst>`_.
+
+All the following commands should be run from batcave01.
+
+Upgrading
+---------
+
+To upgrade, run the upgrade playbook::
+
+    $ sudo rbac-playbook manual/upgrade/packages.yml
+
+This will upgrade the fedora-pacages package and restart the Apache web server
+and fedmsg-hub service.
+
+Rebuild the xapian Database
+---------------------------
+
+If you need to rebuild the xapian database then you can run the following playbook::
+
+	$ sudo rbac-playbook manual/rebuild/fedora-packages.yml
+
+
+Maintenance
+===========
+
+The web application is served by httpd and managed by the httpd service.::
+
+	$ sudo systemctl restart httpd
+
+can be used to restart the service if needed.
+The application log files are available under `/var/log/httpd/` directory.
+
+The xapian database is updated by a fedmsg consumer.
+You can restart the fedmsg-hub serivce if needed by using::
+
+	$ sudo systemctl restart fedmsg-hub
+
+To check the consumer logs you can use::
+
+	$ sudo journalctl -u fedmsg-hub
+
 
 Checking for AGPL violations
 ============================
