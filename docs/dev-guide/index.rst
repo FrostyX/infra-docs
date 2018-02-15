@@ -29,3 +29,4 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
    fedmsg
    sops
    source_control
+   openshift
