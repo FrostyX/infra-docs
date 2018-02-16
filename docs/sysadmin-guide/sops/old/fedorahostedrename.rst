@@ -11,7 +11,7 @@ This describes the steps necessary to rename a project in Fedora Hosted.
 
 Contents
 ========
-     
+
 1. Rename the Trac instance
 2. Rename the git / svn / hg / ... directory
 3. Rename any old releases directories
@@ -21,7 +21,7 @@ Rename the Trac instance
 =========================
 
 ::
-  
+
   cd /srv/web/trac/projects
   mv oldname newname
   cd newname/conf
@@ -34,7 +34,7 @@ Rename the git / svn / hg / ... directory
 =========================================
 
 ::
-  
+
   cd /git
   mv oldname.git newname.git
 
@@ -58,18 +58,18 @@ Rename the group in FAS
    updated there as well to make this safe.
 
 ::
-  
+
   ssh db2
   sudo -u postgres psql fas2
 
-::  
-  
+::
+
   BEGIN;
   select * from groups where name = '$OLDNAME';
   update groups set name = '$NEWNAME' where name = '$OLDNAME';
- 
+
 * Check that only one row was modified::
-  
+
     select * from groups where name in ('$OLDNAME', '$NEWNAME');
 
 * Check that there's only one row and the name == $NEWNAME

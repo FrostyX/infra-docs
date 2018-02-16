@@ -80,6 +80,7 @@ Full Table of Contents
 
    dev-guide/index
    sysadmin-guide/index
+   sysadmin-guide/sops/old/index
 
 
 Indices and tables

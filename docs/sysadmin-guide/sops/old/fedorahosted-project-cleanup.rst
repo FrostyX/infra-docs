@@ -79,4 +79,3 @@ FAS Group Removal
 Not every Fedora sysadmin can have this done. See
 [51]ISOP:ACCOUNT_DELETION for information. You may want to remove the
 group or simply disable it.
-

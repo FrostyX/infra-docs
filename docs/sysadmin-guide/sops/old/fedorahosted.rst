@@ -56,9 +56,9 @@ How to setup a new hosted project
 
   * <project name> must use the same case as the scm repo
   * You're likely to end up with::
-      
-      'Command failed: columns username, action are not unique' 
-      
+
+      'Command failed: columns username, action are not unique'
+
     this can be safely ignored as this only tries to tell you
     that you are giving admin access to a person already
     having admin access.
@@ -101,7 +101,7 @@ to an external service).  To do that, modify:::
 
 Adding a new Directory section like this::
 
-      # Allow python-fedora project to redirect documentation/release tree elsewhere 
+      # Allow python-fedora project to redirect documentation/release tree elsewhere
       <Directory /srv/web/releases/p/y/python-fedora>
         AllowOverride FileInfo
       </Directory>

@@ -7,7 +7,7 @@
 Hosted repository setup
 =======================
 
-Fedora provides SCM repositories for open source projects. 
+Fedora provides SCM repositories for open source projects.
 
 Contents
 
@@ -33,14 +33,14 @@ Mercurial Repository
 You'll need to know three things in order to start the mercurial
 repository.
 
-PROJECTNAME 
+PROJECTNAME
   what the project wants to be called.
 
-OLDURL 
+OLDURL
   how to access the project's current sourcecode in their
   mercurial repository.
 
-PROJECTGROUP 
+PROJECTGROUP
   the group setup in the account system for readwrite
   access to the repository.
 
@@ -155,7 +155,7 @@ Give the repository a nice description for gitweb::
 
 Setup and run post-update hook.
 
-..note:: 
+..note::
   We symlink this because /git is on a filesystem with noexec set)
 
 ::
@@ -242,7 +242,7 @@ This should be all that is needed. To checkout run::
   bzr branch bzr+ssh://bzr.fedorahosted.org/bzr/$PROJECTNAME/$BRANCHNAME
   bzr branch bzr://bzr.fedorahosted.org/bzr/$PROJECTNAME/$BRANCHNAME/
 
-.. note:: 
+.. note::
   If the end user checks out a branch without creating their own
   repository they will need to create a local working tree by doing the
   following::
@@ -297,4 +297,3 @@ If they want commit mail, then there are a couple of additional steps.::
 
   $ echo $COMMITLIST | sudo tee ./commit-list > /dev/null
   $ sudo ln -sv /usr/bin/fedora-svn-commit-mail-hook ./hooks/post-commit
-
