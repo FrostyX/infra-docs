@@ -185,6 +185,15 @@ After branching a new Fedora Release from Rawhide, following changes are require
 
 #. Copy latest ``yumrepoinfo.conf`` from libtaskotron repo (which is updated according to https://fedoraproject.org/wiki/How_to_update_yumrepoinfo.conf_in_Taskotron ) to client-host VMs.
 
+Updating Taskotron Docs
+=======================
+
+#. Build new docs from libtaskotron repo (see libtaskotron's README)
+
+#. Copy built docs (content of html folder) to ``qa-prod01.qa.fedoraproject.org:/srv/content/docs/libtaskotron/<libtaskotron_version>``
+
+#. Set owner/group of the new folder to ``apache`` and update latest symlink
+
 Current workarounds
 ===================
 
