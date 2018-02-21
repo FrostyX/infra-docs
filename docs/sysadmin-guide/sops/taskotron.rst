@@ -179,18 +179,6 @@ Current workarounds
 A list of things that are known to be currently broken and how to work around
 them.
 
-Buildmaster doesn't start on first attempt
-------------------------------------------
-
-When you reboot the server, and have ``buildmaster.service`` configured to
-start automatically, it often fails. Running::
-
-  systemctl start buildmaster.service
-
-again fixes the problem and buildmaster starts (you might try several times).
-
-Note: Increasing ``TimeoutStartSec=`` in the unit file doesn't fix this.
-
 nfs/client role fails to execute - nfs-lock service fails to start
 ------------------------------------------------------------------
 
