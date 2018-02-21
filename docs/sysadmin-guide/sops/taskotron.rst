@@ -89,7 +89,7 @@ configuration is needed.
 Updating
 ========
 
-..note::
+.. note::
   It would be wise to update ResultsDB while the Taskotron system is not
   processing jobs - that is covered in the ResultsDB SOP.
 
