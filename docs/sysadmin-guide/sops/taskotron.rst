@@ -172,6 +172,18 @@ Restore from Backup
 To restore from backup, load the database dump and restore backed up files to
 the provisioned master before starting the ``buildmaster.service``.
 
+What to do after Fedora Branching?
+==================================
+
+After branching a new Fedora Release from Rawhide, following changes are required:
+
+#. Update rawhide version number in ``roles/taskotron/imagefactory-client/templates/config.ini.j2``
+
+#. Update rawhide version number in ``roles/taskotron/imagefactory/templates/config_server.ini``
+
+#. Add new branched release version to cronjob to build new Fedora in ``roles/taskotron/imagefactory/tasks/main.yml``
+
+#. Copy latest ``yumrepoinfo.conf`` from libtaskotron repo (which is updated according to https://fedoraproject.org/wiki/How_to_update_yumrepoinfo.conf_in_Taskotron ) to client-host VMs.
 
 Current workarounds
 ===================
