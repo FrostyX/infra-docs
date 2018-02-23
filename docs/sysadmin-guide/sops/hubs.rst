@@ -46,8 +46,8 @@ Fedora Hubs has the following components:
   content is lost). System service: ``redis``.
 - a MongoDB server used to store the contents of the activity feeds. It's JSON
   data, limited to 100 entries per user or group. Service: ``mongod``.
-- a Flask-based WSGI server that will also serve the JS front end as static
-  files. System service: ``fedora-hubs-webapp``.
+- a Flask-based WSGI app served by Apache + mod_wsgi, that will also serve the
+  JS front end as static files. System service: ``httpd``.
 - a Fedmsg listener that receives messages from the fedmsg bus and puts them in
   Redis. System service: ``fedmsg-hub``.
 - a set of "triage" workers that pull the raw messages from Redis, process them
@@ -62,7 +62,8 @@ Fedora Hubs has the following components:
   reload notifications to the connected browsers. It handles long-lived HTTP
   connection but there is little activity: only the notifications and a
   "keepalive ping" message every 30 seconds to every connected browser.
-  System service: ``fedora-hubs-sse``.
+  System service: ``fedora-hubs-sse``. Apache is configured to proxy the
+  ``/sse`` path to this server.
 
 
 Managing the services
@@ -96,6 +97,7 @@ Other Hubs-specific operations are done using the `fedora-hubs` command::
 
     Commands:
       cache  Cache-related operations.
+      db     Database-related operations.
       fas    FAS-related operations.
       run    Run daemon processes.
 
