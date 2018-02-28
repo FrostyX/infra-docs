@@ -26,7 +26,7 @@ Configuration
 
 Fedora Project runs two nagios instances, nagios (noc01)
 https://admin.fedoraproject.org/nagios and nagios-external (noc02)
-http://admin.fedoraproject.org/nagios-external, you must be in
+https://nagios-external.fedoraproject.org/nagios, you must be in
 the 'sysadmin' group to access them.
 
 Apart from the two production instances, we are currently running a staging
