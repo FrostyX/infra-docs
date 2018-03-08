@@ -5,15 +5,15 @@
 +---------------+----------------------------------------+
 | Field         |                                        |
 +===============+========================================+
-| Intial Date   |  2018-01-19                            |
+| Intial Date   |  2018-03-08                            |
 +---------------+----------------------------------------+
-| Last Updated  |  2018-01-19                            |
+| Last Updated  |  2018-03-08                            |
 +---------------+----------------------------------------+
-| Service       |                                        |
+| Service       |  IPSILON                               |
 |               |                                        |
 +---------------+----------------------------------------+
-| Service Owner |  Primary:                              |
-|               |  Secondary:                            |
+| Service Owner |  Primary:   Patrick Uiterwijk          |
+|               |  Secondary: Kevin Fenzi                |
 +---------------+----------------------------------------+
 | Customer      |  Infrastructure,                       |
 |               |                                        |
@@ -30,23 +30,25 @@
 
 Scope:
 ======
-[What is included in this service and if needed what is not]
+This document is limited to the IPSILON service which backs up the
+Fedora Account System.
 
 
 Description of the Service:
 ===========================
-[Services that this SLE covers need to be included]
+IPSILON is our central authentication service which authenticates
+users against FAS. The service is important to 2factor authentication
+needed by system administration to sudo.
 
 Location of the Service:
 ========================
-[Where are the parts of this service located. While not part of
-general SLE's it is a question that is asked a lot due to the
-distributed nature of Fedora.]
+The IPSILON services are are the PHX2 colocation. Client systems
+connect to it through a web interface which is balanced by haproxy. 
 
 Service functionality:
 ======================
-[What is the service supposed to do? What are general response times
-of the service.]
+The service is meant to authenticate users for web applications and
+other systems.
 
 Service Hours:
 ==============
@@ -82,6 +84,9 @@ Service Provider Responsibilities:
 
 Security and Governance:
 ========================
+This system should only allow logins by people in restricted sysadmin
+groups. These groups will be regularly audited and admins removed as
+needed. 
 
 User Feedback Mechanism:
 ========================
@@ -90,19 +95,23 @@ mailing list or the infrastructure ticketing system.
 
 Service Reporting and Metrics:
 ==============================
-- Monitoring:
+- Monitoring: Nagios
 - Reporting:
 - Metrics:
 
 Training and Documentation:
 ===========================
+https://docs.pagure.org/infra-docs/sysadmin-guide/sops/ipsilon.html
 
 Cost:
 =====
+The services run on Dell r630's that are housed in the PHX2
+location. Costs for this are covered by Red Hat Inc.
+
+Development costs are covered by Fedora Infrastructure and volunteers.
 
 Glossary of Terms:
 ==================
 
 References:
 ===========
-
