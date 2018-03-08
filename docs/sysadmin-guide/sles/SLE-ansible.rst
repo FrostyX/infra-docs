@@ -5,14 +5,14 @@
 +---------------+----------------------------------------+
 | Field         |                                        |
 +===============+========================================+
-| Intial Date   |  2018-01-19                            |
+| Intial Date   |  2018-03-08                            |
 +---------------+----------------------------------------+
-| Last Updated  |  2018-01-19                            |
+| Last Updated  |  2018-03-08                            |
 +---------------+----------------------------------------+
-| Service       |                                        |
+| Service       |  Ansible                               |
 |               |                                        |
 +---------------+----------------------------------------+
-| Service Owner |  Primary:                              |
+| Service Owner |  Primary:   Kevin Fenzi                |
 |               |  Secondary:                            |
 +---------------+----------------------------------------+
 | Customer      |  Infrastructure,                       |
@@ -30,23 +30,30 @@
 
 Scope:
 ======
-[What is included in this service and if needed what is not]
+This document is limited to the Fedora Infrastructure ansible command
+and repository. 
 
 
 Description of the Service:
 ===========================
-[Services that this SLE covers need to be included]
+The ansible program is a deployment software which will operate
+command by command over a set of configurations. The Fedora
+Infrastructure uses a central configuration of ansible to control and
+deploy most of the servers used.
 
 Location of the Service:
 ========================
-[Where are the parts of this service located. While not part of
-general SLE's it is a question that is asked a lot due to the
-distributed nature of Fedora.]
+The central ansible server is deployed in the PHX2 colocation. A
+secondary backup server is maintained offline in RDU2.
 
 Service functionality:
 ======================
-[What is the service supposed to do? What are general response times
-of the service.]
+The service is a scripted installation service versus a full
+configuration management system like puppet, chef, or cfengine. There
+is no service running 24x7 on batcave which checks configurations and
+updates clients. Instead after changes have been made, the system
+administrator will run an ansible-playbook or script to finish client
+configuration. 
 
 Service Hours:
 ==============
@@ -82,6 +89,8 @@ Service Provider Responsibilities:
 
 Security and Governance:
 ========================
+The ansible playbooks can be run by only people who have certain
+sysadmin classes or are able to run it via a rbac command system.
 
 User Feedback Mechanism:
 ========================
@@ -96,9 +105,13 @@ Service Reporting and Metrics:
 
 Training and Documentation:
 ===========================
+https://docs.pagure.org/infra-docs/sysadmin-guide/sops/ansible.rst
 
 Cost:
 =====
+The services run on Dell r630's that are housed in the PHX2
+location. Costs for this are covered by Red Hat Inc.
+
 
 Glossary of Terms:
 ==================

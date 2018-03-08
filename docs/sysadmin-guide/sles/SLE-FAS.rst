@@ -93,6 +93,9 @@ Service Provider Responsibilities:
 
 Security and Governance:
 ========================
+This system should only allow logins by people in restricted sysadmin
+groups. These groups will be regularly audited and admins removed as
+needed. 
 
 User Feedback Mechanism:
 ========================
@@ -115,6 +118,8 @@ Cost:
 =====
 The virtual systems run on Dell r630's that are houses in the PHX2
 colocation. Costs for this are covered by Red Hat.
+
+Development costs are covered by Fedora Infrastructure and volunteers.
 
 Glossary of Terms:
 ==================
