@@ -16,22 +16,17 @@ response to the ever changing goals and needs of the project.
  Group Overview
 ================
 
-The Fedora Infrastructure team consists of N people who are a mixture
-of developers and operations paid for by Red Hat Inc. Helping out are
-various volunteers who are either subject matter experts or people
-interested in becoming experts.
-
-The group maintains over two hundred servers, several dozen services,
-and provides consulting for other teams to complete their work of
-producing Fedora Linux.
+The consistency of the Fedora Infrastructure team is covered in the
+external document: https://fedoraproject.org/wiki/Infrastructure 
 
 The primary purpose of Fedora Infrastructure is to help produce
 regular releases of the Fedora Operating System. Services which are
 aligned with that purpose will be alloted a higher priority than other
 services. 
 
-Secondary purposes are to help provide services for teams to gather
-information and market their work.
+Secondary purposes are to help provide services for other parts of the
+Fedora Project to communicate effectively, gather information about
+uses, and market their work.
 
 ========================
  Primary Business Hours
