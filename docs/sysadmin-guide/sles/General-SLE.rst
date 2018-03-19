@@ -194,3 +194,22 @@ Priority Levels:
      immediate impact on services.
 
 
+===================
+ Outside Resources
+===================
+
+The following sites were used in building the general forms and data
+for the SLE.
+
+* https://en.wikipedia.org/wiki/IT_service_management
+* https://en.wikipedia.org/wiki/ITIL
+
+* https://confluence.cornell.edu/display/itsmp/Service+Level+Management
+* https://kb.brandeis.edu/display/LTS/Help+Desk+Service+Level+Expectations
+* https://www.givainc.com/blog/index.cfm/2009/9/1/Improving-Customer-Satisfaction-by-Implementing-a-Service-Level-Agreement-SLA
+* https://www.emich.edu/it/help/pdf/ithdsle.pdf
+* http://blog.altairci.com/service-level-expectations
+* https://cms.montgomerycollege.edu/oit/HelpAndSupport.aspx?id=91 
+* http://www.harriskern.com/wp-content/uploads/2012/05/Managing-User-Service-Level-Expectations.pdf 
+* http://www.myitstudy.com/blog/2013/05/service-level-management/
+* https://its.uiowa.edu/support/article/2790
