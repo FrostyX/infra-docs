@@ -31,8 +31,6 @@ Important
 18. Docker registry
 19. Memcached
 20. Logging
-21. Src
-
 
 Normal
 ======
