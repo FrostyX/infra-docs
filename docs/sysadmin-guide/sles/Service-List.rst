@@ -2,13 +2,12 @@ Critical
 ========
 1. DNS
 2. Bastion ssh
-3. Authentication/authorization
-   * FAS              https://admin.fedoraproject.org/accounts/
-   * Ipsilon          https://id.fedoraproject.org
-4. Source control/configuration management
-   * ansible 
-   * infrastructure git repositories
-5. Backups
+3. Authentication/authorization (FAS) https://admin.fedoraproject.org/accounts/
+4. Authentication/authorization (Ipsilon)  https://id.fedoraproject.org
+5. Configuration Management (ansible)
+6. Source control (git)
+7. Backups
+8. DHCP/PXE
 
 Important
 =========
@@ -26,6 +25,14 @@ Important
 12. Fedmsg
 13. DataGrepper        https://apps.fedoraproject.org/datagrepper/
 14. Email gateway      bastion.fedoraproject.org 
+15. Autosign
+16. Composer
+17. Buildhosts
+18. Docker registry
+19. Memcached
+20. Logging
+21. Src
+
 
 Normal
 ======
@@ -36,7 +43,11 @@ Normal
 6. Notifications       https://apps.fedoraproject.org/notifications/
 7. Kerneltest          https://apps.fedoraproject.org/kerneltest/
 8. Fedora InfraCloud   https://fedorainfracloud.org
-
+9. FMN
+10. FAF
+11. Beaker
+12. Freskmaker
+15. Data Analysis
 
 Low
 ===
@@ -60,7 +71,23 @@ Low
 18. Tagger             https://apps.fedoraproject.org/tagger/
 19. Taiga              https://taiga.fedorainfracloud.org/
 20. The Planet         https://fedoraplanet.org/
-
+21. Unbound
+22. Anitya
+23. Autocloud
+24. Bugyou
+25. Gobby
+26. Hubs
+27. Keys
+28. Koschei
+29. Loopabull
+30. Hotness
+31. OpenShift
+32. Packages
+33. statscache
+34. summershum
+35. github2fedmsg
+36. bugzilla2fedmsg
+37. zanata2fedmsg
 
 Third Party
 ===========
@@ -74,13 +101,13 @@ Third Party
 6. Bugzilla            https://bugzilla.redhat.com/
 7. Status              https://status.fedoraproject.org
 8. Taskotron           https://taskotron.fedoraproject.org/
-10. Openqa
+9. Openqa
 
 
 Deprecated(?)
 =============
-Torrents        https://torrent.fedoraproject.org
-Darkserver      https://darkserver.fedoraproject.org/
-Packages        https://admin.fedoraproject.org/pkgdb/packages/
-PkgDB           https://admin.fedoraproject.org/pkgdb/
-Jenkins         https://jenkins.fedorainfracloud.org/
+1. Torrents        https://torrent.fedoraproject.org
+2. Darkserver      https://darkserver.fedoraproject.org/
+3. Packages        https://admin.fedoraproject.org/pkgdb/packages/
+4. PkgDB           https://admin.fedoraproject.org/pkgdb/
+5. Jenkins         https://jenkins.fedorainfracloud.org/
