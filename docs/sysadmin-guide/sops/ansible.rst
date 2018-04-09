@@ -48,6 +48,12 @@ There are 2 git repositories associated with ansible:
 	All commits are emailed to 'sysadmin-members' as well as announced
 	on IRC in #fedora-noc. 
 
+	It is recommended that you configure git to use ``pull --rebase`` by
+	default by running ``git config --bool pull.rebase true`` in your
+	ansible clone directory.  This configuration prevents unneeded merges
+	which can occur if someone else pushes changes to the remote repository
+	while you are working on your own local changes.
+
 /git/ansible-private on batcave01.
 	This is a private repository for passwords and other sensitive data. 
 	It is not available in cgit, nor should it be cloned or copied remotely. 
