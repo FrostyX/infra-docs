@@ -17,7 +17,7 @@ Contact
 	 #fedora-qa, #fedora-admin
 
 Persons
-	 mjia, dcallagh, cqi, qwan, sochotni, threebean
+	 mjia, dcallagh, cqi, qwan, sochotni, threebean, gnaponie
 
 Location
 	 Phoenix
@@ -85,3 +85,20 @@ the container comes from.
 
 To upgrade, get a fresh build of the rpm.  Make sure the buildconfig can find
 it.  Then run the playbook to trigger a fresh build.
+
+Troubleshooting
+===============
+
+In case of problems with greenwave messaging, check the logs of the container
+dc/greenwave-fedmsg-consumers to see if the is something wrong::
+
+    $ oc logs -f dc/greenwave-fedmsg-consumers
+
+It is also possible to check if greenwave is actually publishing messages
+looking at `this link <https://apps.fedoraproject.org/datagrepper/raw?category=greenwave&delta=127800&rows_per_page=1>`_
+and checking the time of the last message.
+
+In case of problems with greenwave webapp, check the logs of the container
+dc/greenwave-web::
+
+    $ oc logs -f dc/greenwave-web
