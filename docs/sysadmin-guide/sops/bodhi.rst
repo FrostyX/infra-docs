@@ -148,8 +148,12 @@ are, make the needed changes and re-run the deployment playbooks::
 
 Run these commands::
 
-        sudo rbac-playbook manual/staging-sync/bodhi.yml -l staging
-        sudo rbac-playbook manual/upgrade/bodhi.yml -l staging
+        # Synchronize the database from production to staging
+        $ sudo rbac-playbook manual/staging-sync/bodhi.yml -l staging
+        # Upgrade the Bodhi backend on staging
+        $ sudo rbac-playbook manual/upgrade/bodhi.yml -l staging
+        # Upgrade the Bodhi frontend on staging
+        $ sudo rbac-playbook openshift-apps/bodhi.yml -l staging
 
 
 Production
@@ -163,7 +167,10 @@ are, make the needed changes and re-run the deployment playbooks::
 
 To update the bodhi RPMs in production::
 
-        sudo rbac-playbook manual/upgrade/bodhi.yml -l bodhi2,bodhi-backend
+        # Update the backend VMs (this will also run the migrations, if any)
+        $ sudo rbac-playbook manual/upgrade/bodhi.yml -l bodhi2,bodhi-backend
+        # Update the frontend
+        $ sudo rbac-playbook openshift-apps/bodhi.yml
 
 
 Syncing the production database to staging
