@@ -135,7 +135,10 @@ Configuring all bodhi nodes
 
 Run this command from the `ansible` checkout to configure all of bodhi in production::
 
-        sudo -i ansible-playbook $(pwd)/playbooks/groups/bodhi2.yml
+        # This will configure the backends
+        $ sudo rbac-playbook playbooks/groups/bodhi2.yml
+        # This will configure the frontend
+        $ sudo rbac-playbook openshift-apps/bodhi.yml
 
 
 Pushing updates
