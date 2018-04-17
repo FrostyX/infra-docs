@@ -129,9 +129,9 @@ You can monitor the bodhi masher via the systemd journal::
 Resuming a failed push
 ======================
 
-If a push fails for some reason, you can easily resume it by running::
+If a push fails for some reason, you can easily resume it on ``bodhi-backend01`` by running::
 
-        sudo -u masher bodhi-push --resume
+    $ sudo -u apache bodhi-push --resume
 
 
 Performing a bodhi upgrade
