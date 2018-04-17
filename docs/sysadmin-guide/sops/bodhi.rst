@@ -39,14 +39,15 @@ Owner
 Contact
  #fedora-admin
 Persons
- lmacken
+ bowlofeggs
 Location
  Phoenix
 Servers
- bodhi-backend01
- bodhi-backend02
- bodhi03
- bodhi04
+ bodhi-backend01.phx2.fedoraproject.org (composer)
+ bodhi-backend02.phx2.fedoraproject.org (miscellaneous backend task worker)
+ os.fedoraproject.org (web front end)
+ bodhi-backend01.stg.phx2.fedoraproject.org (all-in-one backend worker)
+ os.stg.fedoraproject.org (web front end)
 Purpose
  Push package updates, and handle new submissions.
 
