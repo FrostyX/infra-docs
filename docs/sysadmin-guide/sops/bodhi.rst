@@ -22,7 +22,7 @@ Contents
 3. 0-day Release Actions
 4. Configuring all bodhi nodes
 5. Pushing updates
-6. Monitoring the bodhi masher output
+6. Monitoring the bodhi composer output
 7. Resuming a failed push
 8. Performing a production bodhi upgrade
 9. Syncing the production database to staging
@@ -118,12 +118,16 @@ which can be used to feed into the sigul signing tool.
 Once the packages are signed you can press `y` to begin the push.
 
 
-Monitoring the bodhi masher output
-==================================
+Monitoring the bodhi composer output
+====================================
 
-You can monitor the bodhi masher via the systemd journal::
+You can monitor the bodhi composer via the ``bodhi`` CLI tool, or via the systemd journal on
+``bodhi-backend01``::
 
-        journalctl -f -u fedmsg-hub
+    # From the comfort of your own laptop.
+    $ bodhi composes list
+    # From bodhi-backend01
+    $ journalctl -f -u fedmsg-hub
 
 
 Resuming a failed push
