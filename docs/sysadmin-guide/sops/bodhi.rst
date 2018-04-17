@@ -101,21 +101,17 @@ Pushing updates
 
 SSH into the `bodhi-backend01` machine and run::
 
-    sudo -u masher bodhi-push
+    $ sudo -u apache bodhi-push
 
 You can restrict the updates by release and/or request::
 
-   sudo -u masher bodhi-push --releases f23,f22 --request stable
+    $ sudo -u apache bodhi-push --releases f23,f22 --request stable
 
 You can also push specific builds::
 
-   sudo -u masher bodhi-push --builds openssl-1.0.1k-14.fc22,openssl-1.0.1k-14.fc23
+    $ sudo -u apache bodhi-push --builds openssl-1.0.1k-14.fc22,openssl-1.0.1k-14.fc23
 
 This will display a list of updates that are ready to be pushed.
-It also writes out the package lists to corresponding files (eg: Testing-EL6 Stable-F23)
-which can be used to feed into the sigul signing tool.
-
-Once the packages are signed you can press `y` to begin the push.
 
 
 Monitoring the bodhi masher output
