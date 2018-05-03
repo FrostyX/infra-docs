@@ -218,7 +218,7 @@ Syncing the production database to staging
 
 This can be useful for testing issues with production data in staging::
 
-        sudo -i ansible-playbook $(pwd)/playbooks/manual/staging-sync/bodhi.yml -l staging
+    $ sudo rbac-playbook manual/staging-sync/bodhi.yml -l staging
 
 
 Release EOL
