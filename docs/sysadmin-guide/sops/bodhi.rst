@@ -8,8 +8,8 @@ Bodhi Infrastructure SOP
 ========================
 
 Bodhi is used by Fedora developers to submit potential package updates for
-releases. From here, bodhi handles all of the dirty work, from sending
-around emails, dealing with Koji, to mashing the repositories.
+releases and to manage buildroot overrides. From here, bodhi handles all of the dirty work, from
+sending around emails, dealing with Koji, to composing the repositories.
 
 Bodhi production instance: https://bodhi.fedoraproject.org
 Bodhi project page: https://github.com/fedora-infra/bodhi
