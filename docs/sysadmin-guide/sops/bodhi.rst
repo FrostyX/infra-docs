@@ -22,7 +22,7 @@ Contents
 3. 0-day Release Actions
 4. Configuring all bodhi nodes
 5. Pushing updates
-6. Monitoring the bodhi masher output
+6. Monitoring the bodhi composer output
 7. Resuming a failed push
 8. Performing a production bodhi upgrade
 9. Syncing the production database to staging
@@ -154,12 +154,16 @@ You can also push specific builds::
 This will display a list of updates that are ready to be pushed.
 
 
-Monitoring the bodhi masher output
-==================================
+Monitoring the bodhi composer output
+====================================
 
-You can monitor the bodhi masher via the systemd journal::
+You can monitor the bodhi composer via the ``bodhi`` CLI tool, or via the systemd journal on
+``bodhi-backend01``::
 
-        journalctl -f -u fedmsg-hub
+    # From the comfort of your own laptop.
+    $ bodhi composes list
+    # From bodhi-backend01
+    $ journalctl -f -u fedmsg-hub
 
 
 Resuming a failed push
