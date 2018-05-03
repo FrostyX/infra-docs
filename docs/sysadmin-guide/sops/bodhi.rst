@@ -58,6 +58,43 @@ Adding and modifying releases is done using the `bodhi-manage-releases` tool.
 You can add a new pending release by running this command::
 
         bodhi-manage-releases create --name F23 --long-name "Fedora 23" --id-prefix FEDORA --version 23 --branch f23 --dist-tag f23 --stable-tag f23-updates --testing-tag f23-updates-testing --candidate-tag f23-updates-candidate --pending-stable-tag f23-updates-pending --pending-testing-tag f23-updates-testing-pending --override-tag f23-override --state pending                                                                                                                                                       
+Pre-Beta Bodhi config
+=====================
+
+Enable pre_beta policy in bodhi config in ansible.::
+        ansible/roles/bodhi2/base/templates/production.ini.j2
+
+Uncomment or add the following lines
+
+::
+        #f29.status = pre_beta
+        #f29.pre_beta.mandatory_days_in_testing = 3
+        #f29.pre_beta.critpath.min_karma = 1
+        #f29.pre_beta.critpath.stable_after_days_without_negative_karma = 14
+
+
+Post-Beta Bodhi config
+=====================
+
+Enable post_beta policy in bodhi config in ansible.::
+        ansible/roles/bodhi2/base/templates/production.ini.j2
+
+Comment or remove the following lines corresponding to pre_beta policy
+
+::
+        #f29.status = pre_beta
+        #f29.pre_beta.mandatory_days_in_testing = 3
+        #f29.pre_beta.critpath.min_karma = 1
+        #f29.pre_beta.critpath.stable_after_days_without_negative_karma = 14
+
+Uncomment or add the following lines for post_beta policy
+
+::
+
+        #f29.status = post_beta
+        #f29.post_beta.mandatory_days_in_testing = 7
+        #f29.post_beta.critpath.min_karma = 2
+        #f29.post_beta.critpath.stable_after_days_without_negative_karma = 14
 
 
 0-day Release Actions
@@ -72,21 +109,23 @@ Change state from pending to current::
 
         bodhi-manage-releases edit --name F23 --state current
 
-You may also need to disable any pre-release policy defined in the bodhi
+You may also need to disable any pre-beta or post-beta policy defined in the bodhi
 config in ansible.::
 
         ansible/roles/bodhi2/base/templates/production.ini.j2
 
-Then you can safely remove or comment out the pre-release-specific policy.
-Release status post-beta enforces the 'Beta to Pre Release' policy defined at https://fedoraproject.org/wiki/Updates_Policy
+Uncomment or remove the lines related to pre and post beta polcy
 
 ::
 
-        f23.status = 'post_beta'
-        f23.post_beta.mandatory_days_in_testing = 3
-        f23.post_beta.critpath.num_admin_approvals = 1
-        f23.post_beta.critpath.min_karma = 2
-
+        #f29.status = post_beta
+        #f29.post_beta.mandatory_days_in_testing = 7
+        #f29.post_beta.critpath.min_karma = 2
+        #f29.post_beta.critpath.stable_after_days_without_negative_karma = 14
+        #f29.status = pre_beta
+        #f29.pre_beta.mandatory_days_in_testing = 3
+        #f29.pre_beta.critpath.min_karma = 1
+        #f29.pre_beta.critpath.stable_after_days_without_negative_karma = 14
 
 Configuring all bodhi nodes
 ===========================
