@@ -200,7 +200,7 @@ koschei user::
 
 
 Branching a new Fedora release
-=====================
+==============================
 After branching occurs and Koji build targets have been created,
 Koschei should be updated to reflect the new state. There is a special
 admin command for this purpose, which takes care of copying the

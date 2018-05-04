@@ -68,7 +68,7 @@ The playbook is split into several roles. There are two main roles
  * abrt/retrace
 
 These roles are copied from upstream. You should never update it directly.
-The new version can be fetched from upstram using:
+The new version can be fetched from upstream using:
 
  # cd ansible/abrt
  # rm -rf faf retrace
@@ -120,11 +120,13 @@ Front-page
 
 The main web page is handled by the `abrt-server-info-page` package, which can be
 controlled using:
+
  /usr/lib/python2.7/site-packages/abrt-server-info-page/config.py
 
 DB
 --
 
-Only FAF uses a database. We use our own instance of PostgreSQL. You can connect to it
-using:
+Only FAF uses a database. We use our own instance of PostgreSQL. You can
+connect to it using:
+
   sudo -u faf psql faf

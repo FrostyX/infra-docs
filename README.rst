@@ -40,6 +40,11 @@ Then build the documentation and open it in a browser of your choice::
     $ make html
     $ firefox _build/html/index.html
 
+Use SPHINXOPTS variable to pass build arguments to Sphinx. For example to
+recheck sources for warnings::
+
+    $ make html SPHINXOPTS="-n -E"
+
 To leave the virtual environment::
 
     $ deactivate

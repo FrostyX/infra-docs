@@ -58,7 +58,9 @@ Adding and modifying releases is done using the `bodhi-manage-releases` tool.
 
 You can add a new pending release by running this command::
 
-        bodhi-manage-releases create --name F23 --long-name "Fedora 23" --id-prefix FEDORA --version 23 --branch f23 --dist-tag f23 --stable-tag f23-updates --testing-tag f23-updates-testing --candidate-tag f23-updates-candidate --pending-stable-tag f23-updates-pending --pending-testing-tag f23-updates-testing-pending --override-tag f23-override --state pending                                                                                                                                                       
+        bodhi-manage-releases create --name F23 --long-name "Fedora 23" --id-prefix FEDORA --version 23 --branch f23 --dist-tag f23 --stable-tag f23-updates --testing-tag f23-updates-testing --candidate-tag f23-updates-candidate --pending-stable-tag f23-updates-pending --pending-testing-tag f23-updates-testing-pending --override-tag f23-override --state pending
+
+ 
 Pre-Beta Bodhi config
 =====================
 
@@ -75,7 +77,7 @@ Uncomment or add the following lines
 
 
 Post-Beta Bodhi config
-=====================
+======================
 
 Enable post_beta policy in bodhi config in ansible.::
         ansible/roles/bodhi2/base/templates/production.ini.j2

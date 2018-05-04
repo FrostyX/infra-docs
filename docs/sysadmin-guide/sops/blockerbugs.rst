@@ -39,7 +39,7 @@ Servers
 
 Purpose
 	Hosting the `blocker bug tracking application
-    <https://pagure.io/fedora-qa/blockerbugs>`_ for QA
+        <https://pagure.io/fedora-qa/blockerbugs>`_ for QA
 
 File Locations
 ==============

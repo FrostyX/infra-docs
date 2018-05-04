@@ -97,7 +97,7 @@ as in the past. The `seconds to live` attribute of a compose can be extended
 by a client when needed.
 
 Observing ODCS Behavior
-======================
+=======================
 
 There is currently no command line tool to query ODCS, but ODCS provides REST
 API which can be used to observe the ODCS behavior. This is available on
