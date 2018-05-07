@@ -19,6 +19,7 @@ Contents
 5. Configuration
 6. Common actions
     6.1. Registering OpenID Connect Scopes
+    6.2. Generate an OpenID Connect token
 
 Contact Information
 ===================
@@ -87,3 +88,31 @@ To enable, open ansible/roles/ipsilon/templates/configuration.conf, and look for
 "openidc enabled extensions".
 Add the name of the plugin (in the "name" field of the file) to the environment this scopeset has been requested for.
 Run the ansible ipsilon.yml playbook.
+
+
+Generate an OpenID Connect token
+--------------------------------
+
+There is a handy script in the Ansible project under ``scripts/generate-oidc-token`` that can help
+you generate an OIDC token. It has a self-explanatory ``--help`` argument, and it will print out
+some SQL that you can run against Ipsilon's database, as well as the token that you seek. As an
+example::
+
+    [bowlofeggs@batcave01 ansible][PROD]$ ./scripts/generate-oidc-token bodhi -e 365 -s https://someapp.fedoraproject.org/
+
+    Run this SQL against Ipsilon's database:
+
+    --------START CUTTING HERE--------
+    BEGIN;
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','username','bodhi@service');
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','security_check','-ptBqVLId-kUJquqkVyhvR0DbDULIiKp1eqbXqG_dfVK9qACU6WwRBN3-7TRfoOn');
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','client_id','bodhi');
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','expires_at','1557259744');
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','type','Bearer');
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','issued_at','1525723744');
+    insert into token values ('2a5f2dff-4e93-4a8d-8482-e62f40dce046','scope','["openid", "https://someapp.fedoraproject.org/"]');
+    COMMIT;
+    -------- END CUTTING HERE --------
+
+
+    Token: 2a5f2dff-4e93-4a8d-8482-e62f40dce046_-ptBqVLId-kUJquqkVyhvR0DbDULIiKp1eqbXqG_dfVK9qACU6WwRBN3-7TRfoOn
