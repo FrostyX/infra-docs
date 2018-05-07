@@ -95,10 +95,22 @@ Generate an OpenID Connect token
 
 There is a handy script in the Ansible project under ``scripts/generate-oidc-token`` that can help
 you generate an OIDC token. It has a self-explanatory ``--help`` argument, and it will print out
-some SQL that you can run against Ipsilon's database, as well as the token that you seek. As an
-example::
+some SQL that you can run against Ipsilon's database, as well as the token that you seek.
 
-    [bowlofeggs@batcave01 ansible][PROD]$ ./scripts/generate-oidc-token bodhi -e 365 -s https://someapp.fedoraproject.org/
+The ``SERVICE_NAME`` (the required positional argument) is the name of the application that wants to
+use the token to perform actions against another service.
+
+To generate the scopes, you can visit our authentication_ docs and find the service you want the
+token to be used for. Each service has a base namespace (a URL) and one or more scopes for that
+namespace. To form a scope for this script, you concatenate the namespace of the service with the
+scope you want to grant the service. You can provide the script the -s flag multiple times if you
+want to grant more than one scope to the same token.
+
+As an example, to give Bodhi access to create waivers in WaiverDB, you can see that the base
+namespace is ``https://waiverdb.fedoraproject.org/oidc/`` and that there is a ``create-waiver``
+scope. You can run this to generate Ipsilon SQL and a token with that scope::
+
+    [bowlofeggs@batcave01 ansible][PROD]$ ./scripts/generate-oidc-token bodhi -e 365 -s https://waiverdb.fedoraproject.org/oidc/create-waiver
 
     Run this SQL against Ipsilon's database:
 
@@ -116,3 +128,9 @@ example::
 
 
     Token: 2a5f2dff-4e93-4a8d-8482-e62f40dce046_-ptBqVLId-kUJquqkVyhvR0DbDULIiKp1eqbXqG_dfVK9qACU6WwRBN3-7TRfoOn
+
+Once you have the SQL, you can run it against Ipsilon's database, and you can provide the token to
+the application through some secure means (such as putting into Ansible's secrets and telling the
+requestor the Ansible variable they can use to access it.)
+
+.. authentication: https://fedoraproject.org/wiki/Infrastructure/Authentication
