@@ -204,13 +204,13 @@ Production
 Ensure that no changes are needed to the Bodhi configuration files. If they
 are, make the needed changes and re-run the deployment playbooks::
 
-        sudo rbac-playbook groups/bodhi-backend.yml -l bodhi2,bodhi-backend
-        sudo rbac-playbook groups/bodhi2.yml -l bodhi2,bodhi-backend
+        sudo rbac-playbook groups/bodhi-backend.yml -l bodhi-backend
+        sudo rbac-playbook groups/bodhi2.yml -l bodhi-backend
 
 To update the bodhi RPMs in production::
 
         # Update the backend VMs (this will also run the migrations, if any)
-        $ sudo rbac-playbook manual/upgrade/bodhi.yml -l bodhi2,bodhi-backend
+        $ sudo rbac-playbook manual/upgrade/bodhi.yml -l bodhi-backend
         # Update the frontend
         $ sudo rbac-playbook openshift-apps/bodhi.yml
 
