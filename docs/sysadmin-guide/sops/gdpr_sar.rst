@@ -8,7 +8,7 @@ GDPR SAR SOP
 ============
 
 This SOP covers how Fedora Infrastructure handles General Data Protection Regulation (GDPR) Subject
-Access Requests (SAR). It contains information about how system administrations will use tooling to
+Access Requests (SAR). It contains information about how system administrators will use tooling to
 respond to SARs, as well as how application developers can integrate their applications with that
 tooling.
 
