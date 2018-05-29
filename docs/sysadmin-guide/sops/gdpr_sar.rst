@@ -39,10 +39,21 @@ SAR.
 
 When processing a SAR, perform the following steps:
 
-0. Verify that the requester is who they say they are.
+0. Verify that the requester is who they say they are. If the request came in email and the user 
+   has a FAS account, ask them to file an issue at https://pagure.io/fedora-pdr/new_issue
+   Use the following in email reply to them: 
+
+   ``In order to verify your identity, please file a new issue at
+     https://pagure.io/fedora-pdr/new_issue using the appropriate issue type.
+
+     Please note this form requires you to sign in to your account to verify
+     your identity.``
+   
 1. Identify an e-mail address for the requester, and if applicable, their FAS account name. The SAR
    playbook will use both of these since some applications have data associated with FAS accounts
-   and others have data associated with e-mail addresses.
+   and others have data associated with e-mail addresses. Update the fedora-pdr issue saying the
+   request has been received. There is a 'quick response' in the pagure issue tracker to note this. 
+
 2. Run the SAR playbook on ``batcave01``. You will need to define three Ansible variables for the
    playbook. ``sar_fas_user`` will be the FAS username, if applicable; this may be omitted if the
    requester does not have a FAS account. ``sar_email`` will be the e-mail address associated with
@@ -53,7 +64,12 @@ When processing a SAR, perform the following steps:
      $ sudo ansible-playbook playbooks/manual/gdpr/sar.yml -e sar_fas_user=bowlofeggs \
          -e sar_email=bowlof@eggs.biz -e sar_tar_output_path=/home/bowlofeggs/bowlofeggs.tar.gz
 
-3. Transmit the tarball to the requester.
+3. Generate a random sha512 with something like: ``openssl rand 512 | sha512sum`` and then move the
+   output file to /srv/web/infra/pdr/the-sha512.tar.gz
+
+4. Update the ticket to fixed / processed on pdr requests to have a link to 
+   https://infrastructure.fedoraproject.org/infra/pdr/the-sha512.tar.gz
+   and tell them it will be available for one week. 
 
 
 Integrating an application with our SAR playbook
