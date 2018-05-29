@@ -29,7 +29,8 @@ Contents
 10. Release EOL
 11. Adding notices to the front page or new update form
 12. Using the Bodhi Shell to modify updates by hand
-13. Troubleshooting and Resolution
+13. Using the Bodhi shell to fix uniqueness problems with e-mail addresses
+14. Troubleshooting and Resolution
 
 Contact Information
 ===================
@@ -279,6 +280,49 @@ Here is an example of merging two updates together and deleting the original.
         >>> up.builds.append(up2.builds[0])
         >>> delete_update(up2)
         >>> t.commit()
+
+
+Using the Bodhi shell to fix uniqueness problems with e-mail addresses
+======================================================================
+
+Bodhi currently enforces uniqueness on user e-mail addresses. There is
+`an issue <https://github.com/fedora-infra/bodhi/issues/2387>`_ filed to drop this upstream, but for
+the time being the constraint is enforced. This can be a problem for users who have more than one
+FAS account if they make one account use an e-mail address that was previously used by another
+account, if that other account has not logged into Bodhi since it was changed to use a different
+address. One way the user can fix this themselves is to log in to Bodhi with the old account so that
+Bodhi learns about its new address. However, an admin can also fix this by hand by using the Bodhi
+shell.
+
+For example, suppose a user has created ``user_1`` and ``user_2``. Suppose that ``user_1`` used to
+use ``email_a@example.com`` but has been changed to use ``email_b@example.com`` in FAS, and
+``user_2`` is now configured to use ``email_a@example.com`` in FAS. If ``user_2`` attempts to log in
+to Bodhi, it will cause a uniqueness violation since Bodhi does not know that ``user_1`` has changed
+to ``email_b@example.com``. The user can simply log in as ``user_1`` to fix this, which will cause
+Bodhi to update its e-mail address to ``email_b@example.com``. Or an admin can fix it with a shell
+on one of the Bodhi backend servers like this::
+
+    [bowlofeggs@bodhi-backend02 ~][PROD]$ sudo -u apache pshell /etc/bodhi/production.ini
+    2018-05-29 20:21:36,366 INFO  [bodhi][MainThread] Using python-bugzilla
+    2018-05-29 20:21:36,367 DEBUG [bodhi][MainThread] Using Koji Buildsystem
+    2018-05-29 20:21:42,559 INFO  [bodhi.server][MainThread] Bodhi ready and at your service!
+    Python 2.7.14 (default, Mar 14 2018, 13:36:31) 
+    [GCC 7.3.1 20180303 (Red Hat 7.3.1-5)] on linux2
+    Type "help" for more information.
+
+    Environment:
+      app          The WSGI application.
+      registry     Active Pyramid registry.
+      request      Active request object.
+      root         Root of the default resource tree.
+      root_factory Default root factory used to create `root`.
+
+    Custom Variables:
+      m            bodhi.server.models
+
+    >>> u = m.User.query.filter_by(name=u'user_1').one()
+    >>> u.email = u'email_b@example.com'
+    >>> m.Session().commit()
 
 
 Troubleshooting and Resolution
