@@ -26,13 +26,14 @@ Contact
 	 #fedora-qa, #fedora-admin
 
 Persons
-	 mjia, dcallagh, cqi, qwan, sochotni, threebean
+	 dcallagh, gnaponie (giulia), lholecek, ralph (threebean)
 
 Location
 	 Phoenix
 
 Public addresses
-  - https://waiverdb-web-waiverdb.app.os.fedoraproject.org/api/v1.0/waivers/
+  - https://waiverdb-web-waiverdb.app.os.fedoraproject.org/api/v1.0/about
+  - https://waiverdb-web-waiverdb.app.os.fedoraproject.org/api/v1.0/waivers
 
 Servers
   - In OpenShift.
@@ -94,7 +95,26 @@ Be careful.  You can delete individual waivers with SQL.
 Upgrading
 =========
 
-This is changing a lot right now, but look at the buildconfigs in
-`roles/openshift-apps/waiverdb/files/imagestream.yml`.  That will show where
-the container comes from.  It should be coming from the fedoraproject.org
-candidate registry, built by OSBS.
+You can roll out configuration changes by changing the files in
+`roles/openshift-apps/waiverdb/` and running the
+`playbooks/openshift-apps/waiverdb.yml` playbook.
+
+To understand how the software is deployed, take a look at these two files:
+
+- `roles/openshift-apps/waiverdb/templates/imagestream.yml`
+- `roles/openshift-apps/waiverdb/templates/buildconfig.yml`
+
+See that we build a fedora-infra specific image on top of an app image
+published by upstream.  The `latest` tag is automatically deployed to
+staging.  This should represent the latest commit to the `master` branch
+of the upstream git repo that passed its unit and functional tests.
+
+The `prod` tag is manually controlled.  To upgrade prod to match what is
+in stage, move the `prod` tag to point to the same image as the `latest`
+tag.  Our buildconfig is configured to poll that tag, so a new os.fp.o
+build and deployment should be automatically created.
+
+You can watch the build and deployment with `oc` commands.
+
+You can poll this URL to see what version is live at the moment:
+https://waiverdb-web-waiverdb.app.os.fedoraproject.org/api/v1.0/about
