@@ -8,6 +8,7 @@ Critical
 6. Source control (git)
 7. Backups
 8. DHCP/PXE
+9. IPA
 
 Important
 =========
@@ -32,6 +33,11 @@ Important
 19. Memcached
 20. Logging
 21. Basset
+22. PDC
+23. resultsdb
+24. certgetter
+25. mbs
+26. odcs
 
 Normal
 ======
@@ -45,7 +51,7 @@ Normal
 9. FMN
 10. FAF
 11. Beaker
-12. Freskmaker
+12. Freshmaker
 15. Data Analysis
 
 Low
@@ -75,7 +81,6 @@ Low
 23. Autocloud
 24. Bugyou
 25. Gobby
-26. Hubs
 27. Keys
 28. Koschei
 29. Loopabull
@@ -83,10 +88,26 @@ Low
 31. OpenShift
 32. Packages
 33. statscache
-34. summershum
+34. Packages        https://admin.fedoraproject.org/pkgdb/packages/
 35. github2fedmsg
 36. bugzilla2fedmsg
-37. zanata2fedmsg
+37. fed-image
+38. zanata2fedmsg
+39. secondary
+40. geoip
+41. freemedia
+42. pager_server
+43. bz_review
+44. websites 
+ a. fedora-web
+ b. fedora-budget
+ c. fedora-docs
+ d. developer
+ e. whatcanidoforfedora
+ f. membership-map
+ g. zanata
+ h. review-stats
+ i. fedora_owner_change
 
 Third Party
 ===========
@@ -107,6 +128,7 @@ Deprecated(?)
 =============
 1. Torrents        https://torrent.fedoraproject.org
 2. Darkserver      https://darkserver.fedoraproject.org/
-3. Packages        https://admin.fedoraproject.org/pkgdb/packages/
 4. PkgDB           https://admin.fedoraproject.org/pkgdb/
 5. Jenkins         https://jenkins.fedorainfracloud.org/
+34. summershum
+37. zanata2fedmsg
