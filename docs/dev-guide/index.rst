@@ -27,6 +27,7 @@ issue <https://pagure.io/infra-docs/issues>`_ or submit a pull request.
    writing-tests
    auth
    fedmsg
+   messaging
    sops
    source_control
    openshift
