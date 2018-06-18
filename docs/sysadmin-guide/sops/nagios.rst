@@ -61,7 +61,7 @@ our network.
 
 A great guide about it and its usage mixed up with some nice images about
 its structure can be found at:
-http://nagios.sourceforge.net/docs/nrpe/NRPE.pdf
+https://assets.nagios.com/downloads/nagioscore/docs/nrpe/NRPE.pdf
 
 Understanding the Messages
 ==========================
