@@ -52,7 +52,13 @@ When processing a Delete request, perform the following steps:
    If they do not have a FAS account, indicate to them that there is no data to be deleted.
    Use this response:
 
-   `` ``
+   ``Your request for deletion has been reviewed. Since there is no related
+   account in the Fedora Account System, the Fedora infrastructure does
+   not store data relevant for this deletion request. Note that some
+   public content related to Fedora you may have previously submitted
+   without an account, such as to public mailing lists, is not deleted
+   since accurate maintenance of this data serves both Fedora's and the
+   public interest as well as the open source community.``
    
 1. Identify the users FAS account name. The Delete playbook will use this FAS account to delete
    the required data. Update the fedora-pdr issue saying the request has been received.
