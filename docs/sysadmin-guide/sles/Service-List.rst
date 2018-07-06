@@ -89,12 +89,10 @@ Low
 32. Packages
 33. statscache
 34. Packages        https://admin.fedoraproject.org/pkgdb/packages/
-35. github2fedmsg
 36. bugzilla2fedmsg
 37. fed-image
 38. zanata2fedmsg
 39. secondary
-40. geoip
 41. freemedia
 42. pager_server
 43. bz_review
@@ -131,4 +129,3 @@ Deprecated(?)
 4. PkgDB           https://admin.fedoraproject.org/pkgdb/
 5. Jenkins         https://jenkins.fedorainfracloud.org/
 34. summershum
-37. zanata2fedmsg
