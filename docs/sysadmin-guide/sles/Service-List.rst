@@ -101,15 +101,19 @@ Low
 39. pager_server
 40. bz_review
 41. websites 
-a. fedora-web
-b. fedora-budget
-c. fedora-docs
-d. developer
-e. whatcanidoforfedora
-f. membership-map
-g. zanata
-h. review-stats
-i. fedora_owner_change
+
+Websites
+--------
+
+1. fedora-web
+2. fedora-budget
+3. fedora-docs
+4. developer
+5. whatcanidoforfedora
+6. membership-map
+7. zanata
+8. review-stats
+9. fedora_owner_change
 
 Third Party
 ===========
@@ -131,7 +135,7 @@ Third Party
 Deprecated(?)
 =============
 1. Torrents        https://torrent.fedoraproject.org
-1. Darkserver      https://darkserver.fedoraproject.org/
-1. PkgDB           https://admin.fedoraproject.org/pkgdb/
-1. Jenkins         https://jenkins.fedorainfracloud.org/
-1. summershum
+2. Darkserver      https://darkserver.fedoraproject.org/
+3. PkgDB           https://admin.fedoraproject.org/pkgdb/
+4. Jenkins         https://jenkins.fedorainfracloud.org/
+5. summershum
