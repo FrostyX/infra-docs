@@ -1,5 +1,6 @@
 Critical
 ========
+
 1. DNS
 2. Bastion ssh
 3. Authentication/authorization (FAS) https://admin.fedoraproject.org/accounts/
@@ -12,6 +13,7 @@ Critical
 
 Important
 =========
+
 1. Koji                https://koji.fedoraproject.org
 2. Bodhi               https://bodhi.fedoraproject.org
 3. Downloads           https://dl.fedoraproject.org/
@@ -41,21 +43,23 @@ Important
 
 Normal
 ======
+
 1. Pagure              https://pagure.io
-2. The Mailing Lists   https://lists.fedoraproject.org/
-4. Wiki             https://fedoraproject.org/wiki/Fedora_Project_Wiki
-5. Documentation    https://fedoraproject.org/wiki/Fedora_Project_Wiki
-6. Notifications       https://apps.fedoraproject.org/notifications/
-7. Kerneltest          https://apps.fedoraproject.org/kerneltest/
-8. Fedora InfraCloud   https://fedorainfracloud.org
-9. FMN
-10. FAF
-11. Beaker
-12. Freshmaker
-15. Data Analysis
+2. The Mailing Lists   https://lists.fedoraproject.org
+3. Wiki                https://fedoraproject.org/wiki/Fedora_Project_Wiki
+4. Documentation
+5. Notifications       https://apps.fedoraproject.org/notifications
+6. Kerneltest          https://apps.fedoraproject.org/kerneltest
+7. Fedora InfraCloud   https://fedorainfracloud.org
+8. FMN
+9. FAF
+10. Beaker
+11. Freshmaker
+12. Data Analysis
 
 Low
 ===
+
 1. Ambassadors https://fedoraproject.org/membership-map/ambassadors.html  
 2. Asknot              http://whatcanidoforfedora.org/
 3. Badges              https://badges.fedoraproject.org/
@@ -81,22 +85,22 @@ Low
 23. Autocloud
 24. Bugyou
 25. Gobby
-27. Keys
-28. Koschei
-29. Loopabull
-30. Hotness
-31. OpenShift
-32. Packages
-33. statscache
-34. Packages        https://admin.fedoraproject.org/pkgdb/packages/
-36. bugzilla2fedmsg
-37. fed-image
-38. zanata2fedmsg
-39. secondary
-41. freemedia
-42. pager_server
-43. bz_review
-44. websites 
+26. Keys
+27. Koschei
+28. Loopabull
+29. Hotness
+30. OpenShift
+31. Packages
+32. statscache
+33. Packages        https://admin.fedoraproject.org/pkgdb/packages/
+34. bugzilla2fedmsg
+35. fed-image
+36. zanata2fedmsg
+37. secondary
+38. freemedia
+39. pager_server
+40. bz_review
+41. websites 
  a. fedora-web
  b. fedora-budget
  c. fedora-docs
@@ -109,23 +113,25 @@ Low
 
 Third Party
 ===========
-   * Outside of Fedora Infrastructure to fix.
-0. Network connectivity to PHX2/RDU2
-1. FreeNode IRC        https://freenode.net
-2. Ask Fedora          https://ask.fedoraproject.org/
-3. COPR                https://copr.fedorainfracloud.org/
-4. CI                  https://ci.centos.org
-5. Retrace             https://retrace.fedoraproject.org
-6. Bugzilla            https://bugzilla.redhat.com/
-7. Status              https://status.fedoraproject.org
-8. Taskotron           https://taskotron.fedoraproject.org/
-9. Openqa
+
+* Outside of Fedora Infrastructure to fix.
+
+1. Network connectivity to PHX2/RDU2
+2. FreeNode IRC        https://freenode.net
+3. Ask Fedora          https://ask.fedoraproject.org/
+4. COPR                https://copr.fedorainfracloud.org/
+5. CI                  https://ci.centos.org
+6. Retrace             https://retrace.fedoraproject.org
+7. Bugzilla            https://bugzilla.redhat.com/
+8. Status              https://status.fedoraproject.org
+9. Taskotron           https://taskotron.fedoraproject.org/
+10. Openqa
 
 
 Deprecated(?)
 =============
 1. Torrents        https://torrent.fedoraproject.org
-2. Darkserver      https://darkserver.fedoraproject.org/
-4. PkgDB           https://admin.fedoraproject.org/pkgdb/
-5. Jenkins         https://jenkins.fedorainfracloud.org/
-34. summershum
+1. Darkserver      https://darkserver.fedoraproject.org/
+1. PkgDB           https://admin.fedoraproject.org/pkgdb/
+1. Jenkins         https://jenkins.fedorainfracloud.org/
+1. summershum
