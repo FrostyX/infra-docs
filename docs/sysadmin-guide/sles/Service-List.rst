@@ -101,15 +101,15 @@ Low
 39. pager_server
 40. bz_review
 41. websites 
- a. fedora-web
- b. fedora-budget
- c. fedora-docs
- d. developer
- e. whatcanidoforfedora
- f. membership-map
- g. zanata
- h. review-stats
- i. fedora_owner_change
+a. fedora-web
+b. fedora-budget
+c. fedora-docs
+d. developer
+e. whatcanidoforfedora
+f. membership-map
+g. zanata
+h. review-stats
+i. fedora_owner_change
 
 Third Party
 ===========
