@@ -4,12 +4,6 @@
 .. taxonomy: Contributors/Infrastructure
 
 
-.. ##########################################################################
-.. NOTE: This document is currently under construction. The service described
-         herein is not yet in production.
-.. ##########################################################################
-
-
 =========
 Loopabull
 =========
@@ -31,13 +25,14 @@ Contact Information
 
 Owner
     Adam Miller (maxamillion)
+    Pierre-Yves Chibon (pingou)
 
 Contact
     #fedora-admin, #fedora-releng, #fedora-noc, sysadmin-main, sysadmin-releng
 
 Location
-
-    TBD
+    loopabull01.phx2.fedoraproject.org
+    loopabull01.stg.phx2.fedoraproject.org
 
 Purpose
     Event Driven Automation of tasks within the Fedora Infrastructure and Fedora
@@ -91,7 +86,18 @@ detailed version can be found in the `releng docs`.
 Deployment
 ----------
 
-TBD
+Loopabull is deployed on two hosts, one for the production instance:
+``loopabull01.prod.phx2.fedoraproject.org`` and one for the staging instance:
+``loopabull01.stg.phx2.fedoraproject.org``.
+
+Each host is running loopabull with 5 workers reacting to fedmsg
+notifications.
+
+Expanding loopabull
+===================
+
+The documentation to expand loopabull's usage is documented at:
+`https://pagure.io/Fedora-Infra/loopabull-tasks <https://pagure.io/Fedora-Infra/loopabull-tasks>`_
 
 
 Outage
@@ -100,16 +106,41 @@ Outage
 In the event that loopabull isn't responding or isn't running playbooks as it
 should be, the following scenarios should be approached.
 
+What is going on?
+-----------------
+
+There are a few commands that may help figuring out what is going:
+
+* Check the status of the different services:
+
+::
+
+    systemctl |grep loopabull
+
+* Follow the logs of the different services:
+
+::
+
+    journalctl -lfu loopabull -u loopabull@1 -u loopabull@2 -u loopabull@3 \
+        -u loopabull@4 -u loopabull@5
+
+If a playbook returns a non-zero error code, the worker running it will be
+stopped. If that happens, you may want to carefully review the logs to
+assess what lead to this situation so it can be prevented in the future.
+
+
 Network Interruption
 --------------------
 
 Sometimes if the network is interrupted, the loopabull service will hang because
-the fedmsg listener will hold a dead socket open. The service simply needs to be
-restarted at that point.
+the fedmsg listener will hold a dead socket open. The service and its workers
+simply needs to be restarted at that point.
 
 ::
 
-    systemctl restart loopabull.service
+    systemctl restart loopabull loopabull@1 loopabull@2 loopabull@3 \
+        loopabull@4 loopabull@5
+
 
 .. CITATIONS/LINKS
 .. _Ansible: https://www.ansible.com/
