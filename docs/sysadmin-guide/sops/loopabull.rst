@@ -129,6 +129,30 @@ stopped. If that happens, you may want to carefully review the logs to
 assess what lead to this situation so it can be prevented in the future.
 
 
+* Monitoring the queue size
+
+The loopabull service listens to the fedmsg bus and puts the messages as they
+come into a rabbitmq/amqp queue for the workers to process.
+If you want to see the number of messages pending to be processed by the workers
+you can check the queue size using:
+
+::
+
+    rabbitmqctl list_queues
+
+The output will be something like:
+
+::
+
+    Listing queues ...
+    workers 489989
+    ...done.
+
+Where ``workers`` is the name of the queue used by loopabull and ``489989`` the
+number of messages in that queue (yes that day we were recovering from a
+several-day long outage).
+
+
 Network Interruption
 --------------------
 
