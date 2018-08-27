@@ -101,3 +101,36 @@ Examples::
 You can use the --general-info flag to set a "global" message, which appears
 under the main status bar at the top of the page. Use this for big events that
 effect all services, or to announce things like upcoming outages.
+
+Renewing SSL certificate
+========================
+
+Because
+
+1. Run certbot to generate certificate and have it signed by
+   LetsEncrypt (you can run this command anywhere certbot is
+   installed, you can use your laptop or
+   certgetter01.phx2.fedoraproject.org)::
+
+    rm -rf ~/certbot
+    certbot certonly --agree-tos -m admin@fedoraproject.org --no-eff-email --manual --manual-public-ip-logging-ok -d status.fedoraproject.org -d www.fedorastatus.org --preferred-challenges http-01 --config-dir ~/certbot/conf --work-dir ~/certbot/work --logs-dir ~/certbot/log
+
+2. You will be asked to make specific file available under specific
+   URL.  In a different terminal upload requested file to AWS S3 bucket::
+
+    echo SOME_VALUE >myfile
+    aws --profile statusfpo s3 cp myfile s3://status.fedoraproject.org/.well-known/acme-challenge/SOME_FILE
+
+3. Verify that uploaded file is available under the rigt URL.  If
+   previous certificate already expired you may need to run curl with
+   -k option::
+
+    curl -kL http://www.fedorastatus.org/.well-known/acme-challenge/SOME_FILE
+
+4. After making sure that curl outputs expected value, go back to
+   certbot run and continue by pressing Enter.  You will be asked to
+   repeat steps 2 and 3 for another domain.  Note that S3 bucket name
+   should stay the same.
+
+5. Deploy generated certificate to AWS.  This requires additional
+   permissions on AWS.
