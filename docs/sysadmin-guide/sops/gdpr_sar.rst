@@ -48,7 +48,11 @@ When processing a SAR, perform the following steps:
 
      Please note this form requires you to sign in to your account to verify
      your identity.``
-   
+
+   If the request has come via Red Hat internal channels as an explicit
+   request to delete, mark the ticket with the tag ``rh``.  This tag will
+   help delineate requests for any future reporting needs.
+
 1. Identify an e-mail address for the requester, and if applicable, their FAS account name. The SAR
    playbook will use both of these since some applications have data associated with FAS accounts
    and others have data associated with e-mail addresses. Update the fedora-pdr issue saying the
