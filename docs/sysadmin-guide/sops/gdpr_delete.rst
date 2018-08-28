@@ -48,6 +48,10 @@ When processing a Delete request, perform the following steps:
 
      Please note this form requires you to sign in to your account to verify
      your identity.``
+     
+   If the request has come via Red Hat internal channels as an explicit
+   request to delete, mark the ticket with the tag ``rh``.  This tag will
+   help delineate requests for any future reporting needs.
 
    If they do not have a FAS account, indicate to them that there is no data to be deleted.
    Use this response:
