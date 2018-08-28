@@ -10,6 +10,8 @@ Anitya Infrastructure SOP
 Anitya is used by Fedora to track upstream project releases and maps them
 to downstream distribution packages, including (but not limited to) Fedora.
 
+Anitya staging instance: https://stg.release-monitoring.org
+
 Anitya production instance: https://release-monitoring.org
 
 Anitya project page: https://github.com/release-monitoring/anitya
@@ -23,12 +25,18 @@ Owner
 Contact
     #fedora-admin, #fedora-apps
 Persons
-    pingou, jcline
+    pingou, jcline, zlopez
 Location
     ?
 Servers
-    anitya-backend01.vpn.fedoraproject.org
-    anitya-frontend01.vpn.fedoraproject.org
+    Production
+
+    - anitya-backend01.vpn.fedoraproject.org
+    - anitya-frontend01.vpn.fedoraproject.org
+
+    Staging
+
+    - os-master01.stg.phx2.fedoraproject.org
 Purpose
     Map upstream releases to Fedora packages.
 
@@ -110,7 +118,7 @@ to learn how to build the RPM.
 
 Deploying
 ---------
-At the moment, there is no staging deployment of Anitya.
+Staging deployment of Anitya is deployed in OpenShift on os-master01.stg.phx2.fedoraproject.org.
 
 Once the new version is built, it needs to be deployed. To deploy the new version, you need
 `ssh access <https://infrastructure.fedoraproject.org/infra/docs/sshaccess.rst>`_ to
@@ -131,6 +139,15 @@ test your configuration changes prior to a package upgrade.
 
 Upgrading
 ^^^^^^^^^
+
+Staging
+"""""""
+On staging you can deploy new version of Anitya by running:
+
+    $ sudo rbac-playbook openshift-apps/release-monitoring.yml
+
+Production
+""""""""""
 Both anitya-backend and anitya-frontend need the new version of the ``anitya`` package.
 To upgrade, run the upgrade playbook::
 
