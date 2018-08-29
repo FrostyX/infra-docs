@@ -70,7 +70,7 @@ The rules are simple:
 
 * Changes to recover from outages are acceptable to frozen hosts if needed.
 
-Change freezes will be sent to the fedora-infrastructure-list and begin 2
+Change freezes will be sent to the fedora-infrastructure-list and begin 3
 weeks before each release and the final release. The freeze will end one
 day after the release. Note, if the release slips during a change freeze,
 the freeze just extends until the day after a release ships.
@@ -78,7 +78,7 @@ the freeze just extends until the day after a release ships.
 You can get a list of frozen/non-frozen hosts by::
 
   git clone https://infrastructure.fedoraproject.org/infra/ansible.git
-  scripts/freezelist -i inventory/inventory
+  scripts/freezelist -i inventory
 
 Notes about release day
 =======================
@@ -103,7 +103,7 @@ spikes a great deal. During the Fedora 6 launch many services were offline
 for hours. Some (like the docs) were off for days. A large part of this
 outage was due to the wiki not being able to handle the load, part was a
 lack of planning by the Infrastructure team, and part is still a mystery.
-(There are questions as to whether or not all of the traffic was legit or
+There are questions as to whether or not all of the traffic was legit or
 a ddos.
 
 The Fedora 7 release went much better. Some services were offline for
@@ -136,7 +136,7 @@ release. It will need to be changed in https://fedoraproject.org/wiki/Template:C
 Additionally, there are redirects in the ansible 
 playbooks/include/proxies-redirects.yml file for Cloud
 Images. These should be pushed as soon as the content is available. 
-See: https://fedorahosted.org/fedora-infrastructure/ticket/3866 for example
+See: https://pagure.io/fedora-infrastructure/issue/3866 for example
 
 Step 3 (Mirrors)
 ----------------
@@ -149,9 +149,9 @@ the publiclist page.
 
 You can check this by looking at::
 
-  wget "http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/20-Alpha&country=global"
+  wget "http://mirrors.fedoraproject.org/mirrorlist?path=pub/fedora/linux/releases/test/28-Beta&country=global"
 
-  (replace 20 and Alpha with the version and release.)
+  (replace 28 and Beta with the version and release.)
 
 Release day
 ===========
@@ -171,7 +171,7 @@ Step 2 (Torrent)
 
 Once given the ok to release, the Infrastructure team should publish the
 torrent and encourage people to seed. Complete the steps on the
-http://infrastructure.fedoraproject.org/infra/docs/torrentrelease.txt
+https://fedora-infra-docs.readthedocs.io/en/latest/sysadmin-guide/sops/torrentrelease.html
 after step 4. 
 
 Step 3 (Bit flip)
@@ -187,9 +187,8 @@ Step 4 (Taskotron) (final release only)
 --------------------------------------- 
 
 Please file a Taskotron ticket and ask for the new release support to be
-added (log in to Phabricator using your FAS_account@fedoraproject.org email
-address)
-https://phab.qadevel.cloud.fedoraproject.org/maniphest/task/edit/form/default/?title=new%20Fedora%20release&priority=80&tags=libtaskotron
+added
+https://pagure.io/taskotron/issues
 
 Step 5 (Website)
 ----------------
@@ -231,7 +230,7 @@ We have some badge rules that are dependent on which release of Fedora
 we're on.  As you have time, please performs the following on your local
 box::
 
-  $ git clone ssh://git.fedorahosted.org/git/badges.git
+  $ git clone ssh://git@pagure.io/fedora-badges.git
   $ cd badges
 
 Edit ``rules/tester-it-still-works.yml`` and update the release tag to match
@@ -240,10 +239,10 @@ then the tag in that badge rule should be fc20.
 
 Edit ``rules/tester-you-can-pry-it-from-my-cold-dead-hands.yml`` and update
 the release tag to match the release that is about to reach EOL.  For
-instance, if we just released fc21, then the tag in that badge rule
-should be fc19. Commit the changes::
+instance, if we just released f28, then the tag in that badge rule
+should be f26. Commit the changes::
 
-  $ git commit -a -m 'Updated tester badge rule for f21 release.'
+  $ git commit -a -m 'Updated tester badge rule for f28 release.'
   $ git push origin master
 
 Then, on batcave, perform the following::
@@ -268,8 +267,8 @@ Priorities of during release day (In order):
     many users.
 
 2. Linked addresses 
-    We do not have direct control over what Digg,
-    Slashdot or anyone else links to. If they link to something on the
+    We do not have direct control over what Hacker News,
+    Phoronix or anyone else links to. If they link to something on the
     wiki and it is going down or link to any other site we control a
     rewrite should be put in place to direct them to
     http://fedoraproject.org/get-fedora.
@@ -319,35 +318,10 @@ problem. These are some tips to keep in mind:
 CHECKLISTS: 
 ===========
 
-Alpha: 
-------
-
-* Announce infrastructure freeze 2 weeks before Alpha
-* Change /topic in #fedora-admin
-* mail infrastucture list a reminder. 
-* File all tickets
-* new website, check mirror permissions, mirrormanager, check
-* mirror sizes, release day ticket. 
-
-After release is a "go":
-
-* Make sure torrents are setup and ready to go. 
-* fedora-web needs a branch for fN-alpha. In it: 
-  * Alpha used on get-prerelease
-  * get-prerelease doesn't direct to release
-  * verify is updated with Alpha info
-  * releases.txt gets a branched entry for preupgrade
-  * bfo gets updated to have a Alpha entry. 
-
-After release:
-
-* Update /topic in #fedora-admin
-* post to infrastructure list that freeze is over. 
-
 Beta: 
 -----
 
-* Announce infrastructure freeze 2 weeks before Beta
+* Announce infrastructure freeze 3 weeks before Beta
 * Change /topic in #fedora-admin
 * mail infrastucture list a reminder. 
 * File all tickets
