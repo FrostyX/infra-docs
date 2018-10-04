@@ -28,9 +28,11 @@ Persons
 Location
  Phoenix
 Servers
- docker-registry02.phx2.fedoraproject.org
- docker-registry03.phx2.fedoraproject.org
- docker-candidate-registry01.phx2.fedoraproject.org
+ oci-candidate-registry01.phx2.fedoraproject.org
+ oci-candidate-registry01.stg.phx2.fedoraproject.org
+ oci-registry01.phx2.fedoraproject.org
+ oci-registry01.stg.phx2.fedoraproject.org
+ oci-registry02.phx2.fedoraproject.org
 Purpose
  Serve Fedora's container images
 
@@ -40,14 +42,14 @@ Configuring all nodes
 
 Run this command from the `ansible` checkout to configure all nodes in production::
 
-        sudo -i ansible-playbook $(pwd)/playbooks/groups/docker-registry.yml
+   $ sudo rbac-playbook groups/oci-registry.yml
 
 
 Upgrades
 ========
 
-Fedora infrastructure uses the registry packaged and distributed in the ``rhel7-extras`` repository.
-Thus, there is no special upgrade procedure - a simple ``yum update`` will do.
+Fedora infrastructure uses the registry packaged and distributed with Fedora.
+Thus, there is no special upgrade procedure - a simple ``dnf update`` will do.
 
 
 System architecture
@@ -61,7 +63,7 @@ primary goal of serving the registry API ourselves is so that we can serve the c
 over TLS so that users can be assured they are receiving the correct image blobs when they retrieve
 them. We do not rely on signatures since we do not have a Notary instance.
 
-The two registry instances are configured not to cache their data, and use Gluster to replicate
+The two registry instances are configured not to cache their data, and use NFS to replicate
 their shared storage. This way, changes to one registry should appear in the other quickly.
 
 
