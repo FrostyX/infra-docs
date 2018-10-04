@@ -65,6 +65,15 @@ Purpose:
 
 Troubleshooting, Resolution and Maintenance
 
+
+Check out the DNS repository
+============================
+
+You can get the dns repository from ``/git/dns`` on ``batcave01``::
+
+    $ git clone /git/dns
+
+
 Adding a new Host
 =================
 
